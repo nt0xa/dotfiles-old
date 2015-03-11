@@ -11,10 +11,11 @@ DIR=${0:a:h}
 
 # Create a new zsh configuration by copying
 # the zsh configuration files provided.
-yes | cp -rf $DIR/zsh/.* $ZDOTDIR >/dev/null
+unalias cp
+cp -f $DIR/zsh/.* $ZDOTDIR >/dev/null
 
 # Create .zshenv file in home folder.
-if [ ! -d "$HOME/.zshenv" ]; then
+if [ ! -f "$HOME/.zshenv" ]; then
     cat > $HOME/.zshenv <<EOL
 export ZDOTDIR=$HOME/.zsh
 source $ZDOTDIR/.zshenv
