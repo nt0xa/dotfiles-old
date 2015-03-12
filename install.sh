@@ -1,23 +1,26 @@
-# Set ZDOTDIR.
-export ZDOTDIR=$HOME/.zsh
+#!/bin/bash
 
-if [ ! -d "$ZDOTDIR/.zprezto" ]; then
-    # Clone prezto repo.
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "$ZDOTDIR/.zprezto"
-fi
+# Get script direcrory.
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-# Script directory.
-DIR=${0:a:h}
+# Load utils.
+source $DIR/utils.sh
 
-# Create a new zsh configuration by copying
-# the zsh configuration files provided.
-unalias cp
-cp -f $DIR/zsh/.* $ZDOTDIR >/dev/null
+#
+# Installing zsh files.
+#
 
-# Create .zshenv file in home folder.
-if [ ! -f "$HOME/.zshenv" ]; then
-    cat > $HOME/.zshenv <<EOL
-export ZDOTDIR=$HOME/.zsh
-source $ZDOTDIR/.zshenv
-EOL
-fi
+e_header "ZSH"
+
+# Path to directory where all zsh files 
+# will be placed.
+ZDOTDIR=$HOME/.zsh
+
+# Zsh-files.
+ZSHFILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
+
+# Copy all zsh files to ZDOTDIR.
+for file in ${ZSHFILES[*]}; do
+    \cp -f $DIR/zsh/$file $ZDOTDIR/.$file > /dev/null
+    e_note "$file"
+done
