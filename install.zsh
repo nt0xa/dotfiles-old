@@ -22,15 +22,22 @@ if [ -d "$ZDOTDIR" ]; then
     if ! is_confirmed; then
         exit 1
     fi
+
+    # Remove existant .zsh
+    \rm -rf $ZDOTDIR
+
     printf "\n"
 fi
+
+# Create .zsh directory.
+mkdir $ZDOTDIR
 
 # Zsh-files.
 ZSHFILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
 
 # Copy prezto repo to ~/.zsh
 e_note "==> Copy prezto repo to ~/.zsh/.zprezto"
-\cp -rf $DIR/zsh/prezto $ZDOTDIR
+rsync -r --links $DIR/zsh/prezto/ $ZDOTDIR/.zprezto
 if [ $? -eq 0 ]; then
     e_success "done"
 else

@@ -26,7 +26,7 @@ e_header() {
     repeat $len printf "="
     printf "\n==== $@ ====\n"
     repeat $len printf "="
-    printf  "${reset}\n"
+    printf  "${reset}\n\n"
 }
 
 e_arrow() {
