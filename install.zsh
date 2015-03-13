@@ -29,7 +29,7 @@ if [ -d "$ZDOTDIR" ]; then
     printf "\n"
 fi
 
-# Create .zsh directory.
+# Create ~/.zsh directory.
 mkdir $ZDOTDIR
 
 # Zsh-files.
@@ -39,7 +39,7 @@ ZSHFILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
 e_note "==> Copy prezto repo to ~/.zsh/.zprezto"
 rsync -r --links $DIR/zsh/prezto/ $ZDOTDIR/.zprezto
 if [ $? -eq 0 ]; then
-    e_success "done"
+    e_success "ok"
 else
     e_error "fail"
 fi
@@ -56,3 +56,22 @@ for file in ${ZSHFILES[*]}; do
         e_error ".$file"
     fi
 done
+printf "\n"
+
+# Create .zshenv file in home directory 
+# that will source ~/.zsh/.zshenv
+e_note "==> Create ~/.zshenv"
+
+if [ -f "$HOME/.zshenv" ]; then
+    rm -f $HOME/.zshenv
+fi
+
+cat > $HOME/.zshenv <<EOL
+export ZDOTDIR=$HOME/.zsh
+source $ZDOTDIR/.zshenv
+EOL
+if [ $? -eq 0 ]; then
+    e_success "ok"
+else
+    e_error "fail"
+fi
