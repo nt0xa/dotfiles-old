@@ -4,7 +4,7 @@
 DIR=${0:a:h}
 
 # Load utils.
-source $DIR/utils.zsh
+source $DIR/tools/utils.zsh
 
 #
 # Installing zsh files.
