@@ -1,10 +1,13 @@
 #!/bin/zsh
 
+# Stop on any error.
+set -e
+
 # Get script direcrory.
 DIR=${0:a:h}
 
-# Load utils.
-source $DIR/tools/utils.zsh
+# Load helpers.
+source $DIR/helpers/utils.zsh
 
 #
 # Installing zsh files.
@@ -12,11 +15,11 @@ source $DIR/tools/utils.zsh
 
 e_header "ZSH"
 
-# Path to directory where all zsh files 
+# Path to directory where all zsh files
 # will be placed.
 ZDOTDIR=$HOME/.zsh
 
-# Check ~/.zsh directory.
+# Check existance of ~/.zsh directory.
 if [ -d "$ZDOTDIR" ]; then
     seek_confirmation "~/.zsh already exist. Do you want to rewrite it?"
     if ! is_confirmed; then
@@ -25,38 +28,31 @@ if [ -d "$ZDOTDIR" ]; then
 
     # Remove existant .zsh
     \rm -rf $ZDOTDIR
-
-    printf "\n"
 fi
 
 # Create ~/.zsh directory.
 mkdir $ZDOTDIR
 
-# Zsh-files.
-ZSHFILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
-
 # Copy prezto repo to ~/.zsh
 e_note "==> Copy prezto repo to ~/.zsh/.zprezto"
+
 rsync -r --links $DIR/zsh/prezto/ $ZDOTDIR/.zprezto
-if [ $? -eq 0 ]; then
-    e_success "ok"
-else
-    e_error "fail"
-fi
-printf "\n"
+e_success "ok"
+
+# Zsh-files.
+ZSHFILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
 
 # Copy all zsh files to ZDOTDIR.
 e_note "==> Copy all zsh files to ~/.zsh"
 
 for file in ${ZSHFILES[*]}; do
-    \cp -f $DIR/zsh/$file $ZDOTDIR/.$file > /dev/null
-    if [ $? -eq 0 ]; then
-        e_success ".$file"
+    if [[ -f $DIR/zsh/$file ]]; then
+        cp $DIR/zsh/$file $ZDOTDIR/.$file
     else
-        e_error ".$file"
+        ln -s $ZDOTDIR/.zprezto/runcoms/$file $ZDOTDIR/.$file
     fi
+    e_success ".$file"
 done
-printf "\n"
 
 # Create .zshenv file in home directory 
 # that will source ~/.zsh/.zshenv
@@ -70,8 +66,5 @@ cat > $HOME/.zshenv <<EOL
 export ZDOTDIR=$HOME/.zsh
 source $ZDOTDIR/.zshenv
 EOL
-if [ $? -eq 0 ]; then
-    e_success "ok"
-else
-    e_error "fail"
-fi
+
+e_success "ok"
