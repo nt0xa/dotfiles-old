@@ -1,2 +1,7 @@
+# zsh-files
 zsh/.zsh/.zhistory
-zsh/.zsh/.zcompdump
+zsh/.zsh/.zcompdump*
+
+# vim bundles
+vim/.nvim/bundle/*
+!vim/.nvim/bundle/Vundle.vim

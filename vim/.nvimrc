@@ -48,8 +48,8 @@ set list listchars=tab:\ \ ,trail:·
 
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#begin('~/.nvim/bundle')
 
 Plugin 'gmarik/Vundle.vim'
 
@@ -97,6 +97,5 @@ filetype indent on
 " = Colorscheme =
 " ===============
 
-let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
