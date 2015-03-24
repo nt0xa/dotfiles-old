@@ -1,23 +1,11 @@
 #!/bin/zsh
 
-# Stop on any error.
 set -e
-
-# Get script direcrory.
-DIR=${0:a:h}
-
-# Load helpers.
-source $DIR/helpers/utils.zsh
-
-#
-# Installing zsh files.
-#
 
 e_header "ZSH"
 
-# Path to directory where all zsh files
-# will be placed.
-ZDOTDIR=$HOME/.zsh
+# Path to directory with all zsh files
+ZDOTDIR=$HOME/.dotfiles/zsh
 
 # Check existance of ~/.zsh directory.
 if [ -d "$ZDOTDIR" ]; then
