@@ -1,7 +1,13 @@
-# zsh-files
-zsh/.zsh/.zhistory
-zsh/.zsh/.zcompdump*
+# Ignore all zsh files but needed
+zsh/.zsh/*
+!zsh/.zsh/.zprezto
+!zsh/.zsh/.zlogin
+!zsh/.zsh/.zlogout
+!zsh/.zsh/.zpreztorc
+!zsh/.zsh/.zprofile
+!zsh/.zsh/.zshrc
 
-# vim bundles
+
+# Ignore all vim-bundles except Vundle.vim
 vim/.nvim/bundle/*
 !vim/.nvim/bundle/Vundle.vim
