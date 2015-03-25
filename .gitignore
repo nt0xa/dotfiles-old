@@ -8,6 +8,9 @@ zsh/.zsh/*
 !zsh/.zsh/.zshrc
 
 # Ignore all vim files but needed
-vim/*
-!vim/.nvimrc
+vim/.nvim/*
+!vim/.nvim/UltiSnips
+
+!vim/.nvim/bundle
+vim/.nvim/bundle/*
 !vim/.nvim/bundle/Vundle.vim
