@@ -24,6 +24,8 @@ Plugin 'altercation/vim-colors-solarized'
 " Python
 Plugin 'klen/python-mode'
 
+call vundle#end()
+
 " ===========
 " = General =
 " ===========

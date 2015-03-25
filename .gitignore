@@ -7,7 +7,7 @@ zsh/.zsh/*
 !zsh/.zsh/.zprofile
 !zsh/.zsh/.zshrc
 
-
-# Ignore all vim-bundles except Vundle.vim
-vim/.nvim/bundle/*
+# Ignore all vim files but needed
+vim/*
+!vim/.nvimrc
 !vim/.nvim/bundle/Vundle.vim
