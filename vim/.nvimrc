@@ -121,6 +121,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " Airline
 let g:airline_powerline_fonts=1
 
+" Python-mode
+let g:pymode_rope_complete_on_dot = 0
+
 " ================
 " = Key bindings =
 " ================
@@ -132,3 +135,6 @@ nmap <leader>w :w!<cr>
 
 " Quit
 nmap <leader>q :q<cr>
+
+" Close all windows except current
+nmap <leader>o :on<cr>
