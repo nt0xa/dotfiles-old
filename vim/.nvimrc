@@ -30,13 +30,13 @@ call vundle#end()
 " = General =
 " ===========
 
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc,.nvimrc source % | AirlineRefresh
+
 " Enable filetype plugin and indent
 filetype plugin on
 filetype indent on
-
-" Turn off error beeping and flashing
-set visualbell
-set t_vb=
+syntax on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -45,47 +45,90 @@ set autoread
 " 2) When a background buffer becomes current again, marks and undo-history are remembered
 set hidden
 
-set number
-set backspace=indent,eol,start
+" Mouse and backspace
+set mouse=a  " on OSX press ALT and click
+set bs=2
+
+" Turn off error beeping and flashing
+set visualbell
+set t_vb=
+
+" Rebind leader key
+let mapleader=" "
+
+" =========================
+" = Hisory, backups, swap =
+" =========================
+
+" Useful settings
 set history=1000
-set showcmd
-set gcr=a:blinkon0
+set undolevels=1000
+
+" Disable stupid backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" ==============
+" = Appearance =
+" ==============
+
+" Show line numbers
+set number
+
+" Always show status line
 set laststatus=2
+
+" Hide status line at the bottom
 set noshowmode
 
-syntax on
+" Colorscheme
+set background=dark
+colorscheme solarized
 
-let mapleader="/<Space>"
+" ===================================
+" = Intendation, wrapping, trailing =
+" ===================================
 
-" ===============
-" = Indentation =
-" ===============
-
-set autoindent
-set smartindent
-set smarttab
+" Each indentation level is 4 spaces
 set shiftwidth=4
 set softtabstop=4
-set tabstop=4
+
+" Use spaces instead of tab
 set expandtab
 
+" Copy intendation from previous line
+set autoindent
+
+" Automatically inserts one extra level of indentation in some cases
+set smartindent
+
+" Disable line breaking
 set nowrap
-set linebreak
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-" ===============
-" = Colorscheme =
-" ===============
+" =============
+" = UltiSnips =
+" =============
 
-set background=dark
-colorscheme solarized
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:UltiSnipsExpandTrigger = "<C-j>"
-let g:UltiSnipsJumpForwardTrigger = "<C-n>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
-
+" ===========
+" = Airline =
+" ===========
 
 let g:airline_powerline_fonts=1
 
+" ================
+" = Key bindings =
+" ================
+
+" Save file
+nmap <leader>w :w!<cr>
+
+" Quit
+nmap <leader>q :q<cr>
