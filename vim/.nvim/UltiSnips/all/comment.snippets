@@ -1,0 +1,15 @@
+global !p
+def comment_symbol(ft):
+    if ft == 'vim':
+	return '"'
+    elif ft == 'javascript':
+	return '//'
+    else:
+	return '#'
+endglobal
+
+snippet cc "Inserts TextMate-like comment block" b
+`!p snip.rv=comment_symbol(snip.ft)` ==${1/.{1}/=/g}==
+`!p snip.rv=comment_symbol(snip.ft)` = ${1:Comment} =
+`!p snip.rv=comment_symbol(snip.ft)` ==${1/.{1}/=/g}==
+endsnippet
