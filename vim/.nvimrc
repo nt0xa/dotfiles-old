@@ -53,7 +53,7 @@ set bs=2
 set visualbell
 set t_vb=
 
-" Rebind leader key
+" Rebind leader key to space
 let mapleader=" "
 
 " =========================
@@ -128,13 +128,16 @@ let g:pymode_rope_complete_on_dot = 0
 " = Key bindings =
 " ================
 
-" -- NORMAL --
+" -- NORMAL MODE --
 
-" Save file
+" (w)rite file
 nmap <leader>w :w!<cr>
 
-" Quit
+" (q)uit
 nmap <leader>q :q<cr>
 
-" Close all windows except current
+" Make current window the (o)nly on the screen
 nmap <leader>o :on<cr>
+
+" (u)nload current buffer
+nmap <leader>e :bd<cr>
