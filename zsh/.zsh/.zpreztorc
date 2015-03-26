@@ -1,3 +1,7 @@
+# ===========
+# = General =
+# ===========
+
 # Set case-sensitivity for completion, history lookup, etc.
 zstyle ':prezto:*:*' case-sensitive 'no'
 

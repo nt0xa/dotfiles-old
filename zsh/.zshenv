@@ -1,9 +1,3 @@
-#
-# Defines environment variables.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 export ZDOTDIR=$HOME/.zsh
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
