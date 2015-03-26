@@ -109,23 +109,23 @@ set nowrap
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-" =============
-" = UltiSnips =
-" =============
+" ====================
+" = Plugins settings =
+" ====================
 
+" UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" ===========
-" = Airline =
-" ===========
-
+" Airline
 let g:airline_powerline_fonts=1
 
 " ================
 " = Key bindings =
 " ================
+
+" -- NORMAL --
 
 " Save file
 nmap <leader>w :w!<cr>
