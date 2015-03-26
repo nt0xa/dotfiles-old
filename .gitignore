@@ -7,10 +7,14 @@ zsh/.zsh/*
 !zsh/.zsh/.zprofile
 !zsh/.zsh/.zshrc
 
-# Ignore all vim files but needed
+# Ignore all files in .nvim directory,
+# because some plugins create temp files there
 vim/.nvim/*
+
+# Exclude my own snippets from ignored
 !vim/.nvim/UltiSnips
 
+# Ignore all bundles but Vundle.vim
 !vim/.nvim/bundle
 vim/.nvim/bundle/*
 !vim/.nvim/bundle/Vundle.vim
