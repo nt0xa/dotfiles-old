@@ -12,17 +12,17 @@ call vundle#begin('~/.nvim/bundle')
 " Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Editor
+" Interface
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+
+" Completion
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-" Appearance
-Plugin 'bling/vim-airline'
+" Code display
 Plugin 'altercation/vim-colors-solarized'
-
-" Python
-Plugin 'klen/python-mode'
 
 call vundle#end()
 
@@ -113,6 +113,11 @@ set list listchars=tab:\ \ ,trail:·
 " = Plugins settings =
 " ====================
 
+" CrtlP
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -121,9 +126,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " Airline
 let g:airline_powerline_fonts=1
 
-" Python-mode
-let g:pymode_rope_complete_on_dot = 0
-
 " ================
 " = Key bindings =
 " ================
@@ -131,13 +133,13 @@ let g:pymode_rope_complete_on_dot = 0
 " -- NORMAL MODE --
 
 " (w)rite file
-nmap <leader>w :w!<cr>
+nnoremap <leader>w :w!<cr>
 
 " (q)uit
-nmap <leader>q :q<cr>
+nnoremap <leader>q :q<cr>
 
 " Make current window the (o)nly on the screen
-nmap <leader>o :on<cr>
+nnoremap <leader>o :on<cr>
 
 " (u)nload current buffer
-nmap <leader>e :bd<cr>
+nnoremap <leader>u :bd<cr>
