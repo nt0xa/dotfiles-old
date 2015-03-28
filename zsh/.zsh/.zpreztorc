@@ -22,7 +22,8 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'prompt' \
   'history-substring-search' \
-  'git'
+  'git' \
+  'tmux'
 
 # ==========
 # = Editor =
@@ -46,3 +47,10 @@ fpath=(
 
 # Use custom theme.
 zstyle ':prezto:module:prompt' theme 'russtone'
+
+# ========
+# = Tmux =
+# ========
+
+# Starts a tmux session automatically when Zsh is launched.
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
