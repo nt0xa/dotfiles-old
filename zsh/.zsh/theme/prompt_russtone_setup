@@ -34,7 +34,7 @@ function prompt_russtone_setup {
   zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
   zstyle ':prezto:module:git:info:dirty' format ' %F{red}✗%f'
   zstyle ':prezto:module:git:info:commit' format '%F{blue}%.7c%f'
-  zstyle ':prezto:module:git:info:position' format '%F{blue}%p%f'
+  zstyle ':prezto:module:git:info:position' format '%F{magenta}(%p)%f'
   zstyle ':prezto:module:git:info:keys' format \
     'prompt' ' $(coalesce "%b" "%p" "%c")%s%C%D'
 
