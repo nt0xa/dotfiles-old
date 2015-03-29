@@ -143,3 +143,10 @@ nnoremap <leader>o :on<cr>
 
 " (u)nload current buffer
 nnoremap <leader>u :bd<cr>
+
+" ===================
+" = Run code in vim =
+" ===================
+
+" Python
+autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
