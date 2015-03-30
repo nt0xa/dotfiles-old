@@ -1,3 +1,9 @@
+# =============
+# = Teriminal =
+# =============
+
+export TERM=xterm-256color
+
 # ===========
 # = Editors =
 # ===========
