@@ -23,6 +23,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
+" Editor
+Plugin 'tpope/vim-surround'
+
 " Code display
 Plugin 'altercation/vim-colors-solarized'
 
