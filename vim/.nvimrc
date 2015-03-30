@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 " Interface
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
@@ -125,6 +126,11 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " Airline
 let g:airline_powerline_fonts=1
+
+" NERDTree
+map <c-n> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore=['.git']
+let g:NERDTreeShowHidden=1
 
 " ================
 " = Key bindings =
