@@ -132,9 +132,13 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:airline_powerline_fonts=1
 
 " NERDTree
-map <c-n> :NERDTreeToggle<CR>
+map <c-n> :NERDTreeToggle<cr>
 let g:NERDTreeIgnore=['.git']
 let g:NERDTreeShowHidden=1
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " ================
 " = Key bindings =
@@ -143,16 +147,21 @@ let g:NERDTreeShowHidden=1
 " -- NORMAL MODE --
 
 " (w)rite file
-nnoremap <leader>w :w!<cr>
+nmap <leader>w :w!<cr>
 
 " (q)uit
-nnoremap <leader>q :q<cr>
+nmap <leader>q :q<cr>
 
 " Make current window the (o)nly on the screen
-nnoremap <leader>o :on<cr>
+nmap <leader>o :on<cr>
 
 " (u)nload current buffer
-nnoremap <leader>u :bd<cr>
+nmap <leader>u :bd<cr>
+
+" -- INSERT MODE --
+
+" Use jj to exit from insert mode
+imap jj <Esc>
 
 " ===================
 " = Run code in vim =
