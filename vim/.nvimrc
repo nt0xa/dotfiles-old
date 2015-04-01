@@ -35,8 +35,8 @@ call vundle#end()
 " = General =
 " ===========
 
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc,.nvimrc source % | AirlineRefresh
+" Automatic reloading of .nvimrc
+autocmd! bufwritepost .nvimrc source % | AirlineRefresh
 
 " Enable filetype plugin and indent
 filetype plugin on
@@ -98,6 +98,7 @@ colorscheme solarized
 " Each indentation level is 4 spaces
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 
 " Use spaces instead of tab
 set expandtab
@@ -118,25 +119,25 @@ set list listchars=tab:\ \ ,trail:·
 " = Plugins settings =
 " ====================
 
-" CrtlP
+" --- CtrlP ---
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" UltiSnips
+" --- UltiSnips ---
 let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
-" Airline
+" --- Airline ---
 let g:airline_powerline_fonts=1
 
-" NERDTree
+" --- NERDTree ---
 map <c-n> :NERDTreeToggle<cr>
 let g:NERDTreeIgnore=['.git']
 let g:NERDTreeShowHidden=1
 
-" YouCompleteMe
+" --- YouCompleteMe ---
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
@@ -147,21 +148,21 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " -- NORMAL MODE --
 
 " (w)rite file
-nmap <leader>w :w!<cr>
+nnoremap <leader>w :w!<cr>
 
 " (q)uit
-nmap <leader>q :q<cr>
+nnoremap <leader>q :q<cr>
 
 " Make current window the (o)nly on the screen
-nmap <leader>o :on<cr>
+nnoremap <leader>o :on<cr>
 
 " (u)nload current buffer
-nmap <leader>u :bd<cr>
+nnoremap <leader>u :bd<cr>
 
 " -- INSERT MODE --
 
 " Use jj to exit from insert mode
-imap jj <Esc>
+inoremap jj <Esc>
 
 " ===================
 " = Run code in vim =
