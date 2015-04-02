@@ -1,10 +1,4 @@
-" Remove vi old behavior
-set nocompatible
-filetype off
-
-" ===========
-" = Plugins =
-" ===========
+" Vundle {{{ "
 
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin('~/.nvim/bundle')
@@ -31,52 +25,9 @@ Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
-" ===========
-" = General =
-" ===========
+" }}} Vundle "
 
-" Automatic reloading of .nvimrc
-autocmd! bufwritepost .nvimrc source % | AirlineRefresh
-
-" Enable filetype plugin and indent
-filetype plugin on
-filetype indent on
-syntax on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" 1) Buffer can be put to the background without writing to disk
-" 2) When a background buffer becomes current again, marks and undo-history are remembered
-set hidden
-
-" Mouse and backspace
-set mouse=a  " on OSX press ALT and click
-set bs=2
-
-" Turn off error beeping and flashing
-set visualbell
-set t_vb=
-
-" Rebind leader key to space
-let mapleader=" "
-
-" =========================
-" = Hisory, backups, swap =
-" =========================
-
-" Useful settings
-set history=1000
-set undolevels=1000
-
-" Disable stupid backup and swap files
-set nobackup
-set nowritebackup
-set noswapfile
-
-" ==============
-" = Appearance =
-" ==============
+" UI Config {{{ "
 
 " Show line numbers
 set number
@@ -87,65 +38,70 @@ set laststatus=2
 " Hide status line at the bottom
 set noshowmode
 
-" Colorscheme
+" }}} UI Config "
+
+" Colors & syntax {{{ "
+
+" Enable syntax highlighting
+syntax on
+
+" Color scheme
 set background=dark
 colorscheme solarized
 
-" ===================================
-" = Intendation, wrapping, trailing =
-" ===================================
+" Remove folding underline
+highlight Folded cterm=none
 
-" Each indentation level is 4 spaces
-set shiftwidth=4
+" }}} Colors & syntax "
+
+" Spaces & tabs {{{ "
+
+" Count of spaces per tab when editing
 set softtabstop=4
+
+" Number of visual spaces per tab
 set tabstop=4
 
-" Use spaces instead of tab
+" Tabs are spaces
 set expandtab
-
-" Copy intendation from previous line
-set autoindent
-
-" Automatically inserts one extra level of indentation in some cases
-set smartindent
-
-" Disable line breaking
-set nowrap
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-" ====================
-" = Plugins settings =
-" ====================
+" Mouse and backspace
+set backspace=indent,eol,start
 
-" --- CtrlP ---
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" }}} Spaces & tabs "
 
-" --- UltiSnips ---
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+" Folding {{{ "
 
-" --- Airline ---
-let g:airline_powerline_fonts=1
+" Enable folding
+set foldenable
 
-" --- NERDTree ---
-map <c-n> :NERDTreeToggle<cr>
-let g:NERDTreeIgnore=['.git']
-let g:NERDTreeShowHidden=1
+" Indent-based folding
+set foldmethod=indent
 
-" --- YouCompleteMe ---
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" }}} Folding "
 
-" ================
-" = Key bindings =
-" ================
+" History & backups {{{ "
 
-" -- NORMAL MODE --
+" Count of remembered commands
+set history=1000
+
+" Count of undo
+set undolevels=1000
+
+" Disable backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" }}} History & backups "
+
+" Leader shortcuts {{{ "
+
+" Rebind leader key to space
+let mapleader=" "
 
 " (w)rite file
 nnoremap <leader>w :w!<cr>
@@ -159,14 +115,75 @@ nnoremap <leader>o :on<cr>
 " (u)nload current buffer
 nnoremap <leader>u :bd<cr>
 
-" -- INSERT MODE --
+" }}} Leader Shortcuts "
+
+" Shortcuts {{{ "
 
 " Use jj to exit from insert mode
-inoremap jj <Esc>
+inoremap jj <esc>
 
-" ===================
-" = Run code in vim =
-" ===================
+" }}} Shortcuts "
 
-" Python
-autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
+" Autocmd {{{ "
+
+" Detect filetypes
+filetype plugin on
+
+" Load filetype-specific indent files
+filetype indent on
+
+augroup configgroup
+    autocmd!
+
+    " .nvimrc {{{ "
+
+    autocmd BufWritePost .nvimrc source % | AirlineRefresh
+    autocmd BufEnter .nvimrc setlocal foldmethod=marker
+
+    " }}} .nvimrc "
+
+    " Python
+    autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
+
+augroup END
+
+
+" }}} Autocmd "
+
+" Plugin: CtrlP {{{ "
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" }}} Plugin: CtrlP "
+
+" Plugin: UltiSnips {{{ "
+
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
+" }}} Plugin: UltiSnips "
+
+" Plugin: Airline {{{ "
+
+let g:airline_powerline_fonts=1
+
+" }}} Plugin: Airline "
+
+" Plugin: NERDTree {{{ "
+
+map <c-n> :NERDTreeToggle<cr>
+let g:NERDTreeIgnore=['.git']
+let g:NERDTreeShowHidden=1
+
+" }}} NERDTree "
+
+" Plugin: YouCompleteMe {{{ "
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" }}} YouCompleteMe "
+
