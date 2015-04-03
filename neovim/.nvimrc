@@ -23,6 +23,9 @@ Plugin 'tpope/vim-surround'
 " Code display
 Plugin 'altercation/vim-colors-solarized'
 
+" JavaScript
+Plugin 'jelera/vim-javascript-syntax'
+
 call vundle#end()
 
 " }}} Vundle "
