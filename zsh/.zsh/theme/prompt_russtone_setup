@@ -24,8 +24,8 @@ function prompt_russtone_setup {
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%F{red}❯%F{yellow}❯%F{green}❯%f'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{green}❮%F{yellow}❮%F{red}❮%f'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%F{magenta}▶︎%f'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{cyan}◼︎%f'
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'

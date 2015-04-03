@@ -1,6 +1,6 @@
 [submodule "zsh/.zsh/.zprezto"]
 	path = zsh/.zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
-[submodule "vim/.nvim/bundle/Vundle.vim"]
-	path = vim/.nvim/bundle/Vundle.vim
+[submodule "neovim/.nvim/bundle/Vundle.vim"]
+	path = neovim/.nvim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git

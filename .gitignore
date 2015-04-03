@@ -10,12 +10,12 @@ zsh/.zsh/*
 
 # Ignore all files in .nvim directory,
 # because some plugins create temp files there
-vim/.nvim/*
+neovim/.nvim/*
 
 # Exclude my own snippets from ignored
-!vim/.nvim/UltiSnips
+!neovim/.nvim/UltiSnips
 
 # Ignore all bundles but Vundle.vim
-!vim/.nvim/bundle
-vim/.nvim/bundle/*
-!vim/.nvim/bundle/Vundle.vim
+!neovim/.nvim/bundle
+neovim/.nvim/bundle/*
+!neovim/.nvim/bundle/Vundle.vim

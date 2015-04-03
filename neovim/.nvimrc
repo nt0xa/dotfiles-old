@@ -38,6 +38,9 @@ set laststatus=2
 " Hide status line at the bottom
 set noshowmode
 
+" No sounds
+set visualbell
+
 " }}} UI Config "
 
 " Colors & syntax {{{ "
@@ -61,6 +64,9 @@ set softtabstop=4
 
 " Number of visual spaces per tab
 set tabstop=4
+
+" <<, >> spaces
+set shiftwidth=4
 
 " Tabs are spaces
 set expandtab
@@ -115,6 +121,9 @@ nnoremap <leader>o :on<cr>
 " (u)nload current buffer
 nnoremap <leader>u :bd<cr>
 
+" Toggle folding
+nnoremap <leader><leader> za
+
 " }}} Leader Shortcuts "
 
 " Shortcuts {{{ "
@@ -132,20 +141,37 @@ filetype plugin on
 " Load filetype-specific indent files
 filetype indent on
 
-augroup configgroup
+" nvimrc {{{ "
+
+augroup nvimrc
     autocmd!
 
-    " .nvimrc {{{ "
+    " Reload nvimrc after save
+    autocmd BufWritePost .nvimrc
+        \ source % |
+        \ setlocal foldmethod=marker |
+        \ AirlineRefresh
 
-    autocmd BufWritePost .nvimrc source % | AirlineRefresh
-    autocmd BufEnter .nvimrc setlocal foldmethod=marker
+    " Fold with markers in nvimrc
+    autocmd BufEnter .nvimrc
+        \ setlocal foldmethod=marker
 
-    " }}} .nvimrc "
+augroup end
 
-    " Python
-    autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
+" }}} nvimrc "
 
-augroup END
+" Python {{{ "
+
+augroup python
+    autocmd!
+
+    " Run python code from vim
+    autocmd FileType python
+        \ nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
+
+augroup end
+
+" }}} Python "
 
 
 " }}} Autocmd "
