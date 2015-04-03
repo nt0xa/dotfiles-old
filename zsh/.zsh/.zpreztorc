@@ -53,4 +53,4 @@ zstyle ':prezto:module:prompt' theme 'russtone'
 # ========
 
 # Starts a tmux session automatically when Zsh is launched.
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'

@@ -1,11 +1,11 @@
-# Load dependencies.
+# Load dependencies
 pmodload 'helper'
 
 function prompt_russtone_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
-  # Get Git repository information.
+  # Get Git repository information
   if (( $+functions[git-info] )); then
     git-info
   fi
@@ -16,18 +16,18 @@ function prompt_russtone_setup {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
-  # Load required functions.
+  # Load required functions
   autoload -Uz add-zsh-hook
 
-  # Add hook for calling git-info before each command.
+  # Add hook for calling git-info before each command
   add-zsh-hook precmd prompt_russtone_precmd
 
-  # Set editor-info parameters.
+  # Set editor-info parameters
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%F{magenta}▶︎%f'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{cyan}◼︎%f'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%F{green}➜%f'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{yellow}◼︎%f'
 
-  # Set git-info parameters.
+  # Set git-info parameters
   zstyle ':prezto:module:git:info' verbose 'yes'
   zstyle ':prezto:module:git:info:action' format ':%F{magenta}%s%f'
   zstyle ':prezto:module:git:info:branch' format '%F{magenta}(%b)%f'
@@ -38,10 +38,9 @@ function prompt_russtone_setup {
   zstyle ':prezto:module:git:info:keys' format \
     'prompt' ' $(coalesce "%b" "%p" "%c")%s%C%D'
 
-  # Define prompt.
-  PROMPT='
-%F{blue}%~%f${git_info:+${(e)git_info[prompt]}}
-${editor_info[keymap]} '
+  endl=$'\n'
+
+  PROMPT='${endl}%F{blue}%~%f${git_info:+${(e)git_info[prompt]}}${endl}${editor_info[keymap]} '
 
 }
 

@@ -21,7 +21,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 
 " Code display
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 
 " JavaScript
 Plugin 'jelera/vim-javascript-syntax'
@@ -52,11 +53,7 @@ set visualbell
 syntax on
 
 " Color scheme
-set background=dark
-colorscheme solarized
-
-" Remove folding underline
-highlight Folded cterm=none
+colorscheme Dracula
 
 " }}} Colors & syntax "
 
