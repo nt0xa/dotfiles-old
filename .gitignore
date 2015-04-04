@@ -1,6 +1,7 @@
 # Ignore all zsh files but needed
 zsh/.zsh/*
 !zsh/.zsh/.zprezto
+!zsh/.zsh/base16-shell
 !zsh/.zsh/.zlogin
 !zsh/.zsh/.zlogout
 !zsh/.zsh/.zpreztorc

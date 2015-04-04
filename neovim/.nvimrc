@@ -21,8 +21,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 
 " Code display
-" Plugin 'altercation/vim-colors-solarized'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'chriskempson/base16-vim'
 
 " JavaScript
 Plugin 'jelera/vim-javascript-syntax'
@@ -53,7 +52,9 @@ set visualbell
 syntax on
 
 " Color scheme
-colorscheme Dracula
+set background=dark
+let base16colorspace=256
+colorscheme base16-eighties
 
 " }}} Colors & syntax "
 
