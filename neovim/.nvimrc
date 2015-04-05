@@ -80,13 +80,19 @@ set backspace=indent,eol,start
 
 " }}} Spaces & tabs "
 
+" Lines wrapping {{{ "
+
+set nowrap
+
+" }}} Lines wrapping "
+
 " Folding {{{ "
 
 " Enable folding
 set foldenable
 
 " Indent-based folding
-set foldmethod=syntax
+set foldmethod=marker
 
 " }}} Folding "
 
@@ -150,12 +156,7 @@ augroup nvimrc
     " Reload nvimrc after save
     autocmd BufWritePost .nvimrc
         \ source % |
-        \ setlocal foldmethod=marker |
         \ AirlineRefresh
-
-    " Fold with markers in nvimrc
-    autocmd BufEnter .nvimrc
-        \ setlocal foldmethod=marker
 
 augroup end
 
