@@ -9,7 +9,6 @@ Plugin 'gmarik/Vundle.vim'
 " Interface
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Completion
@@ -151,6 +150,9 @@ nnoremap <leader><leader> za
 " Clear search pattern
 nnoremap <leader>l :let @/ = ""<cr>
 
+" Toggle netrw
+nnoremap <leader>n :Explore<cr>
+
 " }}} Leader Shortcuts "
 
 " Shortcuts {{{ "
@@ -223,14 +225,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%t'
 
 " }}} Plugin: Airline "
-
-" Plugin: NERDTree {{{ "
-
-map <c-n> :NERDTreeToggle<cr>
-let g:NERDTreeIgnore = ['.git']
-let g:NERDTreeShowHidden = 1
-
-" }}} NERDTree "
 
 " Plugin: YouCompleteMe {{{ "
 
