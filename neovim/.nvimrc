@@ -25,6 +25,7 @@ Plugin 'chriskempson/base16-vim'
 
 " JavaScript
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
 
 call vundle#end()
 
@@ -43,6 +44,9 @@ set noshowmode
 
 " No sounds
 set visualbell
+
+" Allow swithing buffers without saving
+set hidden
 
 " }}} UI Config "
 
@@ -111,10 +115,23 @@ set noswapfile
 
 " }}} History & backups "
 
+" Search {{{ "
+
+" Case insensitive search
+set ignorecase
+
+" Search while typing
+set incsearch
+
+" Highlight search results
+set hlsearch
+
+" }}} Search "
+
 " Leader shortcuts {{{ "
 
 " Rebind leader key to space
-let mapleader=" "
+let mapleader=' '
 
 " (w)rite file
 nnoremap <leader>w :w!<cr>
@@ -130,6 +147,9 @@ nnoremap <leader>u :bd<cr>
 
 " Toggle folding
 nnoremap <leader><leader> za
+
+" Clear search pattern
+nnoremap <leader>l :let @/ = ""<cr>
 
 " }}} Leader Shortcuts "
 
@@ -182,31 +202,33 @@ augroup end
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_max_files = 0
+let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|coverage\|DS_Store\|git'
 
 " }}} Plugin: CtrlP "
 
 " Plugin: UltiSnips {{{ "
 
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " }}} Plugin: UltiSnips "
 
 " Plugin: Airline {{{ "
 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_powerline_fonts=1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_powerline_fonts = 1
+let g:airline_section_c = '%t'
 
 " }}} Plugin: Airline "
 
 " Plugin: NERDTree {{{ "
 
 map <c-n> :NERDTreeToggle<cr>
-let g:NERDTreeIgnore=['.git']
-let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['.git']
+let g:NERDTreeShowHidden = 1
 
 " }}} NERDTree "
 
