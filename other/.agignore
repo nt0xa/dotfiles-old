@@ -1,0 +1,12 @@
+# VCS
+.git/
+
+# OS X
+.DS_Store
+
+# JavaScript
+node_modules/
+bower_components/
+
+# Tests
+coverage/
