@@ -203,9 +203,8 @@ augroup end
 " Plugin: CtrlP {{{ "
 
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|coverage\|DS_Store\|git'
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " }}} Plugin: CtrlP "
 
