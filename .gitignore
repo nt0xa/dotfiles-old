@@ -1,13 +1,11 @@
 # Ignore all zsh files but needed
 zsh/.zsh/*
 !zsh/.zsh/.zprezto
-!zsh/.zsh/base16-shell
 !zsh/.zsh/.zlogin
 !zsh/.zsh/.zlogout
 !zsh/.zsh/.zpreztorc
 !zsh/.zsh/.zprofile
 !zsh/.zsh/.zshrc
-!zsh/.zsh/theme
 
 # Ignore all files in .nvim directory,
 # because some plugins create temp files there

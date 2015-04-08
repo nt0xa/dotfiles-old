@@ -8,7 +8,9 @@ Plugin 'gmarik/Vundle.vim'
 
 " Interface
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimfiler.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Completion
@@ -127,42 +129,36 @@ set hlsearch
 
 " }}} Search "
 
-" Leader shortcuts {{{ "
-
-" Rebind leader key to space
-let mapleader=' '
-
-" (w)rite file
-nnoremap <leader>w :w!<cr>
-
-" (q)uit
-nnoremap <leader>q :q<cr>
-
-" Make current window the (o)nly on the screen
-nnoremap <leader>o :on<cr>
-
-" (u)nload current buffer
-nnoremap <leader>u :bd<cr>
-
-" Toggle folding
-nnoremap <leader><leader> za
-
-" Clear search pattern
-nnoremap <leader>l :let @/ = ""<cr>
-
-" Toggle netrw
-nnoremap <leader>n :Explore<cr>
-
-" }}} Leader Shortcuts "
-
 " Shortcuts {{{ "
 
 " Use jj to exit from insert mode
 inoremap jj <esc>
 
+" Rebind leader key to space
+let mapleader=' '
+
+" Write file
+nnoremap <leader>w :w!<cr>
+
+" Quit
+nnoremap <leader>q :q<cr>
+
+" Close current buffer
+nnoremap <leader>c :bd<cr>
+
+" Toggle folding
+nnoremap <leader>f za
+
+" Clear search pattern (remove highlighting)
+nnoremap <leader>h :let @/ = ''<cr>
+
+" Unite.vim
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-n> :VimFilerExplorer -toggle<cr>
+
 " }}} Shortcuts "
 
-" Autocmd {{{ "
+" Filetype {{{ "
 
 " Detect filetypes
 filetype plugin on
@@ -170,43 +166,87 @@ filetype plugin on
 " Load filetype-specific indent files
 filetype indent on
 
-" nvimrc {{{ "
+" }}} Filetype "
 
-augroup nvimrc
+" Autocmd: nvimrc {{{ "
+
+if !exists('*s:reload_nvimrc')
+    function! s:reload_nvimrc()
+        source %
+        if exists(':AirlineRefresh')
+            AirlineRefresh
+        endif
+    endfunction
+endif
+
+augroup NeovimSettingsGroup
     autocmd!
-
-    " Reload nvimrc after save
-    autocmd BufWritePost .nvimrc
-        \ source % |
-        \ AirlineRefresh
-
+    autocmd BufWritePost .nvimrc call s:reload_nvimrc()
 augroup end
 
-" }}} nvimrc "
+" }}} Autocmd: nvimrc "
 
-" Python {{{ "
+" Autocmd: Python {{{ "
 
-augroup python
+function! s:python_specific()
+    nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
+endfunction
+
+augroup PythonSettingsGroup
     autocmd!
-
-    " Run python code from vim
-    autocmd FileType python
-        \ nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
-
+    autocmd FileType python call s:python_specific()
 augroup end
 
-" }}} Python "
+" }}} Autocmd: Python "
+
+" Autocmd: Unite.vim {{{ "
+
+function! s:unite_specific()
+
+  " Keymaps inside the unite split
+  nmap <buffer> <nowait> <C-c> <Plug>(unite_exit)
+  imap <buffer> <nowait> <C-c> <Plug>(unite_exit)
+
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+
+endfunction
+
+augroup UniteSettingsGroup
+    autocmd!
+    autocmd FileType unite call s:unite_specific()
+augroup end
+
+" }}} Autocmd: Unite.vim "
+
+" Plugin: Unite.vim {{{ "
+
+" Fuzzy match by default
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+" Use ag for recursive file search
+let g:unite_source_rec_async_command =
+            \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+
+let g:unite_source_file_async_command =
+            \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+
+" Like ctrlp.vim settings
+call unite#custom#profile('default', 'context', {
+\   'prompt': '» ',
+\   'start_insert': 1,
+\ })
 
 
-" }}} Autocmd "
 
-" Plugin: CtrlP {{{ "
+" }}} Unite.vim "
 
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" Plugin: Vimfiler.vim {{{ "
 
-" }}} Plugin: CtrlP "
+
+
+" }}} Plugin: Vimfiler.vim "
 
 " Plugin: UltiSnips {{{ "
 
@@ -231,4 +271,3 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " }}} YouCompleteMe "
-
