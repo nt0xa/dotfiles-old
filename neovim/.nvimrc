@@ -46,7 +46,7 @@ set noshowmode
 " No sounds
 set visualbell
 
-" Allow swithing buffers without saving
+" Allow switching buffers without saving
 set hidden
 
 " }}} UI Config "
@@ -129,13 +129,13 @@ set hlsearch
 
 " }}} Search "
 
-" Shortcuts {{{ "
-
-" Use jj to exit from insert mode
-inoremap jj <esc>
+" Mappings {{{"
 
 " Rebind leader key to space
 let mapleader=' '
+
+" Use jj to exit from insert mode
+inoremap jj <esc>
 
 " Write file
 nnoremap <leader>w :w!<cr>
@@ -143,20 +143,13 @@ nnoremap <leader>w :w!<cr>
 " Quit
 nnoremap <leader>q :q<cr>
 
-" Close current buffer
-nnoremap <leader>c :bd<cr>
-
 " Toggle folding
 nnoremap <leader>f za
 
 " Clear search pattern (remove highlighting)
-nnoremap <leader>h :let @/ = ''<cr>
+nnoremap <silent> <leader>h :let @/ = ''<cr>
 
-" Unite.vim
-nnoremap <C-p> :Unite file_rec/async<cr>
-nnoremap <C-n> :VimFilerExplorer -toggle<cr>
-
-" }}} Shortcuts "
+" }}} Mappings "
 
 " Filetype {{{ "
 
@@ -179,7 +172,7 @@ if !exists('*s:reload_nvimrc')
     endfunction
 endif
 
-augroup NeovimSettingsGroup
+augroup NvimrcAutocmdGroup
     autocmd!
     autocmd BufWritePost .nvimrc call s:reload_nvimrc()
 augroup end
@@ -188,47 +181,31 @@ augroup end
 
 " Autocmd: Python {{{ "
 
-function! s:python_specific()
+function! s:python_filetype_settings()
     nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
 endfunction
 
-augroup PythonSettingsGroup
+augroup PythonAutocmdGroup
     autocmd!
-    autocmd FileType python call s:python_specific()
+    autocmd FileType python call s:python_filetype_settings()
 augroup end
 
 " }}} Autocmd: Python "
-
-" Autocmd: Unite.vim {{{ "
-
-function! s:unite_specific()
-
-  " Keymaps inside the unite split
-  nmap <buffer> <nowait> <C-c> <Plug>(unite_exit)
-  imap <buffer> <nowait> <C-c> <Plug>(unite_exit)
-
-  imap <buffer> <C-j> <Plug>(unite_select_next_line)
-  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-
-endfunction
-
-augroup UniteSettingsGroup
-    autocmd!
-    autocmd FileType unite call s:unite_specific()
-augroup end
-
-" }}} Autocmd: Unite.vim "
 
 " Plugin: Unite.vim {{{ "
 
 " Fuzzy match by default
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Sort matches by rank. The higher the matched word is or
+" the longer the matched length is, the higher the rank is.
 call unite#filters#sorter_default#use(['sorter_rank'])
 
 " Use ag for recursive file search
 let g:unite_source_rec_async_command =
             \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
+" Use ag for async file search
 let g:unite_source_file_async_command =
             \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
@@ -238,13 +215,41 @@ call unite#custom#profile('default', 'context', {
 \   'start_insert': 1,
 \ })
 
+" Unite filetype settings function
+function! s:unite_filetype_settings()
 
+    nmap <buffer> <C-p> <Plug>(unite_exit)
+    imap <buffer> <C-p> <Plug>(unite_exit)
+
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+
+endfunction
+
+" Unite autocmd group
+augroup UniteAutocmdGroup
+    autocmd!
+    autocmd FileType unite call s:unite_filetype_settings()
+augroup end
+
+" Mappings
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-n> :VimFilerExplorer -toggle<cr>
 
 " }}} Unite.vim "
 
 " Plugin: Vimfiler.vim {{{ "
 
+" Use vimfiler instead of netrw
+let g:vimfiler_as_default_explorer = 1
 
+" Like Textmate icons
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_readonly_file_icon = '✗'
+let g:vimfiler_marked_file_icon = '✓'
 
 " }}} Plugin: Vimfiler.vim "
 
@@ -258,15 +263,16 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Plugin: Airline {{{ "
 
+let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%t'
 
 " }}} Plugin: Airline "
 
 " Plugin: YouCompleteMe {{{ "
 
+" Autoclose popup after completion
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
