@@ -282,3 +282,9 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " }}} YouCompleteMe "
+
+" Plugin: Javascript-libraries-syntax {{{ "
+
+let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine'
+
+" }}} Plugin: Javascript-libraries-syntax "
