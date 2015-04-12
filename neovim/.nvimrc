@@ -147,7 +147,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>f za
 
 " Clear search pattern (remove highlighting)
-nnoremap <silent> <leader>h :let @/ = ''<cr>
+nnoremap <silent> <leader>l :let @/ = ''<cr>
 
 " }}} Mappings "
 
