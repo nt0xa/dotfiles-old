@@ -21,8 +21,14 @@ Plugin 'honza/vim-snippets'
 " Editor
 Plugin 'tpope/vim-surround'
 
-" Code display
+" Colorscheme
 Plugin 'chriskempson/base16-vim'
+
+" Linting
+Plugin 'scrooloose/syntastic'
+
+" Less
+Plugin 'groenewege/vim-less'
 
 " JavaScript
 Plugin 'jelera/vim-javascript-syntax'
