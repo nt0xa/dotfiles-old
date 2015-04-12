@@ -234,7 +234,6 @@ augroup end
 
 " Mappings
 nnoremap <C-p> :Unite file_rec/async<cr>
-nnoremap <C-n> :VimFilerExplorer -toggle<cr>
 
 " }}} Unite.vim "
 
@@ -243,6 +242,11 @@ nnoremap <C-n> :VimFilerExplorer -toggle<cr>
 " Use vimfiler instead of netrw
 let g:vimfiler_as_default_explorer = 1
 
+" Disable safe-mode
+call vimfiler#custom#profile('default', 'context', {
+      \ 'safe' : 0
+      \ })
+
 " Like Textmate icons
 let g:vimfiler_tree_leaf_icon = ' '
 let g:vimfiler_tree_opened_icon = '▾'
@@ -250,6 +254,9 @@ let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_readonly_file_icon = '✗'
 let g:vimfiler_marked_file_icon = '✓'
+
+" Mappings
+nnoremap <C-n> :VimFiler -toggle<cr>
 
 " }}} Plugin: Vimfiler.vim "
 
