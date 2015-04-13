@@ -33,6 +33,7 @@ Plugin 'groenewege/vim-less'
 " JavaScript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'marijnh/tern_for_vim'
 
 call vundle#end()
 
