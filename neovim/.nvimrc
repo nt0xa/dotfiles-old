@@ -12,6 +12,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'Lokaltog/vim-easymotion'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
@@ -225,11 +226,11 @@ call unite#custom#profile('default', 'context', {
 " Unite filetype settings function
 function! s:unite_filetype_settings()
 
-    nmap <buffer> <C-p> <Plug>(unite_exit)
-    imap <buffer> <C-p> <Plug>(unite_exit)
+    nmap <buffer> <c-p> <plug>(unite_exit)
+    imap <buffer> <c-p> <plug>(unite_exit)
 
-    imap <buffer> <C-j> <Plug>(unite_select_next_line)
-    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+    imap <buffer> <c-j> <plug>(unite_select_next_line)
+    imap <buffer> <c-k> <plug>(unite_select_previous_line)
 
 endfunction
 
@@ -263,7 +264,7 @@ let g:vimfiler_readonly_file_icon = '✗'
 let g:vimfiler_marked_file_icon = '✓'
 
 " Mappings
-nnoremap <C-n> :VimFiler -toggle<cr>
+nnoremap <c-n> :VimFiler -toggle<cr>
 
 " }}} Plugin: Vimfiler.vim "
 
@@ -295,3 +296,18 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine'
 
 " }}} Plugin: Javascript-libraries-syntax "
+
+" Plugin: Vim-easymotion {{{ "
+
+let g:EasyMotion_do_mapping = 0
+
+nmap s <plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <leader>j <plug>(easymotion-j)
+map <leader>k <plug>(easymotion-k)
+
+" }}} Plugin: Vim-easymotion "
