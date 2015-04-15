@@ -13,6 +13,7 @@ Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'yonchu/accelerated-smooth-scroll'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
