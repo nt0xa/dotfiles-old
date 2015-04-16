@@ -218,6 +218,13 @@ let g:unite_source_rec_async_command =
 let g:unite_source_file_async_command =
             \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
+" Use ag for grep
+let g:unite_source_grep_command = 'ag'
+
+" ag for grep params
+let g:unite_source_grep_default_opts =
+        \ '--line-numbers --nocolor --nogroup --hidden'
+
 " Like ctrlp.vim settings
 call unite#custom#profile('default', 'context', {
 \   'prompt': '» ',
@@ -242,7 +249,8 @@ augroup UniteAutocmdGroup
 augroup end
 
 " Mappings
-nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <c-p> :Unite file_rec/async<cr>
+nnoremap <c-g> :Unite grep<cr><cr>
 
 " }}} Unite.vim "
 
