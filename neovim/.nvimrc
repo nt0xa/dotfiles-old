@@ -266,6 +266,7 @@ let g:vimfiler_marked_file_icon = '✓'
 
 " Mappings
 nnoremap <c-n> :VimFiler -toggle<cr>
+inoremap <c-n> <esc>:VimFiler -toggle<cr>
 
 " }}} Plugin: Vimfiler.vim "
 
