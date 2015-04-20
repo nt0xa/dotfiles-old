@@ -158,6 +158,10 @@ nnoremap <leader>f za
 " Clear search pattern (remove highlighting)
 nnoremap <silent> <leader>l :let @/ = ''<cr>
 
+" Copy/Paste clipboard
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+
 " }}} Mappings "
 
 " Filetype {{{ "
