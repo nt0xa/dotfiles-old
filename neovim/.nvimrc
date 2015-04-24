@@ -14,6 +14,8 @@ Plugin 'Shougo/vimfiler.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'yonchu/accelerated-smooth-scroll'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
