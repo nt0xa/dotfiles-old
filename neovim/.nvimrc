@@ -164,8 +164,8 @@ nnoremap <leader>f za
 nnoremap <silent> <leader>l :let @/ = ''<cr>
 
 " Copy/Paste clipboard
-nnoremap <leader>y "+y
-nnoremap <leader>p "+p
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
 
 " }}} Mappings "
 
@@ -259,7 +259,7 @@ augroup end
 
 " Mappings
 nnoremap <c-p> :Unite file_rec/async<cr>
-nnoremap <c-g> :Unite grep<cr><cr>
+nnoremap <c-g> :Unite grep:.<cr>
 
 " }}} Unite.vim "
 
