@@ -60,6 +60,9 @@ set visualbell
 " Allow switching buffers without saving
 set hidden
 
+" Enable mouse
+set mouse=a
+
 " }}} UI Config "
 
 " Colors & syntax {{{ "
