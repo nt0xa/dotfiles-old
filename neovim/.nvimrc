@@ -1,4 +1,5 @@
 " Vundle {{{ "
+"
 
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin('~/.nvim/bundle')
@@ -16,6 +17,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
@@ -339,3 +341,9 @@ let g:syntastic_html_tidy_ignore_errors = [
 \ ]
 
 " }}} Plugin: Syntastic "
+
+" Plugin: Tagbar {{{ "
+
+nnoremap <c-t> :TagbarToggle<cr>
+
+" }}} Plugin: Tagbar "
