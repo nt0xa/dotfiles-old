@@ -1,5 +1,4 @@
 " Vundle {{{ "
-"
 
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin('~/.nvim/bundle')
