@@ -1,4 +1,5 @@
 " Vundle {{{ "
+"
 
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#begin('~/.nvim/bundle')
@@ -6,16 +7,21 @@ call vundle#begin('~/.nvim/bundle')
 " Vundle
 Plugin 'gmarik/Vundle.vim'
 
+" Helpers
+Plugin 'Shougo/vimproc.vim'
+Plugin 'xolox/vim-misc'
+
 " Interface
 Plugin 'bling/vim-airline'
-Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
-Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+
+" Navigation
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'yonchu/accelerated-smooth-scroll'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
@@ -25,6 +31,7 @@ Plugin 'honza/vim-snippets'
 " Editor
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
 
 " Colorscheme
 Plugin 'chriskempson/base16-vim'
@@ -350,3 +357,10 @@ map <leader>c <plug>NERDCommenterInvert
 let g:NERDCreateDefaultMappings = 0
 
 " }}} Plugin: NERDCommenter "
+
+" Plugin: Tagbar {{{ "
+
+" Toggle tagbar
+nnoremap <c-t> :TagbarToggle<cr>
+
+" }}} Plugin: Tagbar "
