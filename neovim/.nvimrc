@@ -24,6 +24,7 @@ Plugin 'honza/vim-snippets'
 
 " Editor
 Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
 
 " Colorscheme
 Plugin 'chriskempson/base16-vim'
@@ -165,7 +166,7 @@ nnoremap <silent> <leader>l :let @/ = ''<cr>
 
 " Copy/Paste clipboard
 vnoremap <leader>y "+y
-vnoremap <leader>p "+p
+nnoremap <leader>p "+p
 
 " }}} Mappings "
 
@@ -339,3 +340,13 @@ let g:syntastic_html_tidy_ignore_errors = [
 \ ]
 
 " }}} Plugin: Syntastic "
+
+" Plugin: NERDCommenter {{{ "
+
+" Toggle comment
+map <leader>c <plug>NERDCommenterInvert
+
+" Disable default key mappings
+let g:NERDCreateDefaultMappings = 0
+
+" }}} Plugin: NERDCommenter "
