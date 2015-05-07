@@ -17,6 +17,8 @@ Plugin 'Shougo/vimfiler.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 
+Plugin 'thinca/vim-quickrun'
+
 " Navigation
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'yonchu/accelerated-smooth-scroll'
@@ -204,19 +206,6 @@ augroup NvimrcAutocmdGroup
 augroup end
 
 " }}} Autocmd: nvimrc "
-
-" Autocmd: Python {{{ "
-
-function! s:python_filetype_settings()
-    nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
-endfunction
-
-augroup PythonAutocmdGroup
-    autocmd!
-    autocmd FileType python call s:python_filetype_settings()
-augroup end
-
-" }}} Autocmd: Python "
 
 " Plugin: Unite.vim {{{ "
 
