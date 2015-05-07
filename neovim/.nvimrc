@@ -31,6 +31,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-commentary'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Colorscheme
 Plugin 'chriskempson/base16-vim'
@@ -289,8 +290,8 @@ let g:vimfiler_readonly_file_icon = '✗'
 let g:vimfiler_marked_file_icon = '✓'
 
 " Mappings
-nnoremap <c-n> :VimFiler -toggle<cr>
-inoremap <c-n> <esc>:VimFiler -toggle<cr>
+nnoremap <c-o> :VimFiler -toggle<cr>
+inoremap <c-o> <esc>:VimFiler -toggle<cr>
 
 " }}} Plugin: Vimfiler.vim "
 
