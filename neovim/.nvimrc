@@ -35,6 +35,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-expand-region'
 
 " Colorscheme
 Plugin 'chriskempson/base16-vim'
@@ -344,3 +345,10 @@ let g:syntastic_html_tidy_ignore_errors = [
 nnoremap <c-t> :TagbarToggle<cr>
 
 " }}} Plugin: Tagbar "
+
+" Plugin: Vim-expand-region {{{ "
+
+map <leader>e <plug>(expand_region_expand)
+map <leader>s <plug>(expand_region_shrink)
+
+" }}} Plugin: Vim-expand-region "
