@@ -336,10 +336,15 @@ map <leader>k <plug>(easymotion-k)
 
 " Plugin: Syntastic {{{ "
 
+" Ignore angular attributes in html
 let g:syntastic_html_tidy_ignore_errors = [
     \ " proprietary attribute \"ng-",
     \ " proprietary attribute \"ui-",
 \ ]
+
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠︎'
 
 " }}} Plugin: Syntastic "
 
