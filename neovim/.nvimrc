@@ -366,7 +366,7 @@ map <leader>s <plug>(expand_region_shrink)
 
 " Plugin: incsearch.vim {{{ "
 
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
+map /  <plug>(incsearch-forward)
+map ?  <plug>(incsearch-backward)
 
 " }}} Plugin: incsearch.vim "

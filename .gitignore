@@ -13,6 +13,7 @@ neovim/.nvim/*
 
 # Exclude my own snippets from ignored
 !neovim/.nvim/UltiSnips
+!neovim/.nvim/ycm
 
 # Ignore all bundles but Vundle.vim
 !neovim/.nvim/bundle
