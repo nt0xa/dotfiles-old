@@ -13,7 +13,7 @@ stow -t ~ zsh
 # neovim
 stow -t ~ neovim
 
-# tmux 
+# tmux
 stow -t ~ tmux
 ```
 

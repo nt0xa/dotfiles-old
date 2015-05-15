@@ -6,7 +6,7 @@ call vundle#begin('~/.nvim/bundle')
 " Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Helpers
+" Plugins helpers
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mattn/webapi-vim'
 
@@ -15,13 +15,16 @@ Plugin 'bling/vim-airline'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'thinca/vim-quickrun'
-Plugin 'mattn/gist-vim'
 
-" Navigation
-Plugin 'Lokaltog/vim-easymotion'
+" " Navigation
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-rsi'
+
+" Search
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'deris/vim-shot-f'
+Plugin 'haya14busa/incsearch.vim'
 
 " Completion
 Plugin 'Valloric/YouCompleteMe'
@@ -34,6 +37,11 @@ Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'terryma/vim-expand-region'
+Plugin 'tommcdo/vim-exchange'
+
+" Other
+Plugin 'mattn/gist-vim'
+Plugin 'thinca/vim-quickrun'
 
 " Colorscheme
 Plugin 'chriskempson/base16-vim'
@@ -147,12 +155,6 @@ set noswapfile
 
 " Case insensitive search
 set ignorecase
-
-" Search while typing
-set incsearch
-
-" Highlight search results
-set hlsearch
 
 " }}} Search "
 
@@ -361,3 +363,10 @@ map <leader>e <plug>(expand_region_expand)
 map <leader>s <plug>(expand_region_shrink)
 
 " }}} Plugin: Vim-expand-region "
+
+" Plugin: incsearch.vim {{{ "
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+
+" }}} Plugin: incsearch.vim "
