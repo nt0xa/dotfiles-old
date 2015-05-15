@@ -8,14 +8,12 @@ Plugin 'gmarik/Vundle.vim'
 
 " Helpers
 Plugin 'Shougo/vimproc.vim'
-Plugin 'xolox/vim-misc'
 Plugin 'mattn/webapi-vim'
 
 " Interface
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
-Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 Plugin 'thinca/vim-quickrun'
 Plugin 'mattn/gist-vim'
