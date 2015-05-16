@@ -1,6 +1,6 @@
-[submodule "neovim/.nvim/bundle/Vundle.vim"]
-	path = neovim/.nvim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "zsh/.zsh/.zprezto"]
 	path = zsh/.zsh/.zprezto
 	url = git@github.com:russtone/prezto.git
+[submodule "vim/.vim/autoload"]
+	path = vim/.vim/autoload
+	url = https://github.com/junegunn/vim-plug.git

@@ -1,68 +1,64 @@
-" Vundle {{{ "
+" Plugins {{{ "
 
-set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#begin('~/.nvim/bundle')
-
-" Vundle
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Plugins helpers
-Plugin 'Shougo/vimproc.vim'
-Plugin 'mattn/webapi-vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'mattn/webapi-vim'
 
 " Interface
-Plugin 'bling/vim-airline'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimfiler.vim'
-Plugin 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
+Plug 'majutsushi/tagbar'
 
-" " Navigation
-Plugin 'yonchu/accelerated-smooth-scroll'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-rsi'
+" Navigation
+Plug 'yonchu/accelerated-smooth-scroll'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-rsi'
 
 " Search
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'deris/vim-shot-f'
-Plugin 'haya14busa/incsearch.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'deris/vim-shot-f'
+Plug 'haya14busa/incsearch.vim'
 
 " Completion
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Editor
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-commentary'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tommcdo/vim-exchange'
+Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-commentary'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-expand-region'
+Plug 'tommcdo/vim-exchange'
 
 " Other
-Plugin 'mattn/gist-vim'
-Plugin 'thinca/vim-quickrun'
+Plug 'mattn/gist-vim'
+Plug 'thinca/vim-quickrun'
 
 " Colorscheme
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 " Linting
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Less
-Plugin 'groenewege/vim-less'
+Plug 'groenewege/vim-less'
 
 " JavaScript
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'marijnh/tern_for_vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'marijnh/tern_for_vim'
 
 " OpenCL
-Plugin 'petRUShka/vim-opencl'
+Plug 'petRUShka/vim-opencl'
 
-call vundle#end()
+call plug#end()
 
-" }}} Vundle "
+" }}} Plugins "
 
 " UI Config {{{ "
 

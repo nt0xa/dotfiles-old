@@ -10,8 +10,8 @@ cd dotfiles
 # zsh
 stow -t ~ zsh
 
-# neovim
-stow -t ~ neovim
+# vim
+stow -t ~ vim
 
 # tmux
 stow -t ~ tmux
