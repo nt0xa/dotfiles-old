@@ -13,14 +13,15 @@ Plug 'Shougo/vimfiler.vim'
 Plug 'majutsushi/tagbar'
 
 " Navigation
+Plug 'Lokaltog/vim-easymotion'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 
-" Search
-Plug 'Lokaltog/vim-easymotion'
+" Search & replace
 Plug 'deris/vim-shot-f'
 Plug 'haya14busa/incsearch.vim'
+Plug 'osyo-manga/vim-over'
 
 " Completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
@@ -38,6 +39,7 @@ Plug 'tommcdo/vim-exchange'
 " Other
 Plug 'mattn/gist-vim'
 Plug 'thinca/vim-quickrun'
+Plug 'mhinz/vim-startify'
 
 " Colorscheme
 Plug 'chriskempson/base16-vim'
@@ -190,10 +192,10 @@ filetype indent on
 
 " }}} Filetype "
 
-" Autocmd: nvimrc {{{ "
+" Autocmd: vimrc {{{ "
 
-if !exists('*s:reload_nvimrc')
-    function! s:reload_nvimrc()
+if !exists('*s:reload_vimrc')
+    function! s:reload_vimrc()
         source %
         if exists(':AirlineRefresh')
             AirlineRefresh
@@ -201,12 +203,12 @@ if !exists('*s:reload_nvimrc')
     endfunction
 endif
 
-augroup NvimrcAutocmdGroup
+augroup VimrcAutocmdGroup
     autocmd!
-    autocmd BufWritePost .nvimrc call s:reload_nvimrc()
+    autocmd BufWritePost .vimrc call s:reload_vimrc()
 augroup end
 
-" }}} Autocmd: nvimrc "
+" }}} Autocmd: vimrc "
 
 " Plugin: Unite.vim {{{ "
 
