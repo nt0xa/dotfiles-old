@@ -40,6 +40,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'mattn/gist-vim'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
+Plug 'kshenoy/vim-signature'
 
 " Colorscheme
 Plug 'chriskempson/base16-vim'
