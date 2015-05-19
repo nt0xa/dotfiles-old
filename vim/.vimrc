@@ -155,6 +155,9 @@ set noswapfile
 " Case insensitive search
 set ignorecase
 
+" Highlight matches
+set hlsearch
+
 " }}} Search "
 
 " Mappings {{{"
@@ -180,6 +183,9 @@ nnoremap <silent> <leader>l :let @/ = ''<cr>
 " Copy/Paste clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
+
+" Select pasted text
+noremap gV `[v`]
 
 " }}} Mappings "
 
@@ -364,7 +370,23 @@ map <leader>s <plug>(expand_region_shrink)
 
 " Plugin: incsearch.vim {{{ "
 
+" Use incsearch instead default search
 map /  <plug>(incsearch-forward)
 map ?  <plug>(incsearch-backward)
 
+" Auto disable highlighting
+let g:incsearch#auto_nohlsearch = 1
+map n  <plug>(incsearch-nohl-n)
+map N  <plug>(incsearch-nohl-N)
+map *  <plug>(incsearch-nohl-*)
+map #  <plug>(incsearch-nohl-#)
+
 " }}} Plugin: incsearch.vim "
+
+" Plugin: vim-over {{{ "
+
+nnoremap <silent> <leader>s :OverCommandLine<cr>s/
+nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
+vnoremap <silent> <leader>s :OverCommandLine<cr>s/
+
+" }}} Plugin: vim-over "
