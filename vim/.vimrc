@@ -74,9 +74,6 @@ set laststatus=2
 " Hide status line at the bottom
 set noshowmode
 
-" No sounds
-set visualbell
-
 " Allow switching buffers without saving
 set hidden
 
