@@ -98,13 +98,13 @@ colorscheme base16-eighties
 " Spaces & tabs {{{ "
 
 " Count of spaces per tab when editing
-set softtabstop=4
+set softtabstop=2
 
 " Number of visual spaces per tab
-set tabstop=4
+set tabstop=2
 
 " <<, >> spaces
-set shiftwidth=4
+set shiftwidth=2
 
 " Tabs are spaces
 set expandtab
@@ -200,17 +200,17 @@ filetype indent on
 " Autocmd: vimrc {{{ "
 
 if !exists('*s:reload_vimrc')
-    function! s:reload_vimrc()
-        source %
-        if exists(':AirlineRefresh')
-            AirlineRefresh
-        endif
-    endfunction
+  function! s:reload_vimrc()
+    source %
+    if exists(':AirlineRefresh')
+      AirlineRefresh
+    endif
+  endfunction
 endif
 
 augroup VimrcAutocmdGroup
-    autocmd!
-    autocmd BufWritePost .vimrc call s:reload_vimrc()
+  autocmd!
+  autocmd BufWritePost .vimrc call s:reload_vimrc()
 augroup end
 
 " }}} Autocmd: vimrc "
@@ -226,40 +226,40 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 
 " Use ag for recursive file search
 let g:unite_source_rec_async_command =
-    \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
 " Use ag for async file search
 let g:unite_source_file_async_command =
-    \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
 " Use ag for grep
 let g:unite_source_grep_command = 'ag'
 
 " ag for grep params
 let g:unite_source_grep_default_opts =
-    \ '--line-numbers --nocolor --nogroup --hidden'
+  \ '--line-numbers --nocolor --nogroup --hidden'
 
 " Like ctrlp.vim settings
 call unite#custom#profile('default', 'context', {
-    \ 'prompt': '» ',
-    \ 'start_insert': 1,
+  \ 'prompt': '» ',
+  \ 'start_insert': 1,
 \ })
 
 " Unite filetype settings function
 function! s:unite_filetype_settings()
 
-    nmap <buffer> <c-p> <plug>(unite_exit)
-    imap <buffer> <c-p> <plug>(unite_exit)
+  nmap <buffer> <c-p> <plug>(unite_exit)
+  imap <buffer> <c-p> <plug>(unite_exit)
 
-    imap <buffer> <c-j> <plug>(unite_select_next_line)
-    imap <buffer> <c-k> <plug>(unite_select_previous_line)
+  imap <buffer> <c-j> <plug>(unite_select_next_line)
+  imap <buffer> <c-k> <plug>(unite_select_previous_line)
 
 endfunction
 
 " Unite autocmd group
 augroup UniteAutocmdGroup
-    autocmd!
-    autocmd FileType unite call s:unite_filetype_settings()
+  autocmd!
+  autocmd FileType unite call s:unite_filetype_settings()
 augroup end
 
 " Mappings
@@ -275,7 +275,7 @@ let g:vimfiler_as_default_explorer = 1
 
 " Disable safe-mode
 call vimfiler#custom#profile('default', 'context', {
-    \ 'safe' : 0
+  \ 'safe' : 0
 \ })
 
 " Like Textmate icons
@@ -342,8 +342,8 @@ map <leader>k <plug>(easymotion-k)
 
 " Ignore angular attributes in html
 let g:syntastic_html_tidy_ignore_errors = [
-    \ " proprietary attribute \"ng-",
-    \ " proprietary attribute \"ui-",
+  \ " proprietary attribute \"ng-",
+  \ " proprietary attribute \"ui-",
 \ ]
 
 " Better :sign interface symbols
