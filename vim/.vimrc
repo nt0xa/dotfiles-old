@@ -35,6 +35,7 @@ Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-sleuth'
 
 " Other
 Plug 'mattn/gist-vim'
