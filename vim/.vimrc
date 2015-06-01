@@ -60,6 +60,9 @@ Plug 'marijnh/tern_for_vim'
 " OpenCL
 Plug 'petRUShka/vim-opencl'
 
+" Markdown
+Plug 'suan/vim-instant-markdown'
+
 call plug#end()
 
 " }}} Plugins "
