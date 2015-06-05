@@ -53,10 +53,13 @@ Plug 'scrooloose/syntastic'
 Plug 'groenewege/vim-less'
 
 " JavaScript
-Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'mxw/vim-jsx'
+
+" HTML
+Plug 'mattn/emmet-vim'
 
 " OpenCL
 Plug 'petRUShka/vim-opencl'
@@ -394,3 +397,9 @@ nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 vnoremap <silent> <leader>s :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
+
+" Plugin: Emmet-vim {{{ "
+
+let g:user_emmet_leader_key = '<c-j>'
+
+" }}} Plugin: Emmet-vim "
