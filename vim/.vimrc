@@ -56,6 +56,7 @@ Plug 'groenewege/vim-less'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'marijnh/tern_for_vim'
+Plug 'mxw/vim-jsx'
 
 " OpenCL
 Plug 'petRUShka/vim-opencl'
@@ -322,7 +323,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 
 " Plugin: Javascript-libraries-syntax {{{ "
 
-let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine'
+let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine,react'
 
 " }}} Plugin: Javascript-libraries-syntax "
 
@@ -352,6 +353,8 @@ let g:syntastic_html_tidy_ignore_errors = [
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠︎'
+
+let g:syntastic_javascript_checkers = ['eslint']
 
 " }}} Plugin: Syntastic "
 
