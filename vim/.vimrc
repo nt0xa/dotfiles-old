@@ -39,7 +39,6 @@ Plug 'tpope/vim-sleuth'
 
 " Other
 Plug 'mattn/gist-vim'
-Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'kshenoy/vim-signature'
 
@@ -357,6 +356,7 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠︎'
 
+" JavaScript checkers
 let g:syntastic_javascript_checkers = ['eslint']
 
 " }}} Plugin: Syntastic "
@@ -397,9 +397,3 @@ nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 vnoremap <silent> <leader>s :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
-
-" Plugin: Emmet-vim {{{ "
-
-let g:user_emmet_leader_key = '<c-j>'
-
-" }}} Plugin: Emmet-vim "
