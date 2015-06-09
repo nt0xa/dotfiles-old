@@ -397,3 +397,9 @@ nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 vnoremap <silent> <leader>s :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
+
+" Plugin: Tabular {{{ "
+
+vnoremap <leader>t :Tab /
+
+" }}} Plugin: Tabular "
