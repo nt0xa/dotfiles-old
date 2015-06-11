@@ -403,3 +403,10 @@ vnoremap <silent> <leader>s :OverCommandLine<cr>s/
 vnoremap <leader>t :Tab /
 
 " }}} Plugin: Tabular "
+
+" Plugin: vim-jsx {{{ "
+
+" Enable jsx highlighting for js files
+let g:jsx_ext_required = 0
+
+" }}} Plugin: vim-jsx "
