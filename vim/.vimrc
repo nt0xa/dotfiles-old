@@ -191,6 +191,10 @@ nnoremap <leader>p "+p
 " Select pasted text
 noremap gV `[v`]
 
+" Add new line w/o switching to insert mode
+nnoremap <leader>o o<esc>k
+nnoremap <leader>O O<esc>j
+
 " }}} Mappings "
 
 " Filetype {{{ "
