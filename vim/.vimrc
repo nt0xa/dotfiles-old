@@ -17,6 +17,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
+Plug 'kshenoy/vim-signature'
 
 " Search & replace
 Plug 'deris/vim-shot-f'
@@ -37,10 +38,12 @@ Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-sleuth'
 
-" Other
+" Git
+Plug 'airblade/vim-gitgutter'
 Plug 'mattn/gist-vim'
+
+" Other
 Plug 'mhinz/vim-startify'
-Plug 'kshenoy/vim-signature'
 
 " Colorscheme
 Plug 'chriskempson/base16-vim'
