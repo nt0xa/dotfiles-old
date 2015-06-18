@@ -15,16 +15,21 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
+  'gnu-utility' \
   'utility' \
   'completion' \
-  'syntax-highlighting' \
-  'prompt' \
-  'history-substring-search' \
   'git' \
-  'base16-shell' \
-  'brew' \
+  'archive' \
+  'osx' \
+  'perl' \
+  'python' \
+  'ruby' \
+  'node' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'prompt' \
   'tmux' \
-  'node'
+  'base16-shell'
 
 # }}} General #
 
