@@ -433,10 +433,13 @@ let g:delimitMate_expand_cr = 1
 " Plugin: vim-quickrun {{{ "
 
 let g:quickrun_config = {
-\   "_" : {
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 10
-\   },
+\  "_" : {
+\    "runner" : "vimproc",
+\    "runner/vimproc/updatetime" : 10,
+\    "outputter/buffer/split" : ":botright 8sp"
+\  },
 \}
+
+nnoremap <expr><silent> <leader>c quickrun#sweep_sessions()
 
 " }}} Plugin: vim-quickrun "
