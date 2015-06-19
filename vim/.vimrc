@@ -279,6 +279,7 @@ augroup end
 " Mappings
 nnoremap <c-p> :Unite file_rec/async<cr>
 nnoremap <c-g> :Unite grep:.<cr>
+nnoremap <c-b> :Unite buffer<cr>
 
 " }}} Unite.vim "
 
