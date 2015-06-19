@@ -18,6 +18,7 @@ Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 Plug 'kshenoy/vim-signature'
+Plug 'vim-scripts/matchit.zip'
 
 " Search & replace
 Plug 'deris/vim-shot-f'
@@ -419,3 +420,9 @@ vnoremap <leader>t :Tab /
 let g:jsx_ext_required = 0
 
 " }}} Plugin: vim-jsx "
+
+" Plugin: delimitMate {{{ "
+
+let g:delimitMate_expand_cr = 1
+
+" }}} Plugin: delimitMate "
