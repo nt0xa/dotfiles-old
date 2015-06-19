@@ -37,6 +37,14 @@ path=(
   $path
 )
 
+# Add brew to path on linux.
+if [[ "$OSTYPE" == linux* ]]; then
+  path=(
+    $HOME/.linuxbrew/bin
+    $path
+  )
+fi
+
 # }}} Path #
 
 # Temp files {{{ #
