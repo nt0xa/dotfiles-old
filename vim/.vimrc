@@ -37,6 +37,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-sleuth'
+Plug 'Raimondi/delimitMate'
 
 " Git
 Plug 'airblade/vim-gitgutter'
