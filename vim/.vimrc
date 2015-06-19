@@ -40,6 +40,9 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-sleuth'
 Plug 'Raimondi/delimitMate'
 
+" Run
+Plug 'thinca/vim-quickrun'
+
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/gist-vim'
@@ -241,24 +244,24 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 
 " Use ag for recursive file search
 let g:unite_source_rec_async_command =
-  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+\  'ag --follow --nocolor --nogroup --hidden -g ""'
 
 " Use ag for async file search
 let g:unite_source_file_async_command =
-  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+\  'ag --follow --nocolor --nogroup --hidden -g ""'
 
 " Use ag for grep
 let g:unite_source_grep_command = 'ag'
 
 " ag for grep params
 let g:unite_source_grep_default_opts =
-  \ '--line-numbers --nocolor --nogroup --hidden'
+\  '--line-numbers --nocolor --nogroup --hidden'
 
 " Like ctrlp.vim settings
 call unite#custom#profile('default', 'context', {
-  \ 'prompt': '» ',
-  \ 'start_insert': 1,
-\ })
+\  'prompt': '» ',
+\  'start_insert': 1,
+\})
 
 " Unite filetype settings function
 function! s:unite_filetype_settings()
@@ -291,7 +294,7 @@ let g:vimfiler_as_default_explorer = 1
 
 " Disable safe-mode
 call vimfiler#custom#profile('default', 'context', {
-  \ 'safe' : 0
+\   'safe' : 0
 \ })
 
 " Like Textmate icons
@@ -358,9 +361,9 @@ map <leader>k <plug>(easymotion-k)
 
 " Ignore angular attributes in html
 let g:syntastic_html_tidy_ignore_errors = [
-  \ " proprietary attribute \"ng-",
-  \ " proprietary attribute \"ui-",
-\ ]
+\  " proprietary attribute \"ng-",
+\  " proprietary attribute \"ui-",
+\]
 
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
@@ -426,3 +429,14 @@ let g:jsx_ext_required = 0
 let g:delimitMate_expand_cr = 1
 
 " }}} Plugin: delimitMate "
+
+" Plugin: vim-quickrun {{{ "
+
+let g:quickrun_config = {
+\   "_" : {
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 10
+\   },
+\}
+
+" }}} Plugin: vim-quickrun "
