@@ -1,6 +1,10 @@
 # File-types
 *.pyc
 
+# Ignore all tmux files but needed
+tmux/.tmux/plugins/*
+!tmux/.tmux/plugins/tpm
+
 # Ignore all zsh files but needed
 zsh/.zsh/*
 !zsh/.zsh/.zprezto
