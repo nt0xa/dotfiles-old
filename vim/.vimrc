@@ -78,6 +78,10 @@ call plug#end()
 
 " }}} Plugins "
 
+" Encoding {{{ "
+set fileencodings=utf-8,cp1251
+" }}} Encoding "
+
 " UI Config {{{ "
 
 " Show line numbers
