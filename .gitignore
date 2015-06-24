@@ -2,6 +2,8 @@
 *.pyc
 
 # Ignore all tmux files but needed
+tmux/.tmux/*
+!tmux/.tmux/plugins
 tmux/.tmux/plugins/*
 !tmux/.tmux/plugins/tpm
 
