@@ -1,2 +1,4 @@
-neovim/.nvim/bundle/
+vim/.vim/autoload
+vim/.vim/plugged
 zsh/.zsh/
+tmux/.tmux

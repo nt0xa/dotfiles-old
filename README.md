@@ -1,19 +1,17 @@
 # Dotfiles
-Just my zsh, neovim and tmux configuration files.
+Just my configuration files.
 
-# Installation
+# Install
 ```
 brew install stow
 git clone --recursive https://github.com/russtone/dotfiles.git
 cd dotfiles
 
-# zsh
-stow -t ~ zsh
+stow -t ~ zsh vim tmux misc
+```
 
-# vim
-stow -t ~ vim
-
-# tmux
-stow -t ~ tmux
+# Uninstall
+```
+stow -D -t ~ zsh vim tmux misc
 ```
 
