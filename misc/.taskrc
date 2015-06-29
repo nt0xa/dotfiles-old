@@ -1,0 +1,6 @@
+# Files
+data.location=~/.task
+
+# Color theme
+include /usr/local/Cellar/task/2.4.4/share/doc/task/rc/dark-blue-256.theme
+
