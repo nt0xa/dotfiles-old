@@ -45,6 +45,7 @@ cflags = cppflags + [
 '-x', 'c',
 '-std=c99',
 '-isystem', '/System/Library/Frameworks/OpenCL.framework/Headers',
+'-isystem', '~/.linuxbrew/include',
 ] + extraflags + commonflags
 
 mflags = cppflags + [
@@ -94,7 +95,7 @@ def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
 
     if make_next_absolute:
       make_next_absolute = False
-      if not flag.startswith( '/' ):
+      if not flag.startswith( '/' ) and not flag.startswith('~'):
         new_flag = os.path.join( working_directory, flag )
 
     for path_flag in path_flags:
