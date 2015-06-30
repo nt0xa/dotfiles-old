@@ -39,6 +39,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-sleuth'
 Plug 'Raimondi/delimitMate'
+Plug 'sickill/vim-pasta'
 
 " Run
 Plug 'thinca/vim-quickrun'
