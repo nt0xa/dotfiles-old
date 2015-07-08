@@ -75,6 +75,9 @@ Plug 'petRUShka/vim-opencl'
 " Markdown
 Plug 'suan/vim-instant-markdown'
 
+" Go
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 " }}} Plugins "
@@ -444,7 +447,5 @@ let g:quickrun_config = {
 \    "outputter/buffer/split" : ":botright 8sp"
 \  },
 \}
-
-nnoremap <expr><silent> <leader>c quickrun#sweep_sessions()
 
 " }}} Plugin: vim-quickrun "
