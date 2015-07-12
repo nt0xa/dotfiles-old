@@ -57,3 +57,9 @@ fi
 TMPPREFIX="${TMPDIR%/}/zsh"
 
 # }}} Temp files #
+
+# Misc {{{ #
+
+export GOPATH=$HOME/.go
+
+# }}} Misc #
