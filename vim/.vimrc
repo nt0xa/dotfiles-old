@@ -83,6 +83,9 @@ set fileencodings=utf-8,cp1251
 " Show line numbers
 set number
 
+" Relative line numbers
+set relativenumber
+
 " Always show status line
 set laststatus=2
 
@@ -294,8 +297,8 @@ let g:vimfiler_as_default_explorer = 1
 
 " Disable safe-mode
 call vimfiler#custom#profile('default', 'context', {
-\   'safe' : 0
-\ })
+\  'safe' : 0
+\})
 
 " Like Textmate icons
 let g:vimfiler_tree_leaf_icon = ' '
@@ -339,26 +342,11 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 " }}} YouCompleteMe "
 
-" Plugin: Javascript-libraries-syntax {{{ "
+" Plugin: javascript-libraries-syntax {{{ "
 
 let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine,react'
 
-" }}} Plugin: Javascript-libraries-syntax "
-
-" Plugin: Vim-easymotion {{{ "
-
-let g:EasyMotion_do_mapping = 0
-
-nmap s <plug>(easymotion-s2)
-
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <leader>j <plug>(easymotion-j)
-map <leader>k <plug>(easymotion-k)
-
-" }}} Plugin: Vim-easymotion "
+" }}} Plugin: javascript-libraries-syntax "
 
 " Plugin: Syntastic {{{ "
 
@@ -384,13 +372,6 @@ nnoremap <c-t> :TagbarToggle<cr>
 
 " }}} Plugin: Tagbar "
 
-" Plugin: Vim-expand-region {{{ "
-
-map <leader>e <plug>(expand_region_expand)
-map <leader>s <plug>(expand_region_shrink)
-
-" }}} Plugin: Vim-expand-region "
-
 " Plugin: incsearch.vim {{{ "
 
 " Use incsearch instead default search
@@ -409,8 +390,8 @@ map #  <plug>(incsearch-nohl-#)
 " Plugin: vim-over {{{ "
 
 nnoremap <silent> <leader>s :OverCommandLine<cr>s/
-nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 vnoremap <silent> <leader>s :OverCommandLine<cr>s/
+nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 
 " }}} Plugin: vim-over "
 
@@ -426,12 +407,6 @@ vnoremap <leader>t :Tab /
 let g:jsx_ext_required = 0
 
 " }}} Plugin: vim-jsx "
-
-" Plugin: delimitMate {{{ "
-
-let g:delimitMate_expand_cr = 1
-
-" }}} Plugin: delimitMate "
 
 " Plugin: vim-quickrun {{{ "
 
