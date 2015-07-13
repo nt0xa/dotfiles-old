@@ -8,18 +8,15 @@ Plug 'mattn/webapi-vim'
 
 " Interface
 Plug 'bling/vim-airline'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim'
 Plug 'majutsushi/tagbar'
+Plug 'kien/ctrlp.vim'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
-Plug 'kshenoy/vim-signature'
 
 " Search & replace
-Plug 'deris/vim-shot-f'
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
 
@@ -29,20 +26,16 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Editor
-Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
-Plug 'sickill/vim-pasta'
+Plug 'tpope/vim-surround'
 
 " Run
 Plug 'thinca/vim-quickrun'
 
 " Git
 Plug 'mattn/gist-vim'
-
-" Other
-Plug 'mhinz/vim-startify'
 
 " Colorscheme
 Plug 'chriskempson/base16-vim'
@@ -82,9 +75,6 @@ set fileencodings=utf-8,cp1251
 
 " Show line numbers
 set number
-
-" Relative line numbers
-set relativenumber
 
 " Always show status line
 set laststatus=2
@@ -236,84 +226,6 @@ augroup end
 
 " }}} Autocmd: vimrc "
 
-" Plugin: Unite.vim {{{ "
-
-" Fuzzy match by default
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" Sort matches by rank. The higher the matched word is or
-" the longer the matched length is, the higher the rank is.
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-" Use ag for recursive file search
-let g:unite_source_rec_async_command =
-\  'ag --follow --nocolor --nogroup --hidden -g ""'
-
-" Use ag for async file search
-let g:unite_source_file_async_command =
-\  'ag --follow --nocolor --nogroup --hidden -g ""'
-
-" Use ag for grep
-let g:unite_source_grep_command = 'ag'
-
-" ag for grep params
-let g:unite_source_grep_default_opts =
-\  '--line-numbers --nocolor --nogroup --hidden'
-
-" Like ctrlp.vim settings
-call unite#custom#profile('default', 'context', {
-\  'prompt': '» ',
-\  'start_insert': 1,
-\})
-
-" Unite filetype settings function
-function! s:unite_filetype_settings()
-
-  nmap <buffer> <c-p> <plug>(unite_exit)
-  imap <buffer> <c-p> <plug>(unite_exit)
-
-  imap <buffer> <c-j> <plug>(unite_select_next_line)
-  imap <buffer> <c-k> <plug>(unite_select_previous_line)
-
-endfunction
-
-" Unite autocmd group
-augroup UniteAutocmdGroup
-  autocmd!
-  autocmd FileType unite call s:unite_filetype_settings()
-augroup end
-
-" Mappings
-nnoremap <c-p> :Unite file_rec/async<cr>
-nnoremap <c-g> :Unite grep:.<cr>
-nnoremap <c-b> :Unite buffer<cr>
-
-" }}} Unite.vim "
-
-" Plugin: Vimfiler.vim {{{ "
-
-" Use vimfiler instead of netrw
-let g:vimfiler_as_default_explorer = 1
-
-" Disable safe-mode
-call vimfiler#custom#profile('default', 'context', {
-\  'safe' : 0
-\})
-
-" Like Textmate icons
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_readonly_file_icon = '✗'
-let g:vimfiler_marked_file_icon = '✓'
-
-" Mappings
-nnoremap <c-o> :VimFiler -toggle<cr>
-inoremap <c-o> <esc>:VimFiler -toggle<cr>
-
-" }}} Plugin: Vimfiler.vim "
-
 " Plugin: UltiSnips {{{ "
 
 let g:UltiSnipsExpandTrigger = '<c-j>'
@@ -348,7 +260,7 @@ let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine,react'
 
 " }}} Plugin: javascript-libraries-syntax "
 
-" Plugin: Syntastic {{{ "
+" Plugin: syntastic {{{ "
 
 " Ignore angular attributes in html
 let g:syntastic_html_tidy_ignore_errors = [
@@ -363,14 +275,14 @@ let g:syntastic_warning_symbol = '⚠︎'
 " JavaScript checkers
 let g:syntastic_javascript_checkers = ['eslint']
 
-" }}} Plugin: Syntastic "
+" }}} Plugin: syntastic "
 
-" Plugin: Tagbar {{{ "
+" Plugin: tagbar {{{ "
 
 " Toggle tagbar
 nnoremap <c-t> :TagbarToggle<cr>
 
-" }}} Plugin: Tagbar "
+" }}} Plugin: tagbar "
 
 " Plugin: incsearch.vim {{{ "
 
@@ -395,11 +307,11 @@ nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 
 " }}} Plugin: vim-over "
 
-" Plugin: Tabular {{{ "
+" Plugin: tabular {{{ "
 
 vnoremap <leader>t :Tab /
 
-" }}} Plugin: Tabular "
+" }}} Plugin: tabular "
 
 " Plugin: vim-jsx {{{ "
 
