@@ -241,6 +241,12 @@ let g:airline_section_c = '%t'
 
 " }}} Plugin: Airline "
 
+" Plugin: CrtlP {{{ "
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" }}} Plugin: CrtlP "
+
 " Plugin: YouCompleteMe {{{ "
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
