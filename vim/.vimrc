@@ -13,12 +13,10 @@ Plug 'Shougo/vimfiler.vim'
 Plug 'majutsushi/tagbar'
 
 " Navigation
-Plug 'Lokaltog/vim-easymotion'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 Plug 'kshenoy/vim-signature'
-Plug 'vim-scripts/matchit.zip'
 
 " Search & replace
 Plug 'deris/vim-shot-f'
@@ -34,18 +32,13 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-expand-region'
-Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-sleuth'
-Plug 'Raimondi/delimitMate'
 Plug 'sickill/vim-pasta'
 
 " Run
 Plug 'thinca/vim-quickrun'
 
 " Git
-Plug 'airblade/vim-gitgutter'
 Plug 'mattn/gist-vim'
 
 " Other
@@ -63,7 +56,6 @@ Plug 'groenewege/vim-less'
 " JavaScript
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'mxw/vim-jsx'
 
 " HTML
