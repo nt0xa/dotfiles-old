@@ -10,6 +10,8 @@ Plug 'mattn/webapi-vim'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
@@ -47,7 +49,7 @@ Plug 'scrooloose/syntastic'
 Plug 'groenewege/vim-less'
 
 " JavaScript
-Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mxw/vim-jsx'
 
@@ -68,7 +70,9 @@ call plug#end()
 " }}} Plugins "
 
 " Encoding {{{ "
+
 set fileencodings=utf-8,cp1251
+
 " }}} Encoding "
 
 " UI Config {{{ "
@@ -337,3 +341,9 @@ let g:quickrun_config = {
 \}
 
 " }}} Plugin: vim-quickrun "
+
+" Plugin: NERDTree {{{ "
+
+map <c-o> :NERDTreeToggle<cr>
+
+" }}} Plugin: NERDTree "
