@@ -33,6 +33,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 
+" Text objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-entire'
+Plug 'glts/vim-textobj-comment'
+
 " Run
 Plug 'thinca/vim-quickrun'
 
