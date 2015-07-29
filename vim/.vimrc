@@ -253,7 +253,14 @@ let g:airline_section_c = '%t'
 
 " Plugin: CrtlP {{{ "
 
+" Ignored folders
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" CtrlP extensions
+let g:ctrlp_extensions = ['buffertag']
+
+" Search in buffer tags
+nnoremap <c-i> :CtrlPBufTag<cr>
 
 " }}} Plugin: CrtlP "
 
