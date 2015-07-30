@@ -21,6 +21,7 @@ Plug 'tpope/vim-rsi'
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
+Plug 'vasconcelloslf/vim-interestingwords'
 
 " Completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
