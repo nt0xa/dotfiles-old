@@ -12,6 +12,7 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kshenoy/vim-signature'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
