@@ -47,8 +47,15 @@ Plug 'thinca/vim-quickrun'
 " Git
 Plug 'mattn/gist-vim'
 
-" Colorscheme
+" Colorschemes
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sjl/badwolf'
+Plug 'google/vim-colorscheme-primary'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'tomasr/molokai'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
 
 " Linting
 Plug 'scrooloose/syntastic'
@@ -72,6 +79,12 @@ Plug 'suan/vim-instant-markdown'
 
 " Go
 Plug 'fatih/vim-go'
+
+" Python
+Plug 'hdima/python-syntax'
+
+" C
+Plug 'NLKNguyen/c-syntax.vim'
 
 call plug#end()
 
@@ -110,7 +123,7 @@ syntax on
 " Color scheme
 set background=dark
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-monokai
 
 " }}} Colors & syntax "
 
