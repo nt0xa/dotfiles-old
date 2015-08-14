@@ -34,6 +34,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -121,6 +122,7 @@ set mouse=a
 syntax on
 
 " Color scheme
+set t_Co=256
 set background=dark
 let base16colorspace=256
 colorscheme base16-monokai
