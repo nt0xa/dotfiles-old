@@ -34,6 +34,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -47,8 +48,15 @@ Plug 'thinca/vim-quickrun'
 " Git
 Plug 'mattn/gist-vim'
 
-" Colorscheme
+" Colorschemes
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sjl/badwolf'
+Plug 'google/vim-colorscheme-primary'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'tomasr/molokai'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
 
 " Linting
 Plug 'scrooloose/syntastic'
@@ -72,6 +80,12 @@ Plug 'suan/vim-instant-markdown'
 
 " Go
 Plug 'fatih/vim-go'
+
+" Python
+Plug 'hdima/python-syntax'
+
+" C
+Plug 'NLKNguyen/c-syntax.vim'
 
 call plug#end()
 
@@ -108,9 +122,10 @@ set mouse=a
 syntax on
 
 " Color scheme
+set t_Co=256
 set background=dark
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-monokai
 
 " }}} Colors & syntax "
 
