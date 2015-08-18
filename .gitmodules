@@ -1,9 +1,0 @@
-[submodule "vim/.vim/autoload"]
-	path = vim/.vim/autoload
-	url = https://github.com/junegunn/vim-plug.git
-[submodule "zsh/.zsh/.zprezto"]
-	path = zsh/.zsh/.zprezto
-	url = https://github.com/russtone/prezto
-[submodule "tmux/.tmux/plugins/tpm"]
-	path = tmux/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
