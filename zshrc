@@ -32,11 +32,12 @@ export VISUAL='vim'
 
 # Plugins {{{ #
 
-source $HOME/.zsh/zgen.zsh
+source $HOME/.zgen/zgen.zsh
 
 if ! zgen saved; then
   zgen load chriskempson/base16-shell base16-monokai.dark.sh
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load sorin-ionescu/prezto modules/git/functions
   zgen load russtone/prompt-russtone theme.zsh
   zgen load zsh-users/zsh-completions src
   zgen save
@@ -86,7 +87,7 @@ autoload colors && colors
 function redraw-prompt {
   local precmd_func
   for precmd_func in $precmd_functions; do
-      $precmd_func
+    $precmd_func
   done
   zle reset-prompt
 }
@@ -172,7 +173,6 @@ function fzf-change-directory {
     2> /dev/null | \
     eval "$fzf_cmd +m -q '$LBUFFER'") && \
     cd $dir
-  echo 'loading...'
   zle kill-whole-line
   zle redraw-prompt
 }

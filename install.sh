@@ -3,7 +3,7 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # zsh
-if [[ ! -d $HOME/.zsh ]]; then
+if [[ ! -d $HOME/.zgen ]]; then
   git clone https://github.com/tarjoilija/zgen $HOME/.zsh
 fi
 
