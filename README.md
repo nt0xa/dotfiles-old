@@ -4,14 +4,13 @@ Just my configuration files.
 # Install
 ```
 brew install stow
-git clone --recursive https://github.com/russtone/dotfiles.git
+git clone https://github.com/russtone/dotfiles.git
 cd dotfiles
-
-stow -t ~ zsh vim tmux misc
+./dotfiles.sh install all
 ```
 
 # Uninstall
 ```
-stow -D -t ~ zsh vim tmux misc
+./dotfiles.sh remove all
 ```
 
