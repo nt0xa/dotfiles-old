@@ -10,6 +10,14 @@ function dotfiles_install_zsh() {
   if [[ ! -f $HOME/.zshrc ]]; then
     ln -s $DIR/zshrc $HOME/.zshrc
   fi
+
+  if [[ ! -f $HOME/.dircolors ]]; then
+    ln -s $DIR/dircolors $HOME/.dircolors
+  fi
+
+  if [[ ! -f $HOME/.agignore ]]; then
+    ln -s $DIR/agignore $HOME/.agignore
+  fi
 }
 
 function dotfiles_remove_zsh() {
@@ -19,6 +27,14 @@ function dotfiles_remove_zsh() {
 
   if [[ -f $HOME/.zshrc ]]; then
     unlink $HOME/.zshrc
+  fi
+
+  if [[ -f $HOME/.dircolors ]]; then
+    unlink $HOME/.dircolors
+  fi
+
+  if [[ -f $HOME/.agignore ]]; then
+    unlink $HOME/.agignore
   fi
 }
 
@@ -51,8 +67,12 @@ function dotfiles_install_vim() {
     ln -s $DIR/vimrc $HOME/.vimrc
   fi
 
-  if [[ -d $HOME/.vim && ! -f $HOME/.vim/ycm_extra_conf.py ]]; then
-    ln -s $DIR/ycm_extra_conf.py $HOME/.vim
+  if [[ -d $HOME/.vim && ! -f $HOME/.vim/.ycm_extra_conf.py ]]; then
+    ln -s $DIR/ycm_extra_conf.py $HOME/.vim/.ycm_extra_conf.py
+  fi
+
+  if [[ -d $HOME/.vim && ! -f $HOME/.vim/UltiSnips ]]; then
+    ln -s $DIR/UltiSnips $HOME/.vim/UltiSnips
   fi
 }
 
