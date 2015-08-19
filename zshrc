@@ -84,7 +84,6 @@ alias lt='ll -tr'        # Lists sorted by date, most recent last
 
 # Completions {{{ #
 
-
 # Case insensetive completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
@@ -215,3 +214,18 @@ if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" ]];  then
 fi
 
 # }}} tmux #
+
+# Misc {{{ #
+
+# Expands .... to ../..
+function expand-dot-to-parent-directory-path {
+  if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+='/..'
+  else
+    LBUFFER+='.'
+  fi
+}
+zle -N expand-dot-to-parent-directory-path
+bindkey -M viins '.' expand-dot-to-parent-directory-path
+
+# }}} Misc #
