@@ -82,21 +82,6 @@ alias lt='ll -tr'        # Lists sorted by date, most recent last
 
 # }}} Aliases #
 
-# Helpers {{{ #
-
-autoload colors && colors
-
-function redraw-prompt {
-  local precmd_func
-  for precmd_func in $precmd_functions; do
-    $precmd_func
-  done
-  zle reset-prompt
-}
-zle -N redraw-prompt
-
-# }}} Helpers #
-
 # Completions {{{ #
 
 # Case insensetive completion
@@ -129,7 +114,7 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 
 # Return if requirements are not found
 if (( ! $+commands[tmux] )); then
-  echo "$fg_bold[yellow]Warning: tmux command not found!"
+  echo "Warning: tmux command not found!"
   return 1
 fi
 
@@ -147,54 +132,3 @@ if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" ]];  then
 fi
 
 # }}} tmux #
-
-# fzf {{{ #
-
-# Return if requirements are not found
-if (( !$+commands[fzf] )); then
-  echo "$fg_bold[yellow]Warning: fzf command not found!$reset_color"
-  return 1
-fi
-
-# If tmux installed use fzf in tmux pane
-if (( $+commands[tmux] )); then
-  export fzf_cmd='fzf-tmux -d 20%'
-else
-  export fzf_cmd='fzf'
-fi
-
-# Ctrl-F - Jump to selected directory
-function fzf-change-directory {
-  local dir
-  dir=$(find $HOME \
-    -path '*/\.*' -prune \
-    -o -name 'node_modules' -prune \
-    -o -name 'Library' -prune \
-    -o -name 'Applications' -prune \
-    -o -type d -print \
-    2> /dev/null | \
-    eval "$fzf_cmd +m -q '$LBUFFER'") && \
-    cd $dir
-  zle kill-whole-line
-  zle redraw-prompt
-}
-zle -N fzf-change-directory
-bindkey '^F' fzf-change-directory
-
-# Ctrl-R - Paste the selected command from history into the command line
-function fzf-history-widget {
-  local selected restore_no_bang_hist
-  if selected=( $(fc -l 1 | eval "$fzf_cmd +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q '$LBUFFER'") ); then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
-    fi
-  fi
-  zle redraw-prompt
-}
-zle -N fzf-history-widget
-bindkey '^R' fzf-history-widget
-
-
-
-# }}} fzf #
