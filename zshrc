@@ -37,7 +37,7 @@ source $HOME/.zgen/zgen.zsh
 if ! zgen saved; then
   zgen load chriskempson/base16-shell base16-monokai.dark.sh
   zgen load zsh-users/zsh-syntax-highlighting
-  zgen load sorin-ionescu/prezto modules/git/functions
+  zgen load zsh-users/zsh-history-substring-search
   zgen load russtone/prompt-russtone theme.zsh
   zgen load zsh-users/zsh-completions src
   zgen save
@@ -48,10 +48,12 @@ fi
 # Key bindings {{{ #
 
 bindkey -v
-bindkey -v '^?' backward-delete-char
-bindkey -v '^P' up-line-or-history
-bindkey -v '^N' down-line-or-history
-bindkey -v 'jj' vi-cmd-mode
+bindkey '^?' backward-delete-char
+bindkey -M viins '^P' history-substring-search-up
+bindkey -M viins '^N' history-substring-search-down
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 # }}} Key bindings #
 

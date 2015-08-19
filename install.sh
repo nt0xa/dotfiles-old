@@ -4,7 +4,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # zsh
 if [[ ! -d $HOME/.zgen ]]; then
-  git clone https://github.com/tarjoilija/zgen $HOME/.zsh
+  git clone https://github.com/tarjoilija/zgen $HOME/.zgen
 fi
 
 if [[ ! -f $HOME/.zshrc ]]; then
@@ -29,7 +29,7 @@ if [[ ! -f $HOME/.vimrc ]]; then
   ln -s $DIR/vimrc $HOME/.vimrc
 fi
 
-if [[ -d $HOME/.vim ]]; then
+if [[ -d $HOME/.vim && ! -f $HOME/.vim/ycm_extra_conf.py ]]; then
   ln -s $DIR/ycm_extra_conf.py $HOME/.vim
 fi
 
