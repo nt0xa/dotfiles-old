@@ -61,8 +61,8 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 if (( $+commands[gdircolors] )); then
 
-  if [[ -s "$HOME/.dir_colors" ]]; then
-    eval "$(gdircolors --sh "$HOME/.dir_colors")"
+  if [[ -s "$HOME/.dircolors" ]]; then
+    eval "$(gdircolors --sh "$HOME/.dircolors")"
   fi
 
   alias ls='gls --color=auto --group-directories-first'
