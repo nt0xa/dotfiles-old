@@ -277,7 +277,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_extensions = ['buffertag']
 
 " Search in buffer tags
-nnoremap <c-m> :CtrlPBufTagAll<cr>
+nnoremap <c-e> :CtrlPBufTagAll<cr>
 
 " Search in all buffers tags
 
