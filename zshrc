@@ -66,7 +66,16 @@ if (( $+commands[gdircolors] )); then
   fi
 
   alias ls='gls --color=auto --group-directories-first'
+
+elif (( $+commands[dircolors] )); then
+
+  if [[ -s "$HOME/.dircolors" ]]; then
+    eval "$(dircolors --sh "$HOME/.dircolors")"
+  fi
+
+  alias ls='ls --color=auto --group-directories-first'
 fi
+
 
 # }}} dircolors #
 
