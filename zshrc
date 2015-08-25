@@ -200,7 +200,7 @@ if (( ! $+commands[tmux] )); then
   return 1
 fi
 
-if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" ]];  then
+if [[ -z "$TMUX" && -z "$VIM" && -z "$SSH_TTY" ]];  then
   tmux start-server
   if ! tmux has-session 2> /dev/null; then
     tmux_session='russtone'
