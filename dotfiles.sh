@@ -1,204 +1,112 @@
 #!/bin/bash
 
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+tmux_package=(
+  git:tmux-plugins/tpm:.tmux/plugind/tpm
+  link:tmux.conf:.tmux.conf
+)
 
-function dotfiles_install_misc() {
-  if [[ ! -f $HOME/.dircolors ]]; then
-    ln -s $DIR/dircolors $HOME/.dircolors
-  fi
+vim_package=(
+  git:junegunn/vim-plug:.vim/autoload
+  link:vimrc:.vimrc
+  link:ycm_extra_conf.py:.vim/.ycm_extra_conf.py
+  link:UltiSnips:.vim/UltiSnips
+)
 
-  if [[ ! -f $HOME/.agignore ]]; then
-    ln -s $DIR/agignore $HOME/.agignore
-  fi
+zsh_package=(
+  git:tarjoilija/zgen:.zgen
+  link:zshrc:.zshrc
+)
 
-  if [[ ! -f $HOME/.radare2rc ]]; then
-    ln -s $DIR/radare2rc $HOME/.radare2rc
+misc_package=(
+  link:agignore:.agignore
+  link:dircolors:.dircolors
+  link:radare2rc:.radare2rc
+)
+
+actions=(install remove)
+packages=($(compgen -A variable | grep _package | sed -e "s/_package//"))
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+
+in_array() {
+  local e
+  for e in "${@:2}"; do
+    if [[ "$e" == "$1" ]]; then
+      return 0;
+    fi
+  done
+  return 1
+}
+
+link_home_file() {
+  if [[ ! -f $HOME/$2 ]]; then
+    ln -s $DIR/$1 $HOME/$2
   fi
 }
 
-function dotfiles_remove_misc() {
-  if [[ -f $HOME/.dircolors ]]; then
-    unlink $HOME/.dircolors
-  fi
-
-  if [[ -f $HOME/.agignore ]]; then
-    unlink $HOME/.agignore
-  fi
-
-  if [[ -f $HOME/.radare2rc ]]; then
-    unlink $HOME/.radare2rc
+unlink_home_file() {
+  if [[ -h $HOME/$1 ]]; then
+    unlink $HOME/$1
   fi
 }
 
-function dotfiles_install_zsh() {
-  if [[ ! -d $HOME/.zgen ]]; then
-    git clone https://github.com/tarjoilija/zgen $HOME/.zgen
-  fi
-
-  if [[ ! -f $HOME/.zshrc ]]; then
-    ln -s $DIR/zshrc $HOME/.zshrc
-  fi
-
-  if [[ ! -f $HOME/.dircolors ]]; then
-    ln -s $DIR/dircolors $HOME/.dircolors
-  fi
-
-  if [[ ! -f $HOME/.agignore ]]; then
-    ln -s $DIR/agignore $HOME/.agignore
+remove_home_dir() {
+  if [[ -d $HOME/$1 ]]; then
+    rm -rf $HOME/$1
   fi
 }
 
-function dotfiles_remove_zsh() {
-  if [[ -d $HOME/.zgen ]]; then
-    rm -rf $HOME/.zgen
-  fi
-
-  if [[ -f $HOME/.zshrc ]]; then
-    unlink $HOME/.zshrc
-  fi
-
-  if [[ -f $HOME/.dircolors ]]; then
-    unlink $HOME/.dircolors
-  fi
-
-  if [[ -f $HOME/.agignore ]]; then
-    unlink $HOME/.agignore
-  fi
+print_help() {
+  echo "Usage: $1 <action> <package>"
+  echo "<action>: ${actions[@]}"
+  echo "<package>: ${packages[@]}"
 }
 
-function dotfiles_install_tmux() {
-  if [[ ! -d $HOME/.tmux ]]; then
-    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-  fi
-
-  if [[ ! -f $HOME/.tmux.conf ]]; then
-    ln -s $DIR/tmux.conf $HOME/.tmux.conf
-  fi
-}
-
-function dotfiles_remove_tmux() {
-  if [[ -d $HOME/.tmux ]]; then
-    rm -rf $HOME/.tmux
-  fi
-
-  if [[ -f $HOME/.tmux.conf ]]; then
-    unlink $HOME/.tmux.conf
-  fi
-}
-
-function dotfiles_install_vim() {
-  if [[ ! -d $HOME/.vim ]]; then
-    git clone https://github.com/junegunn/vim-plug $HOME/.vim/autoload
-  fi
-
-  if [[ ! -f $HOME/.vimrc ]]; then
-    ln -s $DIR/vimrc $HOME/.vimrc
-  fi
-
-  if [[ -d $HOME/.vim && ! -f $HOME/.vim/.ycm_extra_conf.py ]]; then
-    ln -s $DIR/ycm_extra_conf.py $HOME/.vim/.ycm_extra_conf.py
-  fi
-
-  if [[ -d $HOME/.vim && ! -f $HOME/.vim/UltiSnips ]]; then
-    ln -s $DIR/UltiSnips $HOME/.vim/UltiSnips
-  fi
-}
-
-function dotfiles_remove_vim() {
-  if [[ -d $HOME/.vim ]]; then
-    rm -rf $HOME/.vim
-  fi
-
-  if [[ -f $HOME/.vimrc ]]; then
-    unlink $HOME/.vimrc
-  fi
-}
-
-function dotfiles_install() {
-    case $1 in
-
-      zsh )
-        dotfiles_install_zsh
+package_install() {
+  local package
+  local parts
+  package=$1[@]
+  for line in "${!package}"; do
+    parts=(${line//:/ })
+    case ${parts[0]} in
+      git )
+        git clone https://github.com/${parts[1]} $HOME/${parts[2]}
         ;;
-
-      tmux )
-        dotfiles_install_tmux
+      link )
+        link_home_file "${parts[1]}" "${parts[2]}"
         ;;
-
-      vim )
-        dotfiles_install_vim
-        ;;
-
-      misc )
-        dotfiles_install_misc
-        ;;
-
-      all )
-        dotfiles_install_zsh
-        dotfiles_install_tmux
-        dotfiles_install_vim
-        dotfiles_install_misc
-        ;;
-
-      * )
-        echo "Unknown target $1"
-        return 1
-        ;;
-
     esac
+  done
 }
 
-function dotfiles_remove() {
-    case $1 in
-
-      zsh )
-        dotfiles_remove_zsh
+package_remove() {
+  local package
+  local parts
+  package=$1[@]
+  for line in "${!package}"; do
+    parts=(${line//:/ })
+    case ${parts[0]} in
+      git )
+        remove_home_dir ${parts[2]%/*}
         ;;
-
-      tmux )
-        dotfiles_remove_tmux
+      link )
+        unlink_home_file "${parts[2]}"
         ;;
-
-      vim )
-        dotfiles_remove_vim
-        ;;
-
-      misc )
-        dotfiles_remove_misc
-        ;;
-
-      all )
-        dotfiles_remove_zsh
-        dotfiles_remove_tmux
-        dotfiles_remove_vim
-        dotfiles_remove_misc
-        ;;
-
-      * )
-        echo "Unknown target $1"
-        return 1
-        ;;
-
     esac
+  done
 }
 
-function dotfiles_main() {
-  case $1 in
+main() {
+  if ! in_array "$1" "${actions[@]}"; then
+    print_help "$0"
+    exit 1
+  fi
 
-    install )
-      dotfiles_install $2
-      ;;
+  if ! in_array "$2" "${packages[@]}"; then
+    print_help "$0"
+    exit 1
+  fi
 
-    remove )
-      dotfiles_remove $2
-      ;;
-
-    * )
-      echo "Unknown command $1"
-      return 1
-      ;;
-
-  esac
+  package_$1 "$2_package"
 }
 
-dotfiles_main "$@"
+main "$@"
