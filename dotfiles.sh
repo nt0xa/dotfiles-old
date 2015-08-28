@@ -2,6 +2,34 @@
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+function dotfiles_install_misc() {
+  if [[ ! -f $HOME/.dircolors ]]; then
+    ln -s $DIR/dircolors $HOME/.dircolors
+  fi
+
+  if [[ ! -f $HOME/.agignore ]]; then
+    ln -s $DIR/agignore $HOME/.agignore
+  fi
+
+  if [[ ! -f $HOME/.radare2rc ]]; then
+    ln -s $DIR/radare2rc $HOME/.radare2rc
+  fi
+}
+
+function dotfiles_remove_misc() {
+  if [[ -f $HOME/.dircolors ]]; then
+    unlink $HOME/.dircolors
+  fi
+
+  if [[ -f $HOME/.agignore ]]; then
+    unlink $HOME/.agignore
+  fi
+
+  if [[ -f $HOME/.radare2rc ]]; then
+    unlink $HOME/.radare2rc
+  fi
+}
+
 function dotfiles_install_zsh() {
   if [[ ! -d $HOME/.zgen ]]; then
     git clone https://github.com/tarjoilija/zgen $HOME/.zgen
@@ -101,10 +129,15 @@ function dotfiles_install() {
         dotfiles_install_vim
         ;;
 
+      misc )
+        dotfiles_install_misc
+        ;;
+
       all )
         dotfiles_install_zsh
         dotfiles_install_tmux
         dotfiles_install_vim
+        dotfiles_install_misc
         ;;
 
       * )
@@ -130,10 +163,15 @@ function dotfiles_remove() {
         dotfiles_remove_vim
         ;;
 
+      misc )
+        dotfiles_remove_misc
+        ;;
+
       all )
         dotfiles_remove_zsh
         dotfiles_remove_tmux
         dotfiles_remove_vim
+        dotfiles_remove_misc
         ;;
 
       * )
