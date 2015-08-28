@@ -66,7 +66,16 @@ if (( $+commands[gdircolors] )); then
   fi
 
   alias ls='gls --color=auto --group-directories-first'
+
+elif (( $+commands[dircolors] )); then
+
+  if [[ -s "$HOME/.dircolors" ]]; then
+    eval "$(dircolors --sh "$HOME/.dircolors")"
+  fi
+
+  alias ls='ls --color=auto --group-directories-first'
 fi
+
 
 # }}} dircolors #
 
@@ -200,7 +209,7 @@ if (( ! $+commands[tmux] )); then
   return 1
 fi
 
-if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" ]];  then
+if [[ -z "$TMUX" && -z "$VIM" && -z "$SSH_TTY" ]];  then
   tmux start-server
   if ! tmux has-session 2> /dev/null; then
     tmux_session='russtone'
