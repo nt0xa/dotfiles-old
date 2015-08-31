@@ -38,7 +38,7 @@ in_array() {
 }
 
 link_home_file() {
-  if [[ ! -f $HOME/$2 ]]; then
+  if [[ ! -h $HOME/$2 ]]; then
     ln -s $DIR/$1 $HOME/$2
   fi
 }
@@ -86,7 +86,7 @@ package_remove() {
     parts=(${line//:/ })
     case ${parts[0]} in
       git )
-        remove_home_dir ${parts[2]%/*}
+        remove_home_dir "${parts[2]%/*}"
         ;;
       link )
         unlink_home_file "${parts[2]}"
