@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tmux_package=(
-  git:tmux-plugins/tpm:.tmux/plugind/tpm
+  git:tmux-plugins/tpm:.tmux/plugins/tpm
   link:tmux.conf:.tmux.conf
 )
 
@@ -22,6 +22,15 @@ misc_package=(
   link:dircolors:.dircolors
   link:radare2rc:.radare2rc
 )
+
+all=($(compgen -A variable | grep _package))
+all_package=()
+for p in "${all[@]}"; do
+  tmp=$p[@]
+  for a in "${!tmp}"; do
+    all_package+=("$a")
+  done
+done
 
 actions=(install remove)
 packages=($(compgen -A variable | grep _package | sed -e "s/_package//"))
@@ -86,7 +95,7 @@ package_remove() {
     parts=(${line//:/ })
     case ${parts[0]} in
       git )
-        remove_home_dir "${parts[2]%/*}"
+        remove_home_dir "${parts[2]%%/*}"
         ;;
       link )
         unlink_home_file "${parts[2]}"
