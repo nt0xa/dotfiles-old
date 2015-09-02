@@ -22,7 +22,7 @@ fi
 # Variables {{{ #
 
 export EDITOR='vim'
-export GOPATH='~/.go'
+export GOPATH="$HOME/.go"
 export LANG='en_US.UTF-8'
 export PAGER='less'
 export TERM='xterm-256color'
