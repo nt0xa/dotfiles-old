@@ -18,6 +18,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
+Plug 'unblevable/quick-scope'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
@@ -408,3 +409,10 @@ let g:quickrun_config = {
 map <c-o> :NERDTreeToggle<cr>
 
 " }}} Plugin: NERDTree "
+
+" Plugin: vim-quick-scope {{{ "
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" }}} Plugin: vim-quick-scope "
