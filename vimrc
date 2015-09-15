@@ -33,7 +33,6 @@ Plug 'honza/vim-snippets'
 " Editor
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 
