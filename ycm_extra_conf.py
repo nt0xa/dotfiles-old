@@ -18,7 +18,9 @@ extraflags = [
 
 cppflags = [
 '-I', '.',
-'-I', 'include',
+'-I', './include',
+'-I', '../include',
+'-I', '../../include',
 '-I', 'src',
 '-I', 'lib',
 '-I', '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7',
@@ -83,6 +85,9 @@ SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c' , '.m', '.mm']
 
 def DirectoryOfThisScript( ):
   return os.path.dirname( os.path.abspath( __file__ ) )
+
+def DirectoryOfFile( filename ):
+  return os.path.dirname( filename )
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:
@@ -163,7 +168,7 @@ def FlagsForFile( filename, **kwargs ):
       compilation_info.compiler_working_dir_ )
 
   else:
-    relative_to = DirectoryOfThisScript( )
+    relative_to = DirectoryOfFile( filename )
     if IsCFile( filename ):
       final_flags = MakeRelativePathsInFlagsAbsolute( cflags, relative_to )
     elif IsCxxFile( filename ):
