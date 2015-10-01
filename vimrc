@@ -8,7 +8,6 @@ Plug 'mattn/webapi-vim'
 
 " Interface
 Plug 'bling/vim-airline'
-Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -29,6 +28,11 @@ Plug 'vasconcelloslf/vim-interestingwords'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Tags
+Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 
 " Editor
 Plug 'godlygeek/tabular'
@@ -223,6 +227,8 @@ noremap gV `[v`]
 nnoremap <leader>o o<esc>k
 nnoremap <leader>O O<esc>j
 
+nmap <c-[> <c-o>
+
 " }}} Mappings "
 
 " Filetype {{{ "
@@ -274,10 +280,10 @@ let g:airline_section_c = '%t'
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " CtrlP extensions
-let g:ctrlp_extensions = ['buffertag']
+let g:ctrlp_extensions = ['tag']
 
 " Search in buffer tags
-nnoremap <c-e> :CtrlPBufTagAll<cr>
+nnoremap <c-e> :CtrlPTag<cr>
 
 " Search in all buffers tags
 
@@ -391,21 +397,21 @@ let g:jsx_ext_required = 0
 
 " }}} Plugin: vim-jsx "
 
-" Plugin: vim-quickrun {{{ "
+" " Plugin: vim-quickrun {{{ "
 
-let g:quickrun_config = {
-\  "_" : {
-\    "runner" : "vimproc",
-\    "runner/vimproc/updatetime" : 10,
-\    "outputter/buffer/split" : ":botright 8sp"
-\  },
-\}
+" let g:quickrun_config = {
+" \  "_" : {
+" \    "runner" : "vimproc",
+" \    "runner/vimproc/updatetime" : 10,
+" \    "outputter/buffer/split" : ":botright 8sp"
+" \  },
+" \}
 
-" }}} Plugin: vim-quickrun "
+" " }}} Plugin: vim-quickrun "
 
 " Plugin: NERDTree {{{ "
 
-map <c-o> :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle<cr>
 
 " }}} Plugin: NERDTree "
 
@@ -415,3 +421,12 @@ map <c-o> :NERDTreeToggle<cr>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " }}} Plugin: vim-quick-scope "
+
+" Plug: vim-easytags {{{ "
+
+set cpo+=d
+set tags=./.git/tags
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+
+" }}} Plug: vim-easytags "
