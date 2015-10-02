@@ -1,4 +1,0 @@
-inoremap jj <Esc>
-nnoremap <Space>w :w<CR>
-nnoremap <C-p> :action GotoFile<CR>
-nnoremap <Space>R :source ~/.ideavimrc<CR>
