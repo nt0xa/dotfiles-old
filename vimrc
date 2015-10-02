@@ -398,17 +398,17 @@ let g:jsx_ext_required = 0
 
 " }}} Plugin: vim-jsx "
 
-" " Plugin: vim-quickrun {{{ "
+" Plugin: vim-quickrun {{{ "
 
-" let g:quickrun_config = {
-" \  "_" : {
-" \    "runner" : "vimproc",
-" \    "runner/vimproc/updatetime" : 10,
-" \    "outputter/buffer/split" : ":botright 8sp"
-" \  },
-" \}
+let g:quickrun_config = {
+\  "_" : {
+\    "runner" : "vimproc",
+\    "runner/vimproc/updatetime" : 10,
+\    "outputter/buffer/split" : ":botright 8sp"
+\  },
+\}
 
-" " }}} Plugin: vim-quickrun "
+" }}} Plugin: vim-quickrun "
 
 " Plugin: NERDTree {{{ "
 
