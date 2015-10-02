@@ -1,3 +1,4 @@
+" A
 " Plugins {{{ "
 
 call plug#begin('~/.vim/plugged')
@@ -285,7 +286,8 @@ let g:ctrlp_extensions = ['tag']
 " Search in buffer tags
 nnoremap <c-e> :CtrlPTag<cr>
 
-" Search in all buffers tags
+" Go to defenttion using ctrlp
+nmap <c-]> <c-e><c-\>w
 
 " }}} Plugin: CrtlP "
 
