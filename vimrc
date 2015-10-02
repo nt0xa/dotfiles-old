@@ -1,4 +1,3 @@
-" A
 " Plugins {{{ "
 
 call plug#begin('~/.vim/plugged')
@@ -9,7 +8,7 @@ Plug 'mattn/webapi-vim'
 
 " Interface
 Plug 'bling/vim-airline'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
