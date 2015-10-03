@@ -277,7 +277,7 @@ let g:airline_section_c = '%t'
 " Plugin: CrtlP {{{ "
 
 " Ignored folders
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build\|dist'
 
 " CtrlP extensions
 let g:ctrlp_extensions = ['tag']
