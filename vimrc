@@ -428,6 +428,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 set cpo+=d
 set tags=./.git/tags
 let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
+let g:easytags_dynamic_files = 1
 
 " }}} Plug: vim-easytags "
