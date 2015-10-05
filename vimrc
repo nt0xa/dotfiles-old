@@ -12,6 +12,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
+Plug 'vim-utils/vim-man'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
