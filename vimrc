@@ -430,5 +430,6 @@ set cpo+=d
 set tags=./.git/tags
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
+let g:easytags_python_enabled = 1
 
 " }}} Plug: vim-easytags "
