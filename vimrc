@@ -12,7 +12,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
-Plug 'vim-utils/vim-man'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
@@ -228,8 +227,6 @@ noremap gV `[v`]
 nnoremap <leader>o o<esc>k
 nnoremap <leader>O O<esc>j
 
-nmap <c-[> <c-o>
-
 " }}} Mappings "
 
 " Filetype {{{ "
@@ -287,7 +284,7 @@ let g:ctrlp_extensions = ['tag']
 nnoremap <c-e> :CtrlPTag<cr>
 
 " Go to defenttion using ctrlp
-nmap <c-]> <c-e><c-\>w
+" nmap <c-]> <c-e><c-\>w
 
 " }}} Plugin: CrtlP "
 
