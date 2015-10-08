@@ -28,7 +28,6 @@ Plug 'vasconcelloslf/vim-interestingwords'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'wellle/tmux-complete.vim'
 
 " Tags
 Plug 'majutsushi/tagbar'
@@ -431,9 +430,3 @@ let g:easytags_dynamic_files = 1
 let g:easytags_python_enabled = 1
 
 " }}} Plugin: vim-easytags "
-
-" Plugin: tmux-complete.vim {{{ "
-
-let g:tmuxcomplete#trigger = 'omnifunc'
-
-" }}} Plugin: tmux-complete.vim "
