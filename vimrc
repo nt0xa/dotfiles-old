@@ -51,6 +51,7 @@ Plug 'thinca/vim-quickrun'
 
 " Git
 Plug 'mattn/gist-vim'
+Plug 'tpope/vim-fugitive'
 
 " Colorschemes
 Plug 'chriskempson/base16-vim'
