@@ -39,6 +39,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'PeterRincker/vim-argumentative'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
