@@ -432,3 +432,9 @@ let g:easytags_dynamic_files = 1
 let g:easytags_python_enabled = 1
 
 " }}} Plugin: vim-easytags "
+
+" Plugin: python-syntax {{{ "
+
+let g:python_highlight_all = 1
+
+" }}} Plugin: python-syntax "
