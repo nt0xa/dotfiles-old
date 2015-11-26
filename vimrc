@@ -51,6 +51,9 @@ Plug 'glts/vim-textobj-comment'
 " Run
 Plug 'thinca/vim-quickrun'
 
+" Wiki
+Plug 'vimwiki/vimwiki'
+
 " Git
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
