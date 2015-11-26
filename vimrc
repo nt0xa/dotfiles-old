@@ -93,6 +93,9 @@ Plug 'hdima/python-syntax'
 " C
 Plug 'NLKNguyen/c-syntax.vim'
 
+" Smali
+Plug 'kelwin/vim-smali'
+
 call plug#end()
 
 " }}} Plugins "
