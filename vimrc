@@ -23,6 +23,7 @@ Plug 'unblevable/quick-scope'
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'vasconcelloslf/vim-interestingwords'
+Plug 'gabesoft/vim-ags'
 
 " Completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
@@ -49,6 +50,9 @@ Plug 'glts/vim-textobj-comment'
 
 " Run
 Plug 'thinca/vim-quickrun'
+
+" Wiki
+Plug 'vimwiki/vimwiki'
 
 " Git
 Plug 'mattn/gist-vim'
