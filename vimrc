@@ -287,10 +287,11 @@ let g:airline_section_c = '%t'
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build\|dist'
 
 " CtrlP extensions
-let g:ctrlp_extensions = ['tag']
+let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Search in buffer tags
 nnoremap <c-e> :CtrlPTag<cr>
+nnoremap <c-w> :CtrlPBufTagAll<cr>
 
 " Go to defenttion using ctrlp
 " nmap <c-]> <c-e><c-\>w
@@ -433,7 +434,8 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " Plugin: vim-easytags {{{ "
 
 set cpo+=d
-set tags=./.git/tags
+set tags=./.tags
+let g:easytags_file = ''
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
 let g:easytags_python_enabled = 1
