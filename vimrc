@@ -236,6 +236,9 @@ noremap gV `[v`]
 nnoremap <leader>o o<esc>k
 nnoremap <leader>O O<esc>j
 
+" Convert less to css
+nnoremap <leader>m :w <bar> !lessc % > %:t:r.css<cr><space>
+
 " }}} Mappings "
 
 " Filetype {{{ "
@@ -447,3 +450,13 @@ let g:easytags_python_enabled = 1
 let g:python_highlight_all = 1
 
 " }}} Plugin: python-syntax "
+
+" Plugin: vimwiki {{{ "
+
+let wiki = {}
+let wiki.path = '~/vimwiki/'
+let wiki.css_name = '~/vimwiki/style.css'
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let g:vimwiki_list = [wiki]
+
+" }}} Plugin: vimwiki "
