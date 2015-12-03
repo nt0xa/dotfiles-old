@@ -1,11 +1,12 @@
 global !p
 def comment_symbol(ft):
-    if ft == 'vim':
-	return '"'
-    elif ft == 'javascript':
-	return '//'
-    else:
-	return '#'
+		if ft == 'vim':
+				c = '"'
+		elif ft in ['javascript', 'less']:
+				c = '//'
+		else:
+				c = '#'
+		return c
 endglobal
 
 snippet cc "Inserts TextMate-like comment block" b
