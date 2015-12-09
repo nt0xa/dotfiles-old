@@ -424,6 +424,7 @@ let g:quickrun_config = {
 " Plugin: NERDTree {{{ "
 
 map <leader>n :NERDTreeToggle<cr>
+let NERDTreeIgnore = ['\.pyc$']
 
 " }}} Plugin: NERDTree "
 
