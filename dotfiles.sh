@@ -21,6 +21,7 @@ misc_package=(
   link:agignore:.agignore
   link:dircolors:.dircolors
   link:radare2rc:.radare2rc
+  link:config.py:.ptpython/config.py
 )
 
 all=($(compgen -A variable | grep _package))
