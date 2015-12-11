@@ -41,6 +41,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
+Plug 'godlygeek/tabular'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -87,6 +88,9 @@ Plug 'petRUShka/vim-opencl'
 
 " Markdown
 Plug 'suan/vim-instant-markdown'
+
+" Toml
+Plug 'cespare/vim-toml'
 
 " Go
 Plug 'fatih/vim-go'
@@ -460,3 +464,9 @@ let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
 let g:vimwiki_list = [wiki]
 
 " }}} Plugin: vimwiki "
+
+" Plugin: vim-instant-markdown {{{ "
+
+let g:instant_markdown_autostart = 0
+
+" }}} Plugin: vim-instant-markdown "
