@@ -72,6 +72,9 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
 " Linting
 Plug 'scrooloose/syntastic'
 
+" CSS
+Plug 'hail2u/vim-css3-syntax'
+
 " Less
 Plug 'groenewege/vim-less'
 
@@ -242,7 +245,7 @@ nnoremap <leader>o o<esc>k
 nnoremap <leader>O O<esc>j
 
 " Convert less to css
-nnoremap <leader>m :w <bar> !lessc % > %:t:r.css<cr><space>
+nnoremap <leader>m :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
 
 " }}} Mappings "
 
