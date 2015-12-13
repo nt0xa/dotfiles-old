@@ -61,13 +61,6 @@ Plug 'tpope/vim-fugitive'
 
 " Colorschemes
 Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
-Plug 'sjl/badwolf'
-Plug 'google/vim-colorscheme-primary'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'tomasr/molokai'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
 
 " Linting
 Plug 'scrooloose/syntastic'
