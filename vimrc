@@ -448,3 +448,31 @@ let g:EasyClipUseSubstituteDefaults = 1
 nmap <leader>cf <plug>EasyClipToggleFormattedPasten
 
 " }}} Plugin: vim-easyclip "
+
+" Plugin: vim-signature {{{ "
+
+let g:SignatureMap = {
+      \ 'Leader'             :  ",",
+      \ 'PlaceNextMark'      :  ",,",
+      \ 'ToggleMarkAtLine'   :  ",.",
+      \ 'PurgeMarksAtLine'   :  ",-",
+      \ 'DeleteMark'         :  "d,",
+      \ 'PurgeMarks'         :  ",<Space>",
+      \ 'PurgeMarkers'       :  ",<BS>",
+      \ 'GotoNextLineAlpha'  :  "']",
+      \ 'GotoPrevLineAlpha'  :  "'[",
+      \ 'GotoNextSpotAlpha'  :  "`]",
+      \ 'GotoPrevSpotAlpha'  :  "`[",
+      \ 'GotoNextLineByPos'  :  "]'",
+      \ 'GotoPrevLineByPos'  :  "['",
+      \ 'GotoNextSpotByPos'  :  "]`",
+      \ 'GotoPrevSpotByPos'  :  "[`",
+      \ 'GotoNextMarker'     :  "[+",
+      \ 'GotoPrevMarker'     :  "[-",
+      \ 'GotoNextMarkerAny'  :  "]=",
+      \ 'GotoPrevMarkerAny'  :  "[=",
+      \ 'ListLocalMarks'     :  ",/",
+      \ 'ListLocalMarkers'   :  ",?"
+      \ }
+
+" }}} Plugin: vim-signature "
