@@ -48,7 +48,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
-Plug 'wellle/targets.vim'
 
 " Colorschemes
 Plug 'chriskempson/base16-vim'
@@ -125,6 +124,9 @@ set hidden
 
 " Enable mouse
 set mouse=a
+
+" This will cause all yank/delete/paste operations to use the system register *
+set clipboard=unnamed
 
 " }}} UI Config "
 
@@ -437,3 +439,12 @@ let g:instant_markdown_autostart = 0
 autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 
 " }}} Plugin: vim-less "
+
+" Plugin: vim-easyclip {{{ "
+
+let g:EasyClipAutoFormat = 1
+let g:EasyClipUseSubstituteDefaults = 1
+
+nmap <leader>cf <plug>EasyClipToggleFormattedPasten
+
+" }}} Plugin: vim-easyclip "
