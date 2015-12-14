@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 " Plugins helpers
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'mattn/webapi-vim'
+Plug 'xolox/vim-misc'
 
 " Interface
 Plug 'bling/vim-airline'
@@ -26,13 +27,11 @@ Plug 'vasconcelloslf/vim-interestingwords'
 Plug 'gabesoft/vim-ags'
 
 " Completion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Tags
-Plug 'majutsushi/tagbar'
-Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 
 " Editor
@@ -41,16 +40,17 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
-Plug 'godlygeek/tabular'
+Plug 'svermeulen/vim-easyclip'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
+Plug 'wellle/targets.vim'
 
-" Run
-Plug 'thinca/vim-quickrun'
+" Colorschemes
+Plug 'chriskempson/base16-vim'
 
 " Wiki
 Plug 'vimwiki/vimwiki'
@@ -58,9 +58,6 @@ Plug 'vimwiki/vimwiki'
 " Git
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
-
-" Colorschemes
-Plug 'chriskempson/base16-vim'
 
 " Linting
 Plug 'scrooloose/syntastic'
@@ -233,10 +230,6 @@ nnoremap <leader>p "+p
 " Select pasted text
 noremap gV `[v`]
 
-" Add new line w/o switching to insert mode
-nnoremap <leader>o o<esc>k
-nnoremap <leader>O O<esc>j
-
 " Convert less to css
 nnoremap <leader>m :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
 
@@ -294,11 +287,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build\|dist'
 let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Search in buffer tags
-nnoremap <c-e> :CtrlPTag<cr>
-nnoremap <c-w> :CtrlPBufTagAll<cr>
-
-" Go to defenttion using ctrlp
-" nmap <c-]> <c-e><c-\>w
+nnoremap <c-t> :CtrlPTag<cr>
+nnoremap <c-e> :CtrlPBufTagAll<cr>
 
 " }}} Plugin: CrtlP "
 
@@ -312,6 +302,12 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_invoke_completion = '<c-x><c-o>'
+
+" Autocomplete triggers for css
+let g:ycm_semantic_triggers = {
+\   'css': [ 're!^\s{2}', 're!:\s+' ],
+\ }
 
 " }}} YouCompleteMe "
 
@@ -337,42 +333,6 @@ let g:syntastic_warning_symbol = '⚠︎'
 let g:syntastic_javascript_checkers = ['eslint']
 
 " }}} Plugin: syntastic "
-
-" Plugin: tagbar {{{ "
-
-" Toggle tagbar
-nnoremap <c-t> :TagbarToggle<cr>
-
-" Tags for Go
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
-" }}} Plugin: tagbar "
 
 " Plugin: incsearch.vim {{{ "
 
@@ -410,18 +370,6 @@ let g:jsx_ext_required = 0
 
 " }}} Plugin: vim-jsx "
 
-" Plugin: vim-quickrun {{{ "
-
-let g:quickrun_config = {
-\  "_" : {
-\    "runner" : "vimproc",
-\    "runner/vimproc/updatetime" : 10,
-\    "outputter/buffer/split" : ":botright 8sp"
-\  },
-\}
-
-" }}} Plugin: vim-quickrun "
-
 " Plugin: NERDTree {{{ "
 
 map <leader>n :NERDTreeToggle<cr>
@@ -438,12 +386,25 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Plugin: vim-easytags {{{ "
 
+" Create tags file in project dir (instead of file dir)
 set cpo+=d
+
+" Tags file name '.tags' in project dir
 set tags=./.tags
+
+" No global tags file
 let g:easytags_file = ''
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 1
-let g:easytags_python_enabled = 1
+
+" Create tags file if not exist
+let g:easytags_dynamic_files = 2
+
+" Disable auto update tags file (manual update)
+let g:easytags_on_cursorhold = 0
+let g:easytags_always_enabled = 0
+let g:easytags_events = []
+
+" Mapping for manual tags update
+nnoremap <leader>t :UpdateTags<cr>
 
 " }}} Plugin: vim-easytags "
 
@@ -468,3 +429,10 @@ let g:vimwiki_list = [wiki]
 let g:instant_markdown_autostart = 0
 
 " }}} Plugin: vim-instant-markdown "
+
+" Plugin: vim-less {{{ "
+
+" Not a plugin option but here I can find it faster :)
+autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+
+" }}} Plugin: vim-less "
