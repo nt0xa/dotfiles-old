@@ -377,6 +377,7 @@ let g:jsx_ext_required = 0
 
 map <leader>n :NERDTreeToggle<cr>
 let NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeMapMenu = ','
 
 " }}} Plugin: NERDTree "
 
