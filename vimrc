@@ -35,6 +35,7 @@ Plug 'honza/vim-snippets'
 Plug 'xolox/vim-easytags'
 
 " Editor
+Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
