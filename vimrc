@@ -292,7 +292,7 @@ let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Search in buffer tags
 nnoremap <c-t> :CtrlPTag<cr>
-nnoremap <c-e> :CtrlPBufTagAll<cr>
+nnoremap <c-e> :CtrlPBufTag<cr>
 
 " }}} Plugin: CrtlP "
 
