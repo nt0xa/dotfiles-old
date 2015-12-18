@@ -132,6 +132,9 @@ set clipboard=unnamed
 " Show incomplete commands
 set showcmd
 
+" Wildignore
+set wildignore=.git,*.o,*.a,*.pyc,*.class
+
 " }}} UI Config "
 
 " Colors & syntax {{{ "
@@ -180,7 +183,7 @@ set nowrap
 " Enable folding
 set foldenable
 
-" Indent-based folding
+" Marker-based folding
 set foldmethod=marker
 
 " }}} Folding "
@@ -301,6 +304,7 @@ nnoremap <c-e> :CtrlPBufTag<cr>
 
 " Plugin: YouCompleteMe {{{ "
 
+let g:ycm_key_detailed_diagnostics = ''
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -314,6 +318,7 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 " Autocomplete triggers for css
 let g:ycm_semantic_triggers = {
 \   'css': [ 're!^\s{2}', 're!:\s+' ],
+\   'less': [ 're!^\s{2}', 're!:\s+' ]
 \ }
 
 " }}} YouCompleteMe "
@@ -379,9 +384,10 @@ let g:jsx_ext_required = 0
 
 " Plugin: NERDTree {{{ "
 
-map <leader>n :NERDTreeToggle<cr>
-let NERDTreeIgnore = ['\.pyc$', '\.o$']
 let g:NERDTreeMapMenu = ','
+let g:NERDTreeRespectWildIgnore = 1
+let g:NERDTreeMinimalUI = 1
+map <leader><leader> :NERDTreeToggle<cr>
 
 " }}} Plugin: NERDTree "
 
