@@ -133,7 +133,7 @@ set clipboard=unnamed
 set showcmd
 
 " Wildignore
-set wildignore=.git,*.o,*.a,*.pyc,*.class
+set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 
 " }}} UI Config "
 
@@ -240,9 +240,6 @@ nnoremap <leader>p "+p
 " Select pasted text
 noremap gV `[v`]
 
-" Convert less to css
-nnoremap <leader>m :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
-
 " }}} Mappings "
 
 " Filetype {{{ "
@@ -285,13 +282,11 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%t'
+let g:airline_theme="base16"
 
 " }}} Plugin: Airline "
 
 " Plugin: CrtlP {{{ "
-
-" Ignored folders
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build\|dist'
 
 " CtrlP extensions
 let g:ctrlp_extensions = ['tag', 'buffertag']
@@ -299,6 +294,45 @@ let g:ctrlp_extensions = ['tag', 'buffertag']
 " Search in buffer tags
 nnoremap <c-t> :CtrlPTag<cr>
 nnoremap <c-e> :CtrlPBufTag<cr>
+nnoremap <c-m> :CtrlPBuffer<cr>
+
+let g:ctrlp_prompt_mappings = {
+\ 'PrtBS()':              ['<bs>', '<c-]>'],
+\ 'PrtDelete()':          ['<del>'],
+\ 'PrtDeleteWord()':      ['<c-w>'],
+\ 'PrtClear()':           ['<c-u>'],
+\ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
+\ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+\ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
+\ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
+\ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
+\ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
+\ 'PrtHistory(-1)':       [''],
+\ 'PrtHistory(1)':        [''],
+\ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+\ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+\ 'AcceptSelection("t")': ['<c-t>'],
+\ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+\ 'ToggleFocus()':        ['<s-tab>'],
+\ 'ToggleRegex()':        ['<c-r>'],
+\ 'ToggleByFname()':      ['<c-d>'],
+\ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+\ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
+\ 'PrtExpandDir()':       ['<tab>'],
+\ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
+\ 'PrtInsert()':          ['<c-\>'],
+\ 'PrtCurStart()':        ['<c-a>'],
+\ 'PrtCurEnd()':          ['<c-e>'],
+\ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+\ 'PrtCurRight()':        ['<c-l>', '<right>'],
+\ 'PrtClearCache()':      ['<F5>'],
+\ 'PrtDeleteEnt()':       ['<F7>'],
+\ 'CreateNewFile()':      ['<c-y>'],
+\ 'MarkToOpen()':         ['<c-z>'],
+\ 'OpenMulti()':          ['<c-o>'],
+\ 'PrtExit()':            ['<esc>', '<c-c>', '<c-p>'],
+\ }
+
 
 " }}} Plugin: CrtlP "
 
@@ -446,8 +480,11 @@ let g:instant_markdown_autostart = 0
 
 " Plugin: vim-less {{{ "
 
-" Not a plugin option but here I can find it faster :)
-autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+augroup LessAutocmd
+  autocmd!
+  autocmd FileType less nnoremap <leader>l :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
+  autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+augroup END
 
 " }}} Plugin: vim-less "
 
