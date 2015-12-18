@@ -129,6 +129,9 @@ set mouse=a
 " This will cause all yank/delete/paste operations to use the system register *
 set clipboard=unnamed
 
+" Show incomplete commands
+set showcmd
+
 " }}} UI Config "
 
 " Colors & syntax {{{ "
