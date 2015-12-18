@@ -65,9 +65,8 @@ Plug 'scrooloose/syntastic'
 
 " CSS
 Plug 'hail2u/vim-css3-syntax'
-
-" Less
 Plug 'groenewege/vim-less'
+Plug 'wavded/vim-stylus'
 
 " JavaScript
 Plug 'pangloss/vim-javascript'
@@ -353,7 +352,8 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 " Autocomplete triggers for css
 let g:ycm_semantic_triggers = {
 \   'css': [ 're!^\s{2}', 're!:\s+' ],
-\   'less': [ 're!^\s{2}', 're!:\s+' ]
+\   'less': [ 're!^\s{2}', 're!:\s+' ],
+\   'styl': [ 're!^\s{2}', 're!:\s+' ]
 \ }
 
 " }}} YouCompleteMe "
