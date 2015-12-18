@@ -77,6 +77,7 @@ Plug 'mxw/vim-jsx'
 " HTML
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
+Plug 'digitaltoad/vim-jade'
 
 " OpenCL
 Plug 'petRUShka/vim-opencl'
