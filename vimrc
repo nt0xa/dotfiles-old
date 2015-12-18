@@ -353,7 +353,7 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 let g:ycm_semantic_triggers = {
 \   'css': [ 're!^\s{2}', 're!:\s+' ],
 \   'less': [ 're!^\s{2}', 're!:\s+' ],
-\   'styl': [ 're!^\s{2}', 're!:\s+' ]
+\   'stylus': [ 're!^\s{2}', 're!:\s+' ]
 \ }
 
 " }}} YouCompleteMe "
@@ -488,6 +488,15 @@ augroup LessAutocmd
 augroup END
 
 " }}} Plugin: vim-less "
+
+" Plugin: vim-stylus {{{ "
+
+augroup StylusAutocmd
+  autocmd!
+  autocmd FileType stylus set omnifunc=csscomplete#CompleteCSS
+augroup END
+
+" }}} Plugin: vim-stylus "
 
 " Plugin: vim-easyclip {{{ "
 
