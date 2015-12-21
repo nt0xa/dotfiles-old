@@ -1,16 +1,11 @@
 global !p
-def comment_symbol(ft):
-		if ft == 'vim':
-				c = '"'
-		elif ft in ['javascript', 'less']:
-				c = '//'
-		else:
-				c = '#'
-		return c
+import vim
+def comment_symbol():
+		return vim.eval('&commentstring').replace('%s', '').strip()
 endglobal
 
 snippet cc "Inserts TextMate-like comment block" b
-`!p snip.rv=comment_symbol(snip.ft)` ==${1/.{1}/=/g}==
-`!p snip.rv=comment_symbol(snip.ft)` = ${1:Comment} =
-`!p snip.rv=comment_symbol(snip.ft)` ==${1/.{1}/=/g}==
+`!p snip.rv=comment_symbol()` ==${1/.{1}/=/g}==
+`!p snip.rv=comment_symbol()` = ${1:Comment} =
+`!p snip.rv=comment_symbol()` ==${1/.{1}/=/g}==
 endsnippet
