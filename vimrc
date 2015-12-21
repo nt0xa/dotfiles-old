@@ -528,7 +528,7 @@ let g:SignatureMap = {
 " Plugin: tagbar {{{ "
 
 " Toggle tagbar
-nnoremap <leader>b :TagbarToggle<cr>
+nnoremap <leader>e :TagbarToggle<cr>
 
 " Tags for Go
 let g:tagbar_type_go = {
