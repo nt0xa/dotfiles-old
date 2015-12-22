@@ -43,6 +43,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'svermeulen/vim-easyclip'
+Plug 'mrtazz/DoxygenToolkit.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -93,8 +94,8 @@ Plug 'fatih/vim-go'
 " Python
 Plug 'hdima/python-syntax'
 
-" C
-Plug 'NLKNguyen/c-syntax.vim'
+" C/C++
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Smali
 Plug 'kelwin/vim-smali'
