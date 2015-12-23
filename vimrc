@@ -94,7 +94,7 @@ Plug 'fatih/vim-go'
 Plug 'hdima/python-syntax'
 
 " C/C++
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'justinmk/vim-syntax-extra'
 
 " Smali
 Plug 'kelwin/vim-smali'
