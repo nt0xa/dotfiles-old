@@ -348,6 +348,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_invoke_completion = '<c-x><c-o>'
+let g:ycm_show_diagnostics_ui = 0
 
 " Autocomplete triggers for css
 let g:ycm_semantic_triggers = {
@@ -378,6 +379,9 @@ let g:syntastic_warning_symbol = '⚠︎'
 
 " JavaScript checkers
 let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " }}} Plugin: syntastic "
 
