@@ -37,7 +37,7 @@ Plug 'majutsushi/tagbar'
 
 " Editor
 Plug 'tpope/vim-repeat'
-Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
@@ -412,11 +412,11 @@ nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
 
 " }}} Plugin: vim-over "
 
-" Plugin: Tabular {{{ "
+" Plugin: vim-easy-align {{{ "
 
-vnoremap <leader>a :Tabular<space>
+vnoremap <leader>a :EasyAlign<space>
 
-" }}} Plugin: Tabular "
+" }}} Plugin: vim-easy-align "
 
 " Plugin: vim-jsx {{{ "
 
