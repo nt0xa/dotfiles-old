@@ -3,7 +3,6 @@
 call plug#begin('~/.vim/plugged')
 
 " Plugins helpers
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'mattn/webapi-vim'
 Plug 'xolox/vim-misc'
 
@@ -354,8 +353,8 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 " Autocomplete triggers
 let g:ycm_semantic_triggers = {
 \   'css': [ 're!^\s{2}', 're!:\s+' ],
-\   'less': [ 're!^\s{2}', 're!:\s+' ],
-\   'stylus': [ 're!^\s{2}', 're!:\s+' ]
+\   'less': [ 're!^\s{2,}', 're!:\s+' ],
+\   'stylus': [ 're!^\s{2,}', 're!:\s+' ]
 \ }
 
 " }}} YouCompleteMe "
