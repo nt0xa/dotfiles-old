@@ -59,6 +59,7 @@ Plug 'vimwiki/vimwiki'
 " Git
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " Linting
 Plug 'scrooloose/syntastic'
