@@ -477,7 +477,7 @@ let g:python_highlight_all = 1
 let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.css_name = '~/vimwiki/style.css'
-let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'make': 'make'}
 let g:vimwiki_list = [wiki]
 
 " }}} Plugin: vimwiki "
