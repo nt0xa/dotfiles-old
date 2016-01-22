@@ -589,7 +589,7 @@ nnoremap <c-g> :Ags<space>
 
 " Plugin: vim-clang-format {{{ "
 
-g:clang_format#code_style = 'google'
+let g:clang_format#code_style = 'google'
 
 " Common style options
 let g:clang_format#style_options = {
