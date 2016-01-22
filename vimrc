@@ -96,6 +96,7 @@ Plug 'hdima/python-syntax'
 
 " C/C++
 Plug 'justinmk/vim-syntax-extra'
+Plug 'rhysd/vim-clang-format'
 
 " Smali
 Plug 'kelwin/vim-smali'
@@ -585,3 +586,24 @@ let g:tagbar_type_go = {
 nnoremap <c-g> :Ags<space>
 
 " }}} Plugin: vim-ags "
+
+" Plugin: vim-clang-format {{{ "
+
+g:clang_format#code_style = 'google'
+
+" Common style options
+let g:clang_format#style_options = {
+\ 'AllowShortIfStatementsOnASingleLine' : 'true',
+\ }
+
+" Filetype specific options
+let g:clang_format#filetype_style_options = {
+\   'cpp' : {
+\     'Standard' : 'C++11'
+\   },
+\   'c' : {
+\     'Standard' : 'C99'
+\   },
+\ }
+
+" }}} Plugin: vim-clang-format "
