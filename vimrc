@@ -593,16 +593,13 @@ let g:clang_format#code_style = 'google'
 
 " Common style options
 let g:clang_format#style_options = {
-\ 'AllowShortIfStatementsOnASingleLine' : 'true',
 \ }
 
 " Filetype specific options
 let g:clang_format#filetype_style_options = {
 \   'cpp' : {
-\     'Standard' : 'C++11'
 \   },
 \   'c' : {
-\     'Standard' : 'C99'
 \   },
 \ }
 
