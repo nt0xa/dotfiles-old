@@ -108,7 +108,7 @@ def FlagsForFile(filename, **kwargs):
     elif IsCxxFile(filename):
         final_flags = MakeRelativePathsInFlagsAbsolute(cxxflags, relative_to)
     else:
-        final_flags = MakeRelativePathsInFlagsAbsolute(cxxflags, relative_to)
+        final_flags = MakeRelativePathsInFlagsAbsolute(cflags, relative_to)
 
     return {
         'flags': final_flags,

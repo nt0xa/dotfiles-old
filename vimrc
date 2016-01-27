@@ -3,7 +3,6 @@
 call plug#begin('~/.vim/plugged')
 
 " Plugins helpers
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'mattn/webapi-vim'
 Plug 'xolox/vim-misc'
 
@@ -60,6 +59,7 @@ Plug 'vimwiki/vimwiki'
 " Git
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " Linting
 Plug 'scrooloose/syntastic'
@@ -96,6 +96,7 @@ Plug 'hdima/python-syntax'
 
 " C/C++
 Plug 'justinmk/vim-syntax-extra'
+Plug 'rhysd/vim-clang-format'
 
 " Smali
 Plug 'kelwin/vim-smali'
@@ -354,8 +355,8 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 " Autocomplete triggers
 let g:ycm_semantic_triggers = {
 \   'css': [ 're!^\s{2}', 're!:\s+' ],
-\   'less': [ 're!^\s{2}', 're!:\s+' ],
-\   'stylus': [ 're!^\s{2}', 're!:\s+' ]
+\   'less': [ 're!^\s{2,}', 're!:\s+' ],
+\   'stylus': [ 're!^\s{2,}', 're!:\s+' ]
 \ }
 
 " }}} YouCompleteMe "
@@ -477,7 +478,7 @@ let g:python_highlight_all = 1
 let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.css_name = '~/vimwiki/style.css'
-let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'make': 'make'}
 let g:vimwiki_list = [wiki]
 
 " }}} Plugin: vimwiki "
@@ -585,3 +586,21 @@ let g:tagbar_type_go = {
 nnoremap <c-g> :Ags<space>
 
 " }}} Plugin: vim-ags "
+
+" Plugin: vim-clang-format {{{ "
+
+let g:clang_format#code_style = 'google'
+
+" Common style options
+let g:clang_format#style_options = {
+\ }
+
+" Filetype specific options
+let g:clang_format#filetype_style_options = {
+\   'cpp' : {
+\   },
+\   'c' : {
+\   },
+\ }
+
+" }}} Plugin: vim-clang-format "

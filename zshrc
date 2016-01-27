@@ -212,16 +212,13 @@ if (( ! $+commands[tmux] )); then
 fi
 
 if [[ -z "$TMUX" && -z "$VIM" && -z "$SSH_TTY" ]];  then
-  tmux start-server
+
   if ! tmux has-session 2> /dev/null; then
-    tmux_session='russtone'
-    tmux \
-      new-session -d -s "$tmux_session" \; \
-      set-option -t "$tmux_session" destroy-unattached off &> /dev/null
+    tmux new-session -d -s global-session
   fi
 
-  # Attach to the 'russtone' session or to the last session used
-  exec tmux attach-session
+  client_session=$(shuf -n1 /usr/share/dict/words | sed 's/\W//g')
+  exec tmux new-session -d -t global-session -s $client_session \; set-option destroy-unattached \; attach-session -t $client_session
 fi
 
 # }}} tmux #
