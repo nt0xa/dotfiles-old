@@ -1,27 +1,31 @@
 #!/bin/bash
 
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+
 tmux_package=(
-  git:tmux-plugins/tpm:.tmux/plugins/tpm
-  link:tmux.conf:.tmux.conf
+  git:tmux-plugins/tpm:$HOME/.tmux/plugins/tpm
+  link:$DIR/tmux.conf:$HOME/.tmux.conf
 )
 
 vim_package=(
-  git:junegunn/vim-plug:.vim/autoload
-  link:vimrc:.vimrc
-  link:ycm_extra_conf.py:.vim/.ycm_extra_conf.py
-  link:UltiSnips:.vim/UltiSnips
+  git:junegunn/vim-plug:$HOME/.vim/autoload
+  link:$DIR/vimrc:$HOME/.vimrc
+  link:$DIR/ycm_extra_conf.py:$HOME/.vim/.ycm_extra_conf.py
+  link:$DIR/UltiSnips:$HOME/.vim/UltiSnips
+  link:$HOME/.vim:$HOME/.config/nvim
+  link:$DIR/vimrc:$HOME/.config/nvim/init.vim
 )
 
 zsh_package=(
-  git:tarjoilija/zgen:.zgen
-  link:zshrc:.zshrc
+  git:tarjoilija/zgen:$HOME/.zgen
+  link:$DIR/zshrc:$HOME/.zshrc
 )
 
 misc_package=(
-  link:agignore:.agignore
-  link:dircolors:.dircolors
-  link:radare2rc:.radare2rc
-  link:config.py:.ptpython/config.py
+  link:$DIR/agignore:$HOME/.agignore
+  link:$DIR/dircolors:$HOME/.dircolors
+  link:$DIR/radare2rc:$HOME/.radare2rc
+  link:$DIR/config.py:$HOME/.ptpython/config.py
 )
 
 all=($(compgen -A variable | grep _package))
@@ -35,7 +39,6 @@ done
 
 actions=(install remove)
 packages=($(compgen -A variable | grep _package | sed -e "s/_package//"))
-DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 in_array() {
   local e
@@ -47,21 +50,21 @@ in_array() {
   return 1
 }
 
-link_home_file() {
-  if [[ ! -h $HOME/$2 ]]; then
-    ln -s $DIR/$1 $HOME/$2
+link_file() {
+  if [[ ! -h $2 ]]; then
+    ln -s $1 $2
   fi
 }
 
-unlink_home_file() {
-  if [[ -h $HOME/$1 ]]; then
-    unlink $HOME/$1
+unlink_file() {
+  if [[ -h $1 ]]; then
+    unlink $1
   fi
 }
 
-remove_home_dir() {
-  if [[ -d $HOME/$1 ]]; then
-    rm -rf $HOME/$1
+remove_dir() {
+  if [[ -d $1 ]]; then
+    rm -rf $1
   fi
 }
 
@@ -79,10 +82,10 @@ package_install() {
     parts=(${line//:/ })
     case ${parts[0]} in
       git )
-        git clone https://github.com/${parts[1]} $HOME/${parts[2]}
+        git clone https://github.com/${parts[1]} ${parts[2]}
         ;;
       link )
-        link_home_file "${parts[1]}" "${parts[2]}"
+        link_file "${parts[1]}" "${parts[2]}"
         ;;
     esac
   done
@@ -96,10 +99,10 @@ package_remove() {
     parts=(${line//:/ })
     case ${parts[0]} in
       git )
-        remove_home_dir "${parts[2]%%/*}"
+        remove_dir "${parts[2]%%/*}"
         ;;
       link )
-        unlink_home_file "${parts[2]}"
+        unlink_file "${parts[2]}"
         ;;
     esac
   done
