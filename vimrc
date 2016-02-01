@@ -7,7 +7,8 @@ Plug 'mattn/webapi-vim'
 Plug 'xolox/vim-misc'
 
 " Interface
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
