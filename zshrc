@@ -217,7 +217,7 @@ if [[ -z "$TMUX" && -z "$VIM" && -z "$SSH_TTY" ]];  then
     tmux new-session -d -s global-session
   fi
 
-  client_session=$(shuf -n1 /usr/share/dict/words | sed 's/\W//g')
+  client_session=$(gshuf -n1 /usr/share/dict/words | sed 's/\W//g')
   exec tmux new-session -d -t global-session -s $client_session \; set-option destroy-unattached \; attach-session -t $client_session
 fi
 
