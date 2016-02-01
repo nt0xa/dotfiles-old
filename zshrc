@@ -35,7 +35,7 @@ export VISUAL='vim'
 source $HOME/.zgen/zgen.zsh
 
 if ! zgen saved; then
-  zgen load chriskempson/base16-shell base16-monokai.dark.sh
+  zgen load chriskempson/base16-shell base16-flat.dark.sh
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
   zgen load russtone/prompt-russtone theme.zsh

@@ -149,7 +149,7 @@ syntax on
 set t_Co=256
 set background=dark
 let base16colorspace=256
-colorscheme base16-monokai
+colorscheme base16-flat
 
 " }}} Colors & syntax "
 
@@ -284,6 +284,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 " Plugin: Airline {{{ "
 
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline_section_c = '%t'
 let g:airline_theme="base16"
 
