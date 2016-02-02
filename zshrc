@@ -91,6 +91,12 @@ alias la='ll -A'         # Lists human readable sizes, hidden files
 alias lk='ll -Sr'        # Lists sorted by size, largest last
 alias lt='ll -tr'        # Lists sorted by date, most recent last
 
+# Python
+alias py='python'
+
+# Vim
+alias v='nvim'
+
 # }}} Aliases #
 
 # Completions {{{ #
