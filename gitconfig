@@ -1,0 +1,7 @@
+[user]
+	email = russtone@yandex.ru
+	name = russtone
+[push]
+	default = matching
+[url "git@github.com:"]
+	insteadOf = https://github.com/

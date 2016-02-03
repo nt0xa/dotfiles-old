@@ -23,9 +23,10 @@ zsh_package=(
 
 misc_package=(
   link:$DIR/agignore:$HOME/.agignore
-  link:$DIR/dircolors:$HOME/.dircolors
-  link:$DIR/radare2rc:$HOME/.radare2rc
   link:$DIR/config.py:$HOME/.ptpython/config.py
+  link:$DIR/dircolors:$HOME/.dircolors
+  link:$DIR/gitconfig:$HOME/.gitconfig
+  link:$DIR/radare2rc:$HOME/.radare2rc
 )
 
 all=($(compgen -A variable | grep _package))
