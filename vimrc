@@ -56,7 +56,6 @@ Plug 'chriskempson/base16-vim'
 
 " Wiki
 Plug 'vimwiki/vimwiki'
-Plug 'KabbAmine/zeavim.vim'
 
 " Git
 Plug 'mattn/gist-vim'
