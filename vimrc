@@ -117,7 +117,7 @@ set fileencodings=utf-8,cp1251
 " UI Config {{{ "
 
 " Show line numbers
-set number
+set relativenumber
 
 " Always show status line
 set laststatus=2
@@ -234,13 +234,6 @@ nnoremap <leader>q :q<cr>
 
 " Toggle folding
 nnoremap <leader>f za
-
-" Clear search pattern (remove highlighting)
-nnoremap <silent> <leader>l :let @/ = ''<cr>
-
-" Copy/Paste clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>p "+p
 
 " Select pasted text
 noremap gV `[v`]
