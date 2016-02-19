@@ -1,3 +1,14 @@
+# Variables {{{ #
+
+export EDITOR='vim'
+export GOPATH="$HOME/.go"
+export LANG='en_US.UTF-8'
+export PAGER='less'
+export TERM='xterm-256color'
+export VISUAL='vim'
+
+# }}} Variables #
+
 # Path {{{ #
 
 # Ensure path arrays do not contain duplicates
@@ -6,6 +17,7 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs
 path=(
   /usr/local/{bin,sbin}
+  $GOPATH/bin
   $path
 )
 
@@ -18,17 +30,6 @@ if [[ "$OSTYPE" == linux* ]]; then
 fi
 
 # }}} Path #
-
-# Variables {{{ #
-
-export EDITOR='vim'
-export GOPATH="$HOME/Projects/go"
-export LANG='en_US.UTF-8'
-export PAGER='less'
-export TERM='xterm-256color'
-export VISUAL='vim'
-
-# }}} Variables #
 
 # Plugins {{{ #
 
