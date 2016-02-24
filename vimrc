@@ -17,13 +17,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
-Plug 'unblevable/quick-scope'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'vasconcelloslf/vim-interestingwords'
 Plug 'gabesoft/vim-ags'
+Plug 'unblevable/quick-scope'
 
 " Completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
