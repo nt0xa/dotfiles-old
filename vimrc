@@ -22,7 +22,7 @@ Plug 'tpope/vim-rsi'
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'vasconcelloslf/vim-interestingwords'
-Plug 'gabesoft/vim-ags'
+Plug 'rking/ag.vim'
 Plug 'unblevable/quick-scope'
 
 " Completion
@@ -548,11 +548,11 @@ let g:tagbar_type_go = {
 
 " }}} Plugin: tagbar "
 
-" Plugin: vim-ags {{{ "
+" Plugin: vim-ag {{{ "
 
-nnoremap <c-g> :Ags<space>
+nnoremap <c-g> :Ag<space>
 
-" }}} Plugin: vim-ags "
+" }}} Plugin: vim-ag "
 
 " Plugin: vim-clang-format {{{ "
 
