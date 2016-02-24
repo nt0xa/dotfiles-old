@@ -12,7 +12,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kshenoy/vim-signature'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
@@ -512,34 +511,6 @@ let g:EasyClipUseSubstituteDefaults = 1
 nmap <leader>cf <plug>EasyClipToggleFormattedPasten
 
 " }}} Plugin: vim-easyclip "
-
-" Plugin: vim-signature {{{ "
-
-let g:SignatureMap = {
-      \ 'Leader'             :  ",",
-      \ 'PlaceNextMark'      :  ",,",
-      \ 'ToggleMarkAtLine'   :  ",.",
-      \ 'PurgeMarksAtLine'   :  ",-",
-      \ 'DeleteMark'         :  "d,",
-      \ 'PurgeMarks'         :  ",<Space>",
-      \ 'PurgeMarkers'       :  ",<BS>",
-      \ 'GotoNextLineAlpha'  :  "']",
-      \ 'GotoPrevLineAlpha'  :  "'[",
-      \ 'GotoNextSpotAlpha'  :  "`]",
-      \ 'GotoPrevSpotAlpha'  :  "`[",
-      \ 'GotoNextLineByPos'  :  "]'",
-      \ 'GotoPrevLineByPos'  :  "['",
-      \ 'GotoNextSpotByPos'  :  "]`",
-      \ 'GotoPrevSpotByPos'  :  "[`",
-      \ 'GotoNextMarker'     :  "[+",
-      \ 'GotoPrevMarker'     :  "[-",
-      \ 'GotoNextMarkerAny'  :  "]=",
-      \ 'GotoPrevMarkerAny'  :  "[=",
-      \ 'ListLocalMarks'     :  ",/",
-      \ 'ListLocalMarkers'   :  ",?"
-      \ }
-
-" }}} Plugin: vim-signature "
 
 " Plugin: tagbar {{{ "
 
