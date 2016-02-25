@@ -229,9 +229,6 @@ nnoremap <leader>w :w!<cr>
 " Quit
 nnoremap <leader>q :q<cr>
 
-" Toggle folding
-nnoremap <leader>f za
-
 " Select pasted text
 noremap gV `[v`]
 
