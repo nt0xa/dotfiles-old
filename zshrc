@@ -6,6 +6,7 @@ export LANG='en_US.UTF-8'
 export PAGER='less'
 export TERM='xterm-256color'
 export VISUAL='vim'
+export DROPBOX="$HOME/Dropbox"
 
 # }}} Variables #
 
@@ -101,6 +102,9 @@ alias pp='ptpython'
 
 # Vim
 alias v='nvim'
+
+# todo.txt
+alias t='todo.sh -d $HOME/.todo.cfg'
 
 # }}} Aliases #
 
