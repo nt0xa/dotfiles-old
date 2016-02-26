@@ -104,7 +104,7 @@ alias pp='ptpython'
 alias v='nvim'
 
 # todo.txt
-alias t='todo.sh -d $HOME/.todo.cfg'
+alias t='todo.sh'
 
 # }}} Aliases #
 
