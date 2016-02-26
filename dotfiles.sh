@@ -27,6 +27,7 @@ misc_package=(
   link:$DIR/dircolors:$HOME/.dircolors
   link:$DIR/gitconfig:$HOME/.gitconfig
   link:$DIR/radare2rc:$HOME/.radare2rc
+  link:$DIR/todo.cfg:$HOME/.todo.cfg
 )
 
 all=($(compgen -A variable | grep _package))
