@@ -96,7 +96,8 @@ alias lt='ll -tr'        # Lists sorted by date, most recent last
 alias cd='cd -P'
 
 # Python
-alias py='python'
+alias p='python'
+alias pp='ptpython'
 
 # Vim
 alias v='nvim'
