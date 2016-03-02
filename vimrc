@@ -283,17 +283,18 @@ let g:airline_theme="base16"
 let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Search in buffer tags
-nnoremap <c-t> :CtrlPTag<cr>
-nnoremap <c-e> :CtrlPBufTag<cr>
-nnoremap <c-m> :CtrlPBuffer<cr>
+let g:ctrlp_map = '<leader>f'
+nnoremap <leader>m :CtrlPBuffer<cr>
+nnoremap <leader>g :CtrlPTag<cr>
+nnoremap <leader>e :CtrlPBufTag<cr>
 
 let g:ctrlp_prompt_mappings = {
 \ 'PrtBS()':              ['<bs>', '<c-]>'],
 \ 'PrtDelete()':          ['<del>'],
 \ 'PrtDeleteWord()':      ['<c-w>'],
 \ 'PrtClear()':           ['<c-u>'],
-\ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-\ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+\ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+\ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
 \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
 \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
 \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
@@ -321,7 +322,7 @@ let g:ctrlp_prompt_mappings = {
 \ 'CreateNewFile()':      ['<c-y>'],
 \ 'MarkToOpen()':         ['<c-z>'],
 \ 'OpenMulti()':          ['<c-o>'],
-\ 'PrtExit()':            ['<esc>', '<c-c>', '<c-p>'],
+\ 'PrtExit()':            ['<esc>', '<c-c>'],
 \ }
 
 
@@ -397,15 +398,14 @@ map #  <plug>(incsearch-nohl-#)
 
 " Plugin: vim-over {{{ "
 
-nnoremap <silent> <leader>s :OverCommandLine<cr>s/
-vnoremap <silent> <leader>s :OverCommandLine<cr>s/
-nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
+vnoremap <silent> gj :OverCommandLine<cr>s/\%V
+nnoremap <silent> gj :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
 
 " Plugin: vim-easy-align {{{ "
 
-vnoremap <leader>a :EasyAlign<space>
+vnoremap ga :EasyAlign<space>
 
 " }}} Plugin: vim-easy-align "
 
@@ -452,7 +452,7 @@ let g:easytags_always_enabled = 0
 let g:easytags_events = []
 
 " Mapping for manual tags update
-nnoremap <leader>t :UpdateTags<cr>
+nnoremap <leader>u :UpdateTags<cr>
 
 " }}} Plugin: vim-easytags "
 
@@ -482,7 +482,7 @@ let g:instant_markdown_autostart = 0
 
 augroup LessAutocmd
   autocmd!
-  autocmd FileType less nnoremap <leader>l :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
+  autocmd FileType less nnoremap <leader>p :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
   autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 augroup END
 
@@ -497,19 +497,10 @@ augroup END
 
 " }}} Plugin: vim-stylus "
 
-" Plugin: vim-easyclip {{{ "
-
-let g:EasyClipAutoFormat = 1
-let g:EasyClipUseSubstituteDefaults = 1
-
-nmap <leader>cf <plug>EasyClipToggleFormattedPasten
-
-" }}} Plugin: vim-easyclip "
-
 " Plugin: tagbar {{{ "
 
 " Toggle tagbar
-nnoremap <leader>e :TagbarToggle<cr>
+nnoremap <leader>t :TagbarToggle<cr>
 
 " Tags for Go
 let g:tagbar_type_go = {
@@ -544,7 +535,7 @@ let g:tagbar_type_go = {
 
 " Plugin: vim-ag {{{ "
 
-nnoremap <c-g> :Ag<space>
+nnoremap <leader>a :Ag<space>
 
 " }}} Plugin: vim-ag "
 
