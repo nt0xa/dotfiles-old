@@ -23,7 +23,7 @@ path=(
 )
 
 # Add brew to path on linux
-if [[ "$OSTYPE" == linux* ]]; then
+if [[ $OSTYPE == linux* ]]; then
   path=(
     $HOME/.linuxbrew/bin
     $path
@@ -51,11 +51,15 @@ fi
 
 bindkey -v
 bindkey '^?' backward-delete-char
+
 bindkey -M viins '^P' history-substring-search-up
 bindkey -M viins '^N' history-substring-search-down
-bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins '^A' beginning-of-line
 bindkey -M viins '^E' end-of-line
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
+
+bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -238,7 +242,7 @@ fi
 
 # }}} tmux #
 
-# Misc {{{ #
+# Expand .. {{{ #
 
 # Expands .... to ../..
 function expand-dot-to-parent-directory-path {
@@ -251,4 +255,91 @@ function expand-dot-to-parent-directory-path {
 zle -N expand-dot-to-parent-directory-path
 bindkey -M viins '.' expand-dot-to-parent-directory-path
 
-# }}} Misc #
+# }}} Expand .. #
+
+#  Copy & paste {{{ #
+
+# OS independent clipboard copy
+function os-clip-copy() {
+  local file=$1
+  if [[ $OSTYPE == darwin* ]]; then
+    if [[ -z $file ]]; then
+      pbcopy
+    else
+      cat $file | pbcopy
+    fi
+  else
+    if which xclip &>/dev/null; then
+      if [[ -z $file ]]; then
+        xclip -in -selection clipboard
+      else
+        xclip -in -selection clipboard $file
+      fi
+    elif which xsel &>/dev/null; then
+      if [[ -z $file ]]; then
+        xsel --clipboard --input
+      else
+        cat "$file" | xsel --clipboard --input
+      fi
+    else
+      print "clipcopy: Platform $OSTYPE not supported or xclip/xsel not installed" >&2
+      return 1
+    fi
+  fi
+}
+
+# OS independent clipboard paste
+function os-clip-paste() {
+  if [[ $OSTYPE == darwin* ]]; then
+    pbpaste
+  else
+    if which xclip &>/dev/null; then
+      xclip -out -selection clipboard
+    elif which xsel &>/dev/null; then
+      xsel --clipboard --output
+    else
+      print "clipcopy: Platform $OSTYPE not supported or xclip/xsel not installed" >&2
+      return 1
+    fi
+  fi
+}
+
+# Wrappers for work with os clipboard
+function clip-copy-region-as-kill() {
+  zle copy-region-as-kill
+  print -rn $CUTBUFFER | os-clip-copy
+}
+zle -N clip-copy-region-as-kill
+
+function clip-vi-yank() {
+  zle vi-yank
+  print -rn $CUTBUFFER | os-clip-copy
+}
+zle -N clip-vi-yank
+
+function clip-yank() {
+  CUTBUFFER=$(os-clip-paste)
+  zle yank
+}
+zle -N clip-yank
+
+function clip-vi-put-after() {
+  CUTBUFFER=$(os-clip-paste)
+  zle vi-put-after
+}
+zle -N clip-vi-put-after
+
+function clip-vi-put-before() {
+  CUTBUFFER=$(os-clip-paste)
+  zle vi-put-before
+}
+zle -N clip-vi-put-before
+
+bindkey -M viins '^W' clip-copy-region-as-kill
+bindkey -M viins '^Y' clip-yank
+
+bindkey -M vicmd 'y' clip-vi-yank
+bindkey -M vicmd 'p' clip-vi-put-after
+bindkey -M vicmd 'P' clip-vi-put-before
+
+#  }}} Copy & paste #

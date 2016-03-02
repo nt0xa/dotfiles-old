@@ -10,7 +10,7 @@ Plug 'xolox/vim-misc'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree', 'NERDTreeToggle' ] }
 Plug 'ryanoasis/vim-devicons'
 
 " Navigation
@@ -20,9 +20,9 @@ Plug 'tpope/vim-rsi'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
-Plug 'osyo-manga/vim-over'
+Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
 Plug 'vasconcelloslf/vim-interestingwords'
-Plug 'rking/ag.vim'
+Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'unblevable/quick-scope'
 
 " Completion
@@ -40,7 +40,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'machakann/vim-swap'
-Plug 'svermeulen/vim-easyclip'
 Plug 'jiangmiao/auto-pairs'
 
 " Text objects
@@ -56,50 +55,48 @@ Plug 'chriskempson/base16-vim'
 Plug 'vimwiki/vimwiki'
 
 " Git
-Plug 'mattn/gist-vim'
+Plug 'mattn/gist-vim', { 'on': 'Gist' }
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 " Linting
 Plug 'scrooloose/syntastic'
 
 " CSS
-Plug 'hail2u/vim-css3-syntax'
-Plug 'groenewege/vim-less'
-Plug 'wavded/vim-stylus'
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 " JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 
 " HTML
-Plug 'mattn/emmet-vim'
-Plug 'othree/html5.vim'
-Plug 'digitaltoad/vim-jade'
-Plug 'tmhedberg/matchit'
-
-" OpenCL
-Plug 'petRUShka/vim-opencl'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'digitaltoad/vim-jade', { 'for': 'html' }
+Plug 'tmhedberg/matchit', { 'for': 'html' }
 
 " Markdown
-Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
 " Toml
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Python
-Plug 'hdima/python-syntax'
+Plug 'hdima/python-syntax', { 'for': 'python' }
 
 " C/C++
-Plug 'justinmk/vim-syntax-extra'
-Plug 'rhysd/vim-clang-format'
+Plug 'justinmk/vim-syntax-extra', { 'for': [ 'c', 'cpp' ] }
+Plug 'rhysd/vim-clang-format', { 'for': [ 'c', 'cpp' ] }
+Plug 'petRUShka/vim-opencl', { 'for': [ 'c', 'cpp' ] }
 
 " Smali
-Plug 'kelwin/vim-smali'
+Plug 'kelwin/vim-smali', { 'for': 'smali' }
 
 call plug#end()
 
@@ -286,17 +283,18 @@ let g:airline_theme="base16"
 let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Search in buffer tags
-nnoremap <c-t> :CtrlPTag<cr>
-nnoremap <c-e> :CtrlPBufTag<cr>
-nnoremap <c-m> :CtrlPBuffer<cr>
+let g:ctrlp_map = '<leader>f'
+nnoremap <leader>m :CtrlPBuffer<cr>
+nnoremap <leader>g :CtrlPTag<cr>
+nnoremap <leader>e :CtrlPBufTag<cr>
 
 let g:ctrlp_prompt_mappings = {
 \ 'PrtBS()':              ['<bs>', '<c-]>'],
 \ 'PrtDelete()':          ['<del>'],
 \ 'PrtDeleteWord()':      ['<c-w>'],
 \ 'PrtClear()':           ['<c-u>'],
-\ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-\ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+\ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+\ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
 \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
 \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
 \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
@@ -324,7 +322,7 @@ let g:ctrlp_prompt_mappings = {
 \ 'CreateNewFile()':      ['<c-y>'],
 \ 'MarkToOpen()':         ['<c-z>'],
 \ 'OpenMulti()':          ['<c-o>'],
-\ 'PrtExit()':            ['<esc>', '<c-c>', '<c-p>'],
+\ 'PrtExit()':            ['<esc>', '<c-c>'],
 \ }
 
 
@@ -400,15 +398,14 @@ map #  <plug>(incsearch-nohl-#)
 
 " Plugin: vim-over {{{ "
 
-nnoremap <silent> <leader>s :OverCommandLine<cr>s/
-vnoremap <silent> <leader>s :OverCommandLine<cr>s/
-nnoremap <silent> <leader>gs :OverCommandLine<cr>%s/
+vnoremap <silent> gj :OverCommandLine<cr>s/\%V
+nnoremap <silent> gj :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
 
 " Plugin: vim-easy-align {{{ "
 
-vnoremap <leader>a :EasyAlign<space>
+vnoremap ga :EasyAlign<space>
 
 " }}} Plugin: vim-easy-align "
 
@@ -455,7 +452,7 @@ let g:easytags_always_enabled = 0
 let g:easytags_events = []
 
 " Mapping for manual tags update
-nnoremap <leader>t :UpdateTags<cr>
+nnoremap <leader>u :UpdateTags<cr>
 
 " }}} Plugin: vim-easytags "
 
@@ -485,7 +482,7 @@ let g:instant_markdown_autostart = 0
 
 augroup LessAutocmd
   autocmd!
-  autocmd FileType less nnoremap <leader>l :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
+  autocmd FileType less nnoremap <leader>p :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
   autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 augroup END
 
@@ -500,19 +497,10 @@ augroup END
 
 " }}} Plugin: vim-stylus "
 
-" Plugin: vim-easyclip {{{ "
-
-let g:EasyClipAutoFormat = 1
-let g:EasyClipUseSubstituteDefaults = 1
-
-nmap <leader>cf <plug>EasyClipToggleFormattedPasten
-
-" }}} Plugin: vim-easyclip "
-
 " Plugin: tagbar {{{ "
 
 " Toggle tagbar
-nnoremap <leader>e :TagbarToggle<cr>
+nnoremap <leader>t :TagbarToggle<cr>
 
 " Tags for Go
 let g:tagbar_type_go = {
@@ -547,7 +535,7 @@ let g:tagbar_type_go = {
 
 " Plugin: vim-ag {{{ "
 
-nnoremap <c-g> :Ag<space>
+nnoremap <leader>a :Ag<space>
 
 " }}} Plugin: vim-ag "
 
