@@ -53,6 +53,9 @@ in_array() {
 }
 
 link_file() {
+  if [[ ! -d $(dirname "$2") ]]; then
+    mkdir -p $(dirname "$2")
+  fi
   if [[ ! -h $2 ]]; then
     ln -s $1 $2
   fi
