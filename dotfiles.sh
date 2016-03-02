@@ -28,6 +28,7 @@ misc_package=(
   link:$DIR/gitconfig:$HOME/.gitconfig
   link:$DIR/radare2rc:$HOME/.radare2rc
   link:$DIR/todo.cfg:$HOME/.todo/config
+  link:$DIR/ideavimrc:$HOME/.ideavimrc
 )
 
 all=($(compgen -A variable | grep _package))

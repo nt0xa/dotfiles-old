@@ -1,0 +1,20 @@
+" Exit from insert mode with jj
+inoremap jj <Esc>
+
+" Move
+nnoremap <C-d> 10j
+nnoremap <C-u> 10k
+
+" Reload .ideavimrc
+nnoremap <Space>vs :source ~/.ideavimrc<CR>
+
+" Save file
+nnoremap <Space>w :w<CR>
+
+" Goto
+nnoremap <Space>p :action GotoFile<CR>
+nnoremap <Space>t :action GotoSymbol<CR>
+nnoremap <Space>m :action FileStructurePopup<CR>
+
+" Build
+nnoremap <Space>e :action Run<CR>
