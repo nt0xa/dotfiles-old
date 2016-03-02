@@ -56,6 +56,8 @@ bindkey -M viins '^P' history-substring-search-up
 bindkey -M viins '^N' history-substring-search-down
 bindkey -M viins '^A' beginning-of-line
 bindkey -M viins '^E' end-of-line
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
 
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M vicmd 'k' history-substring-search-up
