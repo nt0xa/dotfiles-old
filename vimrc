@@ -229,6 +229,10 @@ nnoremap <leader>q :q<cr>
 " Select pasted text
 noremap gV `[v`]
 
+" Copy/paste to/from system clipboard
+map gy "+y
+map gp "+p
+
 " }}} Mappings "
 
 " Filetype {{{ "
