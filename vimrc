@@ -126,7 +126,7 @@ set hidden
 set mouse=a
 
 " This will cause all yank/delete/paste operations to use the system register *
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 
 " Show incomplete commands
 set showcmd
@@ -141,8 +141,8 @@ set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 " Enable syntax highlighting
 syntax on
 
-" Color scheme
-set t_Co=256
+" color scheme
+set t_co=256
 set background=dark
 let base16colorspace=256
 colorscheme base16-flat
@@ -229,9 +229,8 @@ nnoremap <leader>q :q<cr>
 " Select pasted text
 noremap gV `[v`]
 
-" Copy/paste to/from system clipboard
-map gy "+y
-map gp "+p
+" Paste in insert mode
+inoremap <C-y> <C-o>p
 
 " }}} Mappings "
 
@@ -402,8 +401,8 @@ map #  <plug>(incsearch-nohl-#)
 
 " Plugin: vim-over {{{ "
 
-vnoremap <silent> gj :OverCommandLine<cr>s/\%V
-nnoremap <silent> gj :OverCommandLine<cr>s/
+vnoremap <silent> gr :OverCommandLine<cr>s/\%V
+nnoremap <silent> gr :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
 
@@ -560,3 +559,11 @@ let g:clang_format#filetype_style_options = {
 \ }
 
 " }}} Plugin: vim-clang-format "
+
+" Plugin: vim-surround {{{ "
+
+" Surround with single/double quiote
+map g' ysiW'
+map g" ysiW"
+
+" }}} Plugin: vim-surround "
