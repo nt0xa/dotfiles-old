@@ -34,16 +34,15 @@ fi
 
 # Plugins {{{ #
 
-source $HOME/.zgen/zgen.zsh
+source $HOME/.zplug/zplug
 
-if ! zgen saved; then
-  zgen load chriskempson/base16-shell base16-flat.dark.sh
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load russtone/prompt-russtone theme.zsh
-  zgen load zsh-users/zsh-completions src
-  zgen save
-fi
+zplug "chriskempson/base16-shell", of:"base16-flat.dark.sh"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "russtone/prompt-russtone", of:"theme.zsh"
+zplug "zsh-users/zsh-completions"
+
+zplug load
 
 # }}} Plugins #
 

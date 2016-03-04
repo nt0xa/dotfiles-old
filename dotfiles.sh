@@ -17,7 +17,7 @@ vim_package=(
 )
 
 zsh_package=(
-  git:tarjoilija/zgen:$HOME/.zgen
+  git:b4b4r07/zplug:$HOME/.zplug
   link:$DIR/zshrc:$HOME/.zshrc
 )
 
