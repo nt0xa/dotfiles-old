@@ -12,9 +12,9 @@ nnoremap <Space>vs :source ~/.ideavimrc<CR>
 nnoremap <Space>w :w<CR>
 
 " Goto
-nnoremap <Space>p :action GotoFile<CR>
-nnoremap <Space>t :action GotoSymbol<CR>
-nnoremap <Space>m :action FileStructurePopup<CR>
+nnoremap <Space>f :action GotoFile<CR>
+nnoremap <Space>g :action GotoSymbol<CR>
+nnoremap <Space>e :action FileStructurePopup<CR>
 
 " Build
-nnoremap <Space>e :action Run<CR>
+nnoremap <Space>r :action Run<CR>
