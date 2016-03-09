@@ -104,13 +104,10 @@ call plug#end()
 
 " }}} Plugins "
 
-" Encoding {{{ "
+" Options {{{ "
 
+" File encodings
 set fileencodings=utf-8,cp1251
-
-" }}} Encoding "
-
-" UI Config {{{ "
 
 " Show line numbers
 set relativenumber
@@ -136,22 +133,18 @@ set showcmd
 " Wildignore
 set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 
-" }}} UI Config "
-
-" Colors & syntax {{{ "
-
 " Enable syntax highlighting
 syntax enable
 
-" color scheme
-set t_co=256
+" Number of colors (terminal)
+if !has('gui_running')
+  set t_Co=256
+endif
+
+" Colorscheme
 set background=dark
 let base16colorspace=256
 colorscheme base16-flat
-
-" }}} Colors & syntax "
-
-" Spaces & tabs {{{ "
 
 " Count of spaces per tab when editing
 set softtabstop=2
@@ -171,25 +164,8 @@ set list listchars=tab:\ \ ,trail:·
 " Mouse and backspace
 set backspace=indent,eol,start
 
-" }}} Spaces & tabs "
-
-" Lines wrapping {{{ "
-
+" Don't wrap lines
 set nowrap
-
-" }}} Lines wrapping "
-
-" Folding {{{ "
-
-" Enable folding
-set foldenable
-
-" Marker-based folding
-set foldmethod=marker
-
-" }}} Folding "
-
-" History & backups {{{ "
 
 " Count of remembered commands
 set history=1000
@@ -197,14 +173,12 @@ set history=1000
 " Count of undo
 set undolevels=1000
 
-" Disable backup and swap files
+" Disable backup files
 set nobackup
 set nowritebackup
+
+" Disable swap files
 set noswapfile
-
-" }}} History & backups "
-
-" Search {{{ "
 
 " Case insensitive search
 set ignorecase
@@ -212,31 +186,8 @@ set ignorecase
 " Highlight matches
 set hlsearch
 
-" }}} Search "
-
-" Mappings {{{"
-
-" Rebind leader key to space
-let mapleader=' '
-
-" Use jj to exit from insert mode
-inoremap jj <esc>
-
-" Write file
-nnoremap <leader>w :w!<cr>
-
-" Quit
-nnoremap <leader>q :q<cr>
-
-" Select pasted text
-noremap gV `[v`]
-
-" Paste in insert mode
-inoremap <C-y> <C-o>p
-
-" }}} Mappings "
-
-" Filetype {{{ "
+" Seach while typing
+set incsearch
 
 " Detect filetypes
 filetype plugin on
@@ -244,23 +195,67 @@ filetype plugin on
 " Load filetype-specific indent files
 filetype indent on
 
-" }}} Filetype "
+" Enable folding
+set foldenable
+
+" }}} Options "
+
+" Vanilla mappings {{{"
+
+" Rebind leader key to space
+let mapleader=' '
+
+" Use jj to exit from insert mode
+inoremap jj <Esc>
+
+" Write file
+nnoremap <Leader>w :w!<CR>
+
+" Quit
+nnoremap <Leader>q :q<CR>
+
+" Select pasted text
+noremap gV `[v`]
+
+" Paste in insert mode
+inoremap <C-y> <C-o>p
+
+" Disable hlsearch
+nnoremap <Leader>l :<C-u>nohlsearch<CR>
+
+" }}} Vanilla mappings "
 
 " Autocmd: vimrc {{{ "
 
 if !exists('*s:reload_vimrc')
   function! s:reload_vimrc()
     source $MYVIMRC
-    call s:lightline_update()
+    " Reload lightline
+    if exists('*s:lightline_update')
+      call s:lightline_update()
+    endif
   endfunction
 endif
 
 augroup VimrcAutocmdGroup
   autocmd!
-  autocmd BufWritePost .vimrc call s:reload_vimrc()
+  autocmd BufWritePost *vimrc,*init.vim call s:reload_vimrc()
 augroup end
 
 " }}} Autocmd: vimrc "
+
+" Autocmd: vim {{{ "
+
+function! s:vim_ft_setup()
+  setlocal foldmethod=marker
+endfunction
+
+augroup VimAutocmdGroup
+  autocmd!
+  autocmd FileType vim call s:vim_ft_setup()
+augroup end
+
+" }}} Autocmd: vim "
 
 " Plugin: UltiSnips {{{ "
 
@@ -272,13 +267,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Plugin: lightline.vim {{{ "
 
-" let g:airline_powerline_fonts = 1
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-" let g:airline_section_c = '%t'
-" let g:airline_theme="base16"
-
-" Update lightline colorscheme on fly
+" Update lightline
 function! s:lightline_update()
   if !exists('g:loaded_lightline')
     return
@@ -291,22 +280,163 @@ function! s:lightline_update()
   endtry
 endfunction
 
-let s:p = {'normal': {}, 'insert': {}, 'replace': {}}
+let s:p = {
+      \ 'normal': {},
+      \ 'insert': {},
+      \ 'replace': {},
+      \ 'visual': {}
+      \ }
+
+vnoremap // y/<C-R>"<CR>
+
+let s:p.normal.middle = [ ['#0000ff', '#ffffff', 7, 18, '' ] ]
 
 let s:p.normal.left = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
-let s:p.normal.middle = [ ['#0000ff', '#ffffff', 7, 18, '' ] ]
 let s:p.normal.right = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
 
 let s:p.insert.left = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
-let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ],  ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+
+let s:p.insert.left = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
 
 
 let s:p.replace.left = [ ['#0000ff', '#ffffff', 18, 1, 'bold' ] ]
+let s:p.replace.right = [ ['#0000ff', '#ffffff', 18, 1, 'bold' ] ]
+
+let s:p.visual.left = [ ['#0000ff', '#ffffff', 18, 3, 'bold' ] ]
+let s:p.visual.right = [ ['#0000ff', '#ffffff', 18, 3, 'bold' ] ]
+
 let g:lightline#colorscheme#base16#palette = s:p
 
 let g:lightline = {
-\ 'colorscheme': 'base16'
-\ }
+      \ 'colorscheme': 'base16',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'filename': 'LightLineFilename',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help' && &readonly ? '⭤' : ''
+endfunction
+
+function! LightLineFilename()
+  let fname = expand('%:t')
+  return fname == 'ControlP' ? g:lightline.ctrlp_item :
+        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ '__Gundo\|NERD_tree' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = ''  " edit here for cool mark
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP'
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+  else
+    return ''
+  endif
+endfunction
+
+let g:ctrlp_status_func = {
+      \ 'main': 'CtrlPStatusFunc_1',
+      \ 'prog': 'CtrlPStatusFunc_2',
+      \ }
+
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  let g:lightline.ctrlp_regex = a:regex
+  let g:lightline.ctrlp_prev = a:prev
+  let g:lightline.ctrlp_item = a:item
+  let g:lightline.ctrlp_next = a:next
+  return lightline#statusline(0)
+endfunction
+
+function! CtrlPStatusFunc_2(str)
+  return lightline#statusline(0)
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+  let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 
 " }}} Plugin: lightline.vim "
 
@@ -322,41 +452,41 @@ nnoremap <leader>g :CtrlPTag<cr>
 nnoremap <leader>e :CtrlPBufTag<cr>
 
 let g:ctrlp_prompt_mappings = {
-\ 'PrtBS()':              ['<bs>', '<c-]>'],
-\ 'PrtDelete()':          ['<del>'],
-\ 'PrtDeleteWord()':      ['<c-w>'],
-\ 'PrtClear()':           ['<c-u>'],
-\ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-\ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
-\ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
-\ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
-\ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
-\ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-\ 'PrtHistory(-1)':       [''],
-\ 'PrtHistory(1)':        [''],
-\ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-\ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-\ 'AcceptSelection("t")': ['<c-t>'],
-\ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-\ 'ToggleFocus()':        ['<s-tab>'],
-\ 'ToggleRegex()':        ['<c-r>'],
-\ 'ToggleByFname()':      ['<c-d>'],
-\ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-\ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-\ 'PrtExpandDir()':       ['<tab>'],
-\ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
-\ 'PrtInsert()':          ['<c-\>'],
-\ 'PrtCurStart()':        ['<c-a>'],
-\ 'PrtCurEnd()':          ['<c-e>'],
-\ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-\ 'PrtCurRight()':        ['<c-l>', '<right>'],
-\ 'PrtClearCache()':      ['<F5>'],
-\ 'PrtDeleteEnt()':       ['<F7>'],
-\ 'CreateNewFile()':      ['<c-y>'],
-\ 'MarkToOpen()':         ['<c-z>'],
-\ 'OpenMulti()':          ['<c-o>'],
-\ 'PrtExit()':            ['<esc>', '<c-c>'],
-\ }
+      \ 'PrtBS()':              ['<bs>', '<c-]>'],
+      \ 'PrtDelete()':          ['<del>'],
+      \ 'PrtDeleteWord()':      ['<c-w>'],
+      \ 'PrtClear()':           ['<c-u>'],
+      \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+      \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+      \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
+      \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
+      \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
+      \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
+      \ 'PrtHistory(-1)':       [''],
+      \ 'PrtHistory(1)':        [''],
+      \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+      \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+      \ 'AcceptSelection("t")': ['<c-t>'],
+      \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+      \ 'ToggleFocus()':        ['<s-tab>'],
+      \ 'ToggleRegex()':        ['<c-r>'],
+      \ 'ToggleByFname()':      ['<c-d>'],
+      \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+      \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
+      \ 'PrtExpandDir()':       ['<tab>'],
+      \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
+      \ 'PrtInsert()':          ['<c-\>'],
+      \ 'PrtCurStart()':        ['<c-a>'],
+      \ 'PrtCurEnd()':          ['<c-e>'],
+      \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+      \ 'PrtCurRight()':        ['<c-l>', '<right>'],
+      \ 'PrtClearCache()':      ['<F5>'],
+      \ 'PrtDeleteEnt()':       ['<F7>'],
+      \ 'CreateNewFile()':      ['<c-y>'],
+      \ 'MarkToOpen()':         ['<c-z>'],
+      \ 'OpenMulti()':          ['<c-o>'],
+      \ 'PrtExit()':            ['<esc>', '<c-c>'],
+      \ }
 
 
 " }}} Plugin: CrtlP "
@@ -377,26 +507,20 @@ let g:ycm_key_invoke_completion = '<c-x><c-o>'
 
 " Autocomplete triggers
 let g:ycm_semantic_triggers = {
-\   'css': [ 're!^\s{2}', 're!:\s+' ],
-\   'less': [ 're!^\s{2,}', 're!:\s+' ],
-\   'stylus': [ 're!^\s{2,}', 're!:\s+' ]
-\ }
+      \ 'css': [ 're!^\s{2}', 're!:\s+' ],
+      \ 'less': [ 're!^\s{2,}', 're!:\s+' ],
+      \ 'stylus': [ 're!^\s{2,}', 're!:\s+' ]
+      \ }
 
 " }}} YouCompleteMe "
-
-" Plugin: javascript-libraries-syntax {{{ "
-
-let g:used_javascript_libs = 'jquery,underscore,angularjs,jasmine,react'
-
-" }}} Plugin: javascript-libraries-syntax "
 
 " Plugin: syntastic {{{ "
 
 " Ignore angular attributes in html
 let g:syntastic_html_tidy_ignore_errors = [
-\  " proprietary attribute \"ng-",
-\  " proprietary attribute \"ui-",
-\]
+      \ " proprietary attribute \"ng-",
+      \ " proprietary attribute \"ui-",
+      \ ]
 
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
@@ -404,11 +528,6 @@ let g:syntastic_warning_symbol = '⚠︎'
 
 " JS
 let g:syntastic_javascript_checkers = ['eslint']
-
-" Syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_check_on_wq = 0
 
@@ -514,9 +633,9 @@ let g:instant_markdown_autostart = 0
 " Plugin: vim-less {{{ "
 
 augroup LessAutocmd
-  autocmd!
-  autocmd FileType less nnoremap <leader>p :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
-  autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+autocmd!
+autocmd FileType less nnoremap <leader>p :w <bar> !lessc % > %:gs?less?css?:p<cr><space>
+autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 augroup END
 
 " }}} Plugin: vim-less "
@@ -524,8 +643,8 @@ augroup END
 " Plugin: vim-stylus {{{ "
 
 augroup StylusAutocmd
-  autocmd!
-  autocmd FileType stylus set omnifunc=csscomplete#CompleteCSS
+autocmd!
+autocmd FileType stylus set omnifunc=csscomplete#CompleteCSS
 augroup END
 
 " }}} Plugin: vim-stylus "
@@ -537,31 +656,31 @@ nnoremap <leader>t :TagbarToggle<cr>
 
 " Tags for Go
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
+\ 'ctagstype' : 'go',
+\ 'kinds'     : [
+\ 'p:package',
+\ 'i:imports:1',
+\ 'c:constants',
+\ 'v:variables',
+\ 't:types',
+\ 'n:interfaces',
+\ 'w:fields',
+\ 'e:embedded',
+\ 'm:methods',
+\ 'r:constructor',
+\ 'f:functions'
+\ ],
+\ 'sro' : '.',
+\ 'kind2scope' : {
+\ 't' : 'ctype',
+\ 'n' : 'ntype'
+\ },
+\ 'scope2kind' : {
+\ 'ctype' : 't',
+\ 'ntype' : 'n'
+\ },
+\ 'ctagsbin'  : 'gotags',
+\ 'ctagsargs' : '-sort -silent'
 \ }
 
 " }}} Plugin: tagbar "
@@ -582,10 +701,10 @@ let g:clang_format#style_options = {
 
 " Filetype specific options
 let g:clang_format#filetype_style_options = {
-\   'cpp' : {
-\   },
-\   'c' : {
-\   },
+\ 'cpp' : {
+\ },
+\ 'c' : {
+\ },
 \ }
 
 " }}} Plugin: vim-clang-format "
@@ -593,7 +712,7 @@ let g:clang_format#filetype_style_options = {
 " Plugin: vim-surround {{{ "
 
 " Surround with single/double quiote
-map g' ysiW'
-map g" ysiW"
+nmap g' ysiW'
+nmap g" ysiW"
 
 " }}} Plugin: vim-surround "
