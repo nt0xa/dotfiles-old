@@ -7,8 +7,9 @@ Plug 'mattn/webapi-vim'
 Plug 'xolox/vim-misc'
 
 " Interface
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree', 'NERDTreeToggle' ] }
 Plug 'ryanoasis/vim-devicons'
@@ -47,6 +48,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-indent'
 
 " Colorschemes
 Plug 'chriskempson/base16-vim'
@@ -139,7 +141,7 @@ set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 " Colors & syntax {{{ "
 
 " Enable syntax highlighting
-syntax on
+syntax enable
 
 " color scheme
 set t_co=256
@@ -248,10 +250,8 @@ filetype indent on
 
 if !exists('*s:reload_vimrc')
   function! s:reload_vimrc()
-    source %
-    if exists(':AirlineRefresh')
-      AirlineRefresh
-    endif
+    source $MYVIMRC
+    call s:lightline_update()
   endfunction
 endif
 
@@ -270,15 +270,45 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " }}} Plugin: UltiSnips "
 
-" Plugin: Airline {{{ "
+" Plugin: lightline.vim {{{ "
 
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_c = '%t'
-let g:airline_theme="base16"
+" let g:airline_powerline_fonts = 1
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline_section_c = '%t'
+" let g:airline_theme="base16"
 
-" }}} Plugin: Airline "
+" Update lightline colorscheme on fly
+function! s:lightline_update()
+  if !exists('g:loaded_lightline')
+    return
+  endif
+  try
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+  catch
+  endtry
+endfunction
+
+let s:p = {'normal': {}, 'insert': {}, 'replace': {}}
+
+let s:p.normal.left = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
+let s:p.normal.middle = [ ['#0000ff', '#ffffff', 7, 18, '' ] ]
+let s:p.normal.right = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
+
+let s:p.insert.left = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ],  ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+
+
+let s:p.replace.left = [ ['#0000ff', '#ffffff', 18, 1, 'bold' ] ]
+let g:lightline#colorscheme#base16#palette = s:p
+
+let g:lightline = {
+\ 'colorscheme': 'base16'
+\ }
+
+" }}} Plugin: lightline.vim "
 
 " Plugin: CrtlP {{{ "
 
