@@ -136,14 +136,10 @@ set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 " Enable syntax highlighting
 syntax enable
 
-" Number of colors (terminal)
-if !has('gui_running')
-  set t_Co=256
-endif
-
 " Colorscheme
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-let base16colorspace=256
+" let base16colorspace=256
 colorscheme base16-flat
 
 " Count of spaces per tab when editing
