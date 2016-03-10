@@ -4,31 +4,31 @@ DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 tmux_package=(
   git:tmux-plugins/tpm:$HOME/.tmux/plugins/tpm
-  link:$DIR/tmux.conf:$HOME/.tmux.conf
+  link:$DIR/tmux/tmux.conf:$HOME/.tmux.conf
 )
 
 vim_package=(
   git:junegunn/vim-plug:$HOME/.vim/autoload
-  link:$DIR/vimrc:$HOME/.vimrc
-  link:$DIR/ycm_extra_conf.py:$HOME/.vim/.ycm_extra_conf.py
-  link:$DIR/UltiSnips:$HOME/.vim/UltiSnips
+  link:$DIR/vim/vimrc:$HOME/.vimrc
+  link:$DIR/vim/ycm_extra_conf.py:$HOME/.vim/.ycm_extra_conf.py
+  link:$DIR/vim/UltiSnips:$HOME/.vim/UltiSnips
   link:$HOME/.vim:$HOME/.config/nvim
-  link:$DIR/vimrc:$HOME/.config/nvim/init.vim
+  link:$DIR/vim/vimrc:$HOME/.config/nvim/init.vim
 )
 
 zsh_package=(
   git:b4b4r07/zplug:$HOME/.zplug
-  link:$DIR/zshrc:$HOME/.zshrc
+  link:$DIR/zsh/zshrc:$HOME/.zshrc
 )
 
 misc_package=(
-  link:$DIR/agignore:$HOME/.agignore
-  link:$DIR/config.py:$HOME/.ptpython/config.py
-  link:$DIR/dircolors:$HOME/.dircolors
-  link:$DIR/gitconfig:$HOME/.gitconfig
-  link:$DIR/radare2rc:$HOME/.radare2rc
-  link:$DIR/todo.cfg:$HOME/.todo/config
-  link:$DIR/ideavimrc:$HOME/.ideavimrc
+  link:$DIR/misc/agignore:$HOME/.agignore
+  link:$DIR/misc/ptpython_config.py:$HOME/.ptpython/config.py
+  link:$DIR/misc/dircolors:$HOME/.dircolors
+  link:$DIR/misc/gitconfig:$HOME/.gitconfig
+  link:$DIR/misc/radare2rc:$HOME/.radare2rc
+  link:$DIR/misc/todo.cfg:$HOME/.todo/config
+  link:$DIR/misc/ideavimrc:$HOME/.ideavimrc
 )
 
 all=($(compgen -A variable | grep _package))
