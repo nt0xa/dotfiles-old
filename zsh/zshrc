@@ -7,6 +7,7 @@ export PAGER='less'
 export TERM='xterm-256color'
 export VISUAL='nvim'
 export DROPBOX="$HOME/Dropbox"
+export TERMINFO="$HOME/.terminfo"
 
 # }}} Variables #
 
@@ -58,7 +59,7 @@ bindkey -M viins '^E' end-of-line
 bindkey -M viins '^F' forward-char
 bindkey -M viins '^B' backward-char
 
-bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -342,3 +343,5 @@ bindkey -M vicmd 'p' clip-vi-put-after
 bindkey -M vicmd 'P' clip-vi-put-before
 
 #  }}} Copy & paste #
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -5,12 +5,12 @@ call plug#begin('~/.vim/plugged')
 " Plugins helpers
 Plug 'mattn/webapi-vim'
 Plug 'xolox/vim-misc'
+Plug 'russtone/vim-base16-palette'
 
 " Interface
-Plug 'itchyny/lightline.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree', 'NERDTreeToggle' ] }
-Plug 'ryanoasis/vim-devicons'
+Plug 'justinmk/vim-dirvish'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
@@ -23,6 +23,7 @@ Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
 Plug 'vasconcelloslf/vim-interestingwords'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'unblevable/quick-scope'
+Plug 'easymotion/vim-easymotion'
 
 " Completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
@@ -40,6 +41,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'machakann/vim-swap'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -63,40 +65,40 @@ Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'scrooloose/syntastic'
 
 " CSS
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less'
+Plug 'wavded/vim-stylus'
 
 " JavaScript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mxw/vim-jsx'
 
 " HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'digitaltoad/vim-jade', { 'for': 'html' }
-Plug 'tmhedberg/matchit', { 'for': 'html' }
+Plug 'othree/html5.vim'
+Plug 'digitaltoad/vim-jade'
+Plug 'tmhedberg/matchit'
 
 " Markdown
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
 " Toml
-Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'cespare/vim-toml'
 
 " Go
 Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Python
-Plug 'hdima/python-syntax', { 'for': 'python' }
+Plug 'hdima/python-syntax'
 
 " C/C++
-Plug 'justinmk/vim-syntax-extra', { 'for': [ 'c', 'cpp' ] }
+Plug 'justinmk/vim-syntax-extra'
+Plug 'petRUShka/vim-opencl'
 Plug 'rhysd/vim-clang-format', { 'for': [ 'c', 'cpp' ] }
-Plug 'petRUShka/vim-opencl', { 'for': [ 'c', 'cpp' ] }
 
 " Smali
-Plug 'kelwin/vim-smali', { 'for': 'smali' }
+Plug 'kelwin/vim-smali'
 
 call plug#end()
 
@@ -107,8 +109,9 @@ call plug#end()
 " File encodings
 set fileencodings=utf-8,cp1251
 
-" Show line numbers
+" Show line numbers (hybrid)
 set relativenumber
+set number
 
 " Always show status line
 set laststatus=2
@@ -139,6 +142,23 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " let base16colorspace=256
 colorscheme base16-flat
+" let g:terminal_color_0 = "#669acd"
+" let g:terminal_color_1 = "#669acd"
+" let g:terminal_color_2 = "#669acd"
+" let g:terminal_color_3 = "#669acd"
+" let g:terminal_color_4 = "#669acd"
+" let g:terminal_color_5 = "#669acd"
+" let g:terminal_color_6 = "#669acd"
+" let g:terminal_color_7 = "#669acd"
+" let g:terminal_color_8 = "#669acd"
+" let g:terminal_color_9 = "#669acd"
+" let g:terminal_color_10 = "#669acd"
+" let g:terminal_color_11 = "#669acd"
+" let g:terminal_color_12 = "#669acd"
+" let g:terminal_color_13 = "#669acd"
+" let g:terminal_color_14 = "#669acd"
+" let g:terminal_color_15 = "#669acd"
+" let g:terminal_color_16 = "#669acd"
 
 " Count of spaces per tab when editing
 set softtabstop=2
@@ -199,8 +219,8 @@ set foldenable
 " Rebind leader key to space
 let mapleader=' '
 
-" Use jj to exit from insert mode
-inoremap jj <Esc>
+" Use jk to exit from insert mode
+inoremap jk <Esc>
 
 " Write file
 nnoremap <Leader>w :w!<CR>
@@ -221,35 +241,204 @@ nnoremap <Leader>l :<C-u>nohlsearch<CR>
 
 " Autocmd: vimrc {{{ "
 
-if !exists('*s:reload_vimrc')
-  function! s:reload_vimrc()
+if !exists('*s:ReloadVimrc')
+  function! s:ReloadVimrc()
     source $MYVIMRC
-    " Reload lightline
-    if exists('*s:lightline_update')
-      call s:lightline_update()
+    if exists('*s:RefreshStatusLine')
+      call s:RefreshStatusLine()
     endif
   endfunction
 endif
 
-augroup VimrcAutocmdGroup
+augroup augroup_vimrc
   autocmd!
-  autocmd BufWritePost *vimrc,*init.vim call s:reload_vimrc()
-augroup end
+  autocmd BufWritePost *vimrc call s:ReloadVimrc()
+augroup END
 
 " }}} Autocmd: vimrc "
 
 " Autocmd: vim {{{ "
 
-function! s:vim_ft_setup()
+function! s:VimFilesOptions()
   setlocal foldmethod=marker
 endfunction
 
-augroup VimAutocmdGroup
+augroup augroup_vim_files_options
   autocmd!
-  autocmd FileType vim call s:vim_ft_setup()
-augroup end
+  autocmd FileType vim call s:VimFilesOptions()
+augroup END
 
 " }}} Autocmd: vim "
+
+" Autocmd: SignColumn {{{ "
+
+function! s:ShowSignColumn()
+  sign define always_shown_sign
+  exec 'sign place 9999 line=1 name=always_shown_sign buffer=' . bufnr('')
+endfunction
+
+augroup augroup_always_show_sign_column
+  autocmd!
+  autocmd BufEnter * call s:ShowSignColumn()
+augroup END
+
+" }}} Autocmd: SignColumn "
+
+" Helpers {{{ "
+
+function! s:mode2name(mode)
+  let l:mode_map = {
+        \ 'n': 'NORMAL',
+        \ 'i': 'INSERT',
+        \ 'R': 'REPLACE',
+        \ 'v': 'VISUAL',
+        \ 'V': 'V-LINE',
+        \ 'c': 'COMMAND',
+        \ "\<C-v>": 'V-BLOCK',
+        \ 's': 'SELECT',
+        \ 'S': 'S-LINE',
+        \ "\<C-s>": 'S-BLOCK',
+        \ 't': 'TERMINAL',
+        \ '?': ' '
+        \ }
+  return mode_map[a:mode]
+endfunction
+
+function! s:spacewrap(str)
+  return ' ' . a:str . ' '
+endfunction
+
+" }}} Helpers "
+
+" Statusline {{{1 "
+
+" Colors {{{2 "
+
+let s:c = base16_palette#flat#colors()
+
+exec 'hi StatusLineMode_NORMAL  guibg=' . s:c.gui0D . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_INSERT  guibg=' . s:c.gui0B . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_VISUAL  guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_V_LINE  guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_V_BLOCK guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_REPLACE guibg=' . s:c.gui08 . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_COMMAND guibg=' . s:c.gui09 . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMiddle       guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
+exec 'hi StatusLineFileType     guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
+
+" 2}}} Colors "
+
+" Refresh {{{2 "
+
+function! StatusLineBuild(active)
+  let l:statusline = ''
+
+  if a:active == 1
+    let l:statusline .= '%#StatusLineMode#'
+    let l:statusline .= '%{StatusLineMode()}'
+    let l:statusline .= '%#StatusLineMiddle#'
+  else
+  endif
+
+  return l:statusline
+endfunction
+
+function! StatusLines()
+  return [StatusLineBuild(0), StatusLineBuild(1)]
+endfunction
+
+
+function! StatusLineRefresh()
+  let l:statuslines = StatusLines()
+  for nr in range(1, winnr('$'))
+    let l:active = nr == winnr()
+    call setwinvar(nr, '&statusline', l:statuslines[l:active])
+  endfor
+endfunction
+
+augroup augroup_status_line
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * call StatusLineRefresh()
+augroup end
+
+function! Test()
+  redrawstatus
+  return ''
+endfunction
+
+nnoremap : :<C-\>eTest()<CR>
+
+" 2}}} Refresh "
+
+" Mode {{{2 "
+
+function! StatusLineMode()
+  let l:modename = s:mode2name(mode())
+  let l:filename = expand('%:t')
+  let l:filetype = &ft
+
+  if !StatusLineModeHide(l:filename, l:filetype)
+    call StatusLineModeColor(l:modename)
+    return StatusLineModeText(l:modename)
+  endif
+
+  return ''
+endfunction
+
+function! StatusLineModeHide(filename, filetype)
+  return a:filetype ==# 'help'
+endfunction
+
+function! StatusLineModeColor(modename)
+  let l:hlsuffix = substitute(a:modename, '-', '_', 'g')
+  exec 'hi link StatusLineMode StatusLineMode_' . l:hlsuffix
+endfunction
+
+function! StatusLineModeText(modename)
+  return ' ' . s:spacewrap(a:modename[0])
+endfunction
+
+" 2}}} Mode "
+
+" Branch {{{2 "
+
+function! StatusLineBranch()
+  let l:result = ''
+  if exists('*fugitive#head')
+    let l:result = s:spacewrap(join(['', fugitive#head()]))
+    let l:result .= s:StatusLineSeparator('left')
+  endif
+  return l:result
+endfunction
+
+" 2}}} Branch "
+
+" File {{{2 "
+
+function! StatusLineFile()
+  let l:fname = expand('%:t')
+  let l:result = s:spacewrap(l:fname)
+  let l:result .= s:StatusLineSeparator('left')
+  return l:result
+endfunction
+
+" 2}}} File "
+
+" Filetype {{{2 "
+
+function! StatusLineFileType()
+  return '%#StatusLineFileType#' . s:spacewrap(&ft)
+endfunction
+
+" 2}}} Filetype "
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+  return StatusLineBuild(1)
+endfunction
+
+" 1}}} Statusline "
 
 " Plugin: UltiSnips {{{ "
 
@@ -258,6 +447,27 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " }}} Plugin: UltiSnips "
+
+" Plugin: FZF {{{ "
+
+let g:fzf_layout = { 'down': '~30%' }
+
+" Go to file
+nnoremap <Leader>f :Files<CR>
+
+" Go to tag in project
+nnoremap <Leader>g :Tags<CR>
+
+" Go to tag in buffer
+nnoremap <Leader>e :BTags<CR>
+
+" Search with ag
+nnoremap <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+
+" Go to buffer
+nnoremap <Leader>c :Buffers<CR>
+
+" }}} Plugin: FZF "
 
 " Plugin: lightline.vim {{{ "
 
@@ -274,216 +484,107 @@ function! s:lightline_update()
   endtry
 endfunction
 
+let s:c = base16_palette#flat#colors()
+
 let s:p = {
       \ 'normal': {},
       \ 'insert': {},
       \ 'replace': {},
-      \ 'visual': {}
+      \ 'visual': {},
+      \ 'inactive': {}
       \ }
 
-vnoremap // y/<C-R>"<CR>
+let s:p.normal.left   = [ [ s:c.gui01, s:c.gui0D, s:c.cterm01, s:c.cterm0D, 'bold' ] ]
+let s:p.normal.middle = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01 ] ]
+let s:p.normal.right  = [ [ s:c.gui01, s:c.gui0D, s:c.cterm01, s:c.cterm0D, 'bold' ] ]
 
-let s:p.normal.middle = [ ['#0000ff', '#ffffff', 7, 18, '' ] ]
+let s:p.insert.left   = [ [ s:c.gui01, s:c.gui0B, s:c.cterm01, s:c.cterm0B, 'bold' ] ]
+let s:p.insert.middle = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01 ] ]
+let s:p.insert.right  = [ [ s:c.gui01, s:c.gui0B, s:c.cterm01, s:c.cterm0B, 'bold' ] ]
 
-let s:p.normal.left = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
-let s:p.normal.right = [ ['#0000ff', '#ffffff', 18, 4, 'bold' ] ]
+let s:p.replace.left   = [ [ s:c.gui01, s:c.gui08, s:c.cterm01, s:c.cterm08, 'bold' ] ]
+let s:p.replace.middle = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01 ] ]
+let s:p.replace.right  = [ [ s:c.gui01, s:c.gui08, s:c.cterm01, s:c.cterm08, 'bold' ] ]
 
-let s:p.insert.left = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
-let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+let s:p.visual.left   = [ [ s:c.gui01, s:c.gui0A, s:c.cterm01, s:c.cterm0A, 'bold' ] ]
+let s:p.visual.middle = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01 ] ]
+let s:p.visual.right  = [ [ s:c.gui01, s:c.gui0A, s:c.cterm01, s:c.cterm0A, 'bold' ] ]
 
-let s:p.insert.left = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
-let s:p.insert.right = [ ['#0000ff', '#ffffff', 18, 2, 'bold' ] ]
+let s:p.inactive.left   = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01, 'bold' ] ]
+let s:p.inactive.middle = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01 ] ]
+let s:p.inactive.right  = [ [ s:c.gui06, s:c.gui01, s:c.cterm06, s:c.cterm01, 'bold' ] ]
 
-
-let s:p.replace.left = [ ['#0000ff', '#ffffff', 18, 1, 'bold' ] ]
-let s:p.replace.right = [ ['#0000ff', '#ffffff', 18, 1, 'bold' ] ]
-
-let s:p.visual.left = [ ['#0000ff', '#ffffff', 18, 3, 'bold' ] ]
-let s:p.visual.right = [ ['#0000ff', '#ffffff', 18, 3, 'bold' ] ]
-
-let g:lightline#colorscheme#base16#palette = s:p
+let g:lightline#colorscheme#base16_flat#palette = s:p
 
 let g:lightline = {
-      \ 'colorscheme': 'base16',
+      \ 'colorscheme': 'base16_flat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'branch' ]
+      \   ],
+      \   'right': []
+      \ },
+      \ 'inactive': {
+      \   'left': [],
+      \   'right': []
       \ },
       \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
-      \   'ctrlpmark': 'CtrlPMark',
+      \   'paste': 'LightLinePaste',
+      \   'branch': 'LightLineBranch',
+      \   'tagbar': 'LightLineTagbar'
       \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'separator': { 'left': '', 'right': ''},
+      \ 'subseparator': { 'left': '|', 'right': '|' },
       \ }
+
+function! LightLineTagbar()
+  return expand('%:t') ==# '__Tagbar__' ? 'Tagbar' : ''
+endfunction
+
+function! LightLineMode()
+  if winwidth(0) < 20
+    return ''
+  endif
+  let l:fname = expand('%:t')
+  if l:fname ==# '__Tagbar__'
+    return 'Tagbar'
+  endif
+  return lightline#mode()[0]
+endfunction
+
+function! LightLinePaste()
+  return &paste ? 'P' : ''
+endfunction
+
+" let g:tagbar_status_func = 'TagbarStatusFunc'
+" function! TagbarStatusFunc(current, sort, fname, ...) abort
+"     let g:lightline.fname = a:fname
+"   return lightline#statusline(0)
+" endfunction
+
+function! LightLineBranch()
+  if !exists('*fugitive#head')
+    return ''
+  endif
+  let l:fname = expand('%:t')
+  if l:fname =~? 'Tagbar'
+    return ''
+  endif
+  let l:branch = fugitive#head()
+  return strlen(branch) ? join(['', l:branch]) : ''
+endfunction
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? '⭤' : ''
+  return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
-
-function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-      \ 'main': 'CtrlPStatusFunc_1',
-      \ 'prog': 'CtrlPStatusFunc_2',
-      \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-function! TagbarStatusFunc(current, sort, fname, ...) abort
-  let g:lightline.fname = a:fname
-  return lightline#statusline(0)
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
 
 " }}} Plugin: lightline.vim "
-
-" Plugin: CrtlP {{{ "
-
-" CtrlP extensions
-let g:ctrlp_extensions = ['tag', 'buffertag']
-
-" Search in buffer tags
-let g:ctrlp_map = '<leader>f'
-nnoremap <leader>m :CtrlPBuffer<cr>
-nnoremap <leader>g :CtrlPTag<cr>
-nnoremap <leader>e :CtrlPBufTag<cr>
-
-let g:ctrlp_prompt_mappings = {
-      \ 'PrtBS()':              ['<bs>', '<c-]>'],
-      \ 'PrtDelete()':          ['<del>'],
-      \ 'PrtDeleteWord()':      ['<c-w>'],
-      \ 'PrtClear()':           ['<c-u>'],
-      \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-      \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
-      \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
-      \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
-      \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
-      \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-      \ 'PrtHistory(-1)':       [''],
-      \ 'PrtHistory(1)':        [''],
-      \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-      \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-      \ 'AcceptSelection("t")': ['<c-t>'],
-      \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-      \ 'ToggleFocus()':        ['<s-tab>'],
-      \ 'ToggleRegex()':        ['<c-r>'],
-      \ 'ToggleByFname()':      ['<c-d>'],
-      \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-      \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-      \ 'PrtExpandDir()':       ['<tab>'],
-      \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
-      \ 'PrtInsert()':          ['<c-\>'],
-      \ 'PrtCurStart()':        ['<c-a>'],
-      \ 'PrtCurEnd()':          ['<c-e>'],
-      \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-      \ 'PrtCurRight()':        ['<c-l>', '<right>'],
-      \ 'PrtClearCache()':      ['<F5>'],
-      \ 'PrtDeleteEnt()':       ['<F7>'],
-      \ 'CreateNewFile()':      ['<c-y>'],
-      \ 'MarkToOpen()':         ['<c-z>'],
-      \ 'OpenMulti()':          ['<c-o>'],
-      \ 'PrtExit()':            ['<esc>', '<c-c>'],
-      \ }
-
-
-" }}} Plugin: CrtlP "
 
 " Plugin: YouCompleteMe {{{ "
 
@@ -530,21 +631,31 @@ let g:syntastic_check_on_wq = 0
 " Plugin: incsearch.vim {{{ "
 
 " Use incsearch instead default search
-map /  <plug>(incsearch-forward)
-map ?  <plug>(incsearch-backward)
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
 
 " Auto disable highlighting
 let g:incsearch#auto_nohlsearch = 1
-map n  <plug>(incsearch-nohl-n)
-map N  <plug>(incsearch-nohl-N)
-map *  <plug>(incsearch-nohl-*)
-map #  <plug>(incsearch-nohl-#)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <PLug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+
+" Additional mappings in command mode
+let g:incsearch_cli_key_mappings = {
+      \ "\<Tab>": {
+      \   'key': '<Over>(buffer-complete)',
+      \   'noremap': 1
+      \ },
+      \ "\<C-j>": "\<CR>",
+      \ }
 
 " }}} Plugin: incsearch.vim "
 
 " Plugin: vim-over {{{ "
 
-vnoremap <silent> gr :OverCommandLine<cr>s/\%V
+vnoremap <silent> gR :OverCommandLine<cr>s/\%V
+vnoremap <silent> gr :OverCommandLine<cr>s/
 nnoremap <silent> gr :OverCommandLine<cr>s/
 
 " }}} Plugin: vim-over "
@@ -648,34 +759,38 @@ augroup END
 " Toggle tagbar
 nnoremap <leader>t :TagbarToggle<cr>
 
+let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1
+let g:tagbar_autoshowtag = 1
+
 " Tags for Go
 let g:tagbar_type_go = {
-\ 'ctagstype' : 'go',
-\ 'kinds'     : [
-\ 'p:package',
-\ 'i:imports:1',
-\ 'c:constants',
-\ 'v:variables',
-\ 't:types',
-\ 'n:interfaces',
-\ 'w:fields',
-\ 'e:embedded',
-\ 'm:methods',
-\ 'r:constructor',
-\ 'f:functions'
-\ ],
-\ 'sro' : '.',
-\ 'kind2scope' : {
-\ 't' : 'ctype',
-\ 'n' : 'ntype'
-\ },
-\ 'scope2kind' : {
-\ 'ctype' : 't',
-\ 'ntype' : 'n'
-\ },
-\ 'ctagsbin'  : 'gotags',
-\ 'ctagsargs' : '-sort -silent'
-\ }
+      \ 'ctagstype' : 'go',
+      \ 'kinds'     : [
+      \   'p:package',
+      \   'i:imports:1',
+      \   'c:constants',
+      \   'v:variables',
+      \   't:types',
+      \   'n:interfaces',
+      \   'w:fields',
+      \   'e:embedded',
+      \   'm:methods',
+      \   'r:constructor',
+      \   'f:functions'
+      \ ],
+      \ 'sro' : '.',
+      \ 'kind2scope' : {
+      \   't' : 'ctype',
+      \   'n' : 'ntype'
+      \ },
+      \ 'scope2kind' : {
+      \   'ctype' : 't',
+      \   'ntype' : 'n'
+      \ },
+      \ 'ctagsbin'  : 'gotags',
+      \ 'ctagsargs' : '-sort -silent'
+      \ }
 
 " }}} Plugin: tagbar "
 
@@ -691,15 +806,15 @@ let g:clang_format#code_style = 'google'
 
 " Common style options
 let g:clang_format#style_options = {
-\ }
+  \ }
 
 " Filetype specific options
 let g:clang_format#filetype_style_options = {
-\ 'cpp' : {
-\ },
-\ 'c' : {
-\ },
-\ }
+  \ 'cpp' : {
+  \ },
+  \ 'c' : {
+  \ },
+  \ }
 
 " }}} Plugin: vim-clang-format "
 
@@ -710,3 +825,25 @@ nmap g' ysiW'
 nmap g" ysiW"
 
 " }}} Plugin: vim-surround "
+
+" Plugin: EasyMotion {{{ "
+
+" Disable default mappings
+let g:EasyMotion_do_mapping = 0
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" Press 2 keystrokes and jump
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Smartsign (type `3` and match `3`&`#`)
+let g:EasyMotion_use_smartsign_us = 1
+
+" JK motions: Line motions
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" }}} Plugin: EasyMotion "
