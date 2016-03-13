@@ -142,23 +142,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " let base16colorspace=256
 colorscheme base16-flat
-" let g:terminal_color_0 = "#669acd"
-" let g:terminal_color_1 = "#669acd"
-" let g:terminal_color_2 = "#669acd"
-" let g:terminal_color_3 = "#669acd"
-" let g:terminal_color_4 = "#669acd"
-" let g:terminal_color_5 = "#669acd"
-" let g:terminal_color_6 = "#669acd"
-" let g:terminal_color_7 = "#669acd"
-" let g:terminal_color_8 = "#669acd"
-" let g:terminal_color_9 = "#669acd"
-" let g:terminal_color_10 = "#669acd"
-" let g:terminal_color_11 = "#669acd"
-" let g:terminal_color_12 = "#669acd"
-" let g:terminal_color_13 = "#669acd"
-" let g:terminal_color_14 = "#669acd"
-" let g:terminal_color_15 = "#669acd"
-" let g:terminal_color_16 = "#669acd"
+let s:c = base16_palette#flat#colors()
+let g:terminal_color = 'xterm'
 
 " Count of spaces per tab when editing
 set softtabstop=2
@@ -314,17 +299,16 @@ endfunction
 
 " Colors {{{2 "
 
-let s:c = base16_palette#flat#colors()
-
-exec 'hi StatusLineMode_NORMAL  guibg=' . s:c.gui0D . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_INSERT  guibg=' . s:c.gui0B . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_VISUAL  guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_V_LINE  guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_V_BLOCK guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_REPLACE guibg=' . s:c.gui08 . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMode_COMMAND guibg=' . s:c.gui09 . ' guifg=' . s:c.gui01 . ' gui=bold'
-exec 'hi StatusLineMiddle       guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
-exec 'hi StatusLineFileType     guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
+exec 'hi StatusLineMode_NORMAL   guibg=' . s:c.gui0D . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_INSERT   guibg=' . s:c.gui0B . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_VISUAL   guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_V_LINE   guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_V_BLOCK  guibg=' . s:c.gui0A . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_REPLACE  guibg=' . s:c.gui08 . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_COMMAND  guibg=' . s:c.gui09 . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMode_TERMINAL guibg=' . s:c.gui0C . ' guifg=' . s:c.gui01 . ' gui=bold'
+exec 'hi StatusLineMiddle        guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
+exec 'hi StatusLineFileType      guibg=' . s:c.gui01 . ' guifg=' . s:c.gui07
 
 " 2}}} Colors "
 
