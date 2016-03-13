@@ -139,11 +139,12 @@ syntax enable
 
 " Colorscheme
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set background=dark
 " let base16colorspace=256
 colorscheme base16-flat
 let s:c = base16_palette#flat#colors()
-let g:terminal_color = 'xterm'
+let g:terminal_color = 'xterm-256colors'
 
 " Count of spaces per tab when editing
 set softtabstop=2
@@ -244,13 +245,13 @@ augroup END
 
 " Autocmd: vim {{{ "
 
-function! s:VimFilesOptions()
+function! SetVimFilesOptions()
   setlocal foldmethod=marker
 endfunction
 
-augroup augroup_vim_files_options
+augroup augroup_filetype_vim
   autocmd!
-  autocmd FileType vim call s:VimFilesOptions()
+  autocmd FileType vim call SetVimFilesOptions()
 augroup END
 
 " }}} Autocmd: vim "
