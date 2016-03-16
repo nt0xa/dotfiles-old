@@ -8,9 +8,10 @@ Plug 'xolox/vim-misc'
 Plug 'russtone/vim-base16-palette'
 
 " Interface
-Plug 'justinmk/vim-dirvish'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+set rtp+=/usr/local/opt/fzf
+
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
 
 " Navigation
 Plug 'yonchu/accelerated-smooth-scroll'
