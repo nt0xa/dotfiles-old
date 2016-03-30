@@ -7,13 +7,9 @@ tmux_package=(
   link:$DIR/tmux/tmux.conf:$HOME/.tmux.conf
 )
 
-vim_package=(
-  git:junegunn/vim-plug:$HOME/.vim/autoload
-  link:$DIR/vim/vimrc:$HOME/.vimrc
-  link:$DIR/vim/ycm_extra_conf.py:$HOME/.vim/.ycm_extra_conf.py
-  link:$DIR/vim/UltiSnips:$HOME/.vim/UltiSnips
-  link:$HOME/.vim:$HOME/.config/nvim
-  link:$DIR/vim/vimrc:$HOME/.config/nvim/init.vim
+nvim_package=(
+  link:$DIR/nvim/UltiSnips:$HOME/.vim/UltiSnips
+  link:$DIR/nvim/init.vim:$HOME/.config/nvim/init.vim
 )
 
 zsh_package=(
