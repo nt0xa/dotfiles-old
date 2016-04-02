@@ -1,11 +1,11 @@
 " Plugins {{{ "
 
 " Auto-install vim-plug
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Interface
 Plug 'junegunn/fzf.vim'

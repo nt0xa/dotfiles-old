@@ -104,13 +104,10 @@ OTHER_WRITABLE          01;34
 .bash           00;32
 .php            00;32
 .java           00;32
-.zcml           00;32 # Zope configuration language
 .pl             00;32
 .lua            00;32
 .clj            00;32
 .cs             00;32 # csharp
-.fs             00;32 # fsharp
-.fsx            00;32 # fsharp script
 .go             00;32
 
 ## Machine generated files / non-important (bright black)
@@ -138,4 +135,3 @@ OTHER_WRITABLE          01;34
 .class      01;30
 .cache      01;30
 .egg-info   01;30
-
