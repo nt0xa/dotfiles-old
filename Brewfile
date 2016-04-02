@@ -1,7 +1,0 @@
-brew 'coreutils'
-brew 'ctags'
-brew 'git'
-brew 'the_silver_searcher'
-brew 'tmux'
-brew 'neovim/neovim/neovim'
-brew 'zsh'

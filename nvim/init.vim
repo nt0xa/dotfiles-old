@@ -37,7 +37,8 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
 
-" Colorschemes
+" Colorscheme
+Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " Git
@@ -84,10 +85,11 @@ set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
 syntax enable
 
 " Colorscheme
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 set background=dark
 try
-  let base16colorspace=256
-  colorscheme base16-eighties
+  colorscheme gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme desert
 endtry
@@ -146,7 +148,53 @@ set foldenable
 
 " }}} Options "
 
-" Vanilla mappings {{{"
+" Colours {{{ "
+
+let s:colours = {
+      \ "gui": {
+      \   "dark0_hard":     "#1d2021",
+      \   "dark0":          "#282828",
+      \   "dark0_soft":     "#32302f",
+      \   "dark1":          "#3c3836",
+      \   "dark2":          "#504945",
+      \   "dark3":          "#665c54",
+      \   "dark4":          "#7c6f64",
+      \   "gray_245":       "#928374",
+      \   "gray_244":       "#928374",
+      \   "light0_hard":    "#f9f5d7",
+      \   "light0":         "#fbf1c7",
+      \   "light0_soft":    "#f2e5bc",
+      \   "light1":         "#ebdbb2",
+      \   "light2":         "#d5c4a1",
+      \   "light3":         "#bdae93",
+      \   "light4":         "#a89984",
+      \   "bright_red":     "#fb4934",
+      \   "bright_green":   "#b8bb26",
+      \   "bright_yellow":  "#fabd2f",
+      \   "bright_blue":    "#83a598",
+      \   "bright_purple":  "#d3869b",
+      \   "bright_aqua":    "#8ec07c",
+      \   "bright_orange":  "#fe8019",
+      \   "neutral_red":    "#cc241d",
+      \   "neutral_green":  "#98971a",
+      \   "neutral_yellow": "#d79921",
+      \   "neutral_blue":   "#458588",
+      \   "neutral_purple": "#b16286",
+      \   "neutral_aqua":   "#689d6a",
+      \   "neutral_orange": "#d65d0e",
+      \   "faded_red":      "#9d0006",
+      \   "faded_green":    "#79740e",
+      \   "faded_yellow":   "#b57614",
+      \   "faded_blue":     "#076678",
+      \   "faded_purple":   "#8f3f71",
+      \   "faded_aqua":     "#427b58",
+      \   "faded_orange":   "#af3a03",
+      \ }
+      \ }
+
+" }}} Colours "
+
+" Key mappings {{{"
 
 " Rebind leader key to space
 let mapleader=' '
@@ -169,7 +217,7 @@ inoremap <C-y> <C-o>p
 " Disable hlsearch
 nnoremap <Leader>l :<C-u>nohlsearch<CR>
 
-" }}} Vanilla mappings "
+" }}} Key mappings "
 
 " Autocmd: SignColumn {{{ "
 
@@ -206,7 +254,7 @@ function! s:mode2name(mode)
 endfunction
 
 function! s:spacewrap(str)
-  return ' ' . a:str . ' '
+  return printf('  %s ', a:str)
 endfunction
 
 " }}} Helpers "
@@ -215,16 +263,26 @@ endfunction
 
 " Colors {{{2 "
 
-exec 'hi StatusLineMode_NORMAL   ctermbg=4  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_INSERT   ctermbg=2  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_VISUAL   ctermbg=3  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_V_LINE   ctermbg=3  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_V_BLOCK  ctermbg=3  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_REPLACE  ctermbg=1  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_COMMAND  ctermbg=6  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMode_TERMINAL ctermbg=5  ctermfg=18 cterm=bold'
-exec 'hi StatusLineMiddle        ctermbg=18 ctermfg=18'
-exec 'hi StatusLineFileType      ctermbg=8  ctermfg=18'
+exec 'hi StatusLineMode_NORMAL   guibg=' . s:colours.gui.neutral_blue .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_INSERT   guibg=' . s:colours.gui.neutral_green .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_VISUAL   guibg=' . s:colours.gui.neutral_orange .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_V_LINE   guibg=' . s:colours.gui.neutral_orange .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_V_BLOCK   guibg=' . s:colours.gui.neutral_orange .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_REPLACE   guibg=' . s:colours.gui.neutral_red .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_COMMAND   guibg=' . s:colours.gui.neutral_aqua .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMode_TERMINAL   guibg=' . s:colours.gui.neutral_purple .
+      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
+exec 'hi StatusLineMiddle   guibg=' . s:colours.gui.dark1 .
+      \ '  guifg=' . s:colours.gui.light0
+exec 'hi StatusLineBranch   guibg=' . s:colours.gui.neutral_green .
+      \ '  guifg=' . s:colours.gui.dark0
 
 " 2}}} Colors "
 
@@ -237,6 +295,10 @@ function! StatusLineBuild(active)
     let l:statusline .= '%#StatusLineMode#'
     let l:statusline .= '%{StatusLineMode()}'
     let l:statusline .= '%#StatusLineMiddle#'
+    let l:statusline .= '%{StatusLineFile()}'
+    let l:statusline .= '%='
+    let l:statusline .= '%#StatusLineBranch#'
+    let l:statusline .= '%{StatusLineBranch()}'
   else
   endif
 
@@ -256,12 +318,12 @@ augroup augroup_status_line
   autocmd VimEnter,WinEnter,BufWinEnter * call StatusLineRefresh()
 augroup end
 
-function! Test()
+function! RedrawStatus()
   redrawstatus
   return ''
 endfunction
 
-nnoremap : :<C-\>eTest()<CR>
+nnoremap : :<C-\>eRedrawStatus()<CR>
 
 " 2}}} Refresh "
 
@@ -290,42 +352,39 @@ function! StatusLineModeColor(modename)
 endfunction
 
 function! StatusLineModeText(modename)
-  return ' ' . s:spacewrap(a:modename[0])
+  return s:spacewrap(a:modename[0])
 endfunction
 
 " 2}}} Mode "
 
-" Branch {{{2 "
-
-function! StatusLineBranch()
-  let l:result = ''
-  if exists('*fugitive#head')
-    let l:result = s:spacewrap(join(['', fugitive#head()]))
-    let l:result .= s:StatusLineSeparator('left')
-  endif
-  return l:result
-endfunction
-
-" 2}}} Branch "
-
 " File {{{2 "
 
 function! StatusLineFile()
-  let l:fname = expand('%:t')
-  let l:result = s:spacewrap(l:fname)
-  let l:result .= s:StatusLineSeparator('left')
-  return l:result
+  return s:spacewrap(expand('%:t'))
 endfunction
 
 " 2}}} File "
 
-" Filetype {{{2 "
+" Branch {{{2 "
 
-function! StatusLineFileType()
-  return '%#StatusLineFileType#' . s:spacewrap(&ft)
+function! StatusLineBranch()
+  let l:filename = expand('%:t')
+  let l:filetype = &ft
+  if !StatusLineBranchHide(l:filename, l:filetype)
+    return StatusLineBranchText()
+  endif
+  return ''
 endfunction
 
-" 2}}} Filetype "
+function! StatusLineBranchHide(filename, filetype)
+  return !exists('*fugitive#head') || a:filetype ==# 'help'
+endfunction
+
+function! StatusLineBranchText()
+  return s:spacewrap(join(['', fugitive#head()]))
+endfunction
+
+" 2}}} Branch "
 
 " 1}}} Statusline "
 
@@ -362,15 +421,15 @@ nnoremap <Leader>c :Buffers<CR>
 
 " Plugin: vim-over {{{ "
 
-vnoremap <silent> gR :OverCommandLine<cr>s/\%V
-vnoremap <silent> gr :OverCommandLine<cr>s/
-nnoremap <silent> gr :OverCommandLine<cr>s/
+vnoremap <silent> gR :OverCommandLine<CR>s/\%V
+vnoremap <silent> gr :OverCommandLine<CR>s/
+nnoremap <silent> gr :OverCommandLine<CR>s/
 
 " }}} Plugin: vim-over "
 
 " Plugin: vim-easy-align {{{ "
 
-vnoremap ga :EasyAlign<space>
+vnoremap ga :EasyAlign<Space>
 
 " }}} Plugin: vim-easy-align "
 
