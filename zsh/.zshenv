@@ -3,9 +3,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# XDG workarouds
-export ZPLUG_HOME="$XDG_CONFIG_HOME/zsh/zplug"
-export NVIM_LOG_FILE="$XDG_DATA_HOME/nvim/log"
+# zplug
+export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
+
+# TPM
+export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 
 # Common
 export EDITOR='nvim'
@@ -19,10 +21,10 @@ export LANG='en_US.UTF-8'
 export TERM='xterm-256color'
 
 # Terminfo
-export TERMINFO="$HOME/.config/terminfo"
+# export TERMINFO="$XDG_CONFIG_HOME/.terminfo"
 
-# Programming specific
-export GOPATH="$HOME/.go"
+# Golang
+export GOPATH="$XDG_DATA_HOME/golang"
 
 # Path
 path=(

@@ -85,7 +85,7 @@ zstyle ':completion:*' matcher-list \
 zstyle ':completion::complete:*' use-cache on
 
 # Cache file path
-zstyle ':completion::complete:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+zstyle ':completion::complete:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 
 # Use menu if more than one result
 zstyle ':completion:*:*:*:*:*' menu select
@@ -163,7 +163,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # History {{{ #
 
 # Variables
-HISTFILE="$XDG_CACHE_HOME/zsh/history"  # The path to the hstory file
+HISTFILE="$XDG_DATA_HOME/zsh/history"  # The path to the hstory file
 HISTSIZE=10000                          # The maximum number of events to save in the internal history
 SAVEHIST=10000                          # The maximum number of events to save in the history file
 
