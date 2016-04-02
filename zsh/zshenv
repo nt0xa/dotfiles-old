@@ -28,6 +28,5 @@ export GOPATH="$HOME/.go"
 path=(
   /usr/local/{bin,sbin}
   $GOPATH/bin
-  $CABALPATH/bin
   $path
 )
