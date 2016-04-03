@@ -2,7 +2,7 @@
 Just my configuration files.
 
 # Install
-```
+```sh
 # Clone
 git clone git@github.com:russtone/dotfiles.git ~/.config
 
