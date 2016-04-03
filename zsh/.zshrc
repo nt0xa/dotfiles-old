@@ -44,6 +44,7 @@ typeset -U path
 path=(
   /usr/local/{bin,sbin}
   $GOPATH/bin
+  $HOME/Library/Android/sdk/platform-tools
   $path
 )
 
