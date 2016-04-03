@@ -1,12 +1,12 @@
 " Exit from insert mode with jj
-inoremap jj <Esc>
+inoremap jk <Esc>
 
 " Move
 nnoremap <C-d> 10j
 nnoremap <C-u> 10k
 
 " Reload .ideavimrc
-nnoremap <Space>vs :source ~/.ideavimrc<CR>
+nnoremap <Space>vs :source ~/.config/ideavim/ideavimrc<CR>
 
 " Save file
 nnoremap <Space>w :w<CR>
@@ -16,5 +16,8 @@ nnoremap <Space>f :action GotoFile<CR>
 nnoremap <Space>g :action GotoSymbol<CR>
 nnoremap <Space>e :action FileStructurePopup<CR>
 
-" Build
+" Run
 nnoremap <Space>r :action Run<CR>
+
+nnoremap <Space>o :action MethodHierarchy.OverrideMethodAction<CR>
+nnoremap <Space>i :action MethodHierarchy.ImplementMethodAction<CR>
