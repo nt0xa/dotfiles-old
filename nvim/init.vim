@@ -89,6 +89,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set background=dark
 try
+  let g:gruvbox_invert_selection = 0
   colorscheme gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme desert
