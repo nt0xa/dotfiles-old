@@ -64,7 +64,7 @@ fi
 source $ZPLUG_HOME/zplug
 
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 zplug load
