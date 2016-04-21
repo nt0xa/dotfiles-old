@@ -1,4 +1,4 @@
-#  XDG {{{ # 
+#  XDG {{{ #
 
 # XDG dirs
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -27,7 +27,7 @@ alias scp="scp -F $XDG_CONFIG_HOME/ssh/config"
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
-#  }}} XDG # 
+#  }}} XDG #
 
 #  Environment {{{ #
 
@@ -45,8 +45,8 @@ fi
 
 typeset -U path
 path=(
+  $HOME/.local/bin
   /usr/local/{bin,sbin}
-  $XDG_DATA_HOME/linuxbrew/bin
   $GOPATH/bin
   $HOME/Library/Android/sdk/platform-tools
   $path

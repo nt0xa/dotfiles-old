@@ -408,7 +408,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Plugin: FZF {{{ "
 
-set rtp+=/usr/local/opt/fzf
+let &runtimepath.=',' . system('brew --prefix') . '/opt/fzf'
 
 let g:fzf_layout = { 'down': '~30%' }
 
