@@ -1,3 +1,7 @@
 dconf/
+evolution/
 gtk-2.0/
 nautilus/
+
+user-dirs.dirs
+user-dirs.locale
