@@ -437,7 +437,7 @@ let g:neomake_error_sign = {
       \ }
 
 let g:neomake_warning_sign = {
-      \ 'text': '✘',
+      \ 'text': '❢',
       \ 'texthl': 'NeomakeWarningSign',
       \ }
 
@@ -448,8 +448,8 @@ exec 'hi NeomakeErrorSign' .
       \ ' gui=bold'
 
 exec 'hi NeomakeWarningSign' .
-      \ ' guibg=' . s:colours.gui.neutral_yellow .
-      \ ' guifg=' . s:colours.gui.light0 .
+      \ ' guibg=' . s:colours.gui.dark1 .
+      \ ' guifg=' . s:colours.gui.neutral_yellow .
       \ ' gui=bold'
 
 " Check all files on save
