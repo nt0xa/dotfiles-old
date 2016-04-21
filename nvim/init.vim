@@ -153,6 +153,9 @@ filetype indent on
 " Enable folding
 set foldenable
 
+" Show only menu on completion
+set completeopt=menu
+
 " }}} Options "
 
 " Colours {{{ "
