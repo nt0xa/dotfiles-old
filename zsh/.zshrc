@@ -46,6 +46,7 @@ fi
 typeset -U path
 path=(
   /usr/local/{bin,sbin}
+  $XDG_DATA_HOME/linuxbrew/bin
   $GOPATH/bin
   $HOME/Library/Android/sdk/platform-tools
   $path
