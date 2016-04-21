@@ -47,6 +47,9 @@ Plug 'tpope/vim-fugitive'
 " Linting
 Plug 'benekastah/neomake'
 
+" By language
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 " }}} Plugins "
@@ -79,7 +82,7 @@ set clipboard=unnamed,unnamedplus
 set showcmd
 
 " Wildignore
-set wildignore=.git,node_modules,build,dist,*.o,*.a,*.pyc,*.class
+set wildignore=.git,node_modules,dist,*.o,*.a,*.pyc,*.class
 
 " Enable syntax highlighting
 syntax enable
@@ -419,6 +422,40 @@ nnoremap <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 nnoremap <Leader>c :Buffers<CR>
 
 " }}} Plugin: FZF "
+
+" Plugin: Neomake {{{ "
+
+let g:neomake_open_list = 0
+
+" Signs
+let g:neomake_error_sign = {
+      \ 'text': '✘',
+      \ 'texthl': 'NeomakeErrorSign',
+      \ }
+
+let g:neomake_warning_sign = {
+      \ 'text': '✘',
+      \ 'texthl': 'NeomakeWarningSign',
+      \ }
+
+" Signs colors
+exec 'hi NeomakeErrorSign' .
+      \ ' guibg=' . s:colours.gui.dark1 .
+      \ ' guifg=' . s:colours.gui.neutral_red .
+      \ ' gui=bold'
+
+exec 'hi NeomakeWarningSign' .
+      \ ' guibg=' . s:colours.gui.neutral_yellow .
+      \ ' guifg=' . s:colours.gui.light0 .
+      \ ' gui=bold'
+
+" Check all files on save
+augroup augroup_neomake
+  autocmd!
+  autocmd BufWritePost * Neomake
+augroup END
+
+" }}} Plugin: Neomake "
 
 " Plugin: vim-over {{{ "
 
