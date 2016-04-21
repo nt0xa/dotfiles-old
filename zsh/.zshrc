@@ -29,7 +29,7 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 #  }}} XDG # 
 
-#  Environment {{{ # 
+#  Environment {{{ #
 
 export LANG='en_US.UTF-8'
 export PAGER='less'
@@ -51,7 +51,7 @@ path=(
   $path
 )
 
-#  }}} Environment # 
+#  }}} Environment #
 
 # Plugins {{{ #
 
@@ -66,6 +66,8 @@ source $ZPLUG_HOME/zplug
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "$ZDOTDIR", of:clipboard.zsh, from:local
+zplug "$ZDOTDIR", of:prompt.zsh, from:local
 
 zplug load
 
@@ -81,9 +83,14 @@ bindkey '^N' history-substring-search-down
 
 # Dircolors {{{ #
 
-# Set dircolors
 if (( $+commands[gdircolors] )); then
-  eval "$(gdircolors --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
+  dircolors_cmd='gdircolors'
+elif (( $+commands[dircolors] )); then
+  dircolors_cmd='dircolors'
+fi
+
+if [[ ! -z $dircolors_cmd ]]; then
+  eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
 fi
 
 # }}} Dircolors #
@@ -99,8 +106,11 @@ alias pp='ptpython'
 alias v='nvim'
 
 if (( $+commands[gls] )); then
-  alias ls='gls --color=auto --group-directories-first'
+  ls_cmd='gls'
+else
+  ls_cmd='ls'
 fi
+alias ls="$ls_cmd --color=auto --group-directories-first"
 
 # }}} Aliases #
 
@@ -187,8 +197,6 @@ bindkey -M viins '.' expand-dot-to-parent-directory-path
 
 #  Copy & paste {{{ #
 
-source $ZDOTDIR/clipboard.zsh
-
 function clip-copy-region-as-kill() {
   zle copy-region-as-kill
   print -rn $CUTBUFFER | clipcopy
@@ -207,11 +215,5 @@ bindkey '^Y' clip-yank
 #  }}} Copy & paste #
 
 #  }}} Custom functions & widgets #
-
-#  Prompt {{{ # 
-
-source $ZDOTDIR/prompt.zsh
-
-#  }}} Prompt # 
 
 # vim: fdm=marker
