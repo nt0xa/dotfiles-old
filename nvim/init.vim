@@ -141,6 +141,9 @@ set hlsearch
 " Seach while typing
 set incsearch
 
+" Enable modelines
+set modeline
+
 " Detect filetypes
 filetype plugin on
 
