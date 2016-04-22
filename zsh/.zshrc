@@ -43,6 +43,7 @@ else
   export VISUAL='vim'
 fi
 
+# Path
 typeset -U path
 path=(
   $HOME/.local/bin
@@ -67,6 +68,7 @@ source $ZPLUG_HOME/zplug
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
 zplug "$ZDOTDIR", of:clipboard.zsh, from:local
 zplug "$ZDOTDIR", of:prompt.zsh, from:local
 
@@ -156,7 +158,7 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 
 # }}} History #
 
-#  Custom functions & widgets {{{ #
+# Custom functions & widgets {{{ #
 
 # Tmux {{{ #
 
@@ -198,22 +200,64 @@ bindkey -M viins '.' expand-dot-to-parent-directory-path
 
 #  Copy & paste {{{ #
 
-function clip-copy-region-as-kill() {
-  zle copy-region-as-kill
-  print -rn $CUTBUFFER | clipcopy
-}
-zle -N clip-copy-region-as-kill
+if (( $+functions[clipcopy] )); then
+  function clip-copy-region-as-kill() {
+    zle copy-region-as-kill
+    print -rn $CUTBUFFER | clipcopy
+  }
+  zle -N clip-copy-region-as-kill
+  bindkey '^W' clip-copy-region-as-kill
+fi
 
-function clip-yank() {
-  CUTBUFFER=$(clippaste)
-  zle yank
-}
-zle -N clip-yank
-
-bindkey '^W' clip-copy-region-as-kill
-bindkey '^Y' clip-yank
+if (( $+functions[clippaste] )); then
+  function clip-yank() {
+    CUTBUFFER=$(clippaste)
+    zle yank
+  }
+  zle -N clip-yank
+  bindkey '^Y' clip-yank
+fi
 
 #  }}} Copy & paste #
+
+#  FZF {{{ #
+
+if (( $+commands[fzf] )); then
+
+  # Color scheme
+  export FZF_DEFAULT_OPTS='
+    --color fg:7,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+    --color info:7,prompt:2,spinner:208,pointer:4,marker:3
+  '
+
+  # Use ag if possible
+  if (( $+commands[ag] )); then
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+  fi
+
+  # Select file
+  __fsel() {
+    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+      -o -type f -print \
+      -o -type d -print \
+      -o -type l -print 2> /dev/null | sed 1d | cut -b3-"}"
+    eval "$cmd" | fzf -m | while read item; do
+      printf '%q ' "$item"
+    done
+    echo
+  }
+
+  fzf-file-widget() {
+    LBUFFER="${LBUFFER}$(__fsel)"
+    zle redisplay
+  }
+
+  zle -N fzf-file-widget
+  bindkey '^T' fzf-file-widget
+fi
+
+
+#  }}} FZF #
 
 #  }}} Custom functions & widgets #
 
