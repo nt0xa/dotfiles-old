@@ -1,6 +1,7 @@
 dconf/
 evolution/
 gtk-2.0/
+htop/
 nautilus/
 
 user-dirs.dirs
