@@ -226,8 +226,8 @@ if (( $+commands[fzf] )); then
 
   # Color scheme
   export FZF_DEFAULT_OPTS='
-    --color fg:7,bg:0,hl:3,fg+:3,bg+:0,hl+:3
-    --color info:7,prompt:2,spinner:208,pointer:4,marker:3
+    --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+    --color info:7,prompt:2,spinner:3,pointer:4,marker:3
   '
 
   # Use ag if possible

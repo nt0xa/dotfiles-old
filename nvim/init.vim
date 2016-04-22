@@ -202,6 +202,23 @@ let s:colours = {
       \ }
       \ }
 
+let g:terminal_color_0 = s:colours.gui.dark0
+let g:terminal_color_1 = s:colours.gui.neutral_red
+let g:terminal_color_2 = s:colours.gui.neutral_green
+let g:terminal_color_3 = s:colours.gui.neutral_yellow
+let g:terminal_color_4 = s:colours.gui.neutral_blue
+let g:terminal_color_5 = s:colours.gui.neutral_purple
+let g:terminal_color_6 = s:colours.gui.neutral_aqua
+let g:terminal_color_7 = s:colours.gui.gray_245
+let g:terminal_color_8 = s:colours.gui.gray_244
+let g:terminal_color_9 = s:colours.gui.bright_red
+let g:terminal_color_10 = s:colours.gui.bright_green
+let g:terminal_color_11 = s:colours.gui.bright_yellow
+let g:terminal_color_12 = s:colours.gui.bright_blue
+let g:terminal_color_13 = s:colours.gui.bright_purple
+let g:terminal_color_14 = s:colours.gui.bright_aqua
+let g:terminal_color_15 = s:colours.gui.light0
+
 " }}} Colours "
 
 " Key mappings {{{"
@@ -408,9 +425,38 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Plugin: FZF {{{ "
 
-let &runtimepath.=',' . system('brew --prefix') . '/opt/fzf'
+let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", "", "") . '/opt/fzf'
 
 let g:fzf_layout = { 'down': '~30%' }
+
+" Colors
+hi FZF_fg ctermfg=15
+hi FZF_bg ctermbg=0
+hi FZF_hl ctermfg=3
+hi FZF_fg_plus ctermfg=3
+hi FZF_bg_plus ctermbg=0
+hi FZF_hl_plus ctermbg=3
+hi FZF_info ctermfg=8
+hi FZF_prompt ctermfg=4
+hi FZF_pointer ctermfg=4
+hi FZF_marker ctermfg=3
+hi FZF_spinner ctermfg=4
+hi FZF_header ctermfg=1
+
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'FZF_fg'],
+      \ 'bg':      ['bg', 'FZF_bg'],
+      \ 'hl':      ['fg', 'FZF_hl'],
+      \ 'fg+':     ['fg', 'FZF_fg_plus'],
+      \ 'bg+':     ['bg', 'FZF_bg_plus'],
+      \ 'hl+':     ['fg', 'FZF_hl_plus'],
+      \ 'info':    ['fg', 'FZF_info'],
+      \ 'prompt':  ['fg', 'FZF_prompt'],
+      \ 'pointer': ['fg', 'FZF_pointer'],
+      \ 'marker':  ['fg', 'FZF_marker'],
+      \ 'spinner': ['fg', 'FZF_spinner'],
+      \ 'header':  ['fg', 'FZF_header']
+      \ }
 
 " Go to file
 nnoremap <Leader>f :Files<CR>
