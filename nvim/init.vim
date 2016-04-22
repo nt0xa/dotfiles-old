@@ -248,14 +248,14 @@ nnoremap <Leader>l :<C-u>nohlsearch<CR>
 
 " Autocmd: SignColumn {{{ "
 
-function! s:ShowSignColumn()
+function! ShowSignColumn()
   sign define always_shown_sign
   exec 'sign place 9999 line=1 name=always_shown_sign buffer=' . bufnr('')
 endfunction
 
 augroup augroup_always_show_sign_column
   autocmd!
-  autocmd BufEnter * call s:ShowSignColumn()
+  autocmd BufEnter * call ShowSignColumn()
 augroup END
 
 " }}} Autocmd: SignColumn "
