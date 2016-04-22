@@ -9,7 +9,6 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Interface
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-dirvish'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -308,6 +307,7 @@ function! StatusLineBuild(active)
     let l:statusline .= '%#StatusLineBranch#'
     let l:statusline .= '%{StatusLineBranch()}'
   else
+    let l:statusline = 'test'
   endif
 
   return l:statusline
@@ -407,7 +407,8 @@ function! StatusLineMode()
 endfunction
 
 function! StatusLineModeHide(filename, filetype)
-  return a:filetype ==? 'help' || a:filetype ==? 'dirvish' || a:filetype ==? 'fzf'
+  return  a:filetype ==? 'help' ||
+        \ a:filetype ==? 'fzf'
 endfunction
 
 function! StatusLineModeText(modename)
@@ -423,11 +424,6 @@ exec 'hi StatusLineWindowType_help'
       \ ' guifg=' . s:colours.gui.dark0 .
       \ ' gui=bold'
 
-exec 'hi StatusLineWindowType_dirvish'
-      \ ' guibg=' . s:colours.gui.neutral_aqua .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
-
 exec 'hi StatusLineWindowType_fzf'
       \ ' guibg=' . s:colours.gui.neutral_purple .
       \ ' guifg=' . s:colours.gui.dark0 .
@@ -436,8 +432,6 @@ exec 'hi StatusLineWindowType_fzf'
 function! s:get_window_type(filename, filetype)
   if a:filetype ==? 'help'
     return 'help'
-  elseif a:filetype ==? 'dirvish'
-    return 'dirvish'
   elseif a:filetype ==? 'fzf'
     return 'fzf'
   else
@@ -457,7 +451,8 @@ function! StatusLineWindowType()
 endfunction
 
 function! StatusLineWindowTypeShow(windowtype)
-  return a:windowtype ==? 'help' || a:windowtype ==? 'dirvish' || a:windowtype ==? 'fzf'
+  return  a:windowtype ==? 'help' ||
+        \ a:windowtype ==? 'fzf'
 endfunction
 
 function! StatusLineWindowTypeText(windowtype)
@@ -482,7 +477,7 @@ function! StatusLineFile()
 endfunction
 
 function! StatusLineFileHide(filename, filetype)
-  return a:filetype ==? 'dirvish' || a:filetype ==? 'fzf'
+  return a:filetype ==? 'fzf'
 endfunction
 
 function! StatusLineFileText(filename)
