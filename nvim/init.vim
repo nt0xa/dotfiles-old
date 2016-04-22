@@ -260,58 +260,32 @@ augroup END
 
 " }}} Autocmd: SignColumn "
 
-" Helpers {{{ "
+" Statusline {{{1 "
 
-function! s:mode2name(mode)
-  let l:mode_map = {
-        \ 'n': 'NORMAL',
-        \ 'i': 'INSERT',
-        \ 'R': 'REPLACE',
-        \ 'v': 'VISUAL',
-        \ 'V': 'V-LINE',
-        \ 'c': 'COMMAND',
-        \ "\<C-v>": 'V-BLOCK',
-        \ 's': 'SELECT',
-        \ 'S': 'S-LINE',
-        \ "\<C-s>": 'S-BLOCK',
-        \ 't': 'TERMINAL',
-        \ '?': ' '
-        \ }
-  return mode_map[a:mode]
-endfunction
+" Helpers {{{2 "
 
 function! s:spacewrap(str)
   return printf('  %s ', a:str)
 endfunction
 
-" }}} Helpers "
+function! s:titlecase(str)
+  return substitute(a:str, '\<\(\w\)\(\w*\)\>', '\u\1\L\2', 'g')
+endfunction
 
-" Statusline {{{1 "
+function! s:format_hlgroup_name(str)
+  return substitute(a:str, '-', '_', 'g')
+endfunction
 
-" Colors {{{2 "
+function! s:link_hlgroups(group1, group2)
+  exec printf('hi link %s %s', a:group1, a:group2)
+endfunction
 
-exec 'hi StatusLineMode_NORMAL   guibg=' . s:colours.gui.neutral_blue .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_INSERT   guibg=' . s:colours.gui.neutral_green .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_VISUAL   guibg=' . s:colours.gui.neutral_orange .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_V_LINE   guibg=' . s:colours.gui.neutral_orange .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_V_BLOCK   guibg=' . s:colours.gui.neutral_orange .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_REPLACE   guibg=' . s:colours.gui.neutral_red .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_COMMAND   guibg=' . s:colours.gui.neutral_aqua .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMode_TERMINAL   guibg=' . s:colours.gui.neutral_purple .
-      \ '  guifg=' . s:colours.gui.dark0 . ' gui=bold'
-exec 'hi StatusLineMiddle   guibg=' . s:colours.gui.dark1 .
-      \ '  guifg=' . s:colours.gui.light0
-exec 'hi StatusLineBranch   guibg=' . s:colours.gui.neutral_green .
-      \ '  guifg=' . s:colours.gui.dark0
+function! s:link_hlsubgroups(group, subgroup_id)
+  let l:hlsubgroup = a:group . '_' . s:format_hlgroup_name(a:subgroup_id)
+  call s:link_hlgroups(a:group, l:hlsubgroup)
+endfunction
 
-" 2}}} Colors "
+" 2}}} Helpers "
 
 " Refresh {{{2 "
 
@@ -319,11 +293,18 @@ function! StatusLineBuild(active)
   let l:statusline = ''
 
   if a:active == 1
+
     let l:statusline .= '%#StatusLineMode#'
     let l:statusline .= '%{StatusLineMode()}'
-    let l:statusline .= '%#StatusLineMiddle#'
+
+    let l:statusline .= '%#StatusLineWindowType#'
+    let l:statusline .= '%{StatusLineWindowType()}'
+
+    let l:statusline .= '%#StatusLineFile#'
     let l:statusline .= '%{StatusLineFile()}'
+
     let l:statusline .= '%='
+
     let l:statusline .= '%#StatusLineBranch#'
     let l:statusline .= '%{StatusLineBranch()}'
   else
@@ -356,26 +337,77 @@ nnoremap : :<C-\>eRedrawStatus()<CR>
 
 " Mode {{{2 "
 
+exec 'hi StatusLineMode_NORMAL'
+      \ ' guibg=' . s:colours.gui.neutral_blue .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_INSERT'
+      \ ' guibg=' . s:colours.gui.neutral_green .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_VISUAL'
+      \ ' guibg=' . s:colours.gui.neutral_orange .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_V_LINE'
+      \ ' guibg=' . s:colours.gui.neutral_orange .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_V_BLOCK'
+      \ ' guibg=' . s:colours.gui.neutral_orange .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_REPLACE'
+      \ ' guibg=' . s:colours.gui.neutral_red .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_COMMAND'
+      \ ' guibg=' . s:colours.gui.neutral_aqua .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineMode_TERMINAL'
+      \ ' guibg=' . s:colours.gui.neutral_purple .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+function! s:mode2name(mode)
+  let l:mode_map = {
+        \ 'n': 'NORMAL',
+        \ 'i': 'INSERT',
+        \ 'R': 'REPLACE',
+        \ 'v': 'VISUAL',
+        \ 'V': 'V-LINE',
+        \ 'c': 'COMMAND',
+        \ "\<C-v>": 'V-BLOCK',
+        \ 's': 'SELECT',
+        \ 'S': 'S-LINE',
+        \ "\<C-s>": 'S-BLOCK',
+        \ 't': 'TERMINAL',
+        \ '?': ' '
+        \ }
+  return mode_map[a:mode]
+endfunction
+
 function! StatusLineMode()
   let l:modename = s:mode2name(mode())
   let l:filename = expand('%:t')
   let l:filetype = &ft
-
   if !StatusLineModeHide(l:filename, l:filetype)
-    call StatusLineModeColor(l:modename)
+    call s:link_hlsubgroups('StatusLineMode', l:modename)
     return StatusLineModeText(l:modename)
   endif
-
   return ''
 endfunction
 
 function! StatusLineModeHide(filename, filetype)
-  return a:filetype ==# 'help'
-endfunction
-
-function! StatusLineModeColor(modename)
-  let l:hlsuffix = substitute(a:modename, '-', '_', 'g')
-  exec 'hi link StatusLineMode StatusLineMode_' . l:hlsuffix
+  return a:filetype ==? 'help' || a:filetype ==? 'dirvish' || a:filetype ==? 'fzf'
 endfunction
 
 function! StatusLineModeText(modename)
@@ -384,15 +416,86 @@ endfunction
 
 " 2}}} Mode "
 
+" WindowType {{{2 "
+
+exec 'hi StatusLineWindowType_help'
+      \ ' guibg=' . s:colours.gui.neutral_green .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineWindowType_dirvish'
+      \ ' guibg=' . s:colours.gui.neutral_aqua .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+exec 'hi StatusLineWindowType_fzf'
+      \ ' guibg=' . s:colours.gui.neutral_purple .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
+function! s:get_window_type(filename, filetype)
+  if a:filetype ==? 'help'
+    return 'help'
+  elseif a:filetype ==? 'dirvish'
+    return 'dirvish'
+  elseif a:filetype ==? 'fzf'
+    return 'fzf'
+  else
+    return ''
+  endif
+endfunction
+
+function! StatusLineWindowType()
+  let l:filename = expand('%:t')
+  let l:filetype = &ft
+  let l:windowtype = s:get_window_type(l:filename, l:filetype)
+  if StatusLineWindowTypeShow(l:windowtype)
+    call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
+    return StatusLineWindowTypeText(l:windowtype)
+  endif
+  return ''
+endfunction
+
+function! StatusLineWindowTypeShow(windowtype)
+  return a:windowtype ==? 'help' || a:windowtype ==? 'dirvish' || a:windowtype ==? 'fzf'
+endfunction
+
+function! StatusLineWindowTypeText(windowtype)
+  return s:spacewrap(s:titlecase(a:windowtype))
+endfunction
+
+" 2}}} WindowType "
+
 " File {{{2 "
 
+exec 'hi StatusLineFile'
+      \ ' guibg=' . s:colours.gui.dark1 .
+      \ ' guifg=' . s:colours.gui.light0
+
 function! StatusLineFile()
-  return s:spacewrap(expand('%:t'))
+  let l:filename = expand('%:t')
+  let l:filetype = &ft
+  if !StatusLineFileHide(l:filename, l:filetype)
+    return StatusLineFileText(l:filename)
+  endif
+  return ''
+endfunction
+
+function! StatusLineFileHide(filename, filetype)
+  return a:filetype ==? 'dirvish' || a:filetype ==? 'fzf'
+endfunction
+
+function! StatusLineFileText(filename)
+  return s:spacewrap(a:filename)
 endfunction
 
 " 2}}} File "
 
 " Branch {{{2 "
+
+exec 'hi StatusLineBranch'
+      \ ' guibg=' . s:colours.gui.neutral_purple .
+      \ ' guifg=' . s:colours.gui.dark0
 
 function! StatusLineBranch()
   let l:filename = expand('%:t')
@@ -404,11 +507,11 @@ function! StatusLineBranch()
 endfunction
 
 function! StatusLineBranchHide(filename, filetype)
-  return !exists('*fugitive#head') || a:filetype ==# 'help'
+  return !exists('*fugitive#head') || (exists('*fugitive#head') && fugitive#head() == '') || a:filetype ==# 'help'
 endfunction
 
 function! StatusLineBranchText()
-  return s:spacewrap(join(['', fugitive#head()]))
+  return s:spacewrap(fugitive#head())
 endfunction
 
 " 2}}} Branch "
@@ -430,18 +533,18 @@ let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", "", "") . '/op
 let g:fzf_layout = { 'down': '~30%' }
 
 " Colors
-hi FZF_fg ctermfg=15
-hi FZF_bg ctermbg=0
-hi FZF_hl ctermfg=3
+hi FZF_fg      ctermfg=15
+hi FZF_bg      ctermbg=0
+hi FZF_hl      ctermfg=3
 hi FZF_fg_plus ctermfg=3
 hi FZF_bg_plus ctermbg=0
 hi FZF_hl_plus ctermbg=3
-hi FZF_info ctermfg=8
-hi FZF_prompt ctermfg=4
+hi FZF_info    ctermfg=8
+hi FZF_prompt  ctermfg=2
 hi FZF_pointer ctermfg=4
-hi FZF_marker ctermfg=3
+hi FZF_marker  ctermfg=3
 hi FZF_spinner ctermfg=4
-hi FZF_header ctermfg=1
+hi FZF_header  ctermfg=1
 
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'FZF_fg'],
@@ -472,6 +575,12 @@ nnoremap <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 
 " Go to buffer
 nnoremap <Leader>c :Buffers<CR>
+
+" Use common statusline
+augroup augroup_fzf_status_line
+  autocmd!
+  autocmd User FzfStatusLine call StatusLineRefresh()
+augroup END
 
 " }}} Plugin: FZF "
 
