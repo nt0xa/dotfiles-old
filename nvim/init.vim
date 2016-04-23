@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " Plugins {{{ "
 
 " Auto-install vim-plug
@@ -160,44 +162,44 @@ set completeopt=menu
 " Colours {{{ "
 
 let s:colours = {
-      \ "gui": {
-      \   "dark0_hard":     "#1d2021",
-      \   "dark0":          "#282828",
-      \   "dark0_soft":     "#32302f",
-      \   "dark1":          "#3c3836",
-      \   "dark2":          "#504945",
-      \   "dark3":          "#665c54",
-      \   "dark4":          "#7c6f64",
-      \   "gray_245":       "#928374",
-      \   "gray_244":       "#928374",
-      \   "light0_hard":    "#f9f5d7",
-      \   "light0":         "#fbf1c7",
-      \   "light0_soft":    "#f2e5bc",
-      \   "light1":         "#ebdbb2",
-      \   "light2":         "#d5c4a1",
-      \   "light3":         "#bdae93",
-      \   "light4":         "#a89984",
-      \   "bright_red":     "#fb4934",
-      \   "bright_green":   "#b8bb26",
-      \   "bright_yellow":  "#fabd2f",
-      \   "bright_blue":    "#83a598",
-      \   "bright_purple":  "#d3869b",
-      \   "bright_aqua":    "#8ec07c",
-      \   "bright_orange":  "#fe8019",
-      \   "neutral_red":    "#cc241d",
-      \   "neutral_green":  "#98971a",
-      \   "neutral_yellow": "#d79921",
-      \   "neutral_blue":   "#458588",
-      \   "neutral_purple": "#b16286",
-      \   "neutral_aqua":   "#689d6a",
-      \   "neutral_orange": "#d65d0e",
-      \   "faded_red":      "#9d0006",
-      \   "faded_green":    "#79740e",
-      \   "faded_yellow":   "#b57614",
-      \   "faded_blue":     "#076678",
-      \   "faded_purple":   "#8f3f71",
-      \   "faded_aqua":     "#427b58",
-      \   "faded_orange":   "#af3a03",
+      \ 'gui': {
+      \   'dark0_hard':     '#1d2021',
+      \   'dark0':          '#282828',
+      \   'dark0_soft':     '#32302f',
+      \   'dark1':          '#3c3836',
+      \   'dark2':          '#504945',
+      \   'dark3':          '#665c54',
+      \   'dark4':          '#7c6f64',
+      \   'gray_245':       '#928374',
+      \   'gray_244':       '#928374',
+      \   'light0_hard':    '#f9f5d7',
+      \   'light0':         '#fbf1c7',
+      \   'light0_soft':    '#f2e5bc',
+      \   'light1':         '#ebdbb2',
+      \   'light2':         '#d5c4a1',
+      \   'light3':         '#bdae93',
+      \   'light4':         '#a89984',
+      \   'bright_red':     '#fb4934',
+      \   'bright_green':   '#b8bb26',
+      \   'bright_yellow':  '#fabd2f',
+      \   'bright_blue':    '#83a598',
+      \   'bright_purple':  '#d3869b',
+      \   'bright_aqua':    '#8ec07c',
+      \   'bright_orange':  '#fe8019',
+      \   'neutral_red':    '#cc241d',
+      \   'neutral_green':  '#98971a',
+      \   'neutral_yellow': '#d79921',
+      \   'neutral_blue':   '#458588',
+      \   'neutral_purple': '#b16286',
+      \   'neutral_aqua':   '#689d6a',
+      \   'neutral_orange': '#d65d0e',
+      \   'faded_red':      '#9d0006',
+      \   'faded_green':    '#79740e',
+      \   'faded_yellow':   '#b57614',
+      \   'faded_blue':     '#076678',
+      \   'faded_purple':   '#8f3f71',
+      \   'faded_aqua':     '#427b58',
+      \   'faded_orange':   '#af3a03',
       \ }
       \ }
 
@@ -223,7 +225,7 @@ let g:terminal_color_15 = s:colours.gui.light0
 " Key mappings {{{"
 
 " Rebind leader key to space
-let mapleader=' '
+let g:mapleader=' '
 
 " Use jk to exit from insert mode
 inoremap jk <Esc>
@@ -304,6 +306,12 @@ function! StatusLineBuild(active)
 
     let l:statusline .= '%='
 
+    let l:statusline .= '%#NeomakeErrorSign#'
+    let l:statusline .= '%{StatusLineNeomake("E", "✘")}'
+
+    let l:statusline .= '%#NeomakeWarningSign#'
+    let l:statusline .= '%{StatusLineNeomake("W", "❢")}'
+
     let l:statusline .= '%#StatusLineBranch#'
     let l:statusline .= '%{StatusLineBranch()}'
   else
@@ -315,9 +323,9 @@ endfunction
 
 function! StatusLineRefresh()
   let l:statuslines = [StatusLineBuild(0), StatusLineBuild(1)]
-  for nr in range(1, winnr('$'))
-    let l:active = (nr == winnr())
-    call setwinvar(nr, '&statusline', l:statuslines[l:active])
+  for l:nr in range(1, winnr('$'))
+    let l:active = (l:nr == winnr())
+    call setwinvar(l:nr, '&statusline', l:statuslines[l:active])
   endfor
 endfunction
 
@@ -392,28 +400,24 @@ function! s:mode2name(mode)
         \ 't': 'TERMINAL',
         \ '?': ' '
         \ }
-  return mode_map[a:mode]
+  return l:mode_map[a:mode]
 endfunction
 
 function! StatusLineMode()
   let l:modename = s:mode2name(mode())
-  let l:filename = expand('%:t')
-  let l:filetype = &ft
-  if !StatusLineModeHide(l:filename, l:filetype)
+  let l:filetype = &filetype
+
+  let l:hide =  l:filetype ==? 'help' ||
+              \ l:filetype ==? 'fzf'
+
+  if !l:hide
     call s:link_hlsubgroups('StatusLineMode', l:modename)
-    return StatusLineModeText(l:modename)
+    return s:spacewrap(l:modename[0])
   endif
+
   return ''
 endfunction
 
-function! StatusLineModeHide(filename, filetype)
-  return  a:filetype ==? 'help' ||
-        \ a:filetype ==? 'fzf'
-endfunction
-
-function! StatusLineModeText(modename)
-  return s:spacewrap(a:modename[0])
-endfunction
 
 " 2}}} Mode "
 
@@ -441,22 +445,17 @@ endfunction
 
 function! StatusLineWindowType()
   let l:filename = expand('%:t')
-  let l:filetype = &ft
+  let l:filetype = &filetype
   let l:windowtype = s:get_window_type(l:filename, l:filetype)
-  if StatusLineWindowTypeShow(l:windowtype)
+
+  let l:show =  l:windowtype ==? 'help' ||
+              \ l:windowtype ==? 'fzf'
+
+  if l:show
     call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
-    return StatusLineWindowTypeText(l:windowtype)
+    return s:spacewrap(s:titlecase(l:windowtype))
   endif
   return ''
-endfunction
-
-function! StatusLineWindowTypeShow(windowtype)
-  return  a:windowtype ==? 'help' ||
-        \ a:windowtype ==? 'fzf'
-endfunction
-
-function! StatusLineWindowTypeText(windowtype)
-  return s:spacewrap(s:titlecase(a:windowtype))
 endfunction
 
 " 2}}} WindowType "
@@ -468,23 +467,40 @@ exec 'hi StatusLineFile'
       \ ' guifg=' . s:colours.gui.light0
 
 function! StatusLineFile()
+  let l:filetype = &filetype
   let l:filename = expand('%:t')
-  let l:filetype = &ft
-  if !StatusLineFileHide(l:filename, l:filetype)
-    return StatusLineFileText(l:filename)
+
+  let l:hide = l:filetype ==? 'fzf'
+
+  if !l:hide
+    return s:spacewrap(l:filename)
   endif
+
   return ''
 endfunction
 
-function! StatusLineFileHide(filename, filetype)
-  return a:filetype ==? 'fzf'
-endfunction
-
-function! StatusLineFileText(filename)
-  return s:spacewrap(a:filename)
-endfunction
-
 " 2}}} File "
+
+" Neomake {{{2 "
+
+function! StatusLineNeomake(type, sign)
+
+  if !exists('*neomake#statusline#LoclistCounts')
+    return ''
+  endif
+
+  let l:loclist_counts = neomake#statusline#LoclistCounts()
+  let l:show = !empty(l:loclist_counts) &&
+              \ has_key(l:loclist_counts, a:type)
+
+  if l:show
+    return printf(' %s%d ', a:sign, l:loclist_counts[a:type])
+  endif
+
+  return ''
+endfunction
+
+" 2}}} Neomake "
 
 " Branch {{{2 "
 
@@ -493,20 +509,22 @@ exec 'hi StatusLineBranch'
       \ ' guifg=' . s:colours.gui.dark0
 
 function! StatusLineBranch()
-  let l:filename = expand('%:t')
-  let l:filetype = &ft
-  if !StatusLineBranchHide(l:filename, l:filetype)
-    return StatusLineBranchText()
+
+  if !exists('*fugitive#head')
+    return ''
   endif
+
+  let l:filetype = &filetype
+  let l:branch = fugitive#head()
+
+  let l:hide =  empty(l:branch) ||
+              \ l:filetype ==? 'help'
+
+  if !l:hide
+    return s:spacewrap(l:branch)
+  endif
+
   return ''
-endfunction
-
-function! StatusLineBranchHide(filename, filetype)
-  return !exists('*fugitive#head') || (exists('*fugitive#head') && fugitive#head() == '') || a:filetype ==# 'help'
-endfunction
-
-function! StatusLineBranchText()
-  return s:spacewrap(fugitive#head())
 endfunction
 
 " 2}}} Branch "
@@ -523,7 +541,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Plugin: FZF {{{ "
 
-let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", "", "") . '/opt/fzf'
+let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", '', '') . '/opt/fzf'
 
 let g:fzf_layout = { 'down': '~30%' }
 
