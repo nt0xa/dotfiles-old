@@ -713,6 +713,17 @@ map <Leader>k <Plug>(easymotion-k)
 
 let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
+let g:table_mode_disable_mappings = 1
+
+function! MarkdownTableMode()
+  :TableModeEnable
+  nnoremap <Localleader>tr :TableModeRealign<CR>
+endfunction
+
+augroup augroup_table_mode_enable
+  autocmd!
+  autocmd FileType markdown call MarkdownTableMode()
+augroup END
 
 " }}} Plugin: TableMode "
 
