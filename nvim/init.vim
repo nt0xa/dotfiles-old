@@ -715,14 +715,14 @@ let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
 let g:table_mode_disable_mappings = 1
 
-function! MarkdownTableMode()
+function! MarkdownTableModeSettings()
   :TableModeEnable
   nnoremap <Localleader>tr :TableModeRealign<CR>
 endfunction
 
 augroup augroup_table_mode_enable
   autocmd!
-  autocmd FileType markdown call MarkdownTableMode()
+  autocmd FileType markdown call MarkdownTableModeSettings()
 augroup END
 
 " }}} Plugin: TableMode "
@@ -732,6 +732,43 @@ augroup END
 " Do not popup loclist with gofmt errors
 let g:go_fmt_fail_silently = 1
 
+" Disable default mappings
+let g:go_def_mapping_enabled = 0
+
 " }}} Plugin: Go "
+
+" Plugin: Markdown {{{ "
+
+" Disable default mappings
+let g:vim_markdown_no_default_key_mappings = 1
+
+" Fold with title
+let g:vim_markdown_folding_style_pythonic = 1
+
+" LaTex math syntax
+let g:vim_markdown_math = 1
+
+" YAML frontmatter
+let g:vim_markdown_frontmatter = 1
+
+" augroup augroup_markdown
+"   autocmd!
+"   autocmd FileType markdown
+"         \ autocmd BufWritePre <buffer> call MarkdownAutoformat()
+" augroup END
+
+" function! MarkdownAutoformat()
+"   echom 'Fired'
+"   if executable('pandoc')
+"     execute '%!pandoc' .
+"           \ ' --to markdown+grid_tables' .
+"           \ ' --columns 80' .
+"           \ ' --atx-headers' .
+"           \ ' -o ' . expand('%:p') .
+"           \ ' ' . expand('%:p')
+"   endif
+" endfunction
+
+" }}} Plugin: Markdown "
 
 " vim: fdm=marker
