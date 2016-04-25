@@ -49,7 +49,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 
 " By language
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go'}
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
 call plug#end()
 
@@ -241,9 +243,6 @@ noremap gV `[v`]
 
 " Paste in insert mode
 inoremap <C-y> <C-o>p
-
-" Disable hlsearch
-nnoremap <Leader>l :<C-u>nohlsearch<CR>
 
 " }}} Key mappings "
 
@@ -640,27 +639,27 @@ augroup END
 
 " }}} Plugin: Neomake "
 
-" Plugin: vim-over {{{ "
+" Plugin: Over {{{ "
 
 vnoremap <silent> gR :OverCommandLine<CR>s/\%V
 vnoremap <silent> gr :OverCommandLine<CR>s/
 nnoremap <silent> gr :OverCommandLine<CR>s/
 
-" }}} Plugin: vim-over "
+" }}} Plugin: Over "
 
-" Plugin: vim-easy-align {{{ "
+" Plugin: EasyAlign {{{ "
 
-vnoremap ga :EasyAlign<Space>
+vnoremap gaa :EasyAlign<Space>
 
-" }}} Plugin: vim-easy-align "
+" }}} Plugin: EasyAlign "
 
-" Plugin: vim-surround {{{ "
+" Plugin: Surround {{{ "
 
 " Surround with single/double quiote
-nmap g' ysiW'
-nmap g" ysiW"
+nmap gs' ysiW'
+nmap gs" ysiW"
 
-" }}} Plugin: vim-surround "
+" }}} Plugin: Surround "
 
 " Plugin: EasyMotion {{{ "
 
@@ -683,5 +682,26 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " }}} Plugin: EasyMotion "
+
+" Plugin: InstantMarkdown {{{ "
+
+let g:instant_markdown_autostart = 0
+
+" }}} Plugin: InstantMarkdown "
+
+" Plugin: TableMode {{{ "
+
+let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar = '='
+
+" }}} Plugin: TableMode "
+
+" Plugin: PandocSyntax {{{ "
+
+augroup pandoc_syntax
+  au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+" }}} Plugin: PandocSyntax "
 
 " vim: fdm=marker
