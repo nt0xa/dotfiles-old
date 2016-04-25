@@ -494,7 +494,7 @@ function! StatusLineNeomake(type, sign)
               \ has_key(l:loclist_counts, a:type)
 
   if l:show
-    return printf(' %s%d ', a:sign, l:loclist_counts[a:type])
+    return printf(' %s %d ', a:sign, l:loclist_counts[a:type])
   endif
 
   return ''
