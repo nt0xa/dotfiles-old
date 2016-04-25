@@ -615,7 +615,7 @@ augroup END
 
 " Plugin: Neomake {{{ "
 
-let g:neomake_open_list = 1
+let g:neomake_open_list = 0
 
 " Signs
 let g:neomake_error_sign = {
@@ -715,5 +715,12 @@ let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
 
 " }}} Plugin: TableMode "
+
+" Plugin: Go {{{ "
+
+" Do not popup loclist with gofmt errors
+let g:go_fmt_fail_silently = 1
+
+" }}} Plugin: Go "
 
 " vim: fdm=marker
