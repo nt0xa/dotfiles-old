@@ -50,8 +50,9 @@ Plug 'benekastah/neomake'
 
 " By language
 Plug 'fatih/vim-go', { 'for': 'go'}
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -227,7 +228,10 @@ let g:terminal_color_15 = s:colours.gui.light0
 " Key mappings {{{"
 
 " Rebind leader key to space
-let g:mapleader=' '
+let g:mapleader = ' '
+
+" Set localleader
+let g:maplocalleader = ','
 
 " Use jk to exit from insert mode
 inoremap jk <Esc>
@@ -696,12 +700,13 @@ let g:table_mode_header_fillchar = '='
 
 " }}} Plugin: TableMode "
 
-" Plugin: PandocSyntax {{{ "
+" Plugin: Pandoc {{{ "
 
-augroup pandoc_syntax
-  au! BufNewFile,BufFilePRe,BufRead *.md set filetype=markdown.pandoc
-augroup END
+let g:pandoc#formatting#equalprg = "pandoc --to 'markdown+grid_tables-simple_tables'" .
+      \ " --columns 80" .
+      \ " --atx-headers" .
+      \ " --reference-links"
 
-" }}} Plugin: PandocSyntax "
+" }}} Plugin: Pandoc "
 
 " vim: fdm=marker
