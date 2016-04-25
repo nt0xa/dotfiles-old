@@ -49,10 +49,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 
 " By language
-Plug 'fatih/vim-go', { 'for': 'go'}
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'dhruvasagar/vim-table-mode'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 
 call plug#end()
 
@@ -297,7 +296,6 @@ function! StatusLineBuild(active)
   let l:statusline = ''
 
   if a:active == 1
-
     let l:statusline .= '%#StatusLineMode#'
     let l:statusline .= '%{StatusLineMode()}'
 
@@ -318,7 +316,16 @@ function! StatusLineBuild(active)
     let l:statusline .= '%#StatusLineBranch#'
     let l:statusline .= '%{StatusLineBranch()}'
   else
-    let l:statusline = 'test'
+    let l:statusline .= '%#StatusLineWindowType#'
+    let l:statusline .= '%{StatusLineWindowType()}'
+
+    let l:statusline .= '%#StatusLineFile#'
+    let l:statusline .= '%{StatusLineFile()}'
+
+    let l:statusline .= '%='
+
+    let l:statusline .= '%#StatusLineBranch#'
+    let l:statusline .= '%{StatusLineBranch()}'
   endif
 
   return l:statusline
@@ -429,18 +436,15 @@ endfunction
 
 exec 'hi StatusLineWindowType_help'
       \ ' guibg=' . s:colours.gui.neutral_green .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+      \ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_fzf'
       \ ' guibg=' . s:colours.gui.neutral_purple .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+      \ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_quickfix'
       \ ' guibg=' . s:colours.gui.neutral_yellow .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+      \ ' guifg=' . s:colours.gui.dark0
 
 function! s:get_window_type(filename, filetype)
   if a:filetype ==? 'help'
@@ -611,7 +615,7 @@ augroup END
 
 " Plugin: Neomake {{{ "
 
-let g:neomake_open_list = 2
+let g:neomake_open_list = 1
 
 " Signs
 let g:neomake_error_sign = {
@@ -640,6 +644,24 @@ augroup augroup_neomake
   autocmd!
   autocmd BufWritePost * Neomake
 augroup END
+
+" Vim {{{2 "
+
+let g:neomake_vim_vint_maker = {
+      \ 'args': [
+      \   '--style-problem',
+      \   '--enable-neovim',
+      \   '-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
+      \ ],
+      \ 'errorformat':
+      \ '%W%f:%l:%c: warning: %m,' .
+      \ '%W%f:%l:%c: style_problem: %m,' .
+      \ '%E%f:%l:%c: error: %m,'
+      \ }
+
+let g:neomake_vim_enabled_makers = [ 'vint' ]
+
+" 2}}} Vim "
 
 " }}} Plugin: Neomake "
 
@@ -687,26 +709,11 @@ map <Leader>k <Plug>(easymotion-k)
 
 " }}} Plugin: EasyMotion "
 
-" Plugin: InstantMarkdown {{{ "
-
-let g:instant_markdown_autostart = 0
-
-" }}} Plugin: InstantMarkdown "
-
 " Plugin: TableMode {{{ "
 
 let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
 
 " }}} Plugin: TableMode "
-
-" Plugin: Pandoc {{{ "
-
-let g:pandoc#formatting#equalprg = "pandoc --to 'markdown+grid_tables-simple_tables'" .
-      \ " --columns 80" .
-      \ " --atx-headers" .
-      \ " --reference-links"
-
-" }}} Plugin: Pandoc "
 
 " vim: fdm=marker
