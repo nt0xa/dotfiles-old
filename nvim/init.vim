@@ -408,7 +408,8 @@ function! StatusLineMode()
   let l:filetype = &filetype
 
   let l:hide =  l:filetype ==? 'help' ||
-              \ l:filetype ==? 'fzf'
+              \ l:filetype ==? 'fzf' ||
+              \ l:filetype ==? 'qf'
 
   if !l:hide
     call s:link_hlsubgroups('StatusLineMode', l:modename)
@@ -433,11 +434,18 @@ exec 'hi StatusLineWindowType_fzf'
       \ ' guifg=' . s:colours.gui.dark0 .
       \ ' gui=bold'
 
+exec 'hi StatusLineWindowType_quickfix'
+      \ ' guibg=' . s:colours.gui.neutral_yellow .
+      \ ' guifg=' . s:colours.gui.dark0 .
+      \ ' gui=bold'
+
 function! s:get_window_type(filename, filetype)
   if a:filetype ==? 'help'
     return 'help'
   elseif a:filetype ==? 'fzf'
     return 'fzf'
+  elseif a:filetype ==? 'qf'
+    return 'quickfix'
   else
     return ''
   endif
@@ -449,7 +457,8 @@ function! StatusLineWindowType()
   let l:windowtype = s:get_window_type(l:filename, l:filetype)
 
   let l:show =  l:windowtype ==? 'help' ||
-              \ l:windowtype ==? 'fzf'
+              \ l:windowtype ==? 'fzf' ||
+              \ l:windowtype ==? 'quickfix'
 
   if l:show
     call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
@@ -599,7 +608,7 @@ augroup END
 
 " Plugin: Neomake {{{ "
 
-let g:neomake_open_list = 0
+let g:neomake_open_list = 2
 
 " Signs
 let g:neomake_error_sign = {
