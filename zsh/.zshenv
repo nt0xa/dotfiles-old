@@ -28,7 +28,7 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 #  Environment {{{ #
 
-export LANG='ru_RU.UTF-8'
+export LANG='en_US.UTF-8'
 export PAGER='less'
 export TERM='xterm-256color'
 
