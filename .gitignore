@@ -4,6 +4,7 @@ gtk-2.0/
 htop/
 nautilus/
 
+zsh/.zcompdump
 tags
 user-dirs.dirs
 user-dirs.locale
