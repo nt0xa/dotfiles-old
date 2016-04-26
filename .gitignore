@@ -1,3 +1,4 @@
+autostart/
 dconf/
 evolution/
 gtk-2.0/
@@ -8,3 +9,4 @@ zsh/.zcompdump
 tags
 user-dirs.dirs
 user-dirs.locale
+mimeapps.list
