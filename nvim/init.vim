@@ -40,13 +40,15 @@ Plug 'glts/vim-textobj-comment'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
 
 " Linting
 Plug 'benekastah/neomake'
+
+" Completion
+Plug 'Shougo/deoplete.nvim'
 
 " By language
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -779,5 +781,12 @@ let g:vim_markdown_frontmatter = 1
 " endfunction
 
 " }}} Plugin: Markdown "
+
+" Plugin: Deoplete {{{ "
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_menu_width = 10
+
+" }}} Plugin: Deoplete "
 
 " vim: fdm=marker
