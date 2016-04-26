@@ -22,6 +22,7 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
+alias ctags="ctags --config-filename=config/ctags/ctags.conf" # Hack
 alias rsyncs="rsync -e \"ssh -F $XDG_CONFIG_HOME/ssh/config\""
 alias scp="scp -F $XDG_CONFIG_HOME/ssh/config"
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
