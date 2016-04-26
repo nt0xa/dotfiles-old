@@ -419,7 +419,8 @@ function! StatusLineMode()
 
   let l:hide =  l:filetype ==? 'help' ||
               \ l:filetype ==? 'fzf' ||
-              \ l:filetype ==? 'qf'
+              \ l:filetype ==? 'qf' ||
+              \ l:filetype ==? 'vim-plug'
 
   if !l:hide
     call s:link_hlsubgroups('StatusLineMode', l:modename)
@@ -446,6 +447,10 @@ exec 'hi StatusLineWindowType_quickfix'
       \ ' guibg=' . s:colours.gui.neutral_yellow .
       \ ' guifg=' . s:colours.gui.dark0
 
+exec 'hi StatusLineWindowType_plugins'
+      \ ' guibg=' . s:colours.gui.neutral_aqua .
+      \ ' guifg=' . s:colours.gui.dark0
+
 function! s:get_window_type(filename, filetype)
   if a:filetype ==? 'help'
     return 'help'
@@ -453,6 +458,8 @@ function! s:get_window_type(filename, filetype)
     return 'fzf'
   elseif a:filetype ==? 'qf'
     return 'quickfix'
+  elseif a:filetype ==? 'vim-plug'
+    return 'plugins'
   else
     return ''
   endif
@@ -465,7 +472,8 @@ function! StatusLineWindowType()
 
   let l:show =  l:windowtype ==? 'help' ||
               \ l:windowtype ==? 'fzf' ||
-              \ l:windowtype ==? 'quickfix'
+              \ l:windowtype ==? 'quickfix' ||
+              \ l:windowtype ==? 'plugins'
 
   if l:show
     call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
@@ -486,7 +494,8 @@ function! StatusLineFile()
   let l:filetype = &filetype
   let l:filename = expand('%:t')
 
-  let l:hide = l:filetype ==? 'fzf'
+  let l:hide =  l:filetype ==? 'fzf' ||
+              \ l:filetype ==? 'vim-plug'
 
   if !l:hide
     return s:spacewrap(l:filename)
