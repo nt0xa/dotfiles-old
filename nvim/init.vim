@@ -50,6 +50,7 @@ Plug 'benekastah/neomake'
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
 
 " By language
 Plug 'fatih/vim-go', { 'for': 'go' }
