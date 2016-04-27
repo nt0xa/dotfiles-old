@@ -5,8 +5,9 @@ gtk-2.0/
 htop/
 nautilus/
 
-zsh/.zcompdump
+mimeapps.list
 tags
 user-dirs.dirs
 user-dirs.locale
-mimeapps.list
+zsh/.zcompdump
+nvim/.init.vim-rplugin~
