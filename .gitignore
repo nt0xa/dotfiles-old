@@ -1,13 +1,16 @@
 autostart/
 dconf/
 evolution/
+gedit/
 gtk-2.0/
 htop/
 nautilus/
+wireshark/
 
+QtProject.conf
 mimeapps.list
+nvim/.init.vim-rplugin~
 tags
 user-dirs.dirs
 user-dirs.locale
 zsh/.zcompdump
-nvim/.init.vim-rplugin~
