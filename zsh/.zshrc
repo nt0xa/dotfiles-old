@@ -51,12 +51,18 @@ alias p='python'
 alias pp='ptpython'
 alias v='nvim'
 
+# ls
 if (( $+commands[gls] )); then
   ls_cmd='gls'
 else
   ls_cmd='ls'
 fi
 alias ls="$ls_cmd --color=auto --group-directories-first"
+
+# open
+if (( $+commands[xdg-open] )); then
+  alias open='xdg-open'
+fi
 
 # }}} Aliases #
 
