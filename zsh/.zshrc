@@ -143,7 +143,7 @@ function expand-dot-to-parent-directory-path() {
   fi
 }
 zle -N expand-dot-to-parent-directory-path
-bindkey -M viins '.' expand-dot-to-parent-directory-path
+bindkey '.' expand-dot-to-parent-directory-path
 
 # }}} Expand .. #
 
