@@ -55,6 +55,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 
 call plug#end()
 
