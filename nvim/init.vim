@@ -11,6 +11,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Interface
 Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -296,7 +297,7 @@ endfunction
 
 " Refresh {{{2 "
 
-function! StatusLineBuild(active)
+function! StatusLineBuild(active, ...)
   let l:statusline = ''
 
   if a:active == 1
@@ -335,7 +336,7 @@ function! StatusLineBuild(active)
   return l:statusline
 endfunction
 
-function! StatusLineRefresh()
+function! StatusLineRefresh(...)
   let l:statuslines = [StatusLineBuild(0), StatusLineBuild(1)]
   for l:nr in range(1, winnr('$'))
     let l:active = (l:nr == winnr())
@@ -424,7 +425,8 @@ function! StatusLineMode()
   let l:hide =  l:filetype ==? 'help' ||
               \ l:filetype ==? 'fzf' ||
               \ l:filetype ==? 'qf' ||
-              \ l:filetype ==? 'vim-plug'
+              \ l:filetype ==? 'vim-plug' ||
+              \ l:filetype ==? 'tagbar'
 
   if !l:hide
     call s:link_hlsubgroups('StatusLineMode', l:modename)
@@ -455,6 +457,10 @@ exec 'hi StatusLineWindowType_plugins'
       \ ' guibg=' . s:colours.gui.neutral_aqua .
       \ ' guifg=' . s:colours.gui.dark0
 
+exec 'hi StatusLineWindowType_tagbar'
+      \ ' guibg=' . s:colours.gui.neutral_green .
+      \ ' guifg=' . s:colours.gui.dark0
+
 function! s:get_window_type(filename, filetype)
   if a:filetype ==? 'help'
     return 'help'
@@ -464,6 +470,8 @@ function! s:get_window_type(filename, filetype)
     return 'quickfix'
   elseif a:filetype ==? 'vim-plug'
     return 'plugins'
+  elseif a:filetype ==? 'tagbar'
+    return 'tagbar'
   else
     return ''
   endif
@@ -477,7 +485,8 @@ function! StatusLineWindowType()
   let l:show =  l:windowtype ==? 'help' ||
               \ l:windowtype ==? 'fzf' ||
               \ l:windowtype ==? 'quickfix' ||
-              \ l:windowtype ==? 'plugins'
+              \ l:windowtype ==? 'plugins' ||
+              \ l:windowtype ==? 'tagbar'
 
   if l:show
     call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
@@ -499,7 +508,8 @@ function! StatusLineFile()
   let l:filename = expand('%:t')
 
   let l:hide =  l:filetype ==? 'fzf' ||
-              \ l:filetype ==? 'vim-plug'
+              \ l:filetype ==? 'vim-plug' ||
+              \ l:filetype ==? 'tagbar'
 
   if !l:hide
     return s:spacewrap(l:filename)
@@ -547,7 +557,8 @@ function! StatusLineBranch()
   let l:branch = fugitive#head()
 
   let l:hide =  empty(l:branch) ||
-              \ l:filetype ==? 'help'
+              \ l:filetype ==? 'help' ||
+              \ l:filetype ==? 'tagbar'
 
   if !l:hide
     return s:spacewrap(l:branch)
@@ -754,8 +765,8 @@ let g:go_def_mapping_enabled = 0
 " Disable default mappings
 let g:vim_markdown_no_default_key_mappings = 1
 
-" Fold with title
-let g:vim_markdown_folding_style_pythonic = 1
+" Disable folding
+let g:vim_markdown_folding_disabled = 1
 
 " LaTex math syntax
 let g:vim_markdown_math = 1
@@ -771,5 +782,28 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
 
 " }}} Plugin: Deoplete "
+
+" Plugin: Tagbar {{{ "
+
+nnoremap <Leader>t :TagbarToggle<CR>
+
+" Status line
+let g:tagbar_status_func = 'StatusLineBuild'
+let g:tagbar_type_markdown = {
+      \ 'ctagstype': 'markdown',
+      \ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
+      \ 'ctagsargs' : '-f - --sort=yes',
+      \ 'kinds' : [
+      \   's:sections',
+      \   'i:images'
+      \ ],
+      \ 'sro' : '|',
+      \ 'kind2scope' : {
+      \   's' : 'section',
+      \ },
+      \ 'sort': 0,
+      \ }
+
+" }}} Plugin: Tagbar "
 
 " vim: fdm=marker
