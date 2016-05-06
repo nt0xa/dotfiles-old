@@ -724,13 +724,10 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Plugin: TableMode {{{ "
 
-let g:table_mode_corner_corner = '+'
-let g:table_mode_header_fillchar = '='
-let g:table_mode_disable_mappings = 1
+let g:table_mode_map_prefix = '<Localleader>t'
 
 function! MarkdownTableModeSettings()
   :TableModeEnable
-  nnoremap <Localleader>tr :TableModeRealign<CR>
 endfunction
 
 augroup augroup_table_mode_enable
@@ -756,31 +753,13 @@ let g:go_def_mapping_enabled = 0
 let g:vim_markdown_no_default_key_mappings = 1
 
 " Fold with title
-let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_folding_disabled = 1
 
 " LaTex math syntax
 let g:vim_markdown_math = 1
 
 " YAML frontmatter
 let g:vim_markdown_frontmatter = 1
-
-" augroup augroup_markdown
-"   autocmd!
-"   autocmd FileType markdown
-"         \ autocmd BufWritePre <buffer> call MarkdownAutoformat()
-" augroup END
-
-" function! MarkdownAutoformat()
-"   echom 'Fired'
-"   if executable('pandoc')
-"     execute '%!pandoc' .
-"           \ ' --to markdown+grid_tables' .
-"           \ ' --columns 80' .
-"           \ ' --atx-headers' .
-"           \ ' -o ' . expand('%:p') .
-"           \ ' ' . expand('%:p')
-"   endif
-" endfunction
 
 " }}} Plugin: Markdown "
 
