@@ -789,6 +789,8 @@ nnoremap <Leader>t :TagbarToggle<CR>
 
 " Status line
 let g:tagbar_status_func = 'StatusLineBuild'
+
+" Markdown
 let g:tagbar_type_markdown = {
       \ 'ctagstype': 'markdown',
       \ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
