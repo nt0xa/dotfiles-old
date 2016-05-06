@@ -755,7 +755,7 @@ let g:go_def_mapping_enabled = 0
 let g:vim_markdown_no_default_key_mappings = 1
 
 " Fold with title
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_style_pythonic = 1
 
 " LaTex math syntax
 let g:vim_markdown_math = 1
