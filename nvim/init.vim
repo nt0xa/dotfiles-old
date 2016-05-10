@@ -736,6 +736,8 @@ map <Leader>k <Plug>(easymotion-k)
 " Plugin: TableMode {{{ "
 
 let g:table_mode_map_prefix = '<Localleader>t'
+let g:table_mode_realign_map = '<Localleader>tr'
+
 let g:table_mode_corner_corner = '|'
 let g:table_mode_corner = '|'
 
