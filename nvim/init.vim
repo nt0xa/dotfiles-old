@@ -48,12 +48,14 @@ Plug 'tpope/vim-fugitive'
 " Linting
 Plug 'benekastah/neomake'
 
+" Formatting
+Plug 'Chiel92/vim-autoformat'
+
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 
 " By language
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -752,16 +754,6 @@ augroup END
 
 " }}} Plugin: TableMode "
 
-" Plugin: Go {{{ "
-
-" Do not popup loclist with gofmt errors
-let g:go_fmt_fail_silently = 1
-
-" Disable default mappings
-let g:go_def_mapping_enabled = 0
-
-" }}} Plugin: Go "
-
 " Plugin: Markdown {{{ "
 
 " Disable default mappings
@@ -809,5 +801,14 @@ let g:tagbar_type_markdown = {
       \ }
 
 " }}} Plugin: Tagbar "
+
+" Plugin: Autoformat {{{ "
+
+if executable('pandoc')
+  let g:formatdef_pandoc_markdown = '"pandoc -t markdown_github --columns 80 --no-wrap --atx-headers"'
+  let g:formatters_markdown = ['pandoc_markdown']
+endif
+
+" }}} Plugin: Autoformat "
 
 " vim: fdm=marker
