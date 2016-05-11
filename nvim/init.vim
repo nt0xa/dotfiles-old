@@ -59,6 +59,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 call plug#end()
 
@@ -740,8 +741,8 @@ map <Leader>k <Plug>(easymotion-k)
 let g:table_mode_map_prefix = '<Localleader>t'
 let g:table_mode_realign_map = '<Localleader>tr'
 
-let g:table_mode_corner_corner = '|'
 let g:table_mode_corner = '|'
+let g:table_mode_corner_corner = '|'
 
 function! MarkdownTableModeSettings()
   :TableModeEnable
@@ -811,6 +812,7 @@ endif
 
 augroup augroup_autoformat_on_save
   autocmd!
+  autocmd FileType * let b:autoformat_autoindent = 0
   autocmd BufWritePost * :Autoformat
 augroup end
 
