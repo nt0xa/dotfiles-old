@@ -1,1 +1,1 @@
-cache=/Users/russtone/.cache/npm
+cache=${XDG_CACHE_HOME}/node/npm
