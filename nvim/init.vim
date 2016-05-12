@@ -805,16 +805,6 @@ let g:tagbar_type_markdown = {
 
 " Plugin: Autoformat {{{ "
 
-if executable('pandoc')
-  let g:formatdef_pandoc_markdown = '"pandoc --to markdown_github --columns 80 --atx-headers"'
-  let g:formatters_markdown = ['pandoc_markdown']
-endif
-
-augroup augroup_autoformat_on_save
-  autocmd!
-  autocmd FileType * let b:autoformat_autoindent = 0
-  autocmd BufWritePost * :Autoformat
-augroup end
 
 " }}} Plugin: Autoformat "
 
