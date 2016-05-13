@@ -20,6 +20,7 @@ Plug 'tpope/vim-rsi'
 " Search & replace
 Plug 'osyo-manga/vim-over'
 Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -253,7 +254,7 @@ nnoremap <Leader>q :q<CR>
 noremap gV `[v`]
 
 " Paste in insert mode
-inoremap <C-y> <C-o>p
+inoremap <C-y> <C-o>P
 
 " }}} Key mappings "
 
@@ -703,6 +704,7 @@ nnoremap <silent> gr :OverCommandLine<CR>s/
 " Plugin: EasyAlign {{{ "
 
 vnoremap gaa :EasyAlign<Space>
+vnoremap ga= :EasyAlign =<CR>
 
 " }}} Plugin: EasyAlign "
 
@@ -711,6 +713,7 @@ vnoremap gaa :EasyAlign<Space>
 " Surround with single/double quiote
 nmap gs' ysiW'
 nmap gs" ysiW"
+nmap gs) ysiW)
 
 " }}} Plugin: Surround "
 
@@ -807,5 +810,26 @@ let g:tagbar_type_markdown = {
 
 
 " }}} Plugin: Autoformat "
+
+" Plugin: Incsearch {{{ "
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+
+let g:incsearch#auto_nohlsearch = 1
+
+map n  <Plug>(incsearch-nohl-n)zv
+map N  <Plug>(incsearch-nohl-N)zv
+
+let g:incsearch_cli_key_mappings = {
+      \   "\<Tab>": {
+      \     'key': '<Over>(buffer-complete)',
+      \     'noremap': 1
+      \   },
+      \   "\<C-n>": '<Over>(buffer-complete)',
+      \   "\<C-p>": '<Over>(buffer-complete-prev)',
+      \ }
+
+" }}} Plugin: Incsearch "
 
 " vim: fdm=marker
