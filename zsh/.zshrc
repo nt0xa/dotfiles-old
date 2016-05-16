@@ -1,9 +1,8 @@
 # Plugins {{{ #
 
 # Auto install zplug
-if [[ ! -s $ZPLUG_HOME/zplug ]]; then
-  curl -fLo $ZPLUG_HOME/zplug \
-    --create-dirs https://raw.githubusercontent.com/b4b4r07/zplug/master/zplug
+if [[ ! -d $ZPLUG_HOME ]]; then
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
 source $ZPLUG_HOME/zplug
@@ -12,8 +11,8 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
-zplug "$ZDOTDIR", of:clipboard.zsh, from:local
-zplug "$ZDOTDIR", of:prompt.zsh, from:local
+zplug "$ZDOTDIR", use:clipboard.zsh, from:local
+zplug "$ZDOTDIR", use:prompt.zsh, from:local
 
 zplug load
 
