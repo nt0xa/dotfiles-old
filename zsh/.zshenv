@@ -31,7 +31,7 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 export LANG='en_US.UTF-8'
 export PAGER='less'
-export TERM='xterm-256color'
+# export TERM='xterm-256color'
 
 if (( $+commands[nvim] )); then
   export EDITOR='nvim'
