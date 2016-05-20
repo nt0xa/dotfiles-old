@@ -28,7 +28,7 @@ def configure(repl):
 
     # Show the "[Meta+Enter] Execute" message when pressing [Enter] only
     # inserts a newline instead of executing the code.
-    repl.show_meta_enter_message = True
+    repl.show_meta_enter_message = False
 
     # Show completions. (NONE, POP_UP, MULTI_COLUMN or TOOLBAR)
     repl.completion_visualisation = CompletionVisualisation.POP_UP
@@ -153,6 +153,15 @@ def configure(repl):
         Exit insert mode.
         """
         event.cli.vi_state.reset(InputMode.NAVIGATION)
+
+    @repl.add_key_binding(Keys.ControlSpace, filter=ViInsertMode())
+    def _(event):
+        """
+        Execute.
+        """
+        b = event.current_buffer
+        if b.accept_action.is_returnable:
+            b.accept_action.validate_and_handle(event.cli, b)
 
 class Colors:
     dark0_hard     = '#1D2021'
