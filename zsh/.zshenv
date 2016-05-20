@@ -24,6 +24,7 @@ alias rsyncs="rsync -e \"ssh -F $XDG_CONFIG_HOME/ssh/config\""
 alias scp="scp -F $XDG_CONFIG_HOME/ssh/config"
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 
 #  }}} XDG #
 
