@@ -52,4 +52,12 @@ path=(
   $path
 )
 
+# Manpath
+typeset -U manpath
+manpath=(
+  $ZPLUG_HOME/doc/man
+  /usr/local/share/man
+  /usr/share/man
+)
+
 #  }}} Environment #
