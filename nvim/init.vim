@@ -30,7 +30,6 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'junegunn/vim-easy-align'
 
 " Text objects
@@ -577,9 +576,9 @@ endfunction
 
 " Plugin: UltiSnips {{{ "
 
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " }}} Plugin: UltiSnips "
 
@@ -775,6 +774,10 @@ let g:vim_markdown_frontmatter = 1
 " }}} Plugin: Markdown "
 
 " Plugin: Deoplete {{{ "
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ deoplete#mappings#manual_complete()
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
