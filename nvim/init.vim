@@ -277,7 +277,7 @@ augroup END
 " Helpers {{{2 "
 
 function! s:spacewrap(str)
-	return printf('	%s ', a:str)
+	return printf('  %s ', a:str)
 endfunction
 
 function! s:titlecase(str)
