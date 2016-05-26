@@ -111,7 +111,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
 " Count of spaces per tab when editing
-set softtabstop=2
+set softtabstop=0
 
 " Number of visual spaces per tab
 set tabstop=2
@@ -123,7 +123,7 @@ set shiftwidth=2
 set noexpandtab
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:➝\ ,trail:·
+set list listchars=tab:➝\ ,eol:¬
 
 " Mouse and backspace
 set backspace=indent,eol,start
@@ -254,7 +254,7 @@ nnoremap <Leader>q :q<CR>
 noremap gV `[v`]
 
 " Paste in insert mode
-inoremap <C-y> <C-o>P
+inoremap <C-y> <C-o>p
 
 " }}} Key mappings "
 
@@ -818,13 +818,13 @@ let g:tagbar_type_markdown = {
 
 " Plugin: Incsearch {{{ "
 
-map /	<Plug>(incsearch-forward)
-map ?	<Plug>(incsearch-backward)
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
 
 let g:incsearch#auto_nohlsearch = 1
 
-map n	<Plug>(incsearch-nohl-n)zv
-map N	<Plug>(incsearch-nohl-N)zv
+map n <Plug>(incsearch-nohl-n)zv
+map N <Plug>(incsearch-nohl-N)zv
 
 let g:incsearch_cli_key_mappings = {
 \ 	"\<Tab>": {
