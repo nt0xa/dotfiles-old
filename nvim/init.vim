@@ -123,7 +123,7 @@ set shiftwidth=2
 set noexpandtab
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:➝\ ,trail:·
 
 " Mouse and backspace
 set backspace=indent,eol,start
@@ -365,44 +365,44 @@ nnoremap : :<C-\>eRedrawStatus()<CR>
 " Mode {{{2 "
 
 exec 'hi StatusLineMode_NORMAL'
-\ ' guibg=' . s:colours.gui.neutral_blue .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_blue .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_INSERT'
-\ ' guibg=' . s:colours.gui.neutral_green .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_green .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_VISUAL'
-\ ' guibg=' . s:colours.gui.neutral_orange .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_orange .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_V_LINE'
-\ ' guibg=' . s:colours.gui.neutral_orange .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_orange .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_V_BLOCK'
-\ ' guibg=' . s:colours.gui.neutral_orange .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_orange .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_REPLACE'
-\ ' guibg=' . s:colours.gui.neutral_red .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_red .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_COMMAND'
-\ ' guibg=' . s:colours.gui.neutral_aqua .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_aqua .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 exec 'hi StatusLineMode_TERMINAL'
-\ ' guibg=' . s:colours.gui.neutral_purple .
-\ ' guifg=' . s:colours.gui.dark0 .
-\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.neutral_purple .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
 
 function! s:mode2name(mode)
 	let l:mode_map = {
@@ -446,24 +446,24 @@ endfunction
 " WindowType {{{2 "
 
 exec 'hi StatusLineWindowType_help'
-\ ' guibg=' . s:colours.gui.neutral_green .
-\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_green .
+\   ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_fzf'
-\ ' guibg=' . s:colours.gui.neutral_purple .
-\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_purple .
+\   ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_quickfix'
-\ ' guibg=' . s:colours.gui.neutral_yellow .
-\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_yellow .
+\   ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_plugins'
-\ ' guibg=' . s:colours.gui.neutral_aqua .
-\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_aqua .
+\   ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_tagbar'
-\ ' guibg=' . s:colours.gui.neutral_green .
-\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_green .
+\   ' guifg=' . s:colours.gui.dark0
 
 function! s:get_window_type(filename, filetype)
 	if a:filetype ==? 'help'
@@ -504,8 +504,8 @@ endfunction
 " File {{{2 "
 
 exec 'hi StatusLineFile'
-			\ ' guibg=' . s:colours.gui.dark1 .
-			\ ' guifg=' . s:colours.gui.light0
+\   ' guibg=' . s:colours.gui.dark1 .
+\   ' guifg=' . s:colours.gui.light0
 
 function! StatusLineFile()
 	let l:filetype = &filetype
@@ -534,7 +534,7 @@ function! StatusLineNeomake(type, sign)
 
 	let l:loclist_counts = neomake#statusline#LoclistCounts()
 	let l:show = !empty(l:loclist_counts) &&
-							\ has_key(l:loclist_counts, a:type)
+	\             has_key(l:loclist_counts, a:type)
 
 	if l:show
 		return printf(' %s %d ', a:sign, l:loclist_counts[a:type])
@@ -548,8 +548,8 @@ endfunction
 " Branch {{{2 "
 
 exec 'hi StatusLineBranch'
-			\ ' guibg=' . s:colours.gui.neutral_purple .
-			\ ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.neutral_purple .
+\   ' guifg=' . s:colours.gui.dark0
 
 function! StatusLineBranch()
 
@@ -560,9 +560,9 @@ function! StatusLineBranch()
 	let l:filetype = &filetype
 	let l:branch = fugitive#head()
 
-	let l:hide =	empty(l:branch) ||
-							\ l:filetype ==? 'help' ||
-							\ l:filetype ==? 'tagbar'
+	let l:hide = empty(l:branch) ||
+	\            l:filetype ==? 'help' ||
+	\            l:filetype ==? 'tagbar'
 
 	if !l:hide
 		return s:spacewrap(l:branch)
@@ -590,33 +590,33 @@ let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", '', '') . '/op
 let g:fzf_layout = { 'down': '~30%' }
 
 " Colors
-hi FZF_fg			ctermfg=15
-hi FZF_bg			ctermbg=0
-hi FZF_hl			ctermfg=3
+hi FZF_fg      ctermfg=15
+hi FZF_bg      ctermbg=0
+hi FZF_hl      ctermfg=3
 hi FZF_fg_plus ctermfg=3
 hi FZF_bg_plus ctermbg=0
 hi FZF_hl_plus ctermbg=3
-hi FZF_info		ctermfg=8
-hi FZF_prompt	ctermfg=2
+hi FZF_info    ctermfg=8
+hi FZF_prompt  ctermfg=2
 hi FZF_pointer ctermfg=4
-hi FZF_marker	ctermfg=3
+hi FZF_marker  ctermfg=3
 hi FZF_spinner ctermfg=4
-hi FZF_header	ctermfg=1
+hi FZF_header  ctermfg=1
 
 let g:fzf_colors = {
-			\ 'fg':			['fg', 'FZF_fg'],
-			\ 'bg':			['bg', 'FZF_bg'],
-			\ 'hl':			['fg', 'FZF_hl'],
-			\ 'fg+':		 ['fg', 'FZF_fg_plus'],
-			\ 'bg+':		 ['bg', 'FZF_bg_plus'],
-			\ 'hl+':		 ['fg', 'FZF_hl_plus'],
-			\ 'info':		['fg', 'FZF_info'],
-			\ 'prompt':	['fg', 'FZF_prompt'],
-			\ 'pointer': ['fg', 'FZF_pointer'],
-			\ 'marker':	['fg', 'FZF_marker'],
-			\ 'spinner': ['fg', 'FZF_spinner'],
-			\ 'header':	['fg', 'FZF_header']
-			\ }
+\ 	'fg':      ['fg', 'FZF_fg'],
+\ 	'bg':      ['bg', 'FZF_bg'],
+\ 	'hl':      ['fg', 'FZF_hl'],
+\ 	'fg+':     ['fg', 'FZF_fg_plus'],
+\ 	'bg+':     ['bg', 'FZF_bg_plus'],
+\ 	'hl+':     ['fg', 'FZF_hl_plus'],
+\ 	'info':    ['fg', 'FZF_info'],
+\ 	'prompt':  ['fg', 'FZF_prompt'],
+\ 	'pointer': ['fg', 'FZF_pointer'],
+\ 	'marker':  ['fg', 'FZF_marker'],
+\ 	'spinner': ['fg', 'FZF_spinner'],
+\ 	'header':  ['fg', 'FZF_header']
+\ }
 
 " Go to file
 nnoremap <Leader>f :Files<CR>
@@ -647,25 +647,25 @@ let g:neomake_open_list = 0
 
 " Signs
 let g:neomake_error_sign = {
-			\ 'text': '✘',
-			\ 'texthl': 'NeomakeErrorSign',
-			\ }
+\ 	'text':   '✘',
+\ 	'texthl': 'NeomakeErrorSign',
+\ }
 
 let g:neomake_warning_sign = {
-			\ 'text': '❢',
-			\ 'texthl': 'NeomakeWarningSign',
-			\ }
+\ 	'text':   '❢',
+\ 	'texthl': 'NeomakeWarningSign',
+\ }
 
 " Signs colors
 exec 'hi NeomakeErrorSign' .
-			\ ' guibg=' . s:colours.gui.dark1 .
-			\ ' guifg=' . s:colours.gui.neutral_red .
-			\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.dark1 .
+\   ' guifg=' . s:colours.gui.neutral_red .
+\   ' gui=bold'
 
 exec 'hi NeomakeWarningSign' .
-			\ ' guibg=' . s:colours.gui.dark1 .
-			\ ' guifg=' . s:colours.gui.neutral_yellow .
-			\ ' gui=bold'
+\   ' guibg=' . s:colours.gui.dark1 .
+\   ' guifg=' . s:colours.gui.neutral_yellow .
+\   ' gui=bold'
 
 " Check all files on save
 augroup augroup_neomake
@@ -676,16 +676,16 @@ augroup END
 " Vim {{{2 "
 
 let g:neomake_vim_vint_maker = {
-			\ 'args': [
-			\	 '--style-problem',
-			\	 '--enable-neovim',
-			\	 '-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
-			\ ],
-			\ 'errorformat':
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%W%f:%l:%c: style_problem: %m,' .
-			\ '%E%f:%l:%c: error: %m,'
-			\ }
+\ 	'args': [
+\ 		'--style-problem',
+\ 		'--enable-neovim',
+\ 		'-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
+\ 	],
+\ 		'errorformat':
+\ 		'%W%f:%l:%c: warning: %m,' .
+\ 		'%W%f:%l:%c: style_problem: %m,' .
+\ 		'%E%f:%l:%c: error: %m,'
+\ }
 
 let g:neomake_vim_enabled_makers = [ 'vint' ]
 
@@ -704,7 +704,9 @@ nnoremap <silent> gr :OverCommandLine<CR>s/
 " Plugin: EasyAlign {{{ "
 
 vnoremap gaa :EasyAlign<Space>
+vnoremap gaA :EasyAlign<CR><C-x>
 vnoremap ga= :EasyAlign =<CR>
+vnoremap ga: :EasyAlign =<CR>
 
 " }}} Plugin: EasyAlign "
 
@@ -777,8 +779,7 @@ let g:vim_markdown_frontmatter = 1
 " Plugin: Deoplete {{{ "
 
 inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ "\<Tab>"
+\ pumvisible() ? "\<C-n>" : "\<Tab>"
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
@@ -794,19 +795,19 @@ let g:tagbar_status_func = 'StatusLineBuild'
 
 " Markdown
 let g:tagbar_type_markdown = {
-			\ 'ctagstype': 'markdown',
-			\ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
-			\ 'ctagsargs' : '-f - --sort=yes',
-			\ 'kinds' : [
-			\	 's:sections',
-			\	 'i:images'
-			\ ],
-			\ 'sro' : '|',
-			\ 'kind2scope' : {
-			\	 's' : 'section',
-			\ },
-			\ 'sort': 0,
-			\ }
+\ 	'ctagstype': 'markdown',
+\ 	'ctagsbin':  '~/.config/nvim/markdown2ctags.py',
+\ 	'ctagsargs': '-f - --sort=yes',
+\ 	'kinds': [
+\ 		's:sections',
+\ 		'i:images'
+\ 	],
+\ 	'sro': '|',
+\ 	'kind2scope' : {
+\ 		's': 'section',
+\ 	},
+\ 	'sort': 0,
+\ }
 
 " }}} Plugin: Tagbar "
 
@@ -826,13 +827,13 @@ map n	<Plug>(incsearch-nohl-n)zv
 map N	<Plug>(incsearch-nohl-N)zv
 
 let g:incsearch_cli_key_mappings = {
-			\	 "\<Tab>": {
-			\		 'key': '<Over>(buffer-complete)',
-			\		 'noremap': 1
-			\	 },
-			\	 "\<C-n>": '<Over>(buffer-complete)',
-			\	 "\<C-p>": '<Over>(buffer-complete-prev)',
-			\ }
+\ 	"\<Tab>": {
+\ 		'key': '<Over>(buffer-complete)',
+\ 		'noremap': 1
+\ 	},
+\ 	"\<C-n>": '<Over>(buffer-complete)',
+\ 	"\<C-p>": '<Over>(buffer-complete-prev)',
+\ }
 
 " }}} Plugin: Incsearch "
 
