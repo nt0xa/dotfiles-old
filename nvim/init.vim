@@ -705,8 +705,11 @@ nnoremap <silent> gr :OverCommandLine<CR>s/
 
 vnoremap gaa :EasyAlign<Space>
 vnoremap gaA :EasyAlign<CR><C-x>
+
 vnoremap ga= :EasyAlign =<CR>
-vnoremap ga: :EasyAlign =<CR>
+vnoremap ga: :EasyAlign :<CR>
+vnoremap ga/ :EasyAlign #<CR>
+vnoremap ga\ :EasyAlign<CR><C-x>\\<CR>
 
 " }}} Plugin: EasyAlign "
 
