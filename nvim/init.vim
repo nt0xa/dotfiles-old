@@ -681,10 +681,10 @@ let g:neomake_vim_vint_maker = {
 \ 		'--enable-neovim',
 \ 		'-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
 \ 	],
-\ 		'errorformat':
-\ 		'%W%f:%l:%c: warning: %m,' .
-\ 		'%W%f:%l:%c: style_problem: %m,' .
-\ 		'%E%f:%l:%c: error: %m,'
+\ 	'errorformat':
+\ 	'%W%f:%l:%c: warning: %m,' .
+\ 	'%W%f:%l:%c: style_problem: %m,' .
+\ 	'%E%f:%l:%c: error: %m,'
 \ }
 
 let g:neomake_vim_enabled_makers = [ 'vint' ]
