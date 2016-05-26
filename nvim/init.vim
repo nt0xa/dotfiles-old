@@ -174,44 +174,44 @@ set completeopt=menu
 
 let s:colours = {
 \ 'gui':  {
-\     'dark0_hard':     '#1d2021',
-\     'dark0':          '#282828',
-\     'dark0_soft':     '#32302f',
-\     'dark1':          '#3c3836',
-\     'dark2':          '#504945',
-\     'dark3':          '#665c54',
-\     'dark4':          '#7c6f64',
-\     'gray_245':       '#928374',
-\     'gray_244':       '#928374',
-\     'light0_hard':    '#f9f5d7',
-\     'light0':         '#fbf1c7',
-\     'light0_soft':    '#f2e5bc',
-\     'light1':         '#ebdbb2',
-\     'light2':         '#d5c4a1',
-\     'light3':         '#bdae93',
-\     'light4':         '#a89984',
-\     'bright_red':     '#fb4934',
-\     'bright_green':   '#b8bb26',
-\     'bright_yellow':  '#fabd2f',
-\     'bright_blue':    '#83a598',
-\     'bright_purple':  '#d3869b',
-\     'bright_aqua':    '#8ec07c',
-\     'bright_orange':  '#fe8019',
-\     'neutral_red':    '#cc241d',
-\     'neutral_green':  '#98971a',
-\     'neutral_yellow': '#d79921',
-\     'neutral_blue':   '#458588',
-\     'neutral_purple': '#b16286',
-\     'neutral_aqua':   '#689d6a',
-\     'neutral_orange': '#d65d0e',
-\     'faded_red':      '#9d0006',
-\     'faded_green':    '#79740e',
-\     'faded_yellow':   '#b57614',
-\     'faded_blue':     '#076678',
-\     'faded_purple':   '#8f3f71',
-\     'faded_aqua':     '#427b58',
-\     'faded_orange':   '#af3a03',
-\   }
+\ 		'dark0_hard':     '#1d2021',
+\ 		'dark0':          '#282828',
+\ 		'dark0_soft':     '#32302f',
+\ 		'dark1':          '#3c3836',
+\ 		'dark2':          '#504945',
+\ 		'dark3':          '#665c54',
+\ 		'dark4':          '#7c6f64',
+\ 		'gray_245':       '#928374',
+\ 		'gray_244':       '#928374',
+\ 		'light0_hard':    '#f9f5d7',
+\ 		'light0':         '#fbf1c7',
+\ 		'light0_soft':    '#f2e5bc',
+\ 		'light1':         '#ebdbb2',
+\ 		'light2':         '#d5c4a1',
+\ 		'light3':         '#bdae93',
+\ 		'light4':         '#a89984',
+\ 		'bright_red':     '#fb4934',
+\ 		'bright_green':   '#b8bb26',
+\ 		'bright_yellow':  '#fabd2f',
+\ 		'bright_blue':    '#83a598',
+\ 		'bright_purple':  '#d3869b',
+\ 		'bright_aqua':    '#8ec07c',
+\ 		'bright_orange':  '#fe8019',
+\ 		'neutral_red':    '#cc241d',
+\ 		'neutral_green':  '#98971a',
+\ 		'neutral_yellow': '#d79921',
+\ 		'neutral_blue':   '#458588',
+\ 		'neutral_purple': '#b16286',
+\ 		'neutral_aqua':   '#689d6a',
+\ 		'neutral_orange': '#d65d0e',
+\ 		'faded_red':      '#9d0006',
+\ 		'faded_green':    '#79740e',
+\ 		'faded_yellow':   '#b57614',
+\ 		'faded_blue':     '#076678',
+\ 		'faded_purple':   '#8f3f71',
+\ 		'faded_aqua':     '#427b58',
+\ 		'faded_orange':   '#af3a03',
+\ 	}
 \ }
 
 let g:terminal_color_0 = s:colours.gui.dark0
@@ -365,60 +365,60 @@ nnoremap : :<C-\>eRedrawStatus()<CR>
 " Mode {{{2 "
 
 exec 'hi StatusLineMode_NORMAL'
-			\ ' guibg=' . s:colours.gui.neutral_blue .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_blue .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_INSERT'
-			\ ' guibg=' . s:colours.gui.neutral_green .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_green .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_VISUAL'
-			\ ' guibg=' . s:colours.gui.neutral_orange .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_orange .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_V_LINE'
-			\ ' guibg=' . s:colours.gui.neutral_orange .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_orange .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_V_BLOCK'
-			\ ' guibg=' . s:colours.gui.neutral_orange .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_orange .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_REPLACE'
-			\ ' guibg=' . s:colours.gui.neutral_red .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_red .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_COMMAND'
-			\ ' guibg=' . s:colours.gui.neutral_aqua .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_aqua .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 exec 'hi StatusLineMode_TERMINAL'
-			\ ' guibg=' . s:colours.gui.neutral_purple .
-			\ ' guifg=' . s:colours.gui.dark0 .
-			\ ' gui=bold'
+\ ' guibg=' . s:colours.gui.neutral_purple .
+\ ' guifg=' . s:colours.gui.dark0 .
+\ ' gui=bold'
 
 function! s:mode2name(mode)
 	let l:mode_map = {
-				\ 'n': 'NORMAL',
-				\ 'i': 'INSERT',
-				\ 'R': 'REPLACE',
-				\ 'v': 'VISUAL',
-				\ 'V': 'V-LINE',
-				\ 'c': 'COMMAND',
-				\ "\<C-v>": 'V-BLOCK',
-				\ 's': 'SELECT',
-				\ 'S': 'S-LINE',
-				\ "\<C-s>": 'S-BLOCK',
-				\ 't': 'TERMINAL',
-				\ '?': ' '
-				\ }
+	\ 	'n':      'NORMAL',
+	\ 	'i':      'INSERT',
+	\ 	'R':      'REPLACE',
+	\ 	'v':      'VISUAL',
+	\ 	'V':      'V-LINE',
+	\ 	'c':      'COMMAND',
+	\ 	"\<C-v>": 'V-BLOCK',
+	\ 	's':      'SELECT',
+	\ 	'S':      'S-LINE',
+	\ 	"\<C-s>": 'S-BLOCK',
+	\ 	't':      'TERMINAL',
+	\ 	'?':      ' '
+	\ }
 	return l:mode_map[a:mode]
 endfunction
 
@@ -426,11 +426,11 @@ function! StatusLineMode()
 	let l:modename = s:mode2name(mode())
 	let l:filetype = &filetype
 
-	let l:hide =	l:filetype ==? 'help' ||
-							\ l:filetype ==? 'fzf' ||
-							\ l:filetype ==? 'qf' ||
-							\ l:filetype ==? 'vim-plug' ||
-							\ l:filetype ==? 'tagbar'
+	let l:hide = l:filetype ==? 'help' ||
+	\            l:filetype ==? 'fzf' ||
+	\            l:filetype ==? 'qf' ||
+	\            l:filetype ==? 'vim-plug' ||
+	\            l:filetype ==? 'tagbar'
 
 	if !l:hide
 		call s:link_hlsubgroups('StatusLineMode', l:modename)
@@ -446,24 +446,24 @@ endfunction
 " WindowType {{{2 "
 
 exec 'hi StatusLineWindowType_help'
-			\ ' guibg=' . s:colours.gui.neutral_green .
-			\ ' guifg=' . s:colours.gui.dark0
+\ ' guibg=' . s:colours.gui.neutral_green .
+\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_fzf'
-			\ ' guibg=' . s:colours.gui.neutral_purple .
-			\ ' guifg=' . s:colours.gui.dark0
+\ ' guibg=' . s:colours.gui.neutral_purple .
+\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_quickfix'
-			\ ' guibg=' . s:colours.gui.neutral_yellow .
-			\ ' guifg=' . s:colours.gui.dark0
+\ ' guibg=' . s:colours.gui.neutral_yellow .
+\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_plugins'
-			\ ' guibg=' . s:colours.gui.neutral_aqua .
-			\ ' guifg=' . s:colours.gui.dark0
+\ ' guibg=' . s:colours.gui.neutral_aqua .
+\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_tagbar'
-			\ ' guibg=' . s:colours.gui.neutral_green .
-			\ ' guifg=' . s:colours.gui.dark0
+\ ' guibg=' . s:colours.gui.neutral_green .
+\ ' guifg=' . s:colours.gui.dark0
 
 function! s:get_window_type(filename, filetype)
 	if a:filetype ==? 'help'
@@ -486,11 +486,11 @@ function! StatusLineWindowType()
 	let l:filetype = &filetype
 	let l:windowtype = s:get_window_type(l:filename, l:filetype)
 
-	let l:show =	l:windowtype ==? 'help' ||
-							\ l:windowtype ==? 'fzf' ||
-							\ l:windowtype ==? 'quickfix' ||
-							\ l:windowtype ==? 'plugins' ||
-							\ l:windowtype ==? 'tagbar'
+	let l:show = l:windowtype ==? 'help' ||
+	\            l:windowtype ==? 'fzf' ||
+	\            l:windowtype ==? 'quickfix' ||
+	\            l:windowtype ==? 'plugins' ||
+	\            l:windowtype ==? 'tagbar'
 
 	if l:show
 		call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
@@ -511,9 +511,9 @@ function! StatusLineFile()
 	let l:filetype = &filetype
 	let l:filename = expand('%:t')
 
-	let l:hide =	l:filetype ==? 'fzf' ||
-							\ l:filetype ==? 'vim-plug' ||
-							\ l:filetype ==? 'tagbar'
+	let l:hide = l:filetype ==? 'fzf' ||
+	\            l:filetype ==? 'vim-plug' ||
+	\            l:filetype ==? 'tagbar'
 
 	if !l:hide
 		return s:spacewrap(l:filename)
