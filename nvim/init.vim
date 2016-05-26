@@ -31,6 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
