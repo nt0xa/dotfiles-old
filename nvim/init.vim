@@ -4,7 +4,7 @@ scriptencoding utf-8
 
 " Auto-install vim-plug
 if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
@@ -104,10 +104,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set background=dark
 try
-  let g:gruvbox_invert_selection = 0
-  colorscheme gruvbox
+	let g:gruvbox_invert_selection = 0
+	colorscheme gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme desert
+	colorscheme desert
 endtry
 
 " Count of spaces per tab when editing
@@ -119,8 +119,8 @@ set tabstop=2
 " <<, >> spaces
 set shiftwidth=2
 
-" Tabs are spaces
-set expandtab
+" Use tabs for indent
+set noexpandtab
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
@@ -173,46 +173,46 @@ set completeopt=menu
 " Colours {{{ "
 
 let s:colours = {
-      \ 'gui': {
-      \   'dark0_hard':     '#1d2021',
-      \   'dark0':          '#282828',
-      \   'dark0_soft':     '#32302f',
-      \   'dark1':          '#3c3836',
-      \   'dark2':          '#504945',
-      \   'dark3':          '#665c54',
-      \   'dark4':          '#7c6f64',
-      \   'gray_245':       '#928374',
-      \   'gray_244':       '#928374',
-      \   'light0_hard':    '#f9f5d7',
-      \   'light0':         '#fbf1c7',
-      \   'light0_soft':    '#f2e5bc',
-      \   'light1':         '#ebdbb2',
-      \   'light2':         '#d5c4a1',
-      \   'light3':         '#bdae93',
-      \   'light4':         '#a89984',
-      \   'bright_red':     '#fb4934',
-      \   'bright_green':   '#b8bb26',
-      \   'bright_yellow':  '#fabd2f',
-      \   'bright_blue':    '#83a598',
-      \   'bright_purple':  '#d3869b',
-      \   'bright_aqua':    '#8ec07c',
-      \   'bright_orange':  '#fe8019',
-      \   'neutral_red':    '#cc241d',
-      \   'neutral_green':  '#98971a',
-      \   'neutral_yellow': '#d79921',
-      \   'neutral_blue':   '#458588',
-      \   'neutral_purple': '#b16286',
-      \   'neutral_aqua':   '#689d6a',
-      \   'neutral_orange': '#d65d0e',
-      \   'faded_red':      '#9d0006',
-      \   'faded_green':    '#79740e',
-      \   'faded_yellow':   '#b57614',
-      \   'faded_blue':     '#076678',
-      \   'faded_purple':   '#8f3f71',
-      \   'faded_aqua':     '#427b58',
-      \   'faded_orange':   '#af3a03',
-      \ }
-      \ }
+			\ 'gui': {
+			\	 'dark0_hard':		 '#1d2021',
+			\	 'dark0':					'#282828',
+			\	 'dark0_soft':		 '#32302f',
+			\	 'dark1':					'#3c3836',
+			\	 'dark2':					'#504945',
+			\	 'dark3':					'#665c54',
+			\	 'dark4':					'#7c6f64',
+			\	 'gray_245':			 '#928374',
+			\	 'gray_244':			 '#928374',
+			\	 'light0_hard':		'#f9f5d7',
+			\	 'light0':				 '#fbf1c7',
+			\	 'light0_soft':		'#f2e5bc',
+			\	 'light1':				 '#ebdbb2',
+			\	 'light2':				 '#d5c4a1',
+			\	 'light3':				 '#bdae93',
+			\	 'light4':				 '#a89984',
+			\	 'bright_red':		 '#fb4934',
+			\	 'bright_green':	 '#b8bb26',
+			\	 'bright_yellow':	'#fabd2f',
+			\	 'bright_blue':		'#83a598',
+			\	 'bright_purple':	'#d3869b',
+			\	 'bright_aqua':		'#8ec07c',
+			\	 'bright_orange':	'#fe8019',
+			\	 'neutral_red':		'#cc241d',
+			\	 'neutral_green':	'#98971a',
+			\	 'neutral_yellow': '#d79921',
+			\	 'neutral_blue':	 '#458588',
+			\	 'neutral_purple': '#b16286',
+			\	 'neutral_aqua':	 '#689d6a',
+			\	 'neutral_orange': '#d65d0e',
+			\	 'faded_red':			'#9d0006',
+			\	 'faded_green':		'#79740e',
+			\	 'faded_yellow':	 '#b57614',
+			\	 'faded_blue':		 '#076678',
+			\	 'faded_purple':	 '#8f3f71',
+			\	 'faded_aqua':		 '#427b58',
+			\	 'faded_orange':	 '#af3a03',
+			\ }
+			\ }
 
 let g:terminal_color_0 = s:colours.gui.dark0
 let g:terminal_color_1 = s:colours.gui.neutral_red
@@ -261,13 +261,13 @@ inoremap <C-y> <C-o>P
 " Autocmd: SignColumn {{{ "
 
 function! ShowSignColumn()
-  sign define always_shown_sign
-  exec 'sign place 9999 line=1 name=always_shown_sign buffer=' . bufnr('')
+	sign define always_shown_sign
+	exec 'sign place 9999 line=1 name=always_shown_sign buffer=' . bufnr('')
 endfunction
 
 augroup augroup_always_show_sign_column
-  autocmd!
-  autocmd BufEnter * call ShowSignColumn()
+	autocmd!
+	autocmd BufEnter * call ShowSignColumn()
 augroup END
 
 " }}} Autocmd: SignColumn "
@@ -277,24 +277,24 @@ augroup END
 " Helpers {{{2 "
 
 function! s:spacewrap(str)
-  return printf('  %s ', a:str)
+	return printf('	%s ', a:str)
 endfunction
 
 function! s:titlecase(str)
-  return substitute(a:str, '\<\(\w\)\(\w*\)\>', '\u\1\L\2', 'g')
+	return substitute(a:str, '\<\(\w\)\(\w*\)\>', '\u\1\L\2', 'g')
 endfunction
 
 function! s:format_hlgroup_name(str)
-  return substitute(a:str, '-', '_', 'g')
+	return substitute(a:str, '-', '_', 'g')
 endfunction
 
 function! s:link_hlgroups(group1, group2)
-  exec printf('hi link %s %s', a:group1, a:group2)
+	exec printf('hi link %s %s', a:group1, a:group2)
 endfunction
 
 function! s:link_hlsubgroups(group, subgroup_id)
-  let l:hlsubgroup = a:group . '_' . s:format_hlgroup_name(a:subgroup_id)
-  call s:link_hlgroups(a:group, l:hlsubgroup)
+	let l:hlsubgroup = a:group . '_' . s:format_hlgroup_name(a:subgroup_id)
+	call s:link_hlgroups(a:group, l:hlsubgroup)
 endfunction
 
 " 2}}} Helpers "
@@ -302,60 +302,60 @@ endfunction
 " Refresh {{{2 "
 
 function! StatusLineBuild(active, ...)
-  let l:statusline = ''
+	let l:statusline = ''
 
-  if a:active == 1
-    let l:statusline .= '%#StatusLineMode#'
-    let l:statusline .= '%{StatusLineMode()}'
+	if a:active == 1
+		let l:statusline .= '%#StatusLineMode#'
+		let l:statusline .= '%{StatusLineMode()}'
 
-    let l:statusline .= '%#StatusLineWindowType#'
-    let l:statusline .= '%{StatusLineWindowType()}'
+		let l:statusline .= '%#StatusLineWindowType#'
+		let l:statusline .= '%{StatusLineWindowType()}'
 
-    let l:statusline .= '%#StatusLineFile#'
-    let l:statusline .= '%{StatusLineFile()}'
+		let l:statusline .= '%#StatusLineFile#'
+		let l:statusline .= '%{StatusLineFile()}'
 
-    let l:statusline .= '%='
+		let l:statusline .= '%='
 
-    let l:statusline .= '%#NeomakeErrorSign#'
-    let l:statusline .= '%{StatusLineNeomake("E", "✘")}'
+		let l:statusline .= '%#NeomakeErrorSign#'
+		let l:statusline .= '%{StatusLineNeomake("E", "✘")}'
 
-    let l:statusline .= '%#NeomakeWarningSign#'
-    let l:statusline .= '%{StatusLineNeomake("W", "❢")}'
+		let l:statusline .= '%#NeomakeWarningSign#'
+		let l:statusline .= '%{StatusLineNeomake("W", "❢")}'
 
-    let l:statusline .= '%#StatusLineBranch#'
-    let l:statusline .= '%{StatusLineBranch()}'
-  else
-    let l:statusline .= '%#StatusLineWindowType#'
-    let l:statusline .= '%{StatusLineWindowType()}'
+		let l:statusline .= '%#StatusLineBranch#'
+		let l:statusline .= '%{StatusLineBranch()}'
+	else
+		let l:statusline .= '%#StatusLineWindowType#'
+		let l:statusline .= '%{StatusLineWindowType()}'
 
-    let l:statusline .= '%#StatusLineFile#'
-    let l:statusline .= '%{StatusLineFile()}'
+		let l:statusline .= '%#StatusLineFile#'
+		let l:statusline .= '%{StatusLineFile()}'
 
-    let l:statusline .= '%='
+		let l:statusline .= '%='
 
-    let l:statusline .= '%#StatusLineBranch#'
-    let l:statusline .= '%{StatusLineBranch()}'
-  endif
+		let l:statusline .= '%#StatusLineBranch#'
+		let l:statusline .= '%{StatusLineBranch()}'
+	endif
 
-  return l:statusline
+	return l:statusline
 endfunction
 
 function! StatusLineRefresh(...)
-  let l:statuslines = [StatusLineBuild(0), StatusLineBuild(1)]
-  for l:nr in range(1, winnr('$'))
-    let l:active = (l:nr == winnr())
-    call setwinvar(l:nr, '&statusline', l:statuslines[l:active])
-  endfor
+	let l:statuslines = [StatusLineBuild(0), StatusLineBuild(1)]
+	for l:nr in range(1, winnr('$'))
+		let l:active = (l:nr == winnr())
+		call setwinvar(l:nr, '&statusline', l:statuslines[l:active])
+	endfor
 endfunction
 
 augroup augroup_status_line
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * call StatusLineRefresh()
+	autocmd!
+	autocmd VimEnter,WinEnter,BufWinEnter * call StatusLineRefresh()
 augroup end
 
 function! RedrawStatus()
-  redrawstatus
-  return ''
+	redrawstatus
+	return ''
 endfunction
 
 nnoremap : :<C-\>eRedrawStatus()<CR>
@@ -365,79 +365,79 @@ nnoremap : :<C-\>eRedrawStatus()<CR>
 " Mode {{{2 "
 
 exec 'hi StatusLineMode_NORMAL'
-      \ ' guibg=' . s:colours.gui.neutral_blue .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_blue .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_INSERT'
-      \ ' guibg=' . s:colours.gui.neutral_green .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_green .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_VISUAL'
-      \ ' guibg=' . s:colours.gui.neutral_orange .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_orange .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_V_LINE'
-      \ ' guibg=' . s:colours.gui.neutral_orange .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_orange .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_V_BLOCK'
-      \ ' guibg=' . s:colours.gui.neutral_orange .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_orange .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_REPLACE'
-      \ ' guibg=' . s:colours.gui.neutral_red .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_red .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_COMMAND'
-      \ ' guibg=' . s:colours.gui.neutral_aqua .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_aqua .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 exec 'hi StatusLineMode_TERMINAL'
-      \ ' guibg=' . s:colours.gui.neutral_purple .
-      \ ' guifg=' . s:colours.gui.dark0 .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.neutral_purple .
+			\ ' guifg=' . s:colours.gui.dark0 .
+			\ ' gui=bold'
 
 function! s:mode2name(mode)
-  let l:mode_map = {
-        \ 'n': 'NORMAL',
-        \ 'i': 'INSERT',
-        \ 'R': 'REPLACE',
-        \ 'v': 'VISUAL',
-        \ 'V': 'V-LINE',
-        \ 'c': 'COMMAND',
-        \ "\<C-v>": 'V-BLOCK',
-        \ 's': 'SELECT',
-        \ 'S': 'S-LINE',
-        \ "\<C-s>": 'S-BLOCK',
-        \ 't': 'TERMINAL',
-        \ '?': ' '
-        \ }
-  return l:mode_map[a:mode]
+	let l:mode_map = {
+				\ 'n': 'NORMAL',
+				\ 'i': 'INSERT',
+				\ 'R': 'REPLACE',
+				\ 'v': 'VISUAL',
+				\ 'V': 'V-LINE',
+				\ 'c': 'COMMAND',
+				\ "\<C-v>": 'V-BLOCK',
+				\ 's': 'SELECT',
+				\ 'S': 'S-LINE',
+				\ "\<C-s>": 'S-BLOCK',
+				\ 't': 'TERMINAL',
+				\ '?': ' '
+				\ }
+	return l:mode_map[a:mode]
 endfunction
 
 function! StatusLineMode()
-  let l:modename = s:mode2name(mode())
-  let l:filetype = &filetype
+	let l:modename = s:mode2name(mode())
+	let l:filetype = &filetype
 
-  let l:hide =  l:filetype ==? 'help' ||
-              \ l:filetype ==? 'fzf' ||
-              \ l:filetype ==? 'qf' ||
-              \ l:filetype ==? 'vim-plug' ||
-              \ l:filetype ==? 'tagbar'
+	let l:hide =	l:filetype ==? 'help' ||
+							\ l:filetype ==? 'fzf' ||
+							\ l:filetype ==? 'qf' ||
+							\ l:filetype ==? 'vim-plug' ||
+							\ l:filetype ==? 'tagbar'
 
-  if !l:hide
-    call s:link_hlsubgroups('StatusLineMode', l:modename)
-    return s:spacewrap(l:modename[0])
-  endif
+	if !l:hide
+		call s:link_hlsubgroups('StatusLineMode', l:modename)
+		return s:spacewrap(l:modename[0])
+	endif
 
-  return ''
+	return ''
 endfunction
 
 
@@ -446,57 +446,57 @@ endfunction
 " WindowType {{{2 "
 
 exec 'hi StatusLineWindowType_help'
-      \ ' guibg=' . s:colours.gui.neutral_green .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_green .
+			\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_fzf'
-      \ ' guibg=' . s:colours.gui.neutral_purple .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_purple .
+			\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_quickfix'
-      \ ' guibg=' . s:colours.gui.neutral_yellow .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_yellow .
+			\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_plugins'
-      \ ' guibg=' . s:colours.gui.neutral_aqua .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_aqua .
+			\ ' guifg=' . s:colours.gui.dark0
 
 exec 'hi StatusLineWindowType_tagbar'
-      \ ' guibg=' . s:colours.gui.neutral_green .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_green .
+			\ ' guifg=' . s:colours.gui.dark0
 
 function! s:get_window_type(filename, filetype)
-  if a:filetype ==? 'help'
-    return 'help'
-  elseif a:filetype ==? 'fzf'
-    return 'fzf'
-  elseif a:filetype ==? 'qf'
-    return 'quickfix'
-  elseif a:filetype ==? 'vim-plug'
-    return 'plugins'
-  elseif a:filetype ==? 'tagbar'
-    return 'tagbar'
-  else
-    return ''
-  endif
+	if a:filetype ==? 'help'
+		return 'help'
+	elseif a:filetype ==? 'fzf'
+		return 'fzf'
+	elseif a:filetype ==? 'qf'
+		return 'quickfix'
+	elseif a:filetype ==? 'vim-plug'
+		return 'plugins'
+	elseif a:filetype ==? 'tagbar'
+		return 'tagbar'
+	else
+		return ''
+	endif
 endfunction
 
 function! StatusLineWindowType()
-  let l:filename = expand('%:t')
-  let l:filetype = &filetype
-  let l:windowtype = s:get_window_type(l:filename, l:filetype)
+	let l:filename = expand('%:t')
+	let l:filetype = &filetype
+	let l:windowtype = s:get_window_type(l:filename, l:filetype)
 
-  let l:show =  l:windowtype ==? 'help' ||
-              \ l:windowtype ==? 'fzf' ||
-              \ l:windowtype ==? 'quickfix' ||
-              \ l:windowtype ==? 'plugins' ||
-              \ l:windowtype ==? 'tagbar'
+	let l:show =	l:windowtype ==? 'help' ||
+							\ l:windowtype ==? 'fzf' ||
+							\ l:windowtype ==? 'quickfix' ||
+							\ l:windowtype ==? 'plugins' ||
+							\ l:windowtype ==? 'tagbar'
 
-  if l:show
-    call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
-    return s:spacewrap(s:titlecase(l:windowtype))
-  endif
-  return ''
+	if l:show
+		call s:link_hlsubgroups('StatusLineWindowType', l:windowtype)
+		return s:spacewrap(s:titlecase(l:windowtype))
+	endif
+	return ''
 endfunction
 
 " 2}}} WindowType "
@@ -504,22 +504,22 @@ endfunction
 " File {{{2 "
 
 exec 'hi StatusLineFile'
-      \ ' guibg=' . s:colours.gui.dark1 .
-      \ ' guifg=' . s:colours.gui.light0
+			\ ' guibg=' . s:colours.gui.dark1 .
+			\ ' guifg=' . s:colours.gui.light0
 
 function! StatusLineFile()
-  let l:filetype = &filetype
-  let l:filename = expand('%:t')
+	let l:filetype = &filetype
+	let l:filename = expand('%:t')
 
-  let l:hide =  l:filetype ==? 'fzf' ||
-              \ l:filetype ==? 'vim-plug' ||
-              \ l:filetype ==? 'tagbar'
+	let l:hide =	l:filetype ==? 'fzf' ||
+							\ l:filetype ==? 'vim-plug' ||
+							\ l:filetype ==? 'tagbar'
 
-  if !l:hide
-    return s:spacewrap(l:filename)
-  endif
+	if !l:hide
+		return s:spacewrap(l:filename)
+	endif
 
-  return ''
+	return ''
 endfunction
 
 " 2}}} File "
@@ -528,19 +528,19 @@ endfunction
 
 function! StatusLineNeomake(type, sign)
 
-  if !exists('*neomake#statusline#LoclistCounts')
-    return ''
-  endif
+	if !exists('*neomake#statusline#LoclistCounts')
+		return ''
+	endif
 
-  let l:loclist_counts = neomake#statusline#LoclistCounts()
-  let l:show = !empty(l:loclist_counts) &&
-              \ has_key(l:loclist_counts, a:type)
+	let l:loclist_counts = neomake#statusline#LoclistCounts()
+	let l:show = !empty(l:loclist_counts) &&
+							\ has_key(l:loclist_counts, a:type)
 
-  if l:show
-    return printf(' %s %d ', a:sign, l:loclist_counts[a:type])
-  endif
+	if l:show
+		return printf(' %s %d ', a:sign, l:loclist_counts[a:type])
+	endif
 
-  return ''
+	return ''
 endfunction
 
 " 2}}} Neomake "
@@ -548,27 +548,27 @@ endfunction
 " Branch {{{2 "
 
 exec 'hi StatusLineBranch'
-      \ ' guibg=' . s:colours.gui.neutral_purple .
-      \ ' guifg=' . s:colours.gui.dark0
+			\ ' guibg=' . s:colours.gui.neutral_purple .
+			\ ' guifg=' . s:colours.gui.dark0
 
 function! StatusLineBranch()
 
-  if !exists('*fugitive#head')
-    return ''
-  endif
+	if !exists('*fugitive#head')
+		return ''
+	endif
 
-  let l:filetype = &filetype
-  let l:branch = fugitive#head()
+	let l:filetype = &filetype
+	let l:branch = fugitive#head()
 
-  let l:hide =  empty(l:branch) ||
-              \ l:filetype ==? 'help' ||
-              \ l:filetype ==? 'tagbar'
+	let l:hide =	empty(l:branch) ||
+							\ l:filetype ==? 'help' ||
+							\ l:filetype ==? 'tagbar'
 
-  if !l:hide
-    return s:spacewrap(l:branch)
-  endif
+	if !l:hide
+		return s:spacewrap(l:branch)
+	endif
 
-  return ''
+	return ''
 endfunction
 
 " 2}}} Branch "
@@ -590,33 +590,33 @@ let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", '', '') . '/op
 let g:fzf_layout = { 'down': '~30%' }
 
 " Colors
-hi FZF_fg      ctermfg=15
-hi FZF_bg      ctermbg=0
-hi FZF_hl      ctermfg=3
+hi FZF_fg			ctermfg=15
+hi FZF_bg			ctermbg=0
+hi FZF_hl			ctermfg=3
 hi FZF_fg_plus ctermfg=3
 hi FZF_bg_plus ctermbg=0
 hi FZF_hl_plus ctermbg=3
-hi FZF_info    ctermfg=8
-hi FZF_prompt  ctermfg=2
+hi FZF_info		ctermfg=8
+hi FZF_prompt	ctermfg=2
 hi FZF_pointer ctermfg=4
-hi FZF_marker  ctermfg=3
+hi FZF_marker	ctermfg=3
 hi FZF_spinner ctermfg=4
-hi FZF_header  ctermfg=1
+hi FZF_header	ctermfg=1
 
 let g:fzf_colors = {
-      \ 'fg':      ['fg', 'FZF_fg'],
-      \ 'bg':      ['bg', 'FZF_bg'],
-      \ 'hl':      ['fg', 'FZF_hl'],
-      \ 'fg+':     ['fg', 'FZF_fg_plus'],
-      \ 'bg+':     ['bg', 'FZF_bg_plus'],
-      \ 'hl+':     ['fg', 'FZF_hl_plus'],
-      \ 'info':    ['fg', 'FZF_info'],
-      \ 'prompt':  ['fg', 'FZF_prompt'],
-      \ 'pointer': ['fg', 'FZF_pointer'],
-      \ 'marker':  ['fg', 'FZF_marker'],
-      \ 'spinner': ['fg', 'FZF_spinner'],
-      \ 'header':  ['fg', 'FZF_header']
-      \ }
+			\ 'fg':			['fg', 'FZF_fg'],
+			\ 'bg':			['bg', 'FZF_bg'],
+			\ 'hl':			['fg', 'FZF_hl'],
+			\ 'fg+':		 ['fg', 'FZF_fg_plus'],
+			\ 'bg+':		 ['bg', 'FZF_bg_plus'],
+			\ 'hl+':		 ['fg', 'FZF_hl_plus'],
+			\ 'info':		['fg', 'FZF_info'],
+			\ 'prompt':	['fg', 'FZF_prompt'],
+			\ 'pointer': ['fg', 'FZF_pointer'],
+			\ 'marker':	['fg', 'FZF_marker'],
+			\ 'spinner': ['fg', 'FZF_spinner'],
+			\ 'header':	['fg', 'FZF_header']
+			\ }
 
 " Go to file
 nnoremap <Leader>f :Files<CR>
@@ -635,8 +635,8 @@ nnoremap <Leader>c :Buffers<CR>
 
 " Use common statusline
 augroup augroup_fzf_status_line
-  autocmd!
-  autocmd User FzfStatusLine call StatusLineRefresh()
+	autocmd!
+	autocmd User FzfStatusLine call StatusLineRefresh()
 augroup END
 
 " }}} Plugin: FZF "
@@ -647,45 +647,45 @@ let g:neomake_open_list = 0
 
 " Signs
 let g:neomake_error_sign = {
-      \ 'text': '✘',
-      \ 'texthl': 'NeomakeErrorSign',
-      \ }
+			\ 'text': '✘',
+			\ 'texthl': 'NeomakeErrorSign',
+			\ }
 
 let g:neomake_warning_sign = {
-      \ 'text': '❢',
-      \ 'texthl': 'NeomakeWarningSign',
-      \ }
+			\ 'text': '❢',
+			\ 'texthl': 'NeomakeWarningSign',
+			\ }
 
 " Signs colors
 exec 'hi NeomakeErrorSign' .
-      \ ' guibg=' . s:colours.gui.dark1 .
-      \ ' guifg=' . s:colours.gui.neutral_red .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.dark1 .
+			\ ' guifg=' . s:colours.gui.neutral_red .
+			\ ' gui=bold'
 
 exec 'hi NeomakeWarningSign' .
-      \ ' guibg=' . s:colours.gui.dark1 .
-      \ ' guifg=' . s:colours.gui.neutral_yellow .
-      \ ' gui=bold'
+			\ ' guibg=' . s:colours.gui.dark1 .
+			\ ' guifg=' . s:colours.gui.neutral_yellow .
+			\ ' gui=bold'
 
 " Check all files on save
 augroup augroup_neomake
-  autocmd!
-  autocmd BufWritePost * Neomake
+	autocmd!
+	autocmd BufWritePost * Neomake
 augroup END
 
 " Vim {{{2 "
 
 let g:neomake_vim_vint_maker = {
-      \ 'args': [
-      \   '--style-problem',
-      \   '--enable-neovim',
-      \   '-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
-      \ ],
-      \ 'errorformat':
-      \ '%W%f:%l:%c: warning: %m,' .
-      \ '%W%f:%l:%c: style_problem: %m,' .
-      \ '%E%f:%l:%c: error: %m,'
-      \ }
+			\ 'args': [
+			\	 '--style-problem',
+			\	 '--enable-neovim',
+			\	 '-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
+			\ ],
+			\ 'errorformat':
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%W%f:%l:%c: style_problem: %m,' .
+			\ '%E%f:%l:%c: error: %m,'
+			\ }
 
 let g:neomake_vim_enabled_makers = [ 'vint' ]
 
@@ -748,12 +748,12 @@ let g:table_mode_corner = '|'
 let g:table_mode_corner_corner = '|'
 
 function! MarkdownTableModeSettings()
-  :TableModeEnable
+	:TableModeEnable
 endfunction
 
 augroup augroup_table_mode_enable
-  autocmd!
-  autocmd FileType markdown call MarkdownTableModeSettings()
+	autocmd!
+	autocmd FileType markdown call MarkdownTableModeSettings()
 augroup END
 
 " }}} Plugin: TableMode "
@@ -777,8 +777,8 @@ let g:vim_markdown_frontmatter = 1
 " Plugin: Deoplete {{{ "
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ deoplete#mappings#manual_complete()
+			\ pumvisible() ? "\<C-n>" :
+			\ "\<Tab>"
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
@@ -794,19 +794,19 @@ let g:tagbar_status_func = 'StatusLineBuild'
 
 " Markdown
 let g:tagbar_type_markdown = {
-      \ 'ctagstype': 'markdown',
-      \ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
-      \ 'ctagsargs' : '-f - --sort=yes',
-      \ 'kinds' : [
-      \   's:sections',
-      \   'i:images'
-      \ ],
-      \ 'sro' : '|',
-      \ 'kind2scope' : {
-      \   's' : 'section',
-      \ },
-      \ 'sort': 0,
-      \ }
+			\ 'ctagstype': 'markdown',
+			\ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
+			\ 'ctagsargs' : '-f - --sort=yes',
+			\ 'kinds' : [
+			\	 's:sections',
+			\	 'i:images'
+			\ ],
+			\ 'sro' : '|',
+			\ 'kind2scope' : {
+			\	 's' : 'section',
+			\ },
+			\ 'sort': 0,
+			\ }
 
 " }}} Plugin: Tagbar "
 
@@ -817,22 +817,22 @@ let g:tagbar_type_markdown = {
 
 " Plugin: Incsearch {{{ "
 
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
+map /	<Plug>(incsearch-forward)
+map ?	<Plug>(incsearch-backward)
 
 let g:incsearch#auto_nohlsearch = 1
 
-map n  <Plug>(incsearch-nohl-n)zv
-map N  <Plug>(incsearch-nohl-N)zv
+map n	<Plug>(incsearch-nohl-n)zv
+map N	<Plug>(incsearch-nohl-N)zv
 
 let g:incsearch_cli_key_mappings = {
-      \   "\<Tab>": {
-      \     'key': '<Over>(buffer-complete)',
-      \     'noremap': 1
-      \   },
-      \   "\<C-n>": '<Over>(buffer-complete)',
-      \   "\<C-p>": '<Over>(buffer-complete-prev)',
-      \ }
+			\	 "\<Tab>": {
+			\		 'key': '<Over>(buffer-complete)',
+			\		 'noremap': 1
+			\	 },
+			\	 "\<C-n>": '<Over>(buffer-complete)',
+			\	 "\<C-p>": '<Over>(buffer-complete-prev)',
+			\ }
 
 " }}} Plugin: Incsearch "
 
