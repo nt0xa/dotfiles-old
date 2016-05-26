@@ -77,15 +77,15 @@ function +vi-git-untracked {
 # Git set-message hook
 # Adds count of ahead commits to vcs_info misc (%m)
 function +vi-git-st() {
-		local ahead
-		local -a gitstatus
+	local ahead
+	local -a gitstatus
 
-		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-		(( $ahead )) && gitstatus+=( "%F{green}⇡${ahead// /}%f" )
-		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-		(( $behind )) && gitstatus+=( "%F{green}⇣${behind// /}%f" )
+	ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+	(( $ahead )) && gitstatus+=( "%F{green}⇡${ahead// /}%f" )
+	behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+	(( $behind )) && gitstatus+=( "%F{green}⇣${behind// /}%f" )
 
-		hook_com[misc]+=${(j: :)gitstatus}
+	hook_com[misc]+=${(j: :)gitstatus}
 }
 
 # Main
@@ -110,8 +110,8 @@ function prompt_russtone_setup {
 	zstyle ':vcs_info:git:*' unstagedstr "%F{red}%B!%b%f"
 	zstyle ':vcs_info:git*' formats "%F{magenta}(%b)%f%u%c %m"
 	zstyle ':vcs_info:git*+set-message:*' hooks \
-		git-untracked \
-		git-st
+	                                      git-untracked \
+	                                      git-st
 
 	PROMPT='
 %F{blue}${_prompt_russtone_pwd}%f ${vcs_info_msg_0_}

@@ -42,10 +42,10 @@ fi
 
 # Aliases {{{ #
 
-alias ll='ls -lh'				# Lists human readable sizes
-alias lr='ll -R'				 # Lists human readable sizes, recursively
-alias la='ll -A'				 # Lists human readable sizes, hidden files
-alias cd='cd -P'				 # Change $PWD when cd to symlink
+alias ll='ls -lh' # Lists human readable sizes
+alias lr='ll -R'  # Lists human readable sizes, recursively
+alias la='ll -A'  # Lists human readable sizes, hidden files
+alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python'
 alias pp='ptpython'
 alias v='nvim'
@@ -96,13 +96,13 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # Options
-setopt SHARE_HISTORY						 # Share history between all sessions
-setopt HIST_IGNORE_DUPS					# Do not record an event that was just recorded again
-setopt HIST_IGNORE_ALL_DUPS			# Delete an old recorded event if a new event is a duplicate
-setopt HIST_FIND_NO_DUPS				 # Do not display a previously found event
-setopt HIST_IGNORE_SPACE				 # Do not record an event starting with a space
-setopt HIST_SAVE_NO_DUPS				 # Do not write a duplicate event to the history file
-setopt HIST_VERIFY							 # Do not execute immediately upon history expansion
+setopt SHARE_HISTORY        # Share history between all sessions
+setopt HIST_IGNORE_DUPS     # Do not record an event that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS # Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS    # Do not display a previously found event
+setopt HIST_IGNORE_SPACE    # Do not record an event starting with a space
+setopt HIST_SAVE_NO_DUPS    # Do not write a duplicate event to the history file
+setopt HIST_VERIFY          # Do not execute immediately upon history expansion
 
 # }}} History #
 
@@ -174,8 +174,8 @@ if (( $+commands[fzf] )); then
 
 	# Color scheme
 	export FZF_DEFAULT_OPTS='
-		--color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
-		--color info:7,prompt:2,spinner:3,pointer:4,marker:3
+	 --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+	 --color info:7,prompt:2,spinner:3,pointer:4,marker:3
 	'
 
 	# Use ag if possible

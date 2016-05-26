@@ -32,7 +32,6 @@ alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 
 export LANG='en_US.UTF-8'
 export PAGER='less'
-# export TERM='xterm-256color'
 
 if (( $+commands[nvim] )); then
 	export EDITOR='nvim'
