@@ -1,4 +1,4 @@
-#  XDG {{{ #
+#	XDG {{{ #
 
 # XDG dirs
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -26,38 +26,38 @@ alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 
-#  }}} XDG #
+#	}}} XDG #
 
-#  Environment {{{ #
+#	Environment {{{ #
 
 export LANG='en_US.UTF-8'
 export PAGER='less'
 # export TERM='xterm-256color'
 
 if (( $+commands[nvim] )); then
-  export EDITOR='nvim'
-  export VISUAL='nvim'
+	export EDITOR='nvim'
+	export VISUAL='nvim'
 else
-  export EDITOR='vim'
-  export VISUAL='vim'
+	export EDITOR='vim'
+	export VISUAL='vim'
 fi
 
 # Path
 typeset -U path
 path=(
-  $HOME/.local/bin
-  /usr/local/{bin,sbin}
-  $GOPATH/bin
-  $HOME/Library/Android/sdk/platform-tools
-  $path
+	$HOME/.local/bin
+	/usr/local/{bin,sbin}
+	$GOPATH/bin
+	$HOME/Library/Android/sdk/platform-tools
+	$path
 )
 
 # Manpath
 typeset -U manpath
 manpath=(
-  $ZPLUG_HOME/doc/man
-  /usr/local/share/man
-  /usr/share/man
+	$ZPLUG_HOME/doc/man
+	/usr/local/share/man
+	/usr/share/man
 )
 
-#  }}} Environment #
+#	}}} Environment #

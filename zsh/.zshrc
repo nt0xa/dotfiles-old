@@ -2,7 +2,7 @@
 
 # Auto install zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
-  git clone https://github.com/zplug/zplug $ZPLUG_HOME
+	git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
 source $ZPLUG_HOME/zplug
@@ -29,38 +29,38 @@ bindkey '^N' history-substring-search-down
 # Dircolors {{{ #
 
 if (( $+commands[gdircolors] )); then
-  dircolors_cmd='gdircolors'
+	dircolors_cmd='gdircolors'
 elif (( $+commands[dircolors] )); then
-  dircolors_cmd='dircolors'
+	dircolors_cmd='dircolors'
 fi
 
 if [[ ! -z $dircolors_cmd ]]; then
-  eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
+	eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
 fi
 
 # }}} Dircolors #
 
 # Aliases {{{ #
 
-alias ll='ls -lh'        # Lists human readable sizes
-alias lr='ll -R'         # Lists human readable sizes, recursively
-alias la='ll -A'         # Lists human readable sizes, hidden files
-alias cd='cd -P'         # Change $PWD when cd to symlink
+alias ll='ls -lh'				# Lists human readable sizes
+alias lr='ll -R'				 # Lists human readable sizes, recursively
+alias la='ll -A'				 # Lists human readable sizes, hidden files
+alias cd='cd -P'				 # Change $PWD when cd to symlink
 alias p='python'
 alias pp='ptpython'
 alias v='nvim'
 
 # ls
 if (( $+commands[gls] )); then
-  ls_cmd='gls'
+	ls_cmd='gls'
 else
-  ls_cmd='ls'
+	ls_cmd='ls'
 fi
 alias ls="$ls_cmd --color=auto --group-directories-first"
 
 # open
 if (( $+commands[xdg-open] )); then
-  alias open='xdg-open'
+	alias open='xdg-open'
 fi
 
 # }}} Aliases #
@@ -69,8 +69,8 @@ fi
 
 # Case insensetive completion
 zstyle ':completion:*' matcher-list \
-  'm:{[:lower:]}={[:upper:]}'\
-  'm:{[:upper:]}={[:lower:]}'
+	'm:{[:lower:]}={[:upper:]}'\
+	'm:{[:upper:]}={[:lower:]}'
 
 # Use cache
 zstyle ':completion::complete:*' use-cache on
@@ -96,13 +96,13 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # Options
-setopt SHARE_HISTORY             # Share history between all sessions
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion
+setopt SHARE_HISTORY						 # Share history between all sessions
+setopt HIST_IGNORE_DUPS					# Do not record an event that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS			# Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS				 # Do not display a previously found event
+setopt HIST_IGNORE_SPACE				 # Do not record an event starting with a space
+setopt HIST_SAVE_NO_DUPS				 # Do not write a duplicate event to the history file
+setopt HIST_VERIFY							 # Do not execute immediately upon history expansion
 
 # }}} History #
 
@@ -111,22 +111,22 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 # Tmux {{{ #
 
 function tmx() {
-  local global='global'
-  local client=$(date +%Y%m%d%H%M%S)
+	local global='global'
+	local client=$(date +%Y%m%d%H%M%S)
 
-  if (( ! $+commands[tmux] )); then
-    echo "Warning: 'tmux' command not found!"
-    return 1
-  fi
+	if (( ! $+commands[tmux] )); then
+		echo "Warning: 'tmux' command not found!"
+		return 1
+	fi
 
-  if [[ -z "$TMUX" && -z "$SSH_TTY" ]];  then
+	if [[ -z "$TMUX" && -z "$SSH_TTY" ]];	then
 
-    if ! tmux has-session 2> /dev/null; then
-      tmux new-session -d -s $global
-    fi
+		if ! tmux has-session 2> /dev/null; then
+			tmux new-session -d -s $global
+		fi
 
-    exec tmux new-session -d -t $global -s $client \; set-option destroy-unattached \; attach-session -t $client
-  fi
+		exec tmux new-session -d -t $global -s $client \; set-option destroy-unattached \; attach-session -t $client
+	fi
 }
 
 # }}} Tmux #
@@ -135,78 +135,78 @@ function tmx() {
 
 # Expands .... to ../..
 function expand-dot-to-parent-directory-path() {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+='/..'
-  else
-    LBUFFER+='.'
-  fi
+	if [[ $LBUFFER = *.. ]]; then
+		LBUFFER+='/..'
+	else
+		LBUFFER+='.'
+	fi
 }
 zle -N expand-dot-to-parent-directory-path
 bindkey '.' expand-dot-to-parent-directory-path
 
 # }}} Expand .. #
 
-#  Copy & paste {{{ #
+#	Copy & paste {{{ #
 
 if (( $+functions[clipcopy] )); then
-  function clip-copy-region-as-kill() {
-    zle copy-region-as-kill
-    print -rn $CUTBUFFER | clipcopy
-  }
-  zle -N clip-copy-region-as-kill
-  bindkey '^W' clip-copy-region-as-kill
+	function clip-copy-region-as-kill() {
+		zle copy-region-as-kill
+		print -rn $CUTBUFFER | clipcopy
+	}
+	zle -N clip-copy-region-as-kill
+	bindkey '^W' clip-copy-region-as-kill
 fi
 
 if (( $+functions[clippaste] )); then
-  function clip-yank() {
-    CUTBUFFER=$(clippaste)
-    zle yank
-  }
-  zle -N clip-yank
-  bindkey '^Y' clip-yank
+	function clip-yank() {
+		CUTBUFFER=$(clippaste)
+		zle yank
+	}
+	zle -N clip-yank
+	bindkey '^Y' clip-yank
 fi
 
-#  }}} Copy & paste #
+#	}}} Copy & paste #
 
-#  FZF {{{ #
+#	FZF {{{ #
 
 if (( $+commands[fzf] )); then
 
-  # Color scheme
-  export FZF_DEFAULT_OPTS='
-    --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
-    --color info:7,prompt:2,spinner:3,pointer:4,marker:3
-  '
+	# Color scheme
+	export FZF_DEFAULT_OPTS='
+		--color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+		--color info:7,prompt:2,spinner:3,pointer:4,marker:3
+	'
 
-  # Use ag if possible
-  if (( $+commands[ag] )); then
-    export FZF_DEFAULT_COMMAND='ag -g ""'
-  fi
+	# Use ag if possible
+	if (( $+commands[ag] )); then
+		export FZF_DEFAULT_COMMAND='ag -g ""'
+	fi
 
-  # Select file
-  __fsel() {
-    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
-      -o -type f -print \
-      -o -type d -print \
-      -o -type l -print 2> /dev/null | sed 1d | cut -b3-"}"
-    eval "$cmd" | fzf -m | while read item; do
-      printf '%q ' "$item"
-    done
-    echo
-  }
+	# Select file
+	__fsel() {
+		local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+			-o -type f -print \
+			-o -type d -print \
+			-o -type l -print 2> /dev/null | sed 1d | cut -b3-"}"
+		eval "$cmd" | fzf -m | while read item; do
+			printf '%q ' "$item"
+		done
+		echo
+	}
 
-  fzf-file-widget() {
-    LBUFFER="${LBUFFER}$(__fsel)"
-    zle redisplay
-  }
+	fzf-file-widget() {
+		LBUFFER="${LBUFFER}$(__fsel)"
+		zle redisplay
+	}
 
-  zle -N fzf-file-widget
-  bindkey '^T' fzf-file-widget
+	zle -N fzf-file-widget
+	bindkey '^T' fzf-file-widget
 fi
 
 
-#  }}} FZF #
+#	}}} FZF #
 
-#  }}} Custom functions & widgets #
+#	}}} Custom functions & widgets #
 
 # vim: fdm=marker
