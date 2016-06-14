@@ -55,7 +55,6 @@ Plug 'Chiel92/vim-autoformat'
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
 " By language
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -787,14 +786,6 @@ inoremap <silent><expr> <Tab>
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
-
-" JavaComplete2 {{{2 "
-
-let g:JavaComplete_EnableDefaultMappings = 0
-
-nmap <Localleader>a <Plug>(JavaComplete-Generate-Accessors)
-
-" 2}}} JavaComplete2 "
 
 " }}} Plugin: Deoplete "
 
