@@ -10,8 +10,9 @@ wireshark/
 QtProject.conf
 mimeapps.list
 nvim/.init.vim-rplugin~
+ptpython/history
+radare2/history
 tags
 user-dirs.dirs
 user-dirs.locale
 zsh/.zcompdump
-ptpython/history
