@@ -1,7 +1,7 @@
 global !p
 import vim
 def comment_symbol():
-		return vim.eval('&commentstring').replace('%s', '').strip()
+    return vim.eval('&commentstring').replace('%s', '').strip()
 endglobal
 
 snippet cc "Inserts TextMate-like comment block" b

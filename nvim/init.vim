@@ -55,6 +55,7 @@ Plug 'Chiel92/vim-autoformat'
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 
 " By language
@@ -577,6 +578,8 @@ endfunction
 " 1}}} Statusline "
 
 " Plugin: UltiSnips {{{ "
+
+let g:UltiSnipsSnippetDirectories = [$XDG_CONFIG_HOME . '/nvim/UltiSnips']
 
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
