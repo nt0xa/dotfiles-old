@@ -55,6 +55,7 @@ Plug 'Chiel92/vim-autoformat'
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 
 " By language
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -786,6 +787,24 @@ inoremap <silent><expr> <Tab>
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
+
+" Clang {{{2 "
+
+let s:uname = system('uname')
+if s:uname ==? "Linux\n"
+	let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so'
+	let g:deoplete#sources#clang#clang_header = '/usr/include/llvm-3.6/llvm'
+elseif s:uname ==? "Darwin\n"
+endif
+
+let g:deoplete#sources#clang#flags = [
+\ '-I', './',
+\ '-I', './include',
+\ '-I', '/usr/local/include',
+\ '-I', '/usr/include'
+\ ]
+
+ " 2}}} Clang "
 
 " }}} Plugin: Deoplete "
 
