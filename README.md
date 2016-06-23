@@ -3,15 +3,6 @@ Just my configuration files.
 
 # Install
 
-## Common
-```sh
-# Clone
-git clone git@github.com:russtone/dotfiles.git ~/.config
-
-# Set $ZDOTDIR
-echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
-```
-
 ## Debian
 ```sh
 sudo apt-get update
@@ -34,6 +25,12 @@ chsh -s /usr/bin/zsh <user>
 
 ## macOS
 ```sh
+# Clone
+git clone git@github.com:russtone/dotfiles.git ~/.config
+
+# Set $ZDOTDIR
+echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
+
 # Set OS X environment variables
 mkdir ~/Library/LaunchAgents
 ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
@@ -43,10 +40,15 @@ ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
 
 ### zplug, tpm, vim-plug
 ```sh
+# zplug
 zplug install
+
+# tmux
 tmx
-I
-nvim -c ':PlugInstall " :UpdateRemotePlugins'
+<prefix>I
+
+# neovim
+nvim -c ':PlugInstall | :UpdateRemotePlugins'
 ```
 
 ### deoplete-clang
