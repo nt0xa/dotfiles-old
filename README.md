@@ -5,28 +5,45 @@ Just my configuration files.
 
 ## Debian
 ```sh
+# Install git
 sudo apt-get update
+sudo apt-get install git subversion
 
-sudo apt-get install git silversearcher-ag subversion tmux zsh
+# Install Linuxbrew (if ~/.local not exist then just clone)
+cd ~/.local
+git init
+git remote add origin https://github.com/Linuxbrew/brew.git
+git fetch origin
+git checkout -b master --track origin/master
 
-# gawk              - for zplug
-# libclang-3.6-dev  - for deoplete-clang
-# dconf-cli         - to setup gnome-terminal theme
-sudo apt-get install dconf-cli gawk libclang-3.6-dev
+# Install configs
+cd ~/.config
+git init
+git remote add origin https://github.com/russtone/dotfiles
+git fetch origin
+git checkout -b master --track origin/master
 
-# Experimental
-echo 'deb http://httpredir.debian.org/debian experimental main' | sudo tee -a /etc/apt/sources.list > /dev/null
-sudo apt-get update
-sudo apt-get -t experimental install libmsgpackc2 neovim
+# Install brew packages
+brew install zsh
+brew install tmux
+brew install the_silver_searcher
+brew install fzf
+brew install universal-ctags/universal-ctags/universal-ctags
+brew install neovim/neovim/neovim
 
-# Clone configs
-git clone git@github.com:russtone/dotfiles.git ~/.config
-
-# Set $ZDOTDIR
-echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zsh/zshenv > /dev/null
-
-# Change default shell
+# zsh
+sudo apt-get install gawk
+echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
 chsh -s /usr/bin/zsh <user>
+zplug install
+
+# tmux
+tmx
+<prefix>I
+
+# neovim
+sudo apt-get install libcalng-3.6-dev
+nvim -c ':PlugInstall | :UpdateRemotePlugins'
 
 # Fira font
 svn checkout https://github.com/mozilla/Fira/trunk/ttf /tmp/fira
@@ -34,6 +51,7 @@ sudo mv /tmp/fira /usr/share/fonts/truetype/
 gsettings set org.gnome.desktop.interface monospace-font-name 'Fira Mono 14'
 
 # Gruvbox gnome colors
+sudo apt-get install dconf-cli
 git clone https://github.com/metalelf0/gnome-terminal-colors /tmp/gnome-terminal-colors
 cd /tmp/gnome-terminal-colors && ./install.sh
 ```
@@ -55,13 +73,5 @@ ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
 
 ## zplug, tpm, vim-plug
 ```sh
-# zplug
-zplug install
 
-# tmux
-tmx
-<prefix>I
-
-# neovim
-nvim -c ':PlugInstall | :UpdateRemotePlugins'
 ```
