@@ -6,7 +6,9 @@ Just my configuration files.
 ## Debian
 ```sh
 sudo apt-get update
-sudo apt-get install gawk git silversearcher-ag tmux zsh
+# gawk              - for zplug
+# libclang-3.6-dev  - for deoplete-clang
+sudo apt-get install gawk git libclang-3.6-dev silversearcher-ag tmux zsh
 
 # Experimental
 echo 'deb http://httpredir.debian.org/debian experimental main' | sudo tee -a /etc/apt/sources.list > /dev/null
@@ -36,9 +38,9 @@ mkdir ~/Library/LaunchAgents
 ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
 ```
 
-## Misc
+# Plugins
 
-### zplug, tpm, vim-plug
+## zplug, tpm, vim-plug
 ```sh
 # zplug
 zplug install
@@ -49,9 +51,4 @@ tmx
 
 # neovim
 nvim -c ':PlugInstall | :UpdateRemotePlugins'
-```
-
-### deoplete-clang
-```sh
-sudo apt-get install libclang-3.6-dev
 ```
