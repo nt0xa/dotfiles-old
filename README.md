@@ -24,12 +24,7 @@ git fetch origin
 git checkout -b master --track origin/master
 
 # Install brew packages
-brew install zsh
-brew install tmux
-brew install the_silver_searcher
-brew install fzf
-brew install universal-ctags/universal-ctags/universal-ctags
-brew install neovim/neovim/neovim
+brew install $(cat packages.txt)
 
 # zsh
 sudo apt-get install gawk
