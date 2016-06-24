@@ -29,6 +29,7 @@ brew install $(cat packages.txt)
 # zsh
 sudo apt-get install gawk
 echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
+echo "$HOME/.local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
 chsh -s /usr/bin/zsh <user>
 zplug install
 
@@ -64,11 +65,4 @@ echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
 # Set OS X environment variables
 mkdir ~/Library/LaunchAgents
 ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
-```
-
-# Plugins
-
-## zplug, tpm, vim-plug
-```sh
-
 ```
