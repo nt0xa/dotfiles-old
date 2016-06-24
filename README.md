@@ -24,7 +24,9 @@ git fetch origin
 git checkout -b master --track origin/master
 
 # Install brew packages
-brew install $(cat packages.txt)
+brew tap Homebrew/bundle
+cd ~/.config
+brew bundle
 
 # zsh
 sudo apt-get install gawk
