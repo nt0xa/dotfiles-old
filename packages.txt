@@ -1,6 +1,0 @@
-zsh
-tmux
-neovim/neovim/neovim
-the_silver_searcher
-fzf
-universal-ctags/universal-ctags/universal-ctags
