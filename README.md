@@ -39,6 +39,7 @@ tmx
 # neovim
 sudo apt-get install libclang-3.6-dev
 sudo apt-get install python-dev python-pip python3-dev python3-pip
+pip3 install neovim
 nvim -c ':PlugInstall | :UpdateRemotePlugins'
 
 # Fira font
