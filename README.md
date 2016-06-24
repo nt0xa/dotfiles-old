@@ -42,7 +42,7 @@ tmx
 <prefix>I
 
 # neovim
-sudo apt-get install libcalng-3.6-dev
+sudo apt-get install libclang-3.6-dev
 nvim -c ':PlugInstall | :UpdateRemotePlugins'
 
 # Fira font
