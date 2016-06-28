@@ -5,7 +5,7 @@ Just my configuration files.
 
 ## Debian / Fedora
 
-### Install needed packages
+#### Install needed packages
 ```sh
 # Debian
 sudo apt-get update
@@ -18,7 +18,7 @@ sudo dnf groupinstall -y "C Development Tools and Libraries" "Development Tools"
 sudo dnf install -y git subversion ruby
 ```
 
-### Install Linuxbrew (if ~/.local not exist then just clone)
+#### Install Linuxbrew
 ```sh
 cd ~/.local
 git init
@@ -27,7 +27,7 @@ git fetch origin
 git checkout -b master --track origin/master
 ```
 
-### Install configs
+#### Install configs
 ```sh
 cd ~/.config
 git init
@@ -36,7 +36,7 @@ git fetch origin
 git checkout -b master --track origin/master
 ```
 
-### Generate ssh-key
+#### Generate ssh-key
 ```sh
 ssh-keygen
 
@@ -44,7 +44,7 @@ ssh-keygen
 cat ~/.ssh/id_rsa.pub
 ```
 
-### Install brew packages
+#### Install brew packages
 ```sh
 # Fedora workaround
 sudo dnf install perl-Storable
@@ -57,7 +57,7 @@ cd ~/.config
 brew bundle -v
 ```
 
-### Zsh
+#### Zsh
 ```sh
 # Debian workaround
 sudo apt-get install gawk
@@ -70,13 +70,13 @@ chsh -s $HOME/.local/bin/zsh <user>
 zplug install
 ```
 
-### Tmux
+#### Tmux
 ```sh
 tmx
 <prefix>I
 ```
 
-### Neovim
+#### Neovim
 ```sh
 # Debian
 sudo apt-get install python-dev python-pip python3-dev python3-pip
@@ -93,7 +93,7 @@ pip3 install neovim
 nvim -c ':PlugInstall | :UpdateRemotePlugins'
 ```
 
-### Fira font
+#### Fira font
 ```sh
 svn checkout https://github.com/mozilla/Fira/trunk/ttf /tmp/fira
 sudo mv /tmp/fira /usr/share/fonts/truetype/
@@ -101,7 +101,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'Fira Mono 14'
 ```
 
 
-### Gruvbox gnome colors
+#### Gruvbox gnome colors
 ```sh
 # Debian
 sudo apt-get install dconf-cli
