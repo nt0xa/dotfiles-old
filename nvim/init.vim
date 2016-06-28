@@ -803,6 +803,8 @@ if s:uname ==? "Linux\n"
 		let g:deoplete#sources#clang#clang_header = '/usr/include/llvm-3.6/llvm'
 	endif
 elseif s:uname ==? "Darwin\n"
+		let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+		let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/include'
 endif
 
 let g:deoplete#sources#clang#flags = [
