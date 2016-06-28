@@ -689,7 +689,9 @@ let g:neomake_vim_vint_maker = {
 \ 	'%E%f:%l:%c: error: %m,'
 \ }
 
-let g:neomake_vim_enabled_makers = ['vint']
+if executable('vint')
+	let g:neomake_vim_enabled_makers = ['vint']
+endif
 
 " 2}}} Vim "
 
@@ -793,8 +795,13 @@ let g:deoplete#max_menu_width = 10
 
 let s:uname = system('uname')
 if s:uname ==? "Linux\n"
-	let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so'
-	let g:deoplete#sources#clang#clang_header = '/usr/include/llvm-3.6/llvm'
+	if filereadable('/etc/fedora-release')
+		let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'
+		let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+	elseif filereadable('/etc/debian_version')
+		let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so'
+		let g:deoplete#sources#clang#clang_header = '/usr/include/llvm-3.6/llvm'
+	endif
 elseif s:uname ==? "Darwin\n"
 endif
 
