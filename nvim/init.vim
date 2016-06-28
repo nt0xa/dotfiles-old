@@ -54,15 +54,13 @@ Plug 'Chiel92/vim-autoformat'
 
 " Completion
 Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neoinclude.vim'
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 
 " By language
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'sheerun/vim-polyglot'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 call plug#end()
 
@@ -691,7 +689,7 @@ let g:neomake_vim_vint_maker = {
 \ 	'%E%f:%l:%c: error: %m,'
 \ }
 
-let g:neomake_vim_enabled_makers = [ 'vint' ]
+let g:neomake_vim_enabled_makers = ['vint']
 
 " 2}}} Vim "
 
