@@ -107,8 +107,6 @@ setopt HIST_VERIFY          # Do not execute immediately upon history expansion
 
 # }}} History #
 
-# Custom functions & widgets {{{ #
-
 # Tmux {{{ #
 
 function tmx() {
@@ -204,17 +202,12 @@ if (( $+commands[fzf] )); then
 	zle -N fzf-file-widget
 	bindkey '^T' fzf-file-widget
 
-	# fzf-marks jump
-	if (( $+commands[jump] )); then
-		alias j='jump'
-		alias m='mark'
-	fi
+	# fzf-marks
+	alias j='jump'
+	alias m='mark'
 
 fi
 
-
 #	}}} FZF #
-
-#	}}} Custom functions & widgets #
 
 # vim: fdm=marker
