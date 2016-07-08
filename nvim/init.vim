@@ -799,8 +799,8 @@ if s:uname ==? "Linux\n"
 		let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'
 		let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 	elseif filereadable('/etc/debian_version')
-		let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so'
-		let g:deoplete#sources#clang#clang_header = '/usr/include/llvm-3.6/llvm'
+		let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
+		let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/include'
 	endif
 elseif s:uname ==? "Darwin\n"
 		let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'

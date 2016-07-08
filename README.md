@@ -80,7 +80,7 @@ tmx
 ```sh
 # Debian
 sudo apt-get install python-dev python-pip python3-dev python3-pip
-sudo apt-get install libclang-3.6-dev
+sudo apt-get install libclang-3.8-dev
 
 # Fedora
 sudo dnf install redhat-rpm-config python-devel python3-devel
