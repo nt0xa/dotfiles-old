@@ -4,3 +4,29 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 endsnippet
+
+snippet clines "Template for count lines in file" b
+int count_lines(FILE *fp) {
+	int lines = 0;
+	char ch;
+	while(!feof(fp)) {
+		ch = fgetc(fp);
+		if (ch == '\n')
+			lines++;
+	}
+	rewind(fp);
+	return lines;
+}
+endsnippet
+
+snippet frd "Read file line by line" b
+while ((read = getline(&line, &len, fp)) != -1) {
+	$0
+}
+endsnippet
+
+snippet fun "Function template" b
+void ${1:fname}($2) {
+	$0
+}
+endsnippet
