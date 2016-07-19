@@ -94,7 +94,7 @@ set clipboard=unnamed,unnamedplus
 set showcmd
 
 " Wildignore
-set wildignore=.git,node_modules,dist,*.o,*.a,*.pyc,*.class
+set wildignore=.git,.svn,node_modules,dist,build,*.o,*.a,*.pyc,*.class
 
 " Enable syntax highlighting
 syntax enable
@@ -810,6 +810,7 @@ endif
 let g:deoplete#sources#clang#flags = [
 \ '-I', './',
 \ '-I', './include',
+\ '-I', './src/include',
 \ '-I', '/usr/local/include',
 \ '-I', '/usr/include'
 \ ]
