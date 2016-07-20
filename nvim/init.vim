@@ -12,6 +12,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " Interface
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-eunuch'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
