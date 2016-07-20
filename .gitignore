@@ -5,6 +5,8 @@ gedit/
 gtk-2.0/
 htop/
 nautilus/
+pulse/
+systemd/
 wireshark/
 
 QtProject.conf
