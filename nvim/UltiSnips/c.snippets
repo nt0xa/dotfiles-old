@@ -19,7 +19,11 @@ int count_lines(FILE *fp) {
 }
 endsnippet
 
-snippet frd "Read file line by line" b
+snippet cfrd "Read file line by line" b
+ssize_t read = 0;
+char *line = NULL;
+size_t len;
+
 while ((read = getline(&line, &len, fp)) != -1) {
 	$0
 }
