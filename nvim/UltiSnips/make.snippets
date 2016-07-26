@@ -1,0 +1,22 @@
+snippet tpl "Template for Makefile" b
+TARGET = $1
+CC = gcc
+LD = $(CC)
+CFLAGS =
+LDFLAGS =
+SOURCE_FILES = $(wildcard *.c)
+OBJECT_FILES = $(SOURCE_FILES:%.c=%.o)
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECT_FILES)
+	$(LD) $^ -o $@ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@rm -f $(OBJECT_FILES) $(TARGET)
+endsnippet
