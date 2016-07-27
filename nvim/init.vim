@@ -13,6 +13,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-projectionist'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -784,6 +785,39 @@ let g:vim_markdown_frontmatter = 1
 
 " }}} Plugin: Markdown "
 
+" Plugin: Projectionist {{{ "
+
+let g:projectionist_heuristics = {
+\ 'CMakeLists.txt': {
+\ 	'src/*.c': {
+\ 		'type': 'source',
+\ 		'alternate': 'include/{}.h',
+\ 	},
+\ 	'include/*.h': {
+\ 		'type': 'header',
+\ 		'alternate': 'src/{}.c',
+\ 	},
+\ 	'*': {
+\ 		'make': 'make -C build',
+\ 	},
+\ }}
+
+augroup  augroup_projectionist
+	autocmd!
+	autocmd User ProjectionistActivate call s:neomake_project_lint()
+augroup END
+
+function! s:neomake_project_lint() abort
+	if len(projectionist#query('make'))
+		augroup augroup_neomake
+			autocmd!
+			autocmd BufWritePost * Neomake!
+		augroup END
+	endif
+endfunction
+
+" }}} Plugin: Projectionist "
+
 " Plugin: Deoplete {{{ "
 
 inoremap <silent><expr> <Tab>
@@ -809,8 +843,8 @@ elseif s:uname ==? "Darwin\n"
 endif
 
 let g:deoplete#sources#clang#flags = [
-\ '-I', './',
 \ '-I', './include',
+\ '-I', '../include',
 \ '-I', './src/include',
 \ '-I', '/usr/local/include',
 \ '-I', '/usr/include'
