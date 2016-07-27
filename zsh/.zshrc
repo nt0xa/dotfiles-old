@@ -10,7 +10,7 @@ source $ZPLUG_HOME/zplug
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "uvaes/fzf-marks"
+zplug "urbainvaes/fzf-marks"
 
 zplug "$ZDOTDIR", use:clipboard.zsh, from:local
 zplug "$ZDOTDIR", use:prompt.zsh, from:local
