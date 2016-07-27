@@ -128,6 +128,8 @@ function tmx() {
 	fi
 }
 
+alias t='tmx'
+
 # }}} Tmux #
 
 # Expand .. {{{ #
