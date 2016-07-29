@@ -12,8 +12,9 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " Interface
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-projectionist'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -251,6 +252,9 @@ nnoremap <Leader>w :w!<CR>
 
 " Quit
 nnoremap <Leader>q :q<CR>
+
+" Only
+nnoremap <leader>o :only<CR>
 
 " Select pasted text
 noremap gV `[v`]
@@ -622,20 +626,20 @@ let g:fzf_colors = {
 \ 	'header':  ['fg', 'FZF_header']
 \ }
 
-" Go to file
+" Go to file (f - file)
 nnoremap <Leader>f :Files<CR>
 
-" Go to tag in project
+" Go to tag in project (g - goto)
 nnoremap <Leader>g :Tags<CR>
 
-" Go to tag in buffer
-nnoremap <Leader>e :BTags<CR>
+" Go to tag in buffer (m - methods)
+nnoremap <Leader>m :BTags<CR>
 
-" Search with ag
+" Search with ag (/ - like vim search)
 nnoremap <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 
-" Go to buffer
-nnoremap <Leader>c :Buffers<CR>
+" Go to buffer (s - swithch)
+nnoremap <Leader>s :Buffers<CR>
 
 " Use common statusline
 augroup augroup_fzf_status_line
@@ -802,12 +806,12 @@ let g:projectionist_heuristics = {
 \ 	},
 \ }}
 
-augroup  augroup_projectionist
+augroup augroup_projectionist
 	autocmd!
-	autocmd User ProjectionistActivate call s:neomake_project_lint()
+	autocmd User ProjectionistActivate call NeomakeProjectLint()
 augroup END
 
-function! s:neomake_project_lint() abort
+function! NeomakeProjectLint() abort
 	if len(projectionist#query('make'))
 		augroup augroup_neomake
 			autocmd!
@@ -904,5 +908,19 @@ let g:incsearch_cli_key_mappings = {
 \ }
 
 " }}} Plugin: Incsearch "
+
+" Plugin: Ranger {{{ "
+
+let g:ranger_map_keys = 0
+
+" Start ranger in current buffer directory (d - directory)
+nnoremap <Leader>d :Ranger<CR>
+
+augroup terminal_augroup
+	autocmd!
+	autocmd TermOpen * setlocal nolist
+augroup END
+
+" }}} Plugin: Ranger "
 
 " vim: fdm=marker

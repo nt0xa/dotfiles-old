@@ -50,6 +50,7 @@ alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python'
 alias pp='ptpython'
 alias v='nvim'
+alias r='ranger'
 
 # ls
 if (( $+commands[gls] )); then

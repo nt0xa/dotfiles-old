@@ -8,6 +8,8 @@ nautilus/
 pulse/
 systemd/
 wireshark/
+ranger/
+!ranger/rc.conf
 
 QtProject.conf
 mimeapps.list
