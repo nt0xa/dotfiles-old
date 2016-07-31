@@ -848,8 +848,7 @@ endif
 
 let g:deoplete#sources#clang#flags = [
 \ '-I', './include',
-\ '-I', '../include',
-\ '-I', './src/include',
+\ '-I', './.deps/usr/include',
 \ '-I', '/usr/local/include',
 \ '-I', '/usr/include'
 \ ]
