@@ -538,12 +538,20 @@ function! StatusLineNeomake(type, sign)
 		return ''
 	endif
 
-	let l:loclist_counts = neomake#statusline#LoclistCounts()
-	let l:show = !empty(l:loclist_counts) &&
-	\             has_key(l:loclist_counts, a:type)
+	let l:count = 0
 
-	if l:show
-		return printf(' %s %d ', a:sign, l:loclist_counts[a:type])
+	let l:loclist = neomake#statusline#LoclistCounts()
+	if !empty(l:loclist) && has_key(l:loclist, a:type)
+		let l:count += l:loclist[a:type]
+	endif
+
+	let l:qflist = neomake#statusline#QflistCounts()
+	if !empty(l:qflist) && has_key(l:qflist, a:type)
+		let l:count += l:qflist[a:type]
+	endif
+
+	if l:count
+		return printf(' %s %d ', a:sign, l:count)
 	endif
 
 	return ''
