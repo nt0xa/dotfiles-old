@@ -19,7 +19,7 @@ int count_lines(FILE *fp) {
 }
 endsnippet
 
-snippet cfrd "Read file line by line" b
+snippet cfread "Read file line by line" b
 ssize_t read = 0;
 char *line = NULL;
 size_t len;
@@ -49,4 +49,13 @@ int getch(void) {
 
 	return ch;
 }
+endsnippet
+
+snippet ifndef "Header protector" b
+#ifndef ${1:HEADER_H}
+#define ${1:HEADER_H}
+
+$0
+
+#endif
 endsnippet
