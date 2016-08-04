@@ -14,7 +14,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-projectionist'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'francoiscabrol/ranger.vim'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -918,10 +917,28 @@ let g:incsearch_cli_key_mappings = {
 
 " Plugin: Ranger {{{ "
 
-let g:ranger_map_keys = 0
+let g:ranger_path = 'ranger'
+
+function! OpenRanger(dir)
+	let l:curpath = expand(a:dir)
+	let l:tmpfile = tempname()
+	let l:callback = { 'name': 'ranger' , 'tmpfile': l:tmpfile }
+	function! l:callback.on_exit(id, code)
+		bdelete!
+		if filereadable(l:self.tmpfile)
+			for l:fpath in readfile(l:self.tmpfile)
+				exec 'edit '. l:fpath
+			endfor
+			call delete(l:self.tmpfile)
+		endif
+	endfunction
+	enew
+	call termopen(g:ranger_path . ' ' . '--choosefiles=' . shellescape(l:tmpfile) . ' ' . l:curpath, l:callback)
+	startinsert
+endfunction
 
 " Start ranger in current buffer directory (d - directory)
-nnoremap <Leader>d :Ranger<CR>
+nnoremap <Leader>d :call OpenRanger('%:p:h')<CR>
 
 augroup terminal_augroup
 	autocmd!
