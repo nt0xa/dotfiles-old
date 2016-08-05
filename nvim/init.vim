@@ -84,7 +84,7 @@ set laststatus=2
 set noshowmode
 
 " Allow switching buffers without saving
-set hidden
+" set hidden
 
 " Enable mouse
 set mouse=a
@@ -919,12 +919,25 @@ let g:incsearch_cli_key_mappings = {
 
 let g:ranger_path = 'ranger'
 
-function! OpenRanger(dir)
-	let l:curpath = expand(a:dir)
+function! OpenRanger(path)
+	let l:path = expand(a:path)
 	let l:tmpfile = tempname()
-	let l:callback = { 'name': 'ranger' , 'tmpfile': l:tmpfile }
+	let l:curfile = expand('%:p')
+	let l:callback = {
+	\ 'name': 'ranger',
+	\ 'tmpfile': l:tmpfile,
+	\ 'curfile': l:curfile,
+	\ 'curfile_existed': filereadable(l:curfile),
+	\ }
+
 	function! l:callback.on_exit(id, code)
 		bdelete!
+
+		if l:self.curfile_existed &&
+		\ !filereadable(l:self.curfile)
+			bdelete!
+		endif
+
 		if filereadable(l:self.tmpfile)
 			for l:fpath in readfile(l:self.tmpfile)
 				exec 'edit '. l:fpath
@@ -932,13 +945,19 @@ function! OpenRanger(dir)
 			call delete(l:self.tmpfile)
 		endif
 	endfunction
+
 	enew
-	call termopen(g:ranger_path . ' ' . '--choosefiles=' . shellescape(l:tmpfile) . ' ' . l:curpath, l:callback)
+
+	let l:command = g:ranger_path .
+	\ ' --choosefiles=' . shellescape(l:tmpfile) .
+	\ (isdirectory(l:path) ? l:path : ' --selectfile=' . l:path)
+
+	call termopen(l:command, l:callback)
 	startinsert
 endfunction
 
 " Start ranger in current buffer directory (d - directory)
-nnoremap <Leader>d :call OpenRanger('%:p:h')<CR>
+nnoremap <Leader>d :call OpenRanger('%:p')<CR>
 
 augroup terminal_augroup
 	autocmd!
