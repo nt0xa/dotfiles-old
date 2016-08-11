@@ -48,6 +48,7 @@ path=(
 	/usr/local/{bin,sbin}
 	$GOPATH/bin
 	$HOME/Library/Android/sdk/platform-tools
+	/opt/SageMath
 	$path
 )
 
