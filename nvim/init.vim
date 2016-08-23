@@ -102,7 +102,7 @@ set wildignore=.git,.svn,node_modules,dist,build,*.o,*.a,*.pyc,*.class
 syntax enable
 
 " Colorscheme
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 set background=dark
 try
