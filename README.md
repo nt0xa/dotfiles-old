@@ -133,6 +133,7 @@ cd ~/.config
 brew bundle -v
 ```
 
+#### Zsh
 ```sh
 echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
 echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
@@ -140,6 +141,18 @@ chsh -s /usr/local/bin/zsh <user>
 zplug install
 ```
 
+#### Gruvbox iterm2 colors
+```sh
+curl -O https://raw.githubusercontent.com/morhetz/gruvbox-contrib/master/iterm2/gruvbox-dark.itermcolors
+```
+
+#### Fira font
+```sh
+svn checkout https://github.com/mozilla/Fira/trunk/ttf /tmp/fira
+mv /tmp/fira/*.ttf /Users/russtone/Library/Fonts
+```
+
+#### Environment
 ```sh
 # Set OS X environment variables
 mkdir ~/Library/LaunchAgents
