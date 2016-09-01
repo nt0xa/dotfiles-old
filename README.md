@@ -27,6 +27,14 @@ git fetch origin
 git checkout -b master --track origin/master
 ```
 
+#### Generate ssh-key
+```sh
+ssh-keygen
+
+# Add key to github account
+cat ~/.ssh/id_rsa.pub
+```
+
 #### Install configs
 ```sh
 cd ~/.config
@@ -34,14 +42,6 @@ git init
 git remote add origin https://github.com/russtone/dotfiles
 git fetch origin
 git checkout -b master --track origin/master
-```
-
-#### Generate ssh-key
-```sh
-ssh-keygen
-
-# Add key to github account
-cat ~/.ssh/id_rsa.pub
 ```
 
 #### Install brew packages
@@ -114,6 +114,14 @@ cd /tmp/gnome-terminal-colors && ./install.sh
 
 ## macOS
 
+#### Generate ssh-key
+```sh
+ssh-keygen
+
+# Add key to github account
+cat ~/.ssh/id_rsa.pub
+```
+
 #### Install configs
 
 ```sh
@@ -139,6 +147,19 @@ echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
 echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
 chsh -s /usr/local/bin/zsh <user>
 zplug install
+```
+
+#### Tmux
+```sh
+tmx
+<prefix>I
+```
+
+#### Neovim
+
+```sh
+pip3 install neovim
+nvim -c ':PlugInstall | :UpdateRemotePlugins'
 ```
 
 #### Gruvbox iterm2 colors
