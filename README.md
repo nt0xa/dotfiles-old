@@ -117,6 +117,12 @@ cd /tmp/gnome-terminal-colors && ./install.sh
 # Clone
 git clone git@github.com:russtone/dotfiles.git ~/.config
 
+# Brew bundles
+brew tap Homebrew/bundle
+cd ~/.config
+brew bundle -v
+
+
 # Set $ZDOTDIR
 echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
 
