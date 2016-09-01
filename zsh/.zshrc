@@ -5,7 +5,7 @@ if [[ ! -d $ZPLUG_HOME ]]; then
 	git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
-source $ZPLUG_HOME/zplug
+source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
