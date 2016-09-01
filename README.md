@@ -158,6 +158,7 @@ tmx
 #### Neovim
 
 ```sh
+brew install python3
 pip3 install neovim
 nvim -c ':PlugInstall | :UpdateRemotePlugins'
 ```
