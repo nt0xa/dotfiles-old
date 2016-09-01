@@ -113,19 +113,34 @@ cd /tmp/gnome-terminal-colors && ./install.sh
 ```
 
 ## macOS
-```sh
-# Clone
-git clone git@github.com:russtone/dotfiles.git ~/.config
 
+#### Install configs
+
+```sh
+git clone git@github.com:russtone/dotfiles.git ~/.config
+```
+
+#### Install homebrew
+```sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+#### Install brew packages
+```sh
 # Brew bundles
 brew tap Homebrew/bundle
 cd ~/.config
 brew bundle -v
+```
 
+```sh
+echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
+echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
+chsh -s /usr/local/bin/zsh <user>
+zplug install
+```
 
-# Set $ZDOTDIR
-echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
-
+```sh
 # Set OS X environment variables
 mkdir ~/Library/LaunchAgents
 ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
