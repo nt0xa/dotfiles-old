@@ -857,7 +857,8 @@ let g:deoplete#sources#clang#flags = [
 \ '-I', './include',
 \ '-I', './.deps/usr/include',
 \ '-I', '/usr/local/include',
-\ '-I', '/usr/include'
+\ '-I', '/usr/include',
+\ '-I', '/usr/local/opt/openssl/include'
 \ ]
 
  " 2}}} Clang "
