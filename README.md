@@ -27,6 +27,14 @@ git fetch origin
 git checkout -b master --track origin/master
 ```
 
+#### Generate ssh-key
+```sh
+ssh-keygen
+
+# Add key to github account
+cat ~/.ssh/id_rsa.pub
+```
+
 #### Install configs
 ```sh
 cd ~/.config
@@ -34,14 +42,6 @@ git init
 git remote add origin https://github.com/russtone/dotfiles
 git fetch origin
 git checkout -b master --track origin/master
-```
-
-#### Generate ssh-key
-```sh
-ssh-keygen
-
-# Add key to github account
-cat ~/.ssh/id_rsa.pub
 ```
 
 #### Install brew packages
@@ -113,19 +113,69 @@ cd /tmp/gnome-terminal-colors && ./install.sh
 ```
 
 ## macOS
-```sh
-# Clone
-git clone git@github.com:russtone/dotfiles.git ~/.config
 
+#### Generate ssh-key
+```sh
+ssh-keygen
+
+# Add key to github account
+cat ~/.ssh/id_rsa.pub
+```
+
+#### Install configs
+
+```sh
+git clone git@github.com:russtone/dotfiles.git ~/.config
+```
+
+#### Install homebrew
+```sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+#### Install brew packages
+```sh
 # Brew bundles
 brew tap Homebrew/bundle
 cd ~/.config
 brew bundle -v
+```
 
+#### Zsh
+```sh
+echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee -a /etc/zshenv > /dev/null
+echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
+chsh -s /usr/local/bin/zsh <user>
+zplug install
+```
 
-# Set $ZDOTDIR
-echo 'export ZDOTDIR="$HOME/.config/zsh"' | sudo tee /etc/zshenv > /dev/null
+#### Tmux
+```sh
+tmx
+<prefix>I
+```
 
+#### Neovim
+
+```sh
+brew install python3
+pip3 install neovim
+nvim -c ':PlugInstall | :UpdateRemotePlugins'
+```
+
+#### Gruvbox iterm2 colors
+```sh
+curl -O https://raw.githubusercontent.com/morhetz/gruvbox-contrib/master/iterm2/gruvbox-dark.itermcolors
+```
+
+#### Fira font
+```sh
+svn checkout https://github.com/mozilla/Fira/trunk/ttf /tmp/fira
+mv /tmp/fira/*.ttf /Users/russtone/Library/Fonts
+```
+
+#### Environment
+```sh
 # Set OS X environment variables
 mkdir ~/Library/LaunchAgents
 ln -s ~/.config/osx/environment.plist ~/Library/LaunchAgents/environment.plist
