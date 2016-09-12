@@ -8,15 +8,16 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Environment-variable respecting programs
 export ADB_VENDOR_KEYS="$XDG_DATA_HOME/android/.android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
+export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
+export GEM_HOME="$XDG_DATA_HOME/ruby/gem"
 export GIT_SSH_COMMAND="ssh -F $XDG_CONFIG_HOME/ssh/config "$@" 2>/dev/null"
 export GOPATH="$XDG_DATA_HOME/golang"
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
-export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
