@@ -892,6 +892,14 @@ let g:tagbar_type_markdown = {
 
 " Plugin: Autoformat {{{ "
 
+function! EnableAutoformat()
+	autocmd BufWrite * :Autoformat
+endfunction
+
+augroup augroup_autoformat
+	autocmd!
+	autocmd FileType go call EnableAutoformat()
+augroup END
 
 " }}} Plugin: Autoformat "
 
