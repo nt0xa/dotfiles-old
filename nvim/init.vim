@@ -59,6 +59,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
+Plug 'zchee/deoplete-go', { 'for': 'go' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
