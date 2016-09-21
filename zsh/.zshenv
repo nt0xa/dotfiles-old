@@ -18,6 +18,7 @@ export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
+export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
 
 # Alias respecting programs
