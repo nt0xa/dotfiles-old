@@ -6,10 +6,10 @@ gtk-2.0/
 htop/
 nautilus/
 pulse/
-systemd/
-wireshark/
 ranger/
 !ranger/rc.conf
+systemd/
+wireshark/
 
 QtProject.conf
 mimeapps.list
@@ -21,3 +21,4 @@ tags
 user-dirs.dirs
 user-dirs.locale
 zsh/.zcompdump
+zsh/private.zsh

@@ -45,6 +45,9 @@ else
 	export VISUAL='vim'
 fi
 
+# Private
+source $ZDOTDIR/private.zsh
+
 # Path
 typeset -U path
 path=(
