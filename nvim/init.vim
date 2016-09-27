@@ -589,6 +589,50 @@ endfunction
 
 " 1}}} Statusline "
 
+" By filetype {{{ "
+
+" pug {{{2 "
+
+function! PugOptions()
+	set softtabstop=2
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+endfunction
+
+" 2}}} pug "
+
+" html {{{2 "
+
+function! HtmlOptions()
+	set softtabstop=4
+	set tabstop=4
+	set shiftwidth=4
+	set expandtab
+endfunction
+
+" 2}}} html "
+
+" css {{{ "
+
+function! CssOptions()
+	set softtabstop=4
+	set tabstop=4
+	set shiftwidth=4
+	set expandtab
+endfunction
+
+" }}} css "
+
+augroup augroup_options_by_filetype
+	autocmd!
+	autocmd Filetype pug call PugOptions()
+	autocmd Filetype html call HtmlOptions()
+	autocmd Filetype css call CssOptions()
+augroup END
+
+" }}} By filetype "
+
 " Plugin: UltiSnips {{{ "
 
 let g:UltiSnipsSnippetDirectories = [$XDG_CONFIG_HOME . '/nvim/UltiSnips']
@@ -969,7 +1013,7 @@ endfunction
 " Start ranger in current buffer directory (d - directory)
 nnoremap <Leader>d :call OpenRanger('%:p')<CR>
 
-augroup terminal_augroup
+augroup augroup_terminal
 	autocmd!
 	autocmd TermOpen * setlocal nolist
 augroup END
