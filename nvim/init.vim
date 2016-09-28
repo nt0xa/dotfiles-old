@@ -624,11 +624,23 @@ endfunction
 
 " }}} css "
 
+" ruby {{{ "
+
+function! RubyOptions()
+	set softtabstop=2
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+endfunction
+
+" }}} ruby "
+
 augroup augroup_options_by_filetype
 	autocmd!
 	autocmd Filetype pug call PugOptions()
 	autocmd Filetype html call HtmlOptions()
 	autocmd Filetype css call CssOptions()
+	autocmd Filetype ruby call RubyOptions()
 augroup END
 
 " }}} By filetype "
