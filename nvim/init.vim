@@ -765,6 +765,12 @@ endif
 
 " 2}}} Vim "
 
+" HTML {{{ "
+
+let g:neomake_html_enabled_makers = []
+
+" }}} HTML "
+
 " }}} Plugin: Neomake "
 
 " Plugin: Over {{{ "
