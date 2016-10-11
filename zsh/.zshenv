@@ -27,6 +27,7 @@ export TASKRC="$XDG_CONFIG_HOME/task/config"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
