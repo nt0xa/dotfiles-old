@@ -15,6 +15,7 @@
             launchctl setenv ADB_VENDOR_KEYS "$HOME/.local/share/android/.android"
             launchctl setenv ANDROID_SDK_HOME "$HOME/.local/share/android"
             launchctl setenv GRADLE_USER_HOME "$HOME/.cache/gradle"
+            launchctl setenv GNUPGHOME "$HOME/.local/share/gnupg"
         </string>
     </array>
     <key>RunAtLoad</key>
