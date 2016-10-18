@@ -57,9 +57,10 @@ Plug 'Chiel92/vim-autoformat'
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neoinclude.vim'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
-Plug 'zchee/deoplete-go', { 'for': 'go' }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-go'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
@@ -635,12 +636,24 @@ endfunction
 
 " }}} ruby "
 
+" json {{{ "
+
+function! JsonOptions()
+	set softtabstop=2
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+endfunction
+
+" }}} json "
+
 augroup augroup_options_by_filetype
 	autocmd!
 	autocmd Filetype pug call PugOptions()
 	autocmd Filetype html call HtmlOptions()
 	autocmd Filetype css call CssOptions()
 	autocmd Filetype ruby call RubyOptions()
+	autocmd Filetype json call JsonOptions()
 augroup END
 
 " }}} By filetype "
