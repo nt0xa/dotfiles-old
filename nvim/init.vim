@@ -13,7 +13,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-projectionist'
-Plug 'rbgrouleff/bclose.vim'
+Plug 'Valloric/MatchTagAlways'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
