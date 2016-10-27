@@ -65,6 +65,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " By language
 Plug 'sheerun/vim-polyglot'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 call plug#end()
 
@@ -967,15 +968,6 @@ let g:tagbar_type_markdown = {
 " }}} Plugin: Tagbar "
 
 " Plugin: Autoformat {{{ "
-
-function! EnableAutoformat()
-	autocmd BufWrite * :Autoformat
-endfunction
-
-augroup augroup_autoformat
-	autocmd!
-	autocmd FileType go call EnableAutoformat()
-augroup END
 
 " }}} Plugin: Autoformat "
 
