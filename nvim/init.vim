@@ -66,6 +66,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'sheerun/vim-polyglot'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'kylef/apiblueprint.vim'
 
 call plug#end()
 
@@ -648,6 +649,17 @@ endfunction
 
 " }}} json "
 
+" apiblueprint {{{2 "
+
+function! ApiblueprintOptions()
+	set softtabstop=4
+	set tabstop=4
+	set shiftwidth=4
+	set expandtab
+endfunction
+
+" 2}}} apiblueprint "
+
 augroup augroup_options_by_filetype
 	autocmd!
 	autocmd Filetype pug call PugOptions()
@@ -655,6 +667,7 @@ augroup augroup_options_by_filetype
 	autocmd Filetype css call CssOptions()
 	autocmd Filetype ruby call RubyOptions()
 	autocmd Filetype json call JsonOptions()
+	autocmd Filetype apiblueprint call ApiblueprintOptions()
 augroup END
 
 " }}} By filetype "
