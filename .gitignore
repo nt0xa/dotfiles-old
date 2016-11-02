@@ -1,15 +1,16 @@
+!ranger/rc.conf
 autostart/
 dconf/
 evolution/
 gedit/
+gocode/
 gtk-2.0/
 htop/
 nautilus/
 pulse/
 ranger/
-!ranger/rc.conf
-systemd/
 subversion/
+systemd/
 wireshark/
 
 QtProject.conf
