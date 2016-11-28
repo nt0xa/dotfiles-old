@@ -20,7 +20,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 
 " Search & replace
-Plug 'osyo-manga/vim-over'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 
@@ -173,6 +172,9 @@ set foldenable
 
 " Show only menu on completion
 set completeopt=menu
+
+" Interactive replace
+set inccommand=nosplit
 
 " }}} Options "
 
@@ -799,14 +801,6 @@ let g:neomake_html_enabled_makers = []
 " }}} HTML "
 
 " }}} Plugin: Neomake "
-
-" Plugin: Over {{{ "
-
-vnoremap <silent> gR :OverCommandLine<CR>s/\%V
-vnoremap <silent> gr :OverCommandLine<CR>s/
-nnoremap <silent> gr :OverCommandLine<CR>s/
-
-" }}} Plugin: Over "
 
 " Plugin: EasyAlign {{{ "
 
