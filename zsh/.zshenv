@@ -23,6 +23,7 @@ export GOPATH="$XDG_DATA_HOME/golang"
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
+export MSF_CFGROOT_CONFIG="$XDG_DATA_HOME/metasploit"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 export TASKDATA="$XDG_DATA_HOME/task"
 export TASKRC="$XDG_CONFIG_HOME/task/config"
@@ -30,6 +31,7 @@ export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
+
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"

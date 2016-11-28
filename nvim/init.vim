@@ -56,7 +56,7 @@ Plug 'Chiel92/vim-autoformat'
 
 " Completion
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
