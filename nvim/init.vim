@@ -267,6 +267,10 @@ noremap gV `[v`]
 " Paste in insert mode
 inoremap <C-y> <C-o>p
 
+if has('nvim')
+	nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+endif
+
 " }}} Key mappings "
 
 " Autocmd: SignColumn {{{ "
