@@ -11,6 +11,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "urbainvaes/fzf-marks"
+zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 
 zplug "$ZDOTDIR", use:clipboard.zsh, from:local
 zplug "$ZDOTDIR", use:prompt.zsh, from:local
