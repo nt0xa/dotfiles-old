@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from prompt_toolkit.keys import Keys
 from prompt_toolkit.filters import ViInsertMode
 from prompt_toolkit.key_binding.vi_state import InputMode
+from prompt_toolkit.key_binding.input_processor import KeyPress
 from pygments.token import Token, Comment, Generic, Number, Keyword, Name, Operator, String
 from ptpython.layout import CompletionVisualisation
 
@@ -139,13 +140,19 @@ def configure(repl):
         buffer = event.current_buffer
         buffer.cursor_position += buffer.document.get_cursor_right_position(count=event.arg)
 
-    @repl.add_key_binding(Keys.ControlF, filter=ViInsertMode())
+    @repl.add_key_binding(Keys.ControlN, filter=ViInsertMode())
     def _(event):
         """
         Character forward.
         """
-        buffer = event.current_buffer
-        buffer.cursor_position += buffer.document.get_cursor_right_position(count=event.arg)
+        event.cli.input_processor.feed(KeyPress(Keys.Down))
+
+    @repl.add_key_binding(Keys.ControlP, filter=ViInsertMode())
+    def _(event):
+        """
+        Character forward.
+        """
+        event.cli.input_processor.feed(KeyPress(Keys.Up))
 
     @repl.add_key_binding('j', 'k', filter=ViInsertMode())
     def _(event):
