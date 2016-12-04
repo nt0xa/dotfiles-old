@@ -52,6 +52,7 @@ alias p='python'
 alias pp='ptpython'
 alias v='nvim'
 alias r='ranger'
+alias mux='tmuxinator'
 alias msf='/opt/metasploit-framework/bin/msfconsole'
 alias msfv='/opt/metasploit-framework/bin/msfvenom'
 
