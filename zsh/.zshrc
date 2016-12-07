@@ -49,6 +49,7 @@ alias lr='ll -R'  # Lists human readable sizes, recursively
 alias la='ll -A'  # Lists human readable sizes, hidden files
 alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python'
+alias p3='python3'
 alias pp='ptpython'
 alias v='nvim'
 alias r='ranger'
@@ -112,31 +113,6 @@ setopt HIST_VERIFY          # Do not execute immediately upon history expansion
 
 # }}} History #
 
-# Tmux {{{ #
-
-function tmx() {
-	local global='global'
-	local client=$(date +%Y%m%d%H%M%S)
-
-	if (( ! $+commands[tmux] )); then
-		echo "Warning: 'tmux' command not found!"
-		return 1
-	fi
-
-	if [[ -z "$TMUX" && -z "$SSH_TTY" ]];	then
-
-		if ! tmux has-session 2> /dev/null; then
-			tmux new-session -d -s $global
-		fi
-
-		exec tmux new-session -d -t $global -s $client \; set-option destroy-unattached \; attach-session -t $client
-	fi
-}
-
-alias t='tmx'
-
-# }}} Tmux #
-
 # Expand .. {{{ #
 
 # Expands .... to ../..
@@ -188,26 +164,6 @@ if (( $+commands[fzf] )); then
 	if (( $+commands[ag] )); then
 		export FZF_DEFAULT_COMMAND='ag -g ""'
 	fi
-
-	# Select file
-	__fsel() {
-		local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
-			-o -type f -print \
-			-o -type d -print \
-			-o -type l -print 2> /dev/null | sed 1d | cut -b3-"}"
-		eval "$cmd" | fzf -m | while read item; do
-			printf '%q ' "$item"
-		done
-		echo
-	}
-
-	fzf-file-widget() {
-		LBUFFER="${LBUFFER}$(__fsel)"
-		zle redisplay
-	}
-
-	zle -N fzf-file-widget
-	bindkey '^T' fzf-file-widget
 
 	# fzf-marks
 	alias j='jump'

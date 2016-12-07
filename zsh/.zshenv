@@ -8,6 +8,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Environment-variable respecting programs
 export ADB_VENDOR_KEYS="$XDG_DATA_HOME/android/.android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/config"
 export BABEL_DISABLE_CACHE=1
 export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
 export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"

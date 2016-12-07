@@ -18,9 +18,9 @@ Plug 'Valloric/MatchTagAlways'
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
+Plug 'easymotion/vim-easymotion'
 
 " Search & replace
-Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 
 " Snippets
@@ -33,6 +33,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'AndrewRadev/sideways.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -55,7 +56,6 @@ Plug 'Chiel92/vim-autoformat'
 
 " Completion
 Plug 'Shougo/deoplete.nvim'
-" Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -978,10 +978,6 @@ let g:tagbar_type_markdown = {
 
 " }}} Plugin: Tagbar "
 
-" Plugin: Autoformat {{{ "
-
-" }}} Plugin: Autoformat "
-
 " Plugin: Incsearch {{{ "
 
 map / <Plug>(incsearch-forward)
@@ -1053,5 +1049,12 @@ augroup augroup_terminal
 augroup END
 
 " }}} Plugin: Ranger "
+
+" Plugin: Sideways {{{ "
+
+nnoremap gh :SidewaysLeft<CR>
+nnoremap gl :SidewaysRight<CR>
+
+" }}} Plugin: Sideways "
 
 " vim: fdm=marker

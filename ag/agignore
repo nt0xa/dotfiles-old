@@ -15,3 +15,7 @@ dist/
 
 # Tests
 coverage/
+
+# Build files
+**.pyc
+**.o
