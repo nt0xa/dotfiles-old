@@ -22,6 +22,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
+Plug 'brooth/far.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -59,7 +60,6 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
@@ -259,7 +259,7 @@ nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>q :q<CR>
 
 " Only
-nnoremap <leader>o :only<CR>
+nnoremap <Leader>o :only<CR>
 
 " Select pasted text
 noremap gV `[v`]
@@ -270,6 +270,10 @@ inoremap <C-y> <C-o>p
 if has('nvim')
 	nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 endif
+
+" Quickfix
+nnoremap <Leader>n :cnext<CR>
+nnoremap <Leader>p :cprev<CR>
 
 " }}} Key mappings "
 
@@ -1056,5 +1060,12 @@ nnoremap gh :SidewaysLeft<CR>
 nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
+
+" Plugin: Golang {{{ "
+
+nnoremap <Localleader>b :GoBuild<CR>
+nnoremap <Localleader>r :GoRename<CR>
+
+" }}} Plugin: Golang "
 
 " vim: fdm=marker
