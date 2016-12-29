@@ -8,9 +8,10 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search", nice:11
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "urbainvaes/fzf-marks"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 
 zplug "$ZDOTDIR", use:clipboard.zsh, from:local
