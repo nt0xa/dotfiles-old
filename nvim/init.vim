@@ -35,6 +35,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -63,7 +64,6 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kylef/apiblueprint.vim'
 
@@ -686,9 +686,9 @@ augroup END
 
 let g:UltiSnipsSnippetDirectories = [$XDG_CONFIG_HOME . '/nvim/UltiSnips']
 
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
 " }}} Plugin: UltiSnips "
 
@@ -852,41 +852,6 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " }}} Plugin: EasyMotion "
-
-" Plugin: TableMode {{{ "
-
-let g:table_mode_map_prefix = '<Localleader>t'
-let g:table_mode_realign_map = '<Localleader>tr'
-
-let g:table_mode_corner = '|'
-let g:table_mode_corner_corner = '|'
-
-function! MarkdownTableModeSettings()
-	:TableModeEnable
-endfunction
-
-augroup augroup_table_mode_enable
-	autocmd!
-	autocmd FileType markdown call MarkdownTableModeSettings()
-augroup END
-
-" }}} Plugin: TableMode "
-
-" Plugin: Markdown {{{ "
-
-" Disable default mappings
-let g:vim_markdown_no_default_key_mappings = 1
-
-" Disable folding
-let g:vim_markdown_folding_disabled = 1
-
-" LaTex math syntax
-let g:vim_markdown_math = 1
-
-" YAML frontmatter
-let g:vim_markdown_frontmatter = 1
-
-" }}} Plugin: Markdown "
 
 " Plugin: Projectionist {{{ "
 
@@ -1060,6 +1025,13 @@ nnoremap gh :SidewaysLeft<CR>
 nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
+
+" Plugin: Splitjoin {{{ "
+
+nnoremap gJ :SplitjoinJoin()<CR>
+nnoremap gS :SplitjoinSplit()<CR>
+
+" }}} Plugin: Splitjoin "
 
 " Plugin: Golang {{{ "
 
