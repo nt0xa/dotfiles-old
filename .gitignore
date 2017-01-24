@@ -1,6 +1,7 @@
 !ranger/rc.conf
 asciinema/
 autostart/
+configstore/
 dconf/
 evolution/
 gedit/
