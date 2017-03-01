@@ -61,6 +61,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'artur-shaik/vim-javacomplete2'
 
 " By language
 Plug 'sheerun/vim-polyglot'
@@ -635,6 +636,13 @@ function! CssOptions()
 	set expandtab
 endfunction
 
+function! StylusOptions()
+	set softtabstop=2
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+endfunction
+
 " }}} css "
 
 " ruby {{{ "
@@ -675,6 +683,7 @@ augroup augroup_options_by_filetype
 	autocmd Filetype pug call PugOptions()
 	autocmd Filetype html call HtmlOptions()
 	autocmd Filetype css call CssOptions()
+	autocmd Filetype stylus call StylusOptions()
 	autocmd Filetype ruby call RubyOptions()
 	autocmd Filetype json call JsonOptions()
 	autocmd Filetype apiblueprint call ApiblueprintOptions()
@@ -1039,5 +1048,14 @@ nnoremap <Localleader>b :GoBuild<CR>
 nnoremap <Localleader>r :GoRename<CR>
 
 " }}} Plugin: Golang "
+
+" Plugin: JavaComplete {{{ "
+
+nmap <Localleader>I <Plug>(JavaComplete-Imports-AddMissing)
+nmap <Localleader>R <Plug>(JavaComplete-Imports-RemoveUnused)
+nmap <Localleader>i <Plug>(JavaComplete-Imports-AddSmart)
+nmap <Localleader>ii <Plug>(JavaComplete-Imports-Add)
+
+" }}} Plugin: JavaComplete "
 
 " vim: fdm=marker
