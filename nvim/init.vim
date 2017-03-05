@@ -4,7 +4,7 @@ scriptencoding utf-8
 
 " Auto-install vim-plug
 if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-   !git clone https://github.com/junegunn/vim-plug $XDG_DATA_HOME/nvim/site/autoload
+    !git clone https://github.com/junegunn/vim-plug $XDG_DATA_HOME/nvim/site/autoload
 endif
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
@@ -13,7 +13,6 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-projectionist'
-Plug 'Valloric/MatchTagAlways'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -22,6 +21,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
+Plug 'osyo-manga/vim-over'
 Plug 'brooth/far.vim'
 
 " Snippets
@@ -36,6 +36,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Valloric/MatchTagAlways'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -46,9 +47,6 @@ Plug 'glts/vim-textobj-comment'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
-
-" Git
-Plug 'tpope/vim-fugitive'
 
 " Linting
 Plug 'benekastah/neomake'
@@ -66,7 +64,6 @@ Plug 'artur-shaik/vim-javacomplete2'
 " By language
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'kylef/apiblueprint.vim'
 
 call plug#end()
 
@@ -460,7 +457,6 @@ function! StatusLineMode()
     return ''
 endfunction
 
-
 " 2}}} Mode "
 
 " WindowType {{{2 "
@@ -817,19 +813,8 @@ let g:deoplete#max_menu_width = 10
 
 " Clang {{{2 "
 
-let s:uname = system('uname')
-if s:uname ==? "Linux\n"
-    if filereadable('/etc/fedora-release')
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'
-        let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-    elseif filereadable('/etc/debian_version')
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
-        let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/include'
-    endif
-elseif s:uname ==? "Darwin\n"
-        let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
-        let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/include'
-endif
+let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/include'
 
 let g:deoplete#sources#clang#flags = [
 \ '-I', './include',
@@ -849,22 +834,6 @@ nnoremap <Leader>t :TagbarToggle<CR>
 
 " Status line
 let g:tagbar_status_func = 'StatusLineBuild'
-
-" Markdown
-let g:tagbar_type_markdown = {
-\     'ctagstype': 'markdown',
-\     'ctagsbin':  '~/.config/nvim/markdown2ctags.py',
-\     'ctagsargs': '-f - --sort=yes',
-\     'kinds': [
-\         's:sections',
-\         'i:images'
-\     ],
-\     'sro': '|',
-\     'kind2scope' : {
-\         's': 'section',
-\     },
-\     'sort': 0,
-\ }
 
 " }}} Plugin: Tagbar "
 
@@ -888,6 +857,14 @@ let g:incsearch_cli_key_mappings = {
 \ }
 
 " }}} Plugin: Incsearch "
+
+" Plugin: Over {{{ "
+
+vnoremap <silent> gR :OverCommandLine<CR>s/\%V
+vnoremap <silent> gr :OverCommandLine<CR>s/
+nnoremap <silent> gr :OverCommandLine<CR>s/
+
+" }}} Plugin: Over "
 
 " Plugin: Ranger {{{ "
 
@@ -954,19 +931,27 @@ nnoremap gS :SplitjoinSplit()<CR>
 
 " }}} Plugin: Splitjoin "
 
-" Plugin: Golang {{{ "
+" Plugin: Go {{{ "
 
-nnoremap <Localleader>b :GoBuild<CR>
-nnoremap <Localleader>r :GoRename<CR>
+autocmd Filetype go call SetGolangOptions()
 
-" }}} Plugin: Golang "
+function! SetGolangOptions()
+    nnoremap <Localleader>b :GoBuild<CR>
+    nnoremap <Localleader>r :GoRename<CR>
+endfunction
+
+" }}} Plugin: Go "
 
 " Plugin: JavaComplete {{{ "
+"
+autocmd Filetype java call SetJavaOptions()
 
-nmap <Localleader>I <Plug>(JavaComplete-Imports-AddMissing)
-nmap <Localleader>R <Plug>(JavaComplete-Imports-RemoveUnused)
-nmap <Localleader>i <Plug>(JavaComplete-Imports-AddSmart)
-nmap <Localleader>ii <Plug>(JavaComplete-Imports-Add)
+function! SetJavaOptions()
+    nmap <Localleader>I <Plug>(JavaComplete-Imports-AddMissing)
+    nmap <Localleader>R <Plug>(JavaComplete-Imports-RemoveUnused)
+    nmap <Localleader>i <Plug>(JavaComplete-Imports-AddSmart)
+    nmap <Localleader>ii <Plug>(JavaComplete-Imports-Add)
+endfunction
 
 " }}} Plugin: JavaComplete "
 
