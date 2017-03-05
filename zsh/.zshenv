@@ -45,7 +45,6 @@ alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 #	}}} XDG #
 
 #	Environment {{{ #
-
 export LANG='en_US.UTF-8'
 export PAGER='less'
 
