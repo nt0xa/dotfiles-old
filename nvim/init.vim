@@ -926,8 +926,8 @@ nnoremap gl :SidewaysRight<CR>
 
 " Plugin: Splitjoin {{{ "
 
-nnoremap gJ :SplitjoinJoin()<CR>
-nnoremap gS :SplitjoinSplit()<CR>
+nnoremap gJ :SplitjoinJoin<CR>
+nnoremap gS :SplitjoinSplit<CR>
 
 " }}} Plugin: Splitjoin "
 
