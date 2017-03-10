@@ -85,7 +85,7 @@ set laststatus=2
 set noshowmode
 
 " Allow switching buffers without saving
-" set hidden
+set hidden
 
 " Enable mouse
 set mouse=a
@@ -879,16 +879,22 @@ function! OpenRanger(path)
     \ 'tmpfile': l:tmpfile,
     \ 'curfile': l:curfile,
     \ 'curfile_existed': filereadable(l:curfile),
+    \ 'curbufnr': bufnr('%'),
     \ }
+
 
     function! l:callback.on_exit(id, code)
         bdelete!
 
+
         if l:self.curfile_existed &&
         \ !filereadable(l:self.curfile)
-            bdelete!
+            exec 'bdelete ' . l:self.curbufnr
         endif
 
+        set hidden
+
+        " Open selected files
         if filereadable(l:self.tmpfile)
             for l:fpath in readfile(l:self.tmpfile)
                 exec 'edit '. l:fpath
@@ -897,6 +903,7 @@ function! OpenRanger(path)
         endif
     endfunction
 
+    set nohidden
     enew
 
     let l:command = g:ranger_path .
