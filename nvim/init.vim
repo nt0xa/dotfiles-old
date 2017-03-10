@@ -938,19 +938,24 @@ nnoremap gS :SplitjoinSplit<CR>
 
 " }}} Plugin: Splitjoin "
 
-" Plugin: Go {{{ "
+" Language: Go {{{ "
 
 autocmd Filetype go call SetGolangOptions()
 
 function! SetGolangOptions()
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set noexpandtab
     nnoremap <Localleader>b :GoBuild<CR>
     nnoremap <Localleader>r :GoRename<CR>
+    nnoremap <Localleader>i :GoImports<CR>
 endfunction
 
-" }}} Plugin: Go "
+" }}} Language: Go "
 
-" Plugin: JavaComplete {{{ "
-"
+" Language: Java {{{ "
+
 autocmd Filetype java call SetJavaOptions()
 
 function! SetJavaOptions()
@@ -960,6 +965,6 @@ function! SetJavaOptions()
     nmap <Localleader>ii <Plug>(JavaComplete-Imports-Add)
 endfunction
 
-" }}} Plugin: JavaComplete "
+" }}} Language: Java "
 
 " vim: fdm=marker
