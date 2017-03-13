@@ -2,7 +2,7 @@
 
 # Auto install zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
-	git clone https://github.com/zplug/zplug $ZPLUG_HOME
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
 
 source $ZPLUG_HOME/init.zsh
@@ -32,13 +32,13 @@ bindkey '^N' history-substring-search-down
 # Dircolors {{{ #
 
 if (( $+commands[gdircolors] )); then
-	dircolors_cmd='gdircolors'
+  dircolors_cmd='gdircolors'
 elif (( $+commands[dircolors] )); then
-	dircolors_cmd='dircolors'
+  dircolors_cmd='dircolors'
 fi
 
 if [[ ! -z $dircolors_cmd ]]; then
-	eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
+  eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
 fi
 
 # }}} Dircolors #
@@ -60,15 +60,15 @@ alias msfv='/opt/metasploit-framework/bin/msfvenom'
 
 # ls
 if (( $+commands[gls] )); then
-	ls_cmd='gls'
+  ls_cmd='gls'
 else
-	ls_cmd='ls'
+  ls_cmd='ls'
 fi
 alias ls="$ls_cmd --color=auto --group-directories-first"
 
 # open
 if (( $+commands[xdg-open] )); then
-	alias open='xdg-open'
+  alias open='xdg-open'
 fi
 
 # }}} Aliases #
@@ -77,8 +77,8 @@ fi
 
 # Case insensetive completion
 zstyle ':completion:*' matcher-list \
-	'm:{[:lower:]}={[:upper:]}'\
-	'm:{[:upper:]}={[:lower:]}'
+  'm:{[:lower:]}={[:upper:]}'\
+  'm:{[:upper:]}={[:lower:]}'
 
 # Use cache
 zstyle ':completion::complete:*' use-cache on
@@ -118,60 +118,60 @@ setopt HIST_VERIFY          # Do not execute immediately upon history expansion
 
 # Expands .... to ../..
 function expand-dot-to-parent-directory-path() {
-	if [[ $LBUFFER = *.. ]]; then
-		LBUFFER+='/..'
-	else
-		LBUFFER+='.'
-	fi
+  if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+='/..'
+  else
+    LBUFFER+='.'
+  fi
 }
 zle -N expand-dot-to-parent-directory-path
 bindkey '.' expand-dot-to-parent-directory-path
 
 # }}} Expand .. #
 
-#	Copy & paste {{{ #
+# Copy & paste {{{ #
 
 if (( $+functions[clipcopy] )); then
-	function clip-copy-region-as-kill() {
-		zle copy-region-as-kill
-		print -rn $CUTBUFFER | clipcopy
-	}
-	zle -N clip-copy-region-as-kill
-	bindkey '^W' clip-copy-region-as-kill
+  function clip-copy-region-as-kill() {
+    zle copy-region-as-kill
+    print -rn $CUTBUFFER | clipcopy
+  }
+  zle -N clip-copy-region-as-kill
+  bindkey '^W' clip-copy-region-as-kill
 fi
 
 if (( $+functions[clippaste] )); then
-	function clip-yank() {
-		CUTBUFFER=$(clippaste)
-		zle yank
-	}
-	zle -N clip-yank
-	bindkey '^Y' clip-yank
+  function clip-yank() {
+    CUTBUFFER=$(clippaste)
+    zle yank
+  }
+  zle -N clip-yank
+  bindkey '^Y' clip-yank
 fi
 
-#	}}} Copy & paste #
+# }}} Copy & paste #
 
-#	FZF {{{ #
+# FZF {{{ #
 
 if (( $+commands[fzf] )); then
 
-	# Color scheme
-	export FZF_DEFAULT_OPTS='
-	 --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
-	 --color info:7,prompt:2,spinner:3,pointer:4,marker:3
-	'
+  # Color scheme
+  export FZF_DEFAULT_OPTS='
+   --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+   --color info:7,prompt:2,spinner:3,pointer:4,marker:3
+  '
 
-	# Use ag if possible
-	if (( $+commands[ag] )); then
-		export FZF_DEFAULT_COMMAND='ag -g ""'
-	fi
+  # Use ag if possible
+  if (( $+commands[ag] )); then
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+  fi
 
-	# fzf-marks
-	alias j='jump'
-	alias m='mark'
+  # fzf-marks
+  alias j='jump'
+  alias m='mark'
 
 fi
 
-#	}}} FZF #
+# }}} FZF #
 
 # vim: fdm=marker

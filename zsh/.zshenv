@@ -26,8 +26,6 @@ export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export MSF_CFGROOT_CONFIG="$XDG_DATA_HOME/metasploit"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
-export TASKDATA="$XDG_DATA_HOME/task"
-export TASKRC="$XDG_CONFIG_HOME/task/config"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
@@ -36,9 +34,6 @@ export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
 alias ctags="ctags --config-filename=config/ctags/ctags.conf" # Hack
-alias rsyncs="rsync -e \"ssh -F $XDG_CONFIG_HOME/ssh/config\""
-alias scp="scp -F $XDG_CONFIG_HOME/ssh/config"
-alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 

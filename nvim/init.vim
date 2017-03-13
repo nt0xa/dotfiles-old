@@ -940,6 +940,10 @@ nnoremap gS :SplitjoinSplit<CR>
 
 " Language: Go {{{ "
 
+" vim-go
+let g:go_term_enabled = 1
+let g:go_term_mode = 'split'
+
 autocmd Filetype go call SetGolangOptions()
 
 function! SetGolangOptions()
@@ -950,6 +954,8 @@ function! SetGolangOptions()
     nnoremap <Localleader>b :GoBuild<CR>
     nnoremap <Localleader>r :GoRename<CR>
     nnoremap <Localleader>i :GoImports<CR>
+    nnoremap <Localleader>t :GoTest<CR>
+    nnoremap <Localleader>a :GoAlternate<CR>
 endfunction
 
 " }}} Language: Go "
