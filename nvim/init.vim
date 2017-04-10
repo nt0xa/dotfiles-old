@@ -882,10 +882,8 @@ function! OpenRanger(path)
     \ 'curbufnr': bufnr('%'),
     \ }
 
-
     function! l:callback.on_exit(id, code)
         bdelete!
-
 
         if l:self.curfile_existed &&
         \ !filereadable(l:self.curfile)
@@ -903,12 +901,13 @@ function! OpenRanger(path)
         endif
     endfunction
 
+    write
     set nohidden
     enew
 
     let l:command = g:ranger_path .
     \ ' --choosefiles=' . shellescape(l:tmpfile) .
-    \ (isdirectory(l:path) ? l:path : ' --selectfile=' . l:path)
+    \ (isdirectory(l:path) ? shellescape(l:path) : ' --selectfile=' . shellescape(l:path))
 
     call termopen(l:command, l:callback)
     startinsert
@@ -944,7 +943,10 @@ nnoremap gS :SplitjoinSplit<CR>
 let g:go_term_enabled = 1
 let g:go_term_mode = 'split'
 
-autocmd Filetype go call SetGolangOptions()
+augroup augroup_golang
+    autocmd!
+    autocmd Filetype go call SetGolangOptions()
+augroup END
 
 function! SetGolangOptions()
     set softtabstop=2
@@ -962,7 +964,10 @@ endfunction
 
 " Language: Java {{{ "
 
-autocmd Filetype java call SetJavaOptions()
+augroup augroup_java
+    autocmd!
+    autocmd Filetype java call SetJavaOptions()
+augroup END
 
 function! SetJavaOptions()
     nmap <Localleader>I <Plug>(JavaComplete-Imports-AddMissing)
@@ -972,5 +977,20 @@ function! SetJavaOptions()
 endfunction
 
 " }}} Language: Java "
+
+" Language: Sage {{{ "
+
+augroup augroup_sage
+    autocmd!
+    autocmd BufRead,BufNewFile *.sage setfiletype sage
+    autocmd Filetype sage call SetSageOptions()
+augroup END
+
+function! SetSageOptions()
+    runtime! syntax/python.vim
+    " TODO: neomake and deoplete
+endfunction
+
+" }}} Language: Sage "
 
 " vim: fdm=marker
