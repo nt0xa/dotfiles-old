@@ -978,19 +978,4 @@ endfunction
 
 " }}} Language: Java "
 
-" Language: Sage {{{ "
-
-augroup augroup_sage
-    autocmd!
-    autocmd BufRead,BufNewFile *.sage setfiletype sage
-    autocmd Filetype sage call SetSageOptions()
-augroup END
-
-function! SetSageOptions()
-    runtime! syntax/python.vim
-    " TODO: neomake and deoplete
-endfunction
-
-" }}} Language: Sage "
-
 " vim: fdm=marker
