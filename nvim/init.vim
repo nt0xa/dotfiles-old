@@ -882,7 +882,7 @@ function! OpenRanger(path)
     \ 'curbufnr': bufnr('%'),
     \ }
 
-    function! l:callback.on_exit(id, code)
+    function! l:callback.on_exit(id, code, event)
         bdelete!
 
         if l:self.curfile_existed &&
