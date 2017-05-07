@@ -1,4 +1,4 @@
-#	XDG {{{ #
+# XDG {{{ #
 
 # XDG dirs
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -9,6 +9,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export ADB_VENDOR_KEYS="$XDG_DATA_HOME/android/.android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/config"
+export ANSIBLE_PLAYBOOKS="$XDG_DATA_HOME/ansible/playbooks"
 export BABEL_DISABLE_CACHE=1
 export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
 export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
@@ -29,25 +30,24 @@ export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
 
-
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
 alias ctags="ctags --config-filename=config/ctags/ctags.conf" # Hack
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
 
-#	}}} XDG #
+# }}} XDG #
 
-#	Environment {{{ #
+# Environment {{{ #
 export LANG='en_US.UTF-8'
 export PAGER='less'
 
 if (( $+commands[nvim] )); then
-	export EDITOR='nvim'
-	export VISUAL='nvim'
+    export EDITOR='nvim'
+    export VISUAL='nvim'
 else
-	export EDITOR='vim'
-	export VISUAL='vim'
+    export EDITOR='vim'
+    export VISUAL='vim'
 fi
 
 # Private
@@ -56,22 +56,22 @@ source $ZDOTDIR/private.zsh
 # Path
 typeset -U path
 path=(
-	$HOME/.local/bin
-	/usr/local/{bin,sbin}
-	$GOPATH/bin
-	$GEM_HOME/bin
-	$HOME/Library/Android/sdk/platform-tools
-	$HOME/Library/Android/sdk/tools
-	/opt/SageMath
-	$path
+    $HOME/.local/bin
+    /usr/local/{bin,sbin}
+    $GOPATH/bin
+    $GEM_HOME/bin
+    $HOME/Library/Android/sdk/platform-tools
+    $HOME/Library/Android/sdk/tools
+    /opt/SageMath
+    $path
 )
 
 # Manpath
 typeset -U manpath
 manpath=(
-	$ZPLUG_HOME/doc/man
-	/usr/local/share/man
-	/usr/share/man
+    $ZPLUG_HOME/doc/man
+    /usr/local/share/man
+    /usr/share/man
 )
 
-#	}}} Environment #
+# }}} Environment #
