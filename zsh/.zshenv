@@ -29,6 +29,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
+export BUNDLE_PATH="$XDG_DATA_HOME/ruby/bundle"
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
