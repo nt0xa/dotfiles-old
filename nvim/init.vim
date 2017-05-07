@@ -247,9 +247,6 @@ let g:mapleader = ' '
 " Set localleader
 let g:maplocalleader = ','
 
-" Use jk to exit from insert mode
-inoremap jk <Esc>
-
 " Write file
 nnoremap <Leader>w :w!<CR>
 
