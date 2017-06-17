@@ -4,7 +4,7 @@ scriptencoding utf-8
 
 " Auto-install vim-plug
 if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-    !git clone https://github.com/junegunn/vim-plug $XDG_DATA_HOME/nvim/site/autoload
+    !git clone 'https://github.com/junegunn/vim-plug' $XDG_DATA_HOME/nvim/site/autoload
 endif
 
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
@@ -149,6 +149,7 @@ set noswapfile
 
 " Case insensitive search
 set ignorecase
+set smartcase
 
 " Highlight matches
 set hlsearch
@@ -666,6 +667,9 @@ augroup END
 
 " Plugin: Neomake {{{ "
 
+" let g:neomake_verbose = 3
+" let g:neomake_logfile = '/Users/russtone/neomake.log'
+
 let g:neomake_open_list = 0
 
 " Signs
@@ -721,6 +725,13 @@ endif
 let g:neomake_html_enabled_makers = []
 
 " }}} HTML "
+
+" Go {{{2 "
+
+" Disable gometalinter
+let g:neomake_go_gometalinter_args = ['--disable-all']
+
+" 2}}} Go "
 
 " }}} Plugin: Neomake "
 
@@ -961,18 +972,42 @@ endfunction
 
 " Language: Java {{{ "
 
+let g:JavaComplete_EnableDefaultMappings = 0
+
 augroup augroup_java
     autocmd!
     autocmd Filetype java call SetJavaOptions()
 augroup END
 
 function! SetJavaOptions()
-    nmap <Localleader>I <Plug>(JavaComplete-Imports-AddMissing)
-    nmap <Localleader>R <Plug>(JavaComplete-Imports-RemoveUnused)
-    nmap <Localleader>i <Plug>(JavaComplete-Imports-AddSmart)
-    nmap <Localleader>ii <Plug>(JavaComplete-Imports-Add)
+    nmap <Localleader>i <Plug>(JavaComplete-Imports-AddMissing)
+    nmap <Localleader>r <Plug>(JavaComplete-Imports-RemoveUnused)
+    nmap <Localleader>I <Plug>(JavaComplete-Imports-Add)
 endfunction
 
 " }}} Language: Java "
+
+" Language: JSON {{{ "
+
+augroup augroup_json
+    autocmd!
+    autocmd Filetype json call SetJSONOptions()
+augroup END
+
+function! SetJSONOptions()
+    " Count of spaces per tab when editing
+    set softtabstop=2
+
+    " Number of visual spaces per tab
+    set tabstop=2
+
+    " <<, >> spaces
+    set shiftwidth=2
+
+    " Use spaces for indent
+    set expandtab
+endfunction
+
+" }}} Language: JSON "
 
 " vim: fdm=marker
