@@ -8,6 +8,7 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions"
+zplug "felixr/docker-zsh-completion"
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "urbainvaes/fzf-marks"

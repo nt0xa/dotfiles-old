@@ -1,3 +1,11 @@
+# path_helper {{{ #
+
+if [ -x /usr/libexec/path_helper ]; then
+  eval `/usr/libexec/path_helper -s`
+fi
+
+# }}} path_helper #
+
 # XDG {{{ #
 
 # XDG dirs
@@ -59,6 +67,7 @@ typeset -U path
 path=(
     $HOME/.local/bin
     /usr/local/{bin,sbin}
+    /usr/local/opt/python/libexec/bin
     $GOPATH/bin
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/platform-tools
@@ -76,3 +85,6 @@ manpath=(
 )
 
 # }}} Environment #
+
+# MacOS workaround sneaky path_helper in /etc/zprofile
+export GOODPATH=$PATH
