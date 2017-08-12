@@ -65,6 +65,8 @@ source $ZDOTDIR/private.zsh
 # Path
 typeset -U path
 path=(
+    /opt/metasploit-framework/bin/
+    /Applications/VNC\ Viewer.app/Contents/MacOS/
     $HOME/.local/bin
     /usr/local/{bin,sbin}
     /usr/local/opt/python/libexec/bin
