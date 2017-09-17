@@ -1,0 +1,3 @@
+2017-08-17 11:32:56,182 (63701/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: 'less'
+2017-08-17 11:32:56,217 (63701/MainThread) pgcli.main ERROR - traceback: 'Traceback (most recent call last):\n  File "/usr/local/lib/python2.7/site-packages/pgcli/main.py", line 357, in connect\n    raise e\nOperationalError: FATAL:  database "russtone" does not exist\n\n'
+2017-08-17 11:33:02,879 (63729/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: 'less'

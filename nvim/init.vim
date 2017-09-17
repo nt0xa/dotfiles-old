@@ -35,8 +35,8 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Valloric/MatchTagAlways'
+Plug 'jiangmiao/auto-pairs'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
