@@ -938,13 +938,6 @@ nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
 
-" Plugin: Splitjoin {{{ "
-
-nnoremap gJ :SplitjoinJoin<CR>
-nnoremap gS :SplitjoinSplit<CR>
-
-" }}} Plugin: Splitjoin "
-
 " Language: Go {{{ "
 
 " vim-go
