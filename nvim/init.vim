@@ -1003,4 +1003,37 @@ endfunction
 
 " }}} Language: JSON "
 
+" Language: Ruby {{{ "
+
+augroup augroup_ruby
+    autocmd!
+    autocmd Filetype ruby call SetRubyOptions()
+augroup END
+
+function! SetRubyOptions()
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set expandtab
+endfunction
+
+" }}} Language: Ruby "
+
+" JS {{{ "
+
+augroup augroup_js
+    autocmd!
+    autocmd Filetype javascript call SetJSOptions()
+    autocmd Filetype javascript.jsx call SetJSOptions()
+augroup END
+
+function! SetJSOptions()
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set expandtab
+endfunction
+
+" }}} JS "
+
 " vim: fdm=marker
