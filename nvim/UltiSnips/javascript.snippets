@@ -1,17 +1,233 @@
-snippet imp "ES6 module import" b
-import ${1:stuff} from '${2:module}';
+snippet imp "ES6 import"
+import $1 from '$2'
 endsnippet
 
-snippet rcomp "React comonent ES6 syntax" b
-import React from 'react';
+# =========
+# = React =
+# =========
 
-class ${1:component} extends React.Component {
+snippet rc "React component" b
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+	$2
 	render() {
+		$3
 		return (
-			$0
-		);
+			<div>
+				$4
+			</div>
+		)
 	}
 }
 
-export default $1;
+export default $1
+endsnippet
+
+# =========
+# = Parts =
+# =========
+
+snippet cn "className"
+className='$1'
+endsnippet
+
+snippet dp "Default Props" b
+static defaultProps = {
+	$1
+}
+endsnippet
+
+snippet set "Set State"
+this.setState({
+	${1}: ${2}
+})
+endsnippet
+
+snippet ref "Ref" i
+ref={${1:ref} => { this.${2:name} = $1 }}
+endsnippet
+
+snippet act "Action definition" b
+export const $1 = '$1'
+endsnippet
+
+snippet actf "Action function" b
+export const $1 = ($2) => {
+	return {
+		type: $3
+		$4
+	}
+}
+endsnippet
+
+snippet actfa "Action function async" b
+export const $1 = ($2) => {
+	return dispatch => {
+		$3
+	}
+}
+endsnippet
+
+snippet map "Map state to props"
+const mapStateToProps = (state) => {
+	const { $1 } = state
+	return {
+		$2
+	}
+}
+endsnippet
+
+snippet red "Reducer"
+const $1 = (state = $2, action) => {
+	switch (action.type) {
+		case $3:
+			return $4
+		default:
+			return state
+	}
+}
+endsnippet
+
+snippet met "Class property initializer"
+$1 = ($2) => {
+	$3
+}
+endsnippet
+
+snippet gp "Get concrete properties"
+const { $1 } = this.props
+endsnippet
+
+snippet gs "Get concrete state"
+const { $1 } = this.state
+endsnippet
+
+# =======================
+# = Component Lifecycle =
+# =======================
+
+snippet cwm "Component Will Mount" b
+componentWillMount() {
+	$1
+}
+endsnippet
+
+snippet cdm "Component Did Mount" b
+componentDidMount() {
+	$1
+}
+endsnippet
+
+snippet cwrp "Component Will Receive Props" b
+componentWillReceiveProps(nextProps) {
+	$1
+}
+endsnippet
+
+snippet scup "Should Component Update" b
+shouldComponentUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cwup "Component Will Update" b
+componentWillUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cdup "Component Did Update" b
+componentDidUpdate(prevProps, prevState) {
+	$1
+}
+endsnippet
+
+snippet cwu "Component Will Unmount" b
+componentWillUnmount() {
+	$1
+}
+endsnippet
+
+snippet ren "Render"
+render() {
+	return ${1:(
+		${2:<div>${3}</div>}
+	)}
+}
+endsnippet
+
+# =============
+# = PropTypes =
+# =============
+
+snippet pt "PropTypes Definition" b
+static propTypes = {
+	$1
+}
+endsnippet
+
+snippet  pt.a "PropTypes Array" w
+PropTypes.array$1
+endsnippet
+
+snippet   pt.b "PropTypes Boolean" w
+PropTypes.bool$1
+endsnippet
+
+snippet pt.f "PropTypes Function" w
+PropTypes.func$1
+endsnippet
+
+snippet pt.n "PropTypes Number" w
+PropTypes.number$1
+endsnippet
+
+snippet pt.o "PropTypes Object" w
+PropTypes.object$1
+endsnippet
+
+snippet pt.s "PropType String" w
+PropTypes.string$1
+endsnippet
+
+snippet pt.no "PropTypes Node" w
+PropTypes.node$1
+endsnippet
+
+snippet pt.e "PropTypes Element" w
+PropTypes.element$1
+endsnippet
+
+snippet pt.io "PropTypes instanceOf" w
+PropTypes.instanceOf($2)$1
+endsnippet
+
+snippet pt.one "PropTypes oneOf" w
+PropTypes.oneOf(['$2'$3])$1
+endsnippet
+
+snippet pt.onet "PropTypes oneOfType" w
+PropTypes.oneOfType([
+	$1
+])
+endsnippet
+
+snippet pt.ao "PropTypes arrayOf" w
+PropTypes.arrayOf($1)
+endsnippet
+
+snippet pt.oo "PropTypes objectOf" w
+PropTypes.objectOf($1)
+endsnippet
+
+snippet pt.sh "PropTypes Shape" w
+PropTypes.shape({
+	$1
+})
+endsnippet
+
+snippet ir "isRequired" w
+isRequired,
 endsnippet
