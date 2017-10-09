@@ -26,7 +26,6 @@ Plug 'brooth/far.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 " Editor
 Plug 'tpope/vim-repeat'
@@ -51,19 +50,17 @@ Plug 'morhetz/gruvbox'
 " Linting
 Plug 'benekastah/neomake'
 
-" Formatting
-Plug 'Chiel92/vim-autoformat'
-
 " Completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 
 call plug#end()
 
