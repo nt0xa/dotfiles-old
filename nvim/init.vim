@@ -1033,4 +1033,23 @@ endfunction
 
 " }}} JS "
 
+" Language: Markdown {{{"
+
+let g:tagbar_type_markdown = {
+\ 'ctagstype': 'markdown',
+\ 'ctagsbin' : '~/.config/nvim/markdown2ctags.py',
+\ 'ctagsargs' : '-f - --sort=yes',
+\ 'kinds' : [
+\   's:sections',
+\   'i:images'
+\ ],
+\ 'sro' : '|',
+\ 'kind2scope' : {
+\   's' : 'section',
+\ },
+\ 'sort': 0,
+\ }
+
+" }}} Language: Markdown "
+
 " vim: fdm=marker
