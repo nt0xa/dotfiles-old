@@ -56,7 +56,6 @@ Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'artur-shaik/vim-javacomplete2'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " By language
 Plug 'sheerun/vim-polyglot'
@@ -935,6 +934,34 @@ nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
 
+" Indent {{{ "
+
+augroup augroup_tabs
+    autocmd!
+    autocmd Filetype go,make call SetTabs()
+augroup END
+
+function! SetTabs()
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set noexpandtab
+endfunction
+
+augroup augroup_two_spaces
+    autocmd!
+    autocmd Filetype json,css,ruby,javascript,javascript.jsx,stylus call SetTwoSpaces()
+augroup END
+
+function! SetTwoSpaces()
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    set expandtab
+endfunction
+
+" }}} Indent "
+
 " Language: Go {{{ "
 
 " vim-go
@@ -947,10 +974,6 @@ augroup augroup_golang
 augroup END
 
 function! SetGolangOptions()
-    set softtabstop=2
-    set tabstop=2
-    set shiftwidth=2
-    set noexpandtab
     nnoremap <Localleader>b :GoBuild<CR>
     nnoremap <Localleader>r :GoRename<CR>
     nnoremap <Localleader>i :GoImports<CR>
@@ -976,61 +999,5 @@ function! SetJavaOptions()
 endfunction
 
 " }}} Language: Java "
-
-" Language: JSON {{{ "
-
-augroup augroup_json
-    autocmd!
-    autocmd Filetype json call SetJSONOptions()
-augroup END
-
-function! SetJSONOptions()
-    " Count of spaces per tab when editing
-    set softtabstop=2
-
-    " Number of visual spaces per tab
-    set tabstop=2
-
-    " <<, >> spaces
-    set shiftwidth=2
-
-    " Use spaces for indent
-    set expandtab
-endfunction
-
-" }}} Language: JSON "
-
-" Language: Ruby {{{ "
-
-augroup augroup_ruby
-    autocmd!
-    autocmd Filetype ruby call SetRubyOptions()
-augroup END
-
-function! SetRubyOptions()
-    set softtabstop=2
-    set tabstop=2
-    set shiftwidth=2
-    set expandtab
-endfunction
-
-" }}} Language: Ruby "
-
-" JS {{{ "
-
-augroup augroup_js
-    autocmd!
-    autocmd Filetype javascript call SetJSOptions()
-    autocmd Filetype javascript.jsx call SetJSOptions()
-augroup END
-
-function! SetJSOptions()
-    set softtabstop=2
-    set tabstop=2
-    set shiftwidth=2
-    set expandtab
-endfunction
-
-" }}} JS "
 
 " vim: fdm=marker
