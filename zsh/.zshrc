@@ -64,6 +64,11 @@ else
 fi
 alias ls="$ls_cmd --color=auto --group-directories-first"
 
+# sed
+if (( $+commands[gsed] )); then
+    alias sed=gsed
+fi
+
 # open
 if (( $+commands[xdg-open] )); then
   alias open='xdg-open'

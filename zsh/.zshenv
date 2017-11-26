@@ -16,7 +16,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Environment-variable respecting programs
 export ADB_VENDOR_KEYS="$XDG_DATA_HOME/android/.android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
-export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/config"
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/config.cfg"
 export ANSIBLE_PLAYBOOKS="$XDG_DATA_HOME/ansible/playbooks"
 export BABEL_DISABLE_CACHE=1
 export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
