@@ -20,6 +20,7 @@ export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/config.cfg"
 export ANSIBLE_PLAYBOOKS="$XDG_DATA_HOME/ansible/playbooks"
 export BABEL_DISABLE_CACHE=1
 export BOOKMARKS_FILE="$XDG_DATA_HOME/zsh/bookmarks"
+export BUNDLE_PATH="$XDG_DATA_HOME/ruby/bundle"
 export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
 export CP_REPOS_DIR="$XDG_DATA_HOME/cocoapods/repos"
 export DOT_SAGE="$XDG_DATA_HOME/sage"
@@ -33,17 +34,27 @@ export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export MSF_CFGROOT_CONFIG="$XDG_DATA_HOME/metasploit"
+export MYCLI_HISTFILE="$XDG_DATA_HOME/mycli/history"
+export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
+export PSQLRC="$XDG_CONFIG_HOME/postgres/psqlrc"
+export PSQL_HISTORY="$XDG_DATA_HOME/postgres/history"
+export RANDFILE="$XDG_DATA_HOME/misc/rnd"
+export REDISCLI_HISTFILE="$XDG_DATA_HOME/redis/history"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
-export BUNDLE_PATH="$XDG_DATA_HOME/ruby/bundle"
 
 # Alias respecting programs
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
 alias ctags="ctags --config-filename=config/ctags/ctags.conf" # Hack
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias ptpython="ptpython --config-dir $XDG_CONFIG_HOME/ptpython"
+alias mycli="mycli --myclirc $XDG_CONFIG_HOME/mycli/myclirc"
+alias sqlite3="sqlite3 -init $XDG_CONFIG_HOME/sqlite3/sqliterc"
+alias wget="wget --hsts-file $XDG_DATA_HOME/wget/hsts"
+alias mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 
 # }}} XDG #
 
