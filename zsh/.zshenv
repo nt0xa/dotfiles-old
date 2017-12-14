@@ -76,7 +76,7 @@ source $ZDOTDIR/private.zsh
 # Path
 typeset -U path
 path=(
-    /opt/metasploit-framework/bin/
+    /opt/metasploit-framework/embedded/framework/
     /Applications/VNC\ Viewer.app/Contents/MacOS/
     $HOME/.local/bin
     /usr/local/{bin,sbin}
