@@ -1000,4 +1000,10 @@ endfunction
 
 " }}} Language: Java "
 
+" HTML {{{ "
+
+autocmd BufNewFile,BufRead *.heml set filetype=html
+
+" }}} HTML "
+
 " vim: fdm=marker
