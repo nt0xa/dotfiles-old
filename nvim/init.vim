@@ -1000,10 +1000,16 @@ endfunction
 
 " }}} Language: Java "
 
-" HTML {{{ "
+" Language: HEML {{{ "
 
 autocmd BufNewFile,BufRead *.heml set filetype=html
 
-" }}} HTML "
+" }}} Language: HEML "
+
+" Language: Kaitai {{{ "
+
+autocmd BufNewFile,BufRead *.ksy set filetype=yaml
+
+" }}} Language: Kaitai "
 
 " vim: fdm=marker
