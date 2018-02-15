@@ -36,6 +36,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'jiangmiao/auto-pairs'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
