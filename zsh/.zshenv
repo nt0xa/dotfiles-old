@@ -43,6 +43,7 @@ export RANDFILE="$XDG_DATA_HOME/misc/rnd"
 export REDISCLI_HISTFILE="$XDG_DATA_HOME/redis/history"
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_DATA_HOME/tmux/plugins"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export ZPLUG_HOME="$XDG_DATA_HOME/zsh/zplug"
 
