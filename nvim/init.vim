@@ -61,6 +61,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 " By language
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
+Plug 'lifepillar/pgsql.vim'
 
 call plug#end()
 
@@ -951,7 +952,7 @@ endfunction
 
 augroup augroup_two_spaces
     autocmd!
-    autocmd Filetype json,css,ruby,javascript,javascript.jsx,stylus call SetTwoSpaces()
+    autocmd Filetype json,css,ruby,javascript,javascript.jsx,stylus,sql call SetTwoSpaces()
 augroup END
 
 function! SetTwoSpaces()
@@ -962,6 +963,14 @@ function! SetTwoSpaces()
 endfunction
 
 " }}} Indent "
+
+" Filetypes {{{ "
+
+autocmd BufNewFile,BufRead *.heml set filetype=html
+autocmd BufNewFile,BufRead *.ksy set filetype=yaml
+autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
+
+" }}} Filetypes "
 
 " Language: Go {{{ "
 
@@ -980,6 +989,7 @@ function! SetGolangOptions()
     nnoremap <Localleader>i :GoImports<CR>
     nnoremap <Localleader>t :GoTest<CR>
     nnoremap <Localleader>a :GoAlternate<CR>
+    nnoremap <Localleader>B :GoTestCompile<CR>
 endfunction
 
 " }}} Language: Go "
@@ -1001,16 +1011,10 @@ endfunction
 
 " }}} Language: Java "
 
-" Language: HEML {{{ "
+" Language: SQL {{{level "
 
-autocmd BufNewFile,BufRead *.heml set filetype=html
+let g:sql_type_default = 'pgsql'
 
-" }}} Language: HEML "
-
-" Language: Kaitai {{{ "
-
-autocmd BufNewFile,BufRead *.ksy set filetype=yaml
-
-" }}} Language: Kaitai "
+" level}}} Language: SQL "
 
 " vim: fdm=marker

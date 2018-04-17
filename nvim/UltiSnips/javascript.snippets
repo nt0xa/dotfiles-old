@@ -64,8 +64,14 @@ endsnippet
 
 snippet actfa "Action function async" b
 export const $1 = ($2) => {
-	return dispatch => {
-		$3
+	return async dispatch => {
+		dispatch({ type: types.$3_REQUEST })
+		try {
+			const response = await api.get('$4')
+			dispatch({ type: types.$3_SUCCESS, data: response.data })
+		} catch (err) {
+			dispatch({ type: types.$3_FAILURE, error: err })
+		}
 	}
 }
 endsnippet

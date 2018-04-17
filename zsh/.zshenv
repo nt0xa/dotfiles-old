@@ -79,7 +79,6 @@ path=(
     /Applications/VNC\ Viewer.app/Contents/MacOS
     $HOME/.local/bin
     /usr/local/{bin,sbin}
-    /usr/local/opt/python/libexec/bin
     $GOPATH/bin
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/platform-tools
