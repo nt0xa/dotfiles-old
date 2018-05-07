@@ -969,6 +969,7 @@ endfunction
 autocmd BufNewFile,BufRead *.heml set filetype=html
 autocmd BufNewFile,BufRead *.ksy set filetype=yaml
 autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
+autocmd BufNewFile,BufRead *.m set filetype=objc
 
 " }}} Filetypes "
 

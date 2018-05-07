@@ -63,7 +63,7 @@ function prompt_russtone_precmd {
   if [[ -z $VIRTUAL_ENV ]]; then
       _prompt_russtone_virtual_env=''
   else
-      _prompt_russtone_virtual_env='[env]'
+      _prompt_russtone_virtual_env=' [env]'
   fi
 
   if (( $+functions[vcs_info] )); then
@@ -115,7 +115,7 @@ function prompt_russtone_setup {
   zstyle ':vcs_info:git:*' check-for-changes true
   zstyle ':vcs_info:git:*' stagedstr '%F{yellow}%B!%b%f'
   zstyle ':vcs_info:git:*' unstagedstr '%F{red}%B!%b%f'
-  zstyle ':vcs_info:git*' formats ' %F{magenta}(%b)%f%u%c %m'
+  zstyle ':vcs_info:git*' formats ' %F{magenta}(%b)%f%u%c%m'
   zstyle ':vcs_info:git*+set-message:*' hooks \
                                         git-untracked \
                                         git-st
