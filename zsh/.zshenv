@@ -77,6 +77,7 @@ source $ZDOTDIR/private.zsh
 # Path
 typeset -U path
 path=(
+    /usr/local/opt/gettext/bin
     /Applications/VNC\ Viewer.app/Contents/MacOS
     $HOME/.local/bin
     /usr/local/{bin,sbin}

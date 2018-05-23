@@ -57,6 +57,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'mattn/emmet-vim'
 
 " By language
 Plug 'sheerun/vim-polyglot'
@@ -936,31 +937,20 @@ nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
 
+" Plugin: Emmet {{{ "
+
+let g:user_emmet_leader_key=','
+
+" }}} Plugin: Emmet "
+
 " Indent {{{ "
 
-augroup augroup_tabs
+augroup augroup_ident
     autocmd!
-    autocmd Filetype go,make call SetTabs()
+    autocmd Filetype go setlocal ts=2 sts=2 sw=2 noexpandtab
+    autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype stylus setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
-
-function! SetTabs()
-    set softtabstop=2
-    set tabstop=2
-    set shiftwidth=2
-    set noexpandtab
-endfunction
-
-augroup augroup_two_spaces
-    autocmd!
-    autocmd Filetype json,css,ruby,javascript,javascript.jsx,stylus,sql call SetTwoSpaces()
-augroup END
-
-function! SetTwoSpaces()
-    set softtabstop=2
-    set tabstop=2
-    set shiftwidth=2
-    set expandtab
-endfunction
 
 " }}} Indent "
 
