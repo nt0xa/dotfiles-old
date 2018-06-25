@@ -950,6 +950,8 @@ augroup augroup_ident
     autocmd Filetype go setlocal ts=2 sts=2 sw=2 noexpandtab
     autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
     autocmd Filetype stylus setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype pug setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 " }}} Indent "
