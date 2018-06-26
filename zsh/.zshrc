@@ -1,17 +1,11 @@
 # Plugins {{{ #
 
-# Auto install zplug
-if [[ ! -d $ZPLUG_HOME ]]; then
-  git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi
-
+export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-completions"
-zplug "felixr/docker-zsh-completion"
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "urbainvaes/fzf-marks"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 
@@ -52,7 +46,6 @@ alias la='ll -A'  # Lists human readable sizes, hidden files
 alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python'
 alias p3='python3'
-alias pp='ptpython'
 alias v='nvim'
 alias r='ranger'
 
@@ -168,10 +161,6 @@ if (( $+commands[fzf] )); then
   if (( $+commands[ag] )); then
     export FZF_DEFAULT_COMMAND='ag -g ""'
   fi
-
-  # fzf-marks
-  alias j='jump'
-  alias m='mark'
 
 fi
 
