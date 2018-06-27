@@ -3,11 +3,17 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
+# completions
 zplug "zsh-users/zsh-completions"
+zplug "felixr/docker-zsh-completion"
+zplug "plugins/docker-compose", from:oh-my-zsh
+
+zplug "plugins/extract", from:oh-my-zsh
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
+
 
 zplug "$ZDOTDIR", use:clipboard.zsh, from:local
 zplug "$ZDOTDIR", use:prompt.zsh, from:local
