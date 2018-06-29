@@ -1,11 +1,3 @@
-# path_helper {{{ #
-
-if [ -x /usr/libexec/path_helper ]; then
-  eval `/usr/libexec/path_helper -s`
-fi
-
-# }}} path_helper #
-
 # XDG {{{ #
 
 # XDG dirs
@@ -23,6 +15,7 @@ export GEM_HOME="$XDG_DATA_HOME/ruby/gem"
 export GEM_PATH="$XDG_DATA_HOME/ruby/gem"
 export GEM_SPEC_CACHE="$GEM_HOME/specs"
 export GOPATH="$XDG_DATA_HOME/golang:$HOME/Projects/golang"
+export GOBIN=${(j<:>)${${(s<:>)GOPATH}/%//bin}}
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
@@ -52,6 +45,7 @@ alias mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
 
 # Environment {{{ #
 export LANG='en_US.UTF-8'
+export LC_ALL=$LANG
 export PAGER='less'
 
 if (( $+commands[nvim] )); then
@@ -68,15 +62,13 @@ source $ZDOTDIR/private.zsh
 # Path
 typeset -U path
 path=(
-    /usr/local/opt/gettext/bin
-    /Applications/VNC\ Viewer.app/Contents/MacOS
-    $HOME/.local/bin
+    $HOME/.local/{bin,sbin}
     /usr/local/{bin,sbin}
-    $GOPATH/bin
+    $GOBIN
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/platform-tools
     $HOME/Library/Android/sdk/tools
-    /opt/SageMath
+    /Applications/VNC\ Viewer.app/Contents/MacOS
     $path
 )
 
@@ -89,6 +81,3 @@ manpath=(
 )
 
 # }}} Environment #
-
-# MacOS workaround sneaky path_helper in /etc/zprofile
-export GOODPATH=$PATH
