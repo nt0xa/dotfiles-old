@@ -22,7 +22,7 @@ Plug 'easymotion/vim-easymotion'
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-over'
-Plug 'brooth/far.vim'
+" Plug 'brooth/far.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -56,6 +56,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'roxma/nvim-yarp'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mattn/emmet-vim'
 
@@ -63,6 +64,8 @@ Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'lifepillar/pgsql.vim'
+Plug 'chr4/nginx.vim'
+Plug 'chr4/sslsecure.vim'
 
 call plug#end()
 
@@ -74,7 +77,7 @@ call plug#end()
 set fileencodings=utf-8,cp1251
 
 " Show line numbers (hybrid)
-set relativenumber
+" set relativenumber
 set number
 
 " Always show status line
@@ -173,6 +176,15 @@ set completeopt=menu
 
 " Interactive replace
 set inccommand=nosplit
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" This will show the popup menu even if there's only one match (menuone),
+" prevent automatic selection (noselect) and prevent automatic text injection
+" into the current line (noinsert).
+set completeopt=noinsert,menuone,noselect
 
 " }}} Options "
 
@@ -330,6 +342,12 @@ function! StatusLineBuild(active, ...)
 
         let l:statusline .= '%='
 
+        let l:statusline .= '%#StatusLinePercent#'
+        let l:statusline .= ' %p%% '
+
+        let l:statusline .= '%#StatusLinePosition#'
+        let l:statusline .= ' %l:%c '
+
         let l:statusline .= '%#NeomakeErrorSign#'
         let l:statusline .= '%{StatusLineNeomake("E", "✘")}'
 
@@ -375,6 +393,20 @@ endfunction
 nnoremap : :<C-\>eRedrawStatus()<CR>
 
 " 2}}} Refresh "
+
+" Percent {{{
+
+exec 'hi StatusLinePercent'
+\   ' guibg=' . s:colours.gui.gray_244 .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
+
+exec 'hi StatusLinePosition'
+\   ' guibg=' . s:colours.gui.gray_244 .
+\   ' guifg=' . s:colours.gui.dark0 .
+\   ' gui=bold'
+
+" }}} Percent
 
 " Mode {{{2 "
 
@@ -446,12 +478,19 @@ function! StatusLineMode()
     \            l:filetype ==? 'vim-plug' ||
     \            l:filetype ==? 'tagbar'
 
-    if !l:hide
-        call s:link_hlsubgroups('StatusLineMode', l:modename)
-        return s:spacewrap(l:modename[0])
+    if l:hide
+        return ''
     endif
 
-    return ''
+    let l:last_modename = get(w:, 'last_modename', '')
+
+    " Highlight is too slow, so rehighlight only if modename is changed.
+    if l:modename != l:last_modename
+        call s:link_hlsubgroups('StatusLineMode', l:modename)
+        let w:last_modename = l:modename
+    endif
+
+    return s:spacewrap(l:modename[0])
 endfunction
 
 " 2}}} Mode "
@@ -960,10 +999,15 @@ augroup END
 
 " Filetypes {{{ "
 
-autocmd BufNewFile,BufRead *.heml set filetype=html
-autocmd BufNewFile,BufRead *.ksy set filetype=yaml
-autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
-autocmd BufNewFile,BufRead *.m set filetype=objc
+augroup augroup_filetype
+    autocmd!
+    autocmd BufNewFile,BufRead *.heml set filetype=html
+    autocmd BufNewFile,BufRead *.ksy set filetype=yaml
+    autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
+    autocmd BufNewFile,BufRead *.m set filetype=objc
+    autocmd BufNewFile,BufRead *.conf set syntax=nginx
+    autocmd BufNewFile,BufRead *.sage set syntax=python
+augroup END
 
 " }}} Filetypes "
 
@@ -1006,10 +1050,10 @@ endfunction
 
 " }}} Language: Java "
 
-" Language: SQL {{{level "
+" Language: SQL {{{ "
 
 let g:sql_type_default = 'pgsql'
 
-" level}}} Language: SQL "
+" }}} Language: SQL "
 
 " vim: fdm=marker

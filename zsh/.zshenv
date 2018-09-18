@@ -15,7 +15,6 @@ export GEM_HOME="$XDG_DATA_HOME/ruby/gem"
 export GEM_PATH="$XDG_DATA_HOME/ruby/gem"
 export GEM_SPEC_CACHE="$GEM_HOME/specs"
 export GOPATH="$XDG_DATA_HOME/golang:$HOME/Projects/golang"
-export GOBIN=${(j<:>)${${(s<:>)GOPATH}/%//bin}}
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
@@ -64,7 +63,7 @@ typeset -U path
 path=(
     $HOME/.local/{bin,sbin}
     /usr/local/{bin,sbin}
-    $GOBIN
+    ${${(s<:>)GOPATH}/%//bin}
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/platform-tools
     $HOME/Library/Android/sdk/tools

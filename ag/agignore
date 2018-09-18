@@ -9,6 +9,9 @@
 node_modules/
 bower_components/
 
+# Python
+venv/
+
 # Build
 build/
 dist/

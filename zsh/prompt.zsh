@@ -59,11 +59,14 @@ function prompt_russtone_precmd {
   _prompt_russtone_elapsed_time=$(prompt_russtone_elapsed_time $_prompt_russtone_timestamp_start)
   unset _prompt_russtone_timestamp_start
 
-  # Check virtual env
-  if [[ -z $VIRTUAL_ENV ]]; then
-      _prompt_russtone_virtual_env=''
-  else
-      _prompt_russtone_virtual_env=' [env]'
+  # env
+  _prompt_russtone_env=''
+  if [[ -n $VIRTUAL_ENV ]]; then
+      _prompt_russtone_env+=' %F{green}[py]%f'
+  fi
+
+  if [[ -n $BREWENV_ENV ]]; then
+      _prompt_russtone_env+=' %F{yellow}[brew]%f'
   fi
 
   if (( $+functions[vcs_info] )); then
@@ -121,7 +124,7 @@ function prompt_russtone_setup {
                                         git-st
 
   PROMPT='
-%F{blue}${_prompt_russtone_pwd}%f${vcs_info_msg_0_}%F{cyan}${_prompt_russtone_virtual_env}%f
+%F{blue}${_prompt_russtone_pwd}%f${vcs_info_msg_0_}${_prompt_russtone_env}
 %F{green}➜ %f '
 
   RPROMPT='%F{yellow}${_prompt_russtone_elapsed_time}%f'

@@ -212,11 +212,17 @@ class Colors:
 # Custom colorscheme for the UI. See `ptpython/layout.py` and
 # `ptpython/style.py` for all possible tokens.
 _custom_ui_colorscheme = {
-    Keyword:       Colors.neutral_red,
     String:        Colors.neutral_green,
     String.Symbol: Colors.neutral_orange,
+
     Number:        Colors.neutral_purple,
-    Name.Builtin:  Colors.neutral_orange,
+
     Operator.Word: Colors.neutral_red,
+
+    Name.Namespace: Colors.light0_soft, # module name
     Name.Function: Colors.neutral_aqua,
+    Name.Builtin:  Colors.neutral_orange,
+
+    Keyword: Colors.neutral_red, # import
+    Keyword.Namespace: Colors.neutral_blue, # from
 }

@@ -24,9 +24,19 @@ zplug load
 
 # Key bindings {{{ #
 
-bindkey -e
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
+
+bindkey '^U' backward-kill-line
+bindkey '^T' kill-line
+
+bindkey '^F' vi-forward-char
+bindkey '^B' vi-backward-char
+
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+bindkey '^D' delete-char-or-list
 
 # }}} Key bindings #
 
@@ -52,6 +62,7 @@ alias la='ll -A'  # Lists human readable sizes, hidden files
 alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python'
 alias p3='python3'
+alias pp='ptpython'
 alias v='nvim'
 alias r='ranger'
 
@@ -171,5 +182,13 @@ if (( $+commands[fzf] )); then
 fi
 
 # }}} FZF #
+
+# brewenv {{{ #
+
+if command -v brewenv >/dev/null 2>&1; then
+  eval "$(brewenv init -)"
+fi
+
+# }}} brewenv #
 
 # vim: fdm=marker
