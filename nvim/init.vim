@@ -394,7 +394,7 @@ nnoremap : :<C-\>eRedrawStatus()<CR>
 
 " 2}}} Refresh "
 
-" Percent {{{
+" Percent & Position {{{
 
 exec 'hi StatusLinePercent'
 \   ' guibg=' . s:colours.gui.gray_244 .
@@ -402,11 +402,11 @@ exec 'hi StatusLinePercent'
 \   ' gui=bold'
 
 exec 'hi StatusLinePosition'
-\   ' guibg=' . s:colours.gui.gray_244 .
+\   ' guibg=' . s:colours.gui.light3 .
 \   ' guifg=' . s:colours.gui.dark0 .
 \   ' gui=bold'
 
-" }}} Percent
+" }}} Percent & Position
 
 " Mode {{{2 "
 
