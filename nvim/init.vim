@@ -13,6 +13,8 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-projectionist'
+" Plug 'rbgrouleff/bclose.vim'
+" Plug 'francoiscabrol/ranger.vim'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -34,7 +36,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -66,6 +68,7 @@ Plug 'fatih/vim-go'
 Plug 'lifepillar/pgsql.vim'
 Plug 'chr4/nginx.vim'
 Plug 'chr4/sslsecure.vim'
+Plug 'ARM9/arm-syntax-vim'
 
 call plug#end()
 
@@ -172,7 +175,7 @@ filetype indent on
 set foldenable
 
 " Show only menu on completion
-set completeopt=menu
+" set completeopt=menu
 
 " Interactive replace
 set inccommand=nosplit
@@ -342,12 +345,6 @@ function! StatusLineBuild(active, ...)
 
         let l:statusline .= '%='
 
-        let l:statusline .= '%#StatusLinePercent#'
-        let l:statusline .= ' %p%% '
-
-        let l:statusline .= '%#StatusLinePosition#'
-        let l:statusline .= ' %l:%c '
-
         let l:statusline .= '%#NeomakeErrorSign#'
         let l:statusline .= '%{StatusLineNeomake("E", "✘")}'
 
@@ -356,6 +353,13 @@ function! StatusLineBuild(active, ...)
 
         let l:statusline .= '%#StatusLineBranch#'
         let l:statusline .= '%{StatusLineBranch()}'
+
+        let l:statusline .= '%#StatusLinePercent#'
+        let l:statusline .= ' %p%% '
+
+        let l:statusline .= '%#StatusLinePosition#'
+        let l:statusline .= ' %l:%c '
+
     else
         let l:statusline .= '%#StatusLineWindowType#'
         let l:statusline .= '%{StatusLineWindowType()}'
@@ -390,7 +394,7 @@ function! RedrawStatus()
     return ''
 endfunction
 
-nnoremap : :<C-\>eRedrawStatus()<CR>
+nnoremap <silent> : :<C-\>eRedrawStatus()<CR>
 
 " 2}}} Refresh "
 
@@ -771,6 +775,12 @@ let g:neomake_go_gometalinter_args = ['--disable-all']
 
 " 2}}} Go "
 
+" Python {{{ "
+
+let g:neomake_python_enabled_makers = ['python', 'pyflakes', 'pycodestyle']
+
+" }}} Python "
+
 " }}} Plugin: Neomake "
 
 " Plugin: EasyAlign {{{ "
@@ -851,8 +861,8 @@ endfunction
 
 " Plugin: Deoplete {{{ "
 
-inoremap <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <silent><expr> <Tab>
+" \ pumvisible() ? "\<C-n>" : "\<Tab>"
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_menu_width = 10
@@ -1007,6 +1017,7 @@ augroup augroup_filetype
     autocmd BufNewFile,BufRead *.m set filetype=objc
     autocmd BufNewFile,BufRead *.conf set syntax=nginx
     autocmd BufNewFile,BufRead *.sage set syntax=python
+    autocmd BufNewFile,BufRead *.css set syntax=less
 augroup END
 
 " }}} Filetypes "

@@ -84,6 +84,9 @@ if (( $+commands[xdg-open] )); then
   alias open='xdg-open'
 fi
 
+# urlencode
+alias urlencode="python -c 'import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]'"
+
 # }}} Aliases #
 
 # Completions {{{ #
@@ -190,5 +193,12 @@ if command -v brewenv >/dev/null 2>&1; then
 fi
 
 # }}} brewenv #
+
+# Tools completions {{{ #
+
+# gcloud
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+# }}} Tools completions #
 
 # vim: fdm=marker

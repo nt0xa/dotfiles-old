@@ -62,12 +62,17 @@ source $ZDOTDIR/private.zsh
 typeset -U path
 path=(
     $HOME/.local/{bin,sbin}
+    /usr/local/opt/arm-linux-gnueabihf-binutils/bin
+    /usr/local/opt/curl/bin
+    /usr/local/opt/gettext/bin
     /usr/local/{bin,sbin}
     ${${(s<:>)GOPATH}/%//bin}
+    $HOME/.config/composer/vendor/bin
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/platform-tools
     $HOME/Library/Android/sdk/tools
     /Applications/VNC\ Viewer.app/Contents/MacOS
+    /usr/local/share/dotnet
     $path
 )
 
